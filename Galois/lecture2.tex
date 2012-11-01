@@ -1,0 +1,119 @@
+\section{Circles}
+By a circle we mean:
+\begin{description}
+  \item[Euclid 300 BC] $P : \text{centre}$, $r : \text{radius}$, then $C = \{ Q \in \text{plane} / |PQ| = r\}$
+  \item[Descartes, 17th century] $C = \{ (x, y) \in \mathbb{R}^2 / x^2+y^2=r^2 \}$
+  \item[Galois and Lie] A circle is a set on which the following group acts: $\mathbb{R}/2\pi\mathbb{Z}$, i.e. the group of rotations about the origin. This captures the essence of circular shapes.
+\end{description}
+
+We hence have the following relationship: \\
+\begin{tabular} {c c c c c}
+Geometry & & Algebra & & Groups \\
+\begin{tikzpicture}
+  \node (p) {P};
+  \node [above right = of p](q) {Q};
+  \path (p) edge node{} (q);
+\end{tikzpicture} &
+$\longleftrightarrow$ &
+\begin{tikzpicture}
+  \node (o) {};
+  \node [above right = of o](p) {};
+  \node (x) at ($ (o)!(p)!(0:1cm) $) {};
+  
+  \path (o) edge node {$x$} (x);
+  \path (o) edge node {$r$} (p);
+  \path (x) edge node {$y$} (p);
+\end{tikzpicture} &
+$\longleftrightarrow$ &
+$  T_{\theta}
+  \begin{pmatrix}
+    x \\ y  
+  \end{pmatrix} = 
+  \begin{pmatrix}
+    \cos\theta & -\sin\theta \\ 
+    \sin\theta & \cos\theta
+  \end{pmatrix}
+  \begin{pmatrix}
+    x \\ y  
+  \end{pmatrix}$
+\end{tabular}
+
+The symmetry group was hidden beneath the equation. Similarly, beneath the equation $X^2-3X-5=0$ lies the symmetry $X \leftrightarrow 3-X$. Beneath the equation $X^4+52X^3-26X^2-12X+1=0$ lies $\text{C}_4$ as:
+\begin{center}
+\begin{tikzpicture}[->]
+  \node (x1) {$X$};
+  \node [right = of x1](x2) {$-\frac{4X}{(1-X)^2}$};
+  \node [below = of x2](x3) {$\frac{1-X}{1+3X}$};
+  \node [below = of x1](x4) {$\frac{(1-X)(1+3X)}{-4X^2}$};
+  
+  \path (x1) edge node {} (x2);
+  \path (x2) edge node {} (x3);
+  \path (x3) edge node {} (x4);
+  \path (x4) edge node {} (x1);
+\end{tikzpicture} 
+\end{center}
+
+\chapter{Classical Galois theory}
+\section{Basic notions}
+\begin{definition} \label{def:1}
+  Let $L$ be a field. If a subring $K$ of $L$ is a field it is called a subfield of $L$. We say that $L$ is an extension\index{extension} of $K$. We refer to the pair as an extension $L/K$ (read ``$L$ over $K$'', note that this is not a quotient).
+\end{definition}
+
+Note: if $K$ $L$ are both subfields of a field $F$, and $K \subseteq L$, then $K$ is a subfield. Hence we have extensions $F/K$, $F/L$ and $L/K$. $L/K$ is sometimes called a subextension\index{subextension} of $F/K$. 
+
+In this section, we are mostly interested in subfields of $\mathbb{C}$, although most of the results will be valid for general fields.
+
+\paragraph{Example}
+\begin{itemize}
+  \item $\mathbb{Q}\subset\mathbb{R}\subset\mathbb{C}$
+  \item Let $\mathbb{Q}(\sqrt{2}) = \{ a + b\sqrt{2} / a, b \in \mathbb{R} \}$. Then, we have that $\mathbb{Q} \subset \mathbb{Q}(\sqrt{2}) \subset \mathbb{R}$.
+\end{itemize}
+
+
+Recall that $\mathbb{C}$ is a vector space over $\mathbb{R}$. In general, if $L/K$ is an extension, then the multiplication in $L$ makes $L$ into a $K$-vector space, as $L$ is an additive group, and axioms of the scalar multiplications follow from the axioms on rings. We always consider $L$ as a $K$-vector space in this way. If $K \subseteq L \subseteq F$, then $L$ is a $K$-vector subspace of $F$.
+
+\begin{definition} \label{def:2}
+  We say $L/K$ is finite\index{finite (extension)} if $L$ is a finite dimensional $K$-vector space. Otherwise, we say that it is infinite. Its dimension is called the degree\index{degree (extension)} of $L/K$, denoted by $[L : K]$.
+\end{definition}
+
+\paragraph{Example}
+\begin{itemize}
+  \item $\mathbb{Q}(\sqrt{2})/\mathbb{Q}$ is finite with basis $\{1, \sqrt{2}\}$.
+  \item $[\mathbb{Q}(\sqrt{2}) : \mathbb{Q}] = 2$.
+  \item $[\mathbb{C} : \mathbb{R}] = 2$.
+  \item However, $\mathbb{R}/\mathbb{Q}$ is infinite.
+\end{itemize}
+
+Let $K[X]$ be the ring of polynomials with coefficients in $K$, where polynomials\index{polynomial} are understood as formal $K$-linear combinations of $1$, $X$, $X^2$\ldots They form a ring and a $K$-vector space, but are usually not considered as functions.
+
+\begin{definition} \label{def:3}
+  Let $L/K$ be an extension and $\alpha \in L$. We define:
+  \begin{equation*}
+    I_\alpha = \{ P(X) \in K[X] / P(\alpha) = 0\} \subseteq K[X]
+  \end{equation*}
+  the set of all polynomials which have $\alpha$ as a root. We say that $\alpha$ is algebraic\index{algebraic} over K if $I_\alpha \neq \{0\}$, and transcendental\index{transcendental} over K if $I_\alpha = \{0\}$. We say that $L/K$ is algebraic if every $\alpha \in L$ is algebraic over K. Otherwise, it is transcendental.
+\end{definition}
+Examples:
+\begin{itemize}
+  \item $\sqrt{2}$, $\sqrt[3]{2}$ are algebraic over $\mathbb{Q}$.
+  \item $\pi$, $e$ are transcendental over $\mathbb{Q}$.
+\end{itemize}
+
+\begin{proposition} \label{prop:4}
+Every finite extension is algebraic.
+\end{proposition}
+\begin{proof}
+  If $[L : K] = n$ and $\alpha \in L$ then the elements $1$, $\alpha$, $\alpha^2$, \ldots , $\alpha^n$ are linearly dependent over K (as there are $n+1$ of them). Hence, there exists $a_i$, $0 \leq i \leq n$, such that $\sum_{i=0}^n a_i\alpha^i=0$ but $a_i$ not all $0$. Hence, we have $P(\alpha) = 0$ for some non-zero $P \in K[X]$.
+\end{proof}
+
+Note that $I_\alpha$ as defined in \ref{def:3} is the kernel of a ring homomorphism:
+\begin{IEEEeqnarray*}{rCl}
+  f_\alpha : K[X] &\rightarrow& L \\
+  P(X) & \mapsto& P(\alpha)
+\end{IEEEeqnarray*}
+It is also a $K$-linear map. Hence, $I_\alpha$ is an ideal in $K[X]$. This can also be directly checked:
+\begin{equation*}
+  P(\alpha)=Q(\alpha)=0 \Rightarrow \begin{cases}
+    (P+Q)(\alpha) = 0 \\ \forall R \in K[X], \ R(\alpha)P(\alpha) = 0
+  \end{cases}
+\end{equation*}
