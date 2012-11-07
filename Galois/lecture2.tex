@@ -21,9 +21,9 @@ $\leftrightarrow$ &
   \node [above right = of o](p) {};
   \node (x) at ($ (o)!(p)!(0:1cm) $) {};
   
-  \path (o) edge node {$x$} (x);
-  \path (o) edge node {$r$} (p);
-  \path (x) edge node {$y$} (p);
+  \path (o.center) edge node[below] {$x$} (x.center);
+  \path (o.center) edge node[auto] {$r$} (p.center);
+  \path (x.center) edge node[right] {$y$} (p.center);
 \end{tikzpicture} &
 $\leftrightarrow$ &
 $  T_{\theta}

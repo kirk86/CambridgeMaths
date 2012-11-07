@@ -1,0 +1,23 @@
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\newcommand{\homset}[3][K]{
+  \ensuremath{\text{Hom}_{#1}\left(#2, #3\right)}
+}
+
+\newcommand{\rootset}[2][P]{
+  \ensuremath{\text{Root}_{#1}\left(#2\right)}
+}
+
+\newcommand{\cardinality}[1]{
+  \ensuremath{\left|#1\right|}
+}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
