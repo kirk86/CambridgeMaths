@@ -1,0 +1,142 @@
+
+\section{K-homomorphisms into $\mathbb{C}$}
+
+\subparagraph{Note}
+subfields of $\mathbb{C}$ are always extensions of $\mathbb{Q}$.
+
+For $K \subseteq \mathbb{C}$ and $\alpha \in \mathbb{C}$, by conjugates fo $\alpha$ over K, we will always mean its conjugate in $\mathbb{C}$. E.g. the conjugates of $\sqrt[3]{2}$ are $\sqrt[3]{2}$, $\sqrt[3]{2}\zeta$ and $\sqrt[3]{2}\zeta^2$.
+
+\begin{proposition}\label{prop:15}
+  Let $K \in \mathbb{C}$. 
+  \begin{enumerate}
+  \item Let $P \in K[X]$, an irreducible polynomial in $K[X]$, then $\cardinality{\rootset[P]{\mathbb{C}}} = \deg P$ (this is called the separability\index{separability} of P).
+  \item Let $\alpha \in \mathbb{C}$ be algebraic over K, then $\cardinality{\homset[K]{K(\alpha)}{\mathbb{C}}} = [K(\alpha) : K]$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}
+  \item A multiple root $\alpha \in \mathbb{C}$ of P would also be a root of $P'(X) = \frac{\text{d}}{\text{dx}}P(x) \in K[X]$, but $\deg P' < \deg P$ and P is irreducible, hence $P$, $P'$ are coprime in $K[X]$, thus there exists Q, R, such that $PQ + P'R = 1$ in $K[X]$, hence also in $\mathbb{C}[X]$. Thus $P$, $P'$ are coprime in $\mathbb{C}[X]$, hence all roots of P are distinct and there are $\deg P$ of them by the fundamental theorem of algebra.
+
+  \item $\cardinality{\homset{K(\alpha)}{\mathbb{C}}} = \cardinality{\rootset[P_\alpha]{\mathbb{C}}} = \deg P_\alpha  = [K(\alpha) : K]$.
+  \end{enumerate}
+\end{proof}
+
+Next, we want to generalise this result ot $\cardinality{\homset{F}{\mathbb{C}}} = [F : K]$ (the separability of $F/K$), by breaking down to simple extensions, and stacking back up.
+
+If $K \subseteq L \subseteq F$, and $\rho \in \homset{F}{\mathbb{C}}$, then $\restr{\rho}{L} \in \homset{L}{\mathbb{C}}$, hence we have a restriction map:
+
+\begin{IEEEeqnarray*}{rCl}
+  \homset{F, \mathbb{C}} & \rightarrow & \homset{L}{\mathbb{C}} \\
+  \rho & \mapsto & \restr{\rho{}}{L}
+\end{IEEEeqnarray*}
+
+to climb up, we count the number of $\rho$ with a given fixed $\restr{\rho}{L}$, called the fiber\index{fiber} of the map.
+
+\subparagraph{Example}
+
+Let $K = \mathbb{Q}$, $L = \mathbb{Q}(\sqrt{2})$, 
+\begin{equation*}
+\homset{L, \mathbb{Q}} = \{ \tau_1 = \text{id}, \, \tau_2 : \sqrt{2} \mapsto \sqrt{-2} \}  
+\end{equation*}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \node (1) {$F = \mathbb{Q}(\sqrt{2}, i)$};
+    \node (2) [below = of 1] {$L = \mathbb{Q}(\sqrt{2})$};
+    \node (3) [below = of 2] {$K = \mathbb{Q}$};
+
+    \path
+      (1) edge node [auto] {2} (2)
+      (2) edge node [auto] {2} (3);
+  \end{tikzpicture}
+\end{figure}
+
+We have that:
+\begin{equation*}
+  \restr{\rho}{L} = \tau_1 = \text{id} \quad \text{or} \quad \restr{\rho}{L} = \tau_2
+\end{equation*}
+but $\rho(i) = \pm i$ can be chosen independently, hence there are 4 K-homomorphisms in this case.
+
+\subparagraph{Example}
+
+The minimal polynomial of $\alpha = \sqrt[4]{2}$ over $\mathbb{Q}$ is $X^4-2$.
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \node (1) {$F = \mathbb{Q}(\sqrt[4]{2})$};
+    \node (2) [below = of 1] {$L = \mathbb{Q}(\sqrt{2})$};
+    \node (3) [below = of 2] {$K = \mathbb{Q}$};
+
+    \path
+      (1) edge node {} (2)
+      (2) edge node {} (3);
+  \end{tikzpicture}
+\end{figure}
+as $F/K$ is simple, then K-homomorphisms are:
+\begin{equation*}
+  \homset{F}{\mathbb{C}} = \left\{ \rho_1 : \sqrt[4]{2} \mapsto \sqrt[4]{2}, \rho_2 : \sqrt[4]{2} \mapsto -\sqrt[4]{2}, \rho_3 : \sqrt[4]{2} \mapsto i\sqrt[4]{2}, \rho_3 : \sqrt[4]{2} \mapsto -i\sqrt[4]{2}\right\} 
+\end{equation*}
+hence the conjugates of $\alpha$ over K are:
+\begin{equation*}
+  \{\underbrace{\sqrt[4]{2},\, -\sqrt[4]{2}}_{\text{over L, root of} \ X^2-\sqrt{2}}, \underbrace{i\sqrt[4]{2},\, -i\sqrt[4]{2}}_{\text{over L, root of} X^2+\sqrt{2}}\}
+\end{equation*}
+Restricting to L, we have that:
+\begin{equation*}
+  \begin{cases}
+    \rho_1, \rho_2 : \sqrt{2}  \mapsto  \sqrt{2} \\
+    \rho_3, \rho_4 : \sqrt{2}  \mapsto  -\sqrt{2}
+  \end{cases}
+\end{equation*}
+Note that $\rho(\sqrt{2}) = \rho(\alpha^2) = \rho(\alpha)^2$ as $\rho$ is a ring homomorphism. Hence, if we start with $\restr{\rho}{L} \in \homset{L}{\mathbb{C}}$ and try to expand, we have:
+\begin{equation*}
+  \begin{cases}
+    \text{if $\restr{\rho}{L} = \tau_1$, then $\rho$ must map $\alpha$ to a root of $P_\alpha$} \\
+    \text{if $\restr{\rho}{L} = \tau_2$, then $\rho$ must map $\alpha$ to a root of $\tau_2P_\alpha$}
+  \end{cases}
+\end{equation*}
+
+\begin{definition}\label{def:16}
+  Let L be a field and $\tau : L \rightarrow L'$ be a ring homomorphism. For $P \in L[X]$, we denote by $\tau{}P(X) \in L'[X]$ the polynomial obtained by applying $\tau$ to the coefficients of $P$.
+\end{definition}
+
+\begin{proposition}[Roots and homomorphism II]\label{prop:17}
+  Let $F/K$, $E/K$ be extensions of K. Let $K \subseteq L \subseteq F$ and $\alpha \in F$ be algebraic over L with minimal polynomial $P_\alpha$ over L. Then, for every $\tau \in \homset{L}{E}$ we have a bijection:
+
+  \begin{IEEEeqnarray*}{rCl}
+    \{\rho \in \homset{L(\alpha)}{E} \mid \restr{\rho}{L} = \tau\} &\rightarrow& \rootset[\tau{}P_\alpha{}]{E} \\
+\rho{} & \mapsto & \rho(\alpha)
+  \end{IEEEeqnarray*}
+\end{proposition}
+\eqref{prop:14} is a special case with $L = K$, $\tau = id$.
+
+\begin{proof}
+  \begin{enumerate}
+  \item We have a well defined map:
+
+we have $P_\alpha(\alpha) = 0$, and $\rho$ a ring homomorphism wih $\restr{\rho}{L} = \tau$, hence we have:
+\begin{equation*}
+  \tau{}P(\rho(\alpha)) = \rho(P_\alpha(\alpha)) = 0
+\end{equation*}
+i.e. $\rho(\alpha) \in \rootset[\tau{}P_\alpha]{E}$.
+\item Injectivity:
+all elements in $L(\alpha)$ are polynomials in $\alpha$ with coefficient in L, so the map $\rho$ is determined by $\rho(\alpha) \in E$.
+\item Surjectivity:
+let $\beta \in \rootset[\tau{}P_\alpha]{E}$, and define $\rho$ such that $\rho(\alpha) = \beta$. Every $x \in L(\alpha)$ is written as $x = P(\alpha)$ with $P \in L[X]$, and $P$ is unique up to adding multiples of $P_\alpha$. As $\tau{}P_\alpha(\beta) = 0$, the element $\tau{}P(\beta)$ is well-defined. We have that:
+\begin{equation*}
+  P' = P_{\alpha}Q + P \Rightarrow \tau{}P' = \tau{}P + \tau{}P_{\alpha}\tau{}Q
+\end{equation*}
+hence let $\rho(x) = \tau{}P(\beta)$, i.e.
+\begin{IEEEeqnarray*}{rCl}
+  \rho : L(\alpha) & \rightarrow & E \\
+P(\alpha) & \mapsto & \tau{}P(\beta{})
+\end{IEEEeqnarray*}
+this is clearly a ring homomorphism and $\restr{\tau}{K} = \text{id}$.
+  \end{enumerate}
+\end{proof}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
