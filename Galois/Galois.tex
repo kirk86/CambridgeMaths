@@ -11,20 +11,24 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-\usepackage{amsthm}
+\usepackage[amsmath,amsthm,thref]{ntheorem}
 \usepackage[retainorgcmds]{IEEEtrantools}
 
 \usepackage{makeidx}
+\usepackage{booktabs}
+\usepackage{array}
 
 \title{Galois Theory}
 \author{Wenda Zhou}
 
 \input{theorems.tex}
 
+\newcolumntype{V}{>{\centering\arraybackslash} m{0.4\linewidth}}
+
 \begin{document}
 
 \maketitle
-
+`
 \input{lecture1.tex}
 \input{lecture2.tex}
 \input{lecture3.tex}

@@ -7,14 +7,15 @@ By a circle we mean:
 \end{description}
 
 We hence have the following relationship: \\
-\begin{tabular} {c c c c c}
+\begin{tabular} {>{\centering\arraybackslash} m{0.2\linewidth} c >{\centering\arraybackslash} m{0.2\linewidth} c >{\centering\arraybackslash} m{0.4\linewidth}}
 Geometry & & Algebra & & Groups \\
 \begin{tikzpicture}
   \node (p) {P};
   \node [above right = of p](q) {Q};
   \path (p) edge node{} (q);
-\end{tikzpicture} &
-$\longleftrightarrow$ &
+\end{tikzpicture}
+ &
+$\leftrightarrow$ &
 \begin{tikzpicture}
   \node (o) {};
   \node [above right = of o](p) {};
@@ -24,7 +25,7 @@ $\longleftrightarrow$ &
   \path (o) edge node {$r$} (p);
   \path (x) edge node {$y$} (p);
 \end{tikzpicture} &
-$\longleftrightarrow$ &
+$\leftrightarrow$ &
 $  T_{\theta}
   \begin{pmatrix}
     x \\ y  
