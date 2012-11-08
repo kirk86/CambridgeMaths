@@ -1,0 +1,90 @@
+% (Proof of prop 68)
+%  correct the following:
+
+%  \begin{equation*}
+%    \card{\autset{\mathbb{F}_{q^n}}} \leq \card{\homset[\mathbb{F}_{q^n}]{\mathbb{F}_{q^n}}}{\mathbb{F}_{q^n}}} = \card{\rootset{\mathbb{F}_{q^n}}}} 
+%  \end{equation*}
+
+\section{Application I : cyclotomics fields}
+
+\begin{definition}
+  For a field K and $N \geq 1$;. Let $K(\mathbb{\mu})_n)$ be a splitting field of $X^n - 1$ over K (cyclotomic extension of K), and $\mathbb{\mu} = \rootset[X^n -1]{K(\unityroots{N})} \subseteq K(\unityroots{N})*$, which lies in a finite extension of $\mathbb{Q}$ or $\mathbb{F}_p$ inside $K(\mathbb{\mu}_N)$. Then $\mathbb{\mu}_N$ is a finite multiplicative group, hence cyclic by lemma \ref{lemma:67}. If $(\text{char} K, N) = 1$, then $\card{\unityroots{N}} = N$ by \ref{cor:62}, hence there exists a primitive\index{primitive} N-th root of unity, i.e. $\zeta \in \unityroots{N}$ with order N. There are $\card{\Big(\mathbb{Z}/(N)\Big)*}$ of them, but no canonical choice like $e^{2\pi{}i/N} \in \mathbb{C}$.
+\end{definition}
+
+\begin{proposition}
+  \label{prop:70}
+  Let $(\text{char} K, N) = 1$.
+
+  \begin{enumerate}
+  \item We can define the N-th cyclotomic polynomial\index{cyclotomic polynomial} $\Phi_N \in \mathbb{Z}[X]$ inductively by:
+    \begin{equation*}
+      X^N -1 = \prod_{d \mid N} \Phi_d(X)
+    \end{equation*}
+    where $d$ runs through all positive divisors of $N$. Denoting the image of $\Phi_N$ in $K[X]$ also by $\Phi_N$, we have:
+    \begin{equation*}
+      \rootset[\Phi_n]{K(\unityroots{N})} = \{ \text{all primitive N-th roots of 1} \} \subseteq \unityroots{N}
+    \end{equation*}
+
+  \item $K(\unityroots{N})/K$ is Galois, with an injective group homomorphism:
+    \begin{IEEEeqnarray*}{rCl}
+      \Gal{K(\unityroots{N})/K} &\rightarrow& \multCyclicGp{N} \\
+      (\zeta \mapsto \zeta^i \forall \zeta \in \unityroots{N}) &\mapsto& i \text{mod} N
+    \end{IEEEeqnarray*}
+    If $[K(\unityroots{N}) : K] = n$, then all irreducible factors of $\Phi_n$ in $K[X]$ have degree n.
+  \end{enumerate}
+\end{proposition}
+
+\subparagraph{Example}
+
+\begin{enumerate}
+\item $\Phi_2(X) = X+1$
+\item $\Phi_3(X) = X^2 + X + 1$
+\end{enumerate}
+\begin{equation*}
+  \Phi_2 = X+1
+\end{equation*}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Induction on $N$. By induction hypothesis $\prod_{d \mid N, d < N}\Phi_d(X)$ is in $Z[X]$, and its roots in $K[\unityroots{N}]$ are all the non-primitive N-th roots of 1, all distinct (by corollary \ref{cor:62}). So it divides $X^N-1$ in $K(\unityroots{N})[X]$, and the roots of the quotient $\Phi_N$ are the primitive N-th roots of 1. Now consider $K = \mathbb{Q}$. Then $\Phi_N \in \mathbb{Q}(\unityroots{N})[X]$ is obtained by the division algorithm as the quotient of $X^N-1$ by a monic polynomial in $\mathbb{Z}[X]$, hence $\Phi_N \in \mathbb{Z}[X]$.
+
+  \item Let $[K(\unityroots{N}) : K] = n$ and $\zeta$ be a primitive N-th root of 1. As $K(\unityroots{N}) = K(\zeta)$ and the minimal polynomial $P_\zeta$ has $\deg P_\zeta = n$ distinct roots in $\unityroots{N}$ (by corollary \ref{cor:62}), hence $K(\unityroots{N})/K$ is Galois by proposition \ref{prop:14}. If $\sigma(\zeta)= \zeta^i$, then $\sigma(\zeta^j) = \left(\zeta^i\right)^j = \left(\zeta^j\right)^i$ for all $j$. The map is injective as $i \mod N$ determines $\sigma$ (as we have $K(\unityroots{N}) = K(\zeta)$), and is a group homomorphism as $(\zeta \mapsto \zeta^i) \odot (\zeta \mapsto \zeta^j) = (\zeta \mapsto \zeta^{ij})$. Finally, every irreducible factor of $\Phi_N$ is the minimal polynomial of some primitive N-th root by the first part, hence has degree $[K(\zeta) : K] = n$.
+  \end{enumerate}
+\end{proof}
+
+\subparagraph{Example}
+
+Recall in $\mathbb{F}_2[X]$:
+\begin{IEEEeqnarray*}{rCl}
+ X^15-1 &=& (X+1)(X^2+X+1)(X^4+X^3+X^2+X+1)(X^4+X+1)(X^4+X^3+1) \\
+       &=& (\Phi_2 \mod 2)(\Phi_3 \mod 2)(\Phi_5 \mod 2)(\Phi_{15} \mod 2)
+\end{IEEEeqnarray*}
+so $\Phi_{15} \mod 2$ is a product of two irreducible factors. Note that roots of $\Phi_5 \mod 2$ are not generators of $\unityroots{15}$, but still generate $\mathbb{F}_{16}/\mathbb{F}_2$.
+
+\subparagraph{Example}
+
+Let $K = \mathbb{F}_q$ and $n\geq 1$. Since $(\mathbb{F}_{q^n})* = \unityroots{q^n-1}$ we have $\mathbb{F}_{q^n} = \mathbb{F}_q(\unityroots{q^n-1})$ (splitting field of $X^{q^n} - X$ but also of $X^{q^n-1}-1)$. So every finite extension of finite fields is a cyclotomic extension. Note that $(\text{char} K, q^n -1) = 1$. More generally, for $N \geq 1$, prime to $q$, let $n$ be the order of $q \mod N$ in $\Big(\mathbb{Z}/(N)\Big)$. Then by theorem \ref{thm:68} and proposition \ref{prop:70}, we have:
+\begin{IEEEeqnarray*}{rCl}
+  \Gal{\mathbb{F}_q(\unityroots{N})/\mathbb{F}_q} &\rightarrow& \{1, q, q^2, \ldots, q^{n-1} \} \subseteq \Big(\mathbb{Z}/(N)\Big)* \\
+  (\text{Fr} : x \mapsto x^q) &\mapsto& q \mod N
+\end{IEEEeqnarray*}
+is an isomorphism, i.e. $\mathbb{F}_q(\unityroots{N}) = \mathbb{F}_{q^n}$, and all irreducible factors of $\Phi_n$ in $\mathbb{F}_q[X]$ have degree $n$. The previous example is $q = 2$, and $N = 5, 15$, $n = 4$.
+
+So we know how $\Phi_N \mod P$ factorizes for $p$ prime to $N$. What about $\text{char} K = 0$? The simplest case $\Big(\mathbb{Z}/(N)\Big)*$ is cyclic and has generator $p \mod N$ with p prime, then $\Phi_N \mod p$ is irreducible, hence so is $\Phi_N$. But for example for $N = 8$, $\Phi_8 = X^4+1$, $\Phi_8 \mod p$ is reducible for every prime $p$, but $\Phi_8$ is still irreducible in $\mathbb{Z}[X]$.
+
+\begin{theorem}[Gauss irreducibility of cyclotomic polynomials]
+  For all $N \geq 1$, the polynomial $\Phi_N$ is irreducible in $\mathbb{Q}[X]$ (hence also in $\mathbb{X}[X]$ by Gauss's lemma). In other words, the group homomorphism $\Gal{\mathbb{Q}(\unityroots{N})/\mathbb{Q}} \overset{\cong}{\rightarrow} \multCyclicGp{N}$ in proposition \ref{prop:70} is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+  Suffices to prove that $\Phi_N$ is the minimal polynomial over $\mathbb{Q}$ of every primitive N-th root of 1, i.e. all elements of $\rootset[\Phi_n]{\mathbb{Q}(\unityroots{N}) = \{ \zeta^a \mid a \in \multCyclicGp{N} \}$ are conjugate over $\mathbb{Q}$.
+
+As every $a \in \multCyclicGp{N}$ is some product of $p \mod N$ for primes $p$ not dividing $N$. Suffices to prove that $\zeta^p$ is a conjugate of $\zeta$ over $\mathbb{Q}$ for every $p$ prime to $N$ and every primitive $\zeta$.
+
+Let $P_\zeta$ be the minimal polynomial of $\zeta$ over $\mathbb{Q}$ and $\Phi_N = P_\zeta\cdot{}Q$ in $\mathbb{Q}[X]$. As $\Phi_N$, $P_\zeta$ are monic, so is $Q$, hence $P_\zeta, Q \in \mathbb{Z}[X]$ by Gauss lemma (since $\Phi_N \in \mathbb{Z}[X]$). Suppose $\zeta^p$ is not a root of $P_\zeta$, then it is a root of Q. Then $\zeta$ is a root of $Q(X^p)$, hence $P_\zeta(X) \mid Q(X^p)$ in $\mathbb{Q}[X]$, hence in $\mathbb{Z}[X]$ (division by a monic polynomial). Reducing this modulo p (and writing $\overbar{P} = P \mod p$) $\overbar{P_\zeta(X)} \mid \overbar{Q(X^P)} = (\overbar{Q(X)})^p$ in $\mathbb{F}_p[X]$. Thus $\overbar{P_\zeta}$, $\overbar{Q}$ have common roots in $\mathbb{F}_p(\unityroots{N)$, but contradicts cor \ref{cor:62} since $\overbar{\Phi_N} \mid \overbar{X^N-1}
+\end{proof}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
