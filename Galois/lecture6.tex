@@ -1,0 +1,140 @@
+\begin{theorem}[Separability]\label{thm:18}
+  Let $F/K$ be a finite extensions inside $\mathbb{C}$. Then, we have:
+  \begin{equation*}
+    \cardinality{\homset{F}{\mathbb{C}}} = [F : K]
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  Let $F = K(\alpha_1, \ldots, \alpha_n)$ (by prop \eqref{prop:10}). If $n = 1$, then this reduces to prop \eqref{prop:15}. Proceed by induction $n$: let $L = K(\alpha_1, \ldots, \alpha_{n-1})$, $F = L(\alpha)$ with $\alpha = \alpha_n$, and consider the restriction map:
+  \begin{IEEEeqnarray*}{rCl}
+    \homset{F}{\mathbb{C}} &\rightarrow& \homset{L}{\mathbb{C}} \\
+    \rho & \mapsto \restr{\rho}{L}
+  \end{IEEEeqnarray*}
+By proposition \eqref{prop:17}, the inverse image of each $\tau \in \homset{L}{\mathbb{C}}$ has cardinality $\cardinality{\rootset[\tau{}P_\alpha]{\mathbb{C}}}$. Now $\tau{}P_\alpha$ is irreducible in $\tau(L)[X]$ (where $P_\alpha$ is the minimal polynomial of $\alpha$ over L), as it is the image of $P_\alpha \in L[X]$ under the ring isomorphism $L[X] \rightarrow \tau(L)[X]$ extending $\tau : L \rightarrow \tau(L)$. Hence, we have that:
+\begin{equation*}
+   \cardinality{\rootset[\tau{}P_\alpha]{\mathbb{C}}} = \deg \tau{}P_\alpha = \deg P_\alpha  \qquad \text{(by prop \eqref{prop:15})}
+\end{equation*}
+but we also have that:
+\begin{equation*}
+ \deg P_\alpha = [L(\alpha) : L] \qquad \text{(by prop \eqref{prop:7})}
+\end{equation*}
+thus, we have:
+  \begin{IEEEeqnarray*}{rClr}
+   \cardinality{\homset{F}{\mathbb{C}}} &=& [L(\alpha) : L] \cdot \cardinality{\homset{L}{\mathbb{C}}}& \\
+    &=& [F : L][L : K] & \text{by induction hypothesis} \\
+    &=& [F : K] & \text{by tower law} 
+  \end{IEEEeqnarray*}
+ \end{proof}
+
+We have also proved the following:
+
+\begin{lemma}\label{lemma:19}
+  Let $F/K$ be a finite extension inside $\mathbb{C}$ and $K \subseteq L \subseteq F$. Then, the map:
+  \begin{IEEEeqnarray*}{rCl}
+    \homset{F}{\mathbb{C}} & \rightarrow & \homset{L}{\mathbb{C}} \\
+    \rho & \mapsto & \restr{\rho}{L}
+  \end{IEEEeqnarray*}
+is surjective, i.e. one can extend every K-homomorphism $\tau : L \rightarrow \mathbb{C}$ to F.
+\end{lemma}
+
+\begin{theorem}[Primitive element\index{primitive element (theorem)} theorem]\label{thm:20}
+  Every finite extensions inside $\mathbb{C}$ is simple.
+\end{theorem}
+
+\begin{proof}
+  We prove the simplicity of every finite $F/K$ with $\cardinality{K}$ infinite and satisfying the following (in our case, by theorem \eqref{thm:18}):
+
+if $K \subseteq L \subseteq F$, there exists an extension $E/K$ such that $\cardinality{\homset{L}{E}} = [L : K]$.
+
+Let $F = K(\alpha_1, \ldots, \alpha_n)$ (prop. \eqref{prop:10}. We show that $K(\alpha_1, \ldots, \alpha_i)/K$ simple by induction on $i$. By induction hypothesis, suffices to prove that $L = K(\alpha, \beta) \subseteq F$ is simple over K.
+
+For $\gamma \in L$ with $K\subseteq K(\gamma) \subseteq L$, we have:
+\begin{equation*}
+  \card{\homset{K(\alpha)}{E}} \leq [K(\alpha) : K] \leq [L : K] = \card{\homset{L}{E}}
+\end{equation*}
+and equality implies $L = K(\alpha)$.
+
+Hence let $d = [L : K]$ and $\homset{L}{E} = \{ \tau_1, \ldots, \tau_d \}$, it suffices to find $\gamma \in L$ such that $\restr{\tau_i}{K(\alpha)}$ are distinct elements of $\homset{K(\alpha)}{E}$, i.e. $\tau_1(\alpha), \ldots, \tau_d(\alpha)$ all distinct.
+
+We try $\gamma$ of the form $\gamma = \alpha{}x + \beta$, with $x \in K$. We need that:
+\begin{IEEEeqnarray*}{rCl}
+  0 &\neq& \prod_{i \neq j} \left(\tau_i(\gamma) - \tau_j{\gamma}\right) \\
+  &=& \prod_{i \neq j}\left[ \left(\tau_i(\alpha)x + \tau_i(\beta)\right) - \left(\tau_j(\alpha)x + \tau_j(\beta)\right)\right] \\
+  &=& \prod_{i \neq j}\left(\left(\tau_i(\alpha)-\tau_j(\alpha)\right)x + \left(\tau_i(\beta) - \tau_j(\beta)\right)\right)
+\end{IEEEeqnarray*}
+So it will do as long as x is not a root of:
+\begin{equation*}
+  \prod_{i \neq j}\Big(\big(\tau_i(\alpha)-\tau_j(\alpha)\big)X + \big(\tau_i(\beta) - \tau_j(\beta)\big)\Big) \in E[X]
+\end{equation*}
+which is not identically zero as $\tau_i(\alpha) \neq \tau_j(\alpha)$ or $\tau_i(\beta) \neq \tau_j(\beta)$ for $i \neq j$ (as $\tau_i \neq \tau_j$, and $L = K(\alpha, \beta)$), hence has only finitely many roots. As $\card{K}$ is infinite, we win.
+\end{proof}
+
+\subparagraph{Example}
+
+\begin{enumerate}
+\item $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2} + \sqrt{3})$
+\item $\mathbb{Q}(\sqrt{2}, \sqrt[3]{2}) = \mathbb{Q}(\sqrt{2} + \sqrt[3]{2})$
+\end{enumerate}
+
+\section{Galois extensions}
+
+\begin{definition}\label{def:21}
+  Let $L/K$, $L'/K$ be extensions. If a K-homomorphism $\tau : L \rightarrow L'$ is a bijection (of sets) then $\tau^{-1} : L' \rightarrow L$ is also a K-homomorphism, and we say that $\tau$ is a K-isomorphism\index{K-ismorphism}. A K-isomorphism $L \rightarrow L$ is called a K-automrphism\index{K-automorphism}, and theset of all K-automorphisms of $L$ is a denoted by $\autset{L}$, a subset of $\homset{L}{L}$. It is a group under composition.
+\end{definition}
+
+\begin{lemma}
+  \label{lemma:22}
+  \begin{enumerate}
+  \item If there is a K-homomorphism $\tau : L \rightarrow L'$, then $[L : K] \leq [L' : K]$.
+  \item If $[L : K] = [L' : K] < \infty$, then every $\tau \in \homset{L}{L'}$ is a K-isomorphism. In particular, $\homset{L}{L} = \autset{L}$ for finite $L/K$.
+  \item If $L/K$ is a finite extension inside $\mathbb{C}$, then $\card{\autset{L}} \leq [L : K]$
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Recall that K-homomorphisms are injective (lemma \eqref{lemma:11}). 
+
+  Let $V$, $V'$ be vector spaces over K. If there exists K-linear injective maps $V \rightarrow V'$ then $\dim_K \leq \dim_K V'$. An injective K-linear map $V \rightarrow V'$ is bijective if $\dim_K V = \dim_K V' < \infty$ by rank-nullity. This proves the first two claims.
+
+Now, consider:
+\begin{equation*}
+  \autset{L} = \homset{L}{L} \subseteq \homset{L}{\mathbb{C}}
+\end{equation*}
+but we have that $\card{\homset{L}{\mathbb{C}}} = [L : K]$.
+\end{proof}
+
+\begin{definition}
+  \label{def:23}
+  A finite extension $L/K$ is called Galois\index{Galois} if:
+  \begin{equation*}
+    \card{\autset{L}} = [L : K]
+  \end{equation*}
+\end{definition}
+In this case $\autset{K}$ is called the Galois group\index{Galois group} and denoted by $\Gal{L/K}$.
+
+\begin{proposition}
+  \label{prop:24}
+  Let $L/K$ be a finite extension inside $\mathbb{C}$. The following are equivalent:
+
+  \begin{enumerate}
+  \item $L/K$ is Galois \label{prop:24:i}
+  \item Every K-homomorphism $\tau : L \rightarrow \mathbb{C}$ maps $L$ into itself. \label{prop:24:ii}
+  \item $\forall \alpha \in L$, every conjugate of $\alpha$ over K is in L.\label{prop:24:iii}
+  \item $L = K(\alpha_1, \ldots, \alpha_n)/K$, and every conjugate of $\alpha_i (1 \leq i \leq n)$ over K is in L. \label{prop:24:iv}
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \begin{description}
+  \item[\ref{prop:24:i} $\Leftrightarrow$ \ref{prop:24:iii}] By the proof of lemma \eqref{lemma:22}, we have that:
+    \begin{equation*}
+      L/K \ \text{Galois} \Leftrightarrow \homset{L}{L} = \homset{L}{\mathbb{C}}
+    \end{equation*}
+  \end{description}
+  
+\end{proof}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
