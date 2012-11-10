@@ -1,36 +1,85 @@
-%2nd example after prop 70
-% X^15-1 = ... = (\Phi_1 \mod 2)(\Phi_3 \mod 2) ...
-%                     ===
-
-$\Phi_n \in \mathbb{Z}[X] \text{ irreducible } \leftarrow \Phi_N = P_\zeta\cdot{}Q$
-
-Suffices to prove that $\zeta$ root of $P_\zeta$ implies $z\hatp$ also a root of $P_\zeta$ with $p \nmid N$.
-$\zeta$ root of $P_\zeta$, then $\zeta^p$ root of $Q$, hence $\zeta$ root of $Q(X^p)$. Let $\overline{P} = P \mod p$.
-Then $\overline{Q(X^p)} = \overline{Q(X)^p}$ in $\finitefield{p}[X]$. Hence $P_\zeta(X) \nmid Q(X^p)$ implies $\overline{P_\zeta}, \overline{Q}$ have a common root in $\finitefield{p}(\unityroots{N})$.
 
 \subparagraph{Remark}
 
 \begin{enumerate}
 \item Later we will see another ``mod p proof'', i.e. proving that $\Gal{P}$ for $P \in \mathbb{Q}[X]$ is large by showing $\Gal{P \mod p}$ is large for some $p$. (see theorem \ref{thm:84}).
 
-\item Let $N = 8$, $\zeta = \zeta_8$, $\Phi_8 = (X-\zeta)(X-\zeta^3)(X-\zeta^5)(X-\zeta^7)$. (add figure 1). By building the theory of number fields and reducing $\mathbb{Z}[\zeta]$ modulo $p$ to get $\finitefield{p}(\unityroots{N}) \reverseinclusion \overline{\zeta} = ``\zeta \mod p''$. (in fact, this is a natural way to obtain all finite extensions of $\finitefield{p}$). One sees from the remark after theorem \ref{thm:68} that the factorization of $\overline{\Phi_8} = \Phi_8 \mod p$ in $\finitefield{p}[X]$ is as:
+\item Let $N = 8$, $\zeta = \zeta_8$, $\Phi_8 = (X-\zeta)(X-\zeta^3)(X-\zeta^5)(X-\zeta^7)$.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (2cm);
+      \draw (-2.5cm, 0) -- (2.5cm, 0);
+      \draw (0, -2.5cm) -- (0, 2.5cm);
+      \foreach \a in {1, 3, 5, 7}
+      {
+        \draw (\a*45:1.85cm) -- (\a*45:2.15cm);
+        \node at (\a*45:2.4cm) {$\zeta^{\a}$};
+      }
+    \end{tikzpicture}
+  \end{figure}
+ By building the theory of number fields and reducing $\mathbb{Z}[\zeta]$ modulo $p$ to get $\finitefield{p}(\unityroots{N}) \ni \overline{\zeta} = ``\zeta \mod p''$. (in fact, this is a natural way to obtain all finite extensions of $\finitefield{p}$). One sees from the remark after theorem \ref{thm:68} that the factorization of $\overline{\Phi_8} = \Phi_8 \mod p$ in $\finitefield{p}[X]$ is as:
   \begin{description}
-  \item[$p \equiv 1 \mod 8$] $\overline{\Phi_8} = (X - \overline{\zeta})(X - \overline{\zeta^3})(X - \overline{\zeta^5})(X - \overline{\zeta^7})$
-  \item[$p \equiv 3 \mod 8$] $\overline(\Phi_8) = \left[(X-\overline{\zeta})(X-\overline{\zeta^3})\right]\left[(X-\zeta^5)(X-\zeta^7)\right]$
-
-e.g. $p = 3$, $\Phi_8 \mod 3 = (X^2+X-1)(X^2-X-1)$
-  \item[$p \equiv 5 \mod 8$] $\overline(\Phi_8) = \left[(X-\overline{\zeta})(X-\overline{\zeta^5})\right]\left[(X-\overline{\zeta}^3)(X-\overline{\zeta}^7)\right]$
-
-e.g. $p = 5$, $\Phi_8 \mod 5 = (X^2-2)(X^2+2)$
-  \item[$p \equiv 7 \mod 8$] \ldots
-
-e.g. $p = 7$, $\Phi_8 \mod 7 = (X^2 + 3X + 1)(X^2-3X+1)$
+  \item[$p \equiv 1 \mod 8$: ] 
+\[
+\overline{\Phi_8} = \left(X - \overline{\zeta}\right)\left(X - \overline{\zeta}^3\right)\left(X - \overline{\zeta}^5\right)\left(X - \overline{\zeta}^7\right)
+\]
+  \item[$p \equiv 3 \mod 8$: ] 
+\[
+\overline{\Phi_8} = \left[\left(X-\overline{\zeta}\right)\left(X-\overline{\zeta}^3\right)\right]\left[\left(X-\overline{\zeta}^5\right)\left(X-\overline{\zeta}^7\right)\right]
+\]
+\[
+\text{e.g.} \ p = 3, \ (\Phi_8 \mod 3) = \left(X^2+X-1\right)\left(X^2-X-1\right)
+\]
+  \item[$p \equiv 5 \mod 8$: ] 
+\[
+\overline{\Phi_8} = \left[\left(X-\overline{\zeta}\right)\left(X-\overline{\zeta}^5\right)\right]\left[\left(X-\overline{\zeta}^3\right)\left(X-\overline{\zeta}^7\right)\right]
+\]
+\[
+\text{e.g.} \ p = 5, \ (\Phi_8 \mod 5) = \left(X^2-2\right)\left(X^2+2\right)
+\]
+  \item[$p \equiv 7 \mod 8$: ] \ldots
+\[
+\text{e.g.} \ p = 7, \ (\Phi_8 \mod 7) = \left(X^2 + 3X + 1\right)\left(X^2-3X+1\right)
+\]
   \end{description}
 which explains why $\Phi_8$ is irreducible in $\mathbb{Q}[X]$: if it were factorized in $\mathbb{Z}[X]$ (say into $(X-\zeta)(X-\zeta^3)$ etc.), every mod $p$ reduction must respect this.
 
-\item Theorem \ref{thm:71} says $\mathbb{Q}(\unityroots{N})/\mathbb{Q}$ has Galois group $\multCyclicGp{N}$, an abelian group of order $\varphi(N) = \{ i \mod N \mid 1 \leq i \leq N, (i, N) = 1 \}$ (Euler's function\index{Euler's function}). If $N = \prod_i p_i^{m_i}$, then $\varphi(N) = \prod_i \varphi(p_i^{m_i})$, and $\phi(p^m) = p^{m-1}(p-1)$ for $p$ prime. Revisit the ruler and compass construction, a regular N-gon, i.e. points in $\mathbb{Q}(\unityroots{N})$, is constructible if and only if $[\mathbb{Q}(\unityroots{N}) : \mathbb{Q}] = \varphi(N)$ is a power of 2, if and only if $N = 2^ap_1p_2\cdots{}p_r$, where $p_i$ are distinct Fermat primes, e.g. $p = 17$ (Gauss, c.f. example sheet 2.10).
-(insert figure 2)
-Let $\zeta = \zeta_{17}$, and $\alpha = \zeta + \zeta^{16} = 2\cos \frac{2\pi}{17}$, $\alpha' = \zeta^{13} + \zeta^4$ are roots of $X^2 -\beta_1X + \beta_3$, where $\beta = \beta_1 = \zeta + \zeta^{13} + \zeta^{16} + \zeta^4$, and $\beta_2 = \zeta^9 + \zeta^{15} + \zeta^8 + \zeta^2$ are roots pf $X^2  -\gamma{}X è1$, and $\beta_3$, $\beta_4$ are roots of $X^2 -\gamma'X-1$, with $\gamma = \zeta + \zeta^9 + \cdots + \zeta^2$ (8 terms), and $\gamma' = \zeta^3 + \zeta^{10} + \cdots$ (the rest). Hence $\gamma + \gamma' = 1$, $\gamma\gamma' = -4$, thus $\gamma = \frac{-1 + \sqrt{17}}{2}$.
+\item Theorem \ref{thm:71} says $\mathbb{Q}(\unityroots{N})/\mathbb{Q}$ has Galois group $\multCyclicGp{N}$, an abelian group of order $\varphi(N) = \{ i \mod N \mid 1 \leq i \leq N, (i, N) = 1 \}$ (where $\varphi$ denotes Euler's function\index{Euler's function}). If $N = \prod_i p_i^{m_i}$, then $\varphi(N) = \prod_i \varphi(p_i^{m_i})$, and $\varphi(p^m) = p^{m-1}(p-1)$ for $p$ prime. Revisit the ruler and compass construction of a regular N-gon, i.e. points in $\mathbb{Q}(\unityroots{N})$, is constructible if and only if $[\mathbb{Q}(\unityroots{N}) : \mathbb{Q}] = \varphi(N)$ is a power of 2, if and only if $N = 2^ap_1p_2\cdots{}p_r$, where $p_i$ are distinct Fermat primes, e.g. $p = 17$ (Gauss, c.f. example sheet 2.10).
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \node (1) {$\mathbb{Q}(\unityroots{17})$};
+      \node (2) [below = of 1] {$\mathbb{Q}(\alpha)$};
+      \node (3) [below = of 2] {$\mathbb{Q}(\beta)$};
+      \node (4) [below = of 3] {$\mathbb{Q}(\gamma)$};
+      \node (5) [below = of 4] {$\mathbb{Q}$};
+
+      \node (6) [right = 0.15\linewidth  of 1] {$\{ \text{id} \}$};
+      \node (7) [below = of 6] {$\{ 1, 16 \}$};
+      \node (8) [below = of 7] {$\{ 1, 13, 16, 4 \}$};
+      \node (9) [below = of 8] {$\{ 1, 9, 13, 15, 15 \}$};
+      \node (10) [below = of 9] {$\multCyclicGp{17}$};
+
+      \path
+        (1) edge node[auto] {2} (2)
+        (2) edge node[auto] {2} (3)
+        (3) edge node[auto] {2} (4)
+        (4) edge node[auto] {2} (5);
+
+      \path 
+        (6) edge node {} (7)
+        (7) edge node {} (8)
+        (8) edge node {} (9)
+        (9) edge node {} (10);
+
+      \foreach \s/\t in {1/6, 2/7, 3/8, 4/9, 5/10}
+      {
+        \path (\s) edge[<->] node {} (\t);
+      }
+    \end{tikzpicture}
+  \end{figure}
+Let $\zeta = \zeta_{17}$, and $\alpha = \zeta + \zeta^{16} = 2\cos \frac{2\pi}{17}$, $\alpha' = \zeta^{13} + \zeta^4$ are roots of $X^2 -\beta_1X + \beta_3$, where $\beta = \beta_1 = \zeta + \zeta^{13} + \zeta^{16} + \zeta^4$, and $\beta_2 = \zeta^9 + \zeta^{15} + \zeta^8 + \zeta^2$ are roots of $X^2  -\gamma{}X - 1$, and $\beta_3$, $\beta_4$ are roots of $X^2 -\gamma'X-1$, with $\gamma = \zeta + \zeta^9 + \cdots + \zeta^2$ (8 terms), and $\gamma' = \zeta^3 + \zeta^{10} + \cdots$ (the rest). Hence $\gamma + \gamma' = 1$, $\gamma\gamma' = -4$, thus $\gamma = \frac{-1 + \sqrt{17}}{2}$.
 \end{enumerate}
 
 \section{Separability}

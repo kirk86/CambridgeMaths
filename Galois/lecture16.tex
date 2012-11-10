@@ -47,7 +47,7 @@
 Recall in $\mathbb{F}_2[X]$:
 \begin{IEEEeqnarray*}{rCl}
  X^15-1 &=& (X+1)(X^2+X+1)(X^4+X^3+X^2+X+1)(X^4+X+1)(X^4+X^3+1) \\
-       &=& (\Phi_2\mod 2)(\Phi_3\mod 2)(\Phi_5\mod 2)(\Phi_{15}\mod 2)
+       &=& (\Phi_1\mod 2)(\Phi_3\mod 2)(\Phi_5\mod 2)(\Phi_{15}\mod 2)
 \end{IEEEeqnarray*}
 so $\Phi_{15}\mod 2$ is a product of two irreducible factors. Note that roots of $\Phi_5\mod 2$ are not generators of $\unityroots{15}$, but still generate $\mathbb{F}_{16}/\mathbb{F}_2$.
 
@@ -71,7 +71,10 @@ So we know how $\Phi_N \mod P$ factorizes for $p$ prime to $N$. What about $\tex
 
 As every $a \in \multCyclicGp{N}$ is some product of $p \mod N$ for primes $p$ not dividing $N$. Suffices to prove that $\zeta^p$ is a conjugate of $\zeta$ over $\mathbb{Q}$ for every $p$ prime to $N$ and every primitive $\zeta$.
 
-Let $P_\zeta$ be the minimal polynomial of $\zeta$ over $\mathbb{Q}$ and $\Phi_N = P_\zeta\cdot{}Q$ in $\mathbb{Q}[X]$. As $\Phi_N$, $P_\zeta$ are monic, so is $Q$, hence $P_\zeta, Q \in \mathbb{Z}[X]$ by Gauss lemma (since $\Phi_N \in \mathbb{Z}[X]$). Suppose $\zeta^p$ is not a root of $P_\zeta$, then it is a root of Q. Then $\zeta$ is a root of $Q(X^p)$, hence $P_\zeta(X) \mid Q(X^p)$ in $\mathbb{Q}[X]$, hence in $\mathbb{Z}[X]$ (division by a monic polynomial). Reducing this modulo p (and writing $\overline{P} = P \mod p$) $\overline{P_\zeta(X)} \mid \overline{Q(X^P)} = (\overline{Q(X)})^p$ in $\mathbb{F}_p[X]$. Thus $\overline{P_\zeta}$, $\overline{Q}$ have common roots in $\mathbb{F}_p(\unityroots{N})$, but contradicts cor \ref{cor:62} since $\overline{\Phi_N} \mid \overline{X^N-1}$.
+Let $P_\zeta$ be the minimal polynomial of $\zeta$ over $\mathbb{Q}$ and $\Phi_N = P_\zeta\cdot{}Q$ in $\mathbb{Q}[X]$. As $\Phi_N$, $P_\zeta$ are monic, so is $Q$, hence $P_\zeta, Q \in \mathbb{Z}[X]$ by Gauss lemma (since $\Phi_N \in \mathbb{Z}[X]$). Suppose $\zeta^p$ is not a root of $P_\zeta$, then it is a root of Q. Then $\zeta$ is a root of $Q(X^p)$, hence $P_\zeta(X) \mid Q(X^p)$ in $\mathbb{Q}[X]$, hence in $\mathbb{Z}[X]$ (division by a monic polynomial). Reducing this modulo p (and writing $\overline{P} = P \mod p$), we get
+\[
+ \overline{P_\zeta(X)} \mid \overline{Q\left(X^P\right)} = \left(\overline{Q(X)}\right)^p \text{ in } \mathbb{F}_p[X]
+\] Thus $\overline{P_\zeta}$, $\overline{Q}$ have common roots in $\mathbb{F}_p(\unityroots{N})$, but contradicts cor \ref{cor:62} since $\overline{\Phi_N} \mid \overline{X^N-1}$. 
 \end{proof}
 
 
