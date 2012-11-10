@@ -1,0 +1,65 @@
+%2nd example after prop 70
+% X^15-1 = ... = (\Phi_1 \mod 2)(\Phi_3 \mod 2) ...
+%                     ===
+
+$\Phi_n \in \mathbb{Z}[X] \text{ irreducible } \leftarrow \Phi_N = P_\zeta\cdot{}Q$
+
+Suffices to prove that $\zeta$ root of $P_\zeta$ implies $z\hatp$ also a root of $P_\zeta$ with $p \nmid N$.
+$\zeta$ root of $P_\zeta$, then $\zeta^p$ root of $Q$, hence $\zeta$ root of $Q(X^p)$. Let $\overline{P} = P \mod p$.
+Then $\overline{Q(X^p)} = \overline{Q(X)^p}$ in $\finitefield{p}[X]$. Hence $P_\zeta(X) \nmid Q(X^p)$ implies $\overline{P_\zeta}, \overline{Q}$ have a common root in $\finitefield{p}(\unityroots{N})$.
+
+\subparagraph{Remark}
+
+\begin{enumerate}
+\item Later we will see another ``mod p proof'', i.e. proving that $\Gal{P}$ for $P \in \mathbb{Q}[X]$ is large by showing $\Gal{P \mod p}$ is large for some $p$. (see theorem \ref{thm:84}).
+
+\item Let $N = 8$, $\zeta = \zeta_8$, $\Phi_8 = (X-\zeta)(X-\zeta^3)(X-\zeta^5)(X-\zeta^7)$. (add figure 1). By building the theory of number fields and reducing $\mathbb{Z}[\zeta]$ modulo $p$ to get $\finitefield{p}(\unityroots{N}) \reverseinclusion \overline{\zeta} = ``\zeta \mod p''$. (in fact, this is a natural way to obtain all finite extensions of $\finitefield{p}$). One sees from the remark after theorem \ref{thm:68} that the factorization of $\overline{\Phi_8} = \Phi_8 \mod p$ in $\finitefield{p}[X]$ is as:
+  \begin{description}
+  \item[$p \equiv 1 \mod 8$] $\overline{\Phi_8} = (X - \overline{\zeta})(X - \overline{\zeta^3})(X - \overline{\zeta^5})(X - \overline{\zeta^7})$
+  \item[$p \equiv 3 \mod 8$] $\overline(\Phi_8) = \left[(X-\overline{\zeta})(X-\overline{\zeta^3})\right]\left[(X-\zeta^5)(X-\zeta^7)\right]$
+
+e.g. $p = 3$, $\Phi_8 \mod 3 = (X^2+X-1)(X^2-X-1)$
+  \item[$p \equiv 5 \mod 8$] $\overline(\Phi_8) = \left[(X-\overline{\zeta})(X-\overline{\zeta^5})\right]\left[(X-\overline{\zeta}^3)(X-\overline{\zeta}^7)\right]$
+
+e.g. $p = 5$, $\Phi_8 \mod 5 = (X^2-2)(X^2+2)$
+  \item[$p \equiv 7 \mod 8$] \ldots
+
+e.g. $p = 7$, $\Phi_8 \mod 7 = (X^2 + 3X + 1)(X^2-3X+1)$
+  \end{description}
+which explains why $\Phi_8$ is irreducible in $\mathbb{Q}[X]$: if it were factorized in $\mathbb{Z}[X]$ (say into $(X-\zeta)(X-\zeta^3)$ etc.), every mod $p$ reduction must respect this.
+
+\item Theorem \ref{thm:71} says $\mathbb{Q}(\unityroots{N})/\mathbb{Q}$ has Galois group $\multCyclicGp{N}$, an abelian group of order $\varphi(N) = \{ i \mod N \mid 1 \leq i \leq N, (i, N) = 1 \}$ (Euler's function\index{Euler's function}). If $N = \prod_i p_i^{m_i}$, then $\varphi(N) = \prod_i \varphi(p_i^{m_i})$, and $\phi(p^m) = p^{m-1}(p-1)$ for $p$ prime. Revisit the ruler and compass construction, a regular N-gon, i.e. points in $\mathbb{Q}(\unityroots{N})$, is constructible if and only if $[\mathbb{Q}(\unityroots{N}) : \mathbb{Q}] = \varphi(N)$ is a power of 2, if and only if $N = 2^ap_1p_2\cdots{}p_r$, where $p_i$ are distinct Fermat primes, e.g. $p = 17$ (Gauss, c.f. example sheet 2.10).
+(insert figure 2)
+Let $\zeta = \zeta_{17}$, and $\alpha = \zeta + \zeta^{16} = 2\cos \frac{2\pi}{17}$, $\alpha' = \zeta^{13} + \zeta^4$ are roots of $X^2 -\beta_1X + \beta_3$, where $\beta = \beta_1 = \zeta + \zeta^{13} + \zeta^{16} + \zeta^4$, and $\beta_2 = \zeta^9 + \zeta^{15} + \zeta^8 + \zeta^2$ are roots pf $X^2  -\gamma{}X è1$, and $\beta_3$, $\beta_4$ are roots of $X^2 -\gamma'X-1$, with $\gamma = \zeta + \zeta^9 + \cdots + \zeta^2$ (8 terms), and $\gamma' = \zeta^3 + \zeta^{10} + \cdots$ (the rest). Hence $\gamma + \gamma' = 1$, $\gamma\gamma' = -4$, thus $\gamma = \frac{-1 + \sqrt{17}}{2}$.
+\end{enumerate}
+
+\section{Separability}
+
+\begin{definition}
+\label{def:72}
+  Let $K$ be a field. A polynomial $P \in K[X]$ is called separable\index{separable} if $\card{\rootset[P]{E}} = \deg P$ (i.e. no multiple root) whenever P splits in an extension $E/K$ (by lemma \ref{lemma:55}, $\card{rootset{E}}$ independent of $E$).
+\end{definition}
+
+\begin{lemma}
+\label{lemma:73}
+\begin{enumerate}
+\item Let $L/K$ be an extension. If $P$ is separable and $Q \in L[X]$ divides $P$ in $L[X]$ then $Q$ is separable.
+\item $P$ is separable if and only if $P$ and $D(P)$ are coprime in $K[X]$.
+\item If $P$ is irreducible, then $P$ is separable if and only if $D(P) \neq 0$, i.e.$P$ is not a polynomial in $X^p$ for $p = \mchar K$. In particular, all irreducible polynomials are separable if $\mchar K = 0$.
+\item Suppose $P$ is separable. If $\tau : K \hookrightarrow E$ is a field homomorphism then $\tau{}P \in E[X]$ is separable. In particular, $P$ is separable as a polynomial in $L[X]$ for any extensions $L/K$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+  \item As $P$ has no multiple root when split, neither does $Q$. 
+  \item Let E be a splitting field of $P$. If $P$, $D(P)$ are coprime, then $\exists Q, R \in K[X]$ with $PQ + D(P)R = 1$ in $K[X]$ (recall prop \ref{prop:15}), which remains true in $E[X]$, so $P$, $D(P)$ have no common root in E. If $P$ and $D(P)$ had a common factor in $K[X]$, then they have a common root in E, hence a multiple root.
+  \item As $\deg D(P) < \deg P$ and $P$ irreducible, $P$ and $D(P)$ are coprime unless $D(P) = 0$. 
+  \item $\tau{}P$ and $\tau{}D(P) = D(\tau{}P)$ are coprime in $E[X]$ (send $PQ + D(P)R = 1$ by $\tau$).
+  \end{enumerate}
+\end{proof}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
