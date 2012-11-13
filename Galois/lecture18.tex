@@ -1,0 +1,134 @@
+\begin{definition}
+  \label{def:74}
+  An algebraic extension $F/K$ is called separable\index{separable} (resp. normal\index{normal}), if for every $\alpha \in F$ its minimal polynomial $P_\alpha$ is separable (resp. splits in F).
+\end{definition}
+
+We relate the separability with the K-homomorphisms in 1.5. 
+
+\begin{lemma}
+  \label{lemma:75}
+  Let $F/K$, $E/K$ be two extensions of $K$. Let $K \subseteq L \subseteq F$ and $\alpha \in F$ be algebraic over L with minimal polynomial $P_\alpha$ over L. Then, we have
+\[
+\card{\homset{L(\alpha)}{E}} \leq \deg P_\alpha \card{\homset{L}{E}}
+\]
+where the equality holds if and only if $\card{\rootset[\tau{}P_\alpha]{E}} = \deg P_\alpha$ for all $\tau \in \homset{L}{E}$.
+\end{lemma}
+
+\begin{proof}
+  Immediate from \ref{prop:17}, which gives a bijection for every $\tau \in \homset{L}{E}$.
+\begin{IEEEeqnarray*}
+\{ \rho \in \homset{L(\alpha)}{E} \mid \restr{\rho}{L} = \tau &\rightarrow& \rootset[\tau{}P_\alpha(E)]{E} \\
+\rho & \mapsto& \rho(\alpha)
+\end{IEEEeqnarray*}
+\end{proof}
+
+\begin{proposition}
+  \label{prop:76}
+  If $F/K$ is finite then $\card{\homset{F}[E}} \leq [F : K]$ for any extension $E/K$. If the equality holds for $E/K$, then for any intermediate field $K \subseteq L \subseteq F$ we have:
+\begin{enumerate}
+\item $\card{\homset{L}{E}} = [L : K]$
+\item
+  \begin{IEEEeqnarray*}{rCl}
+    \homset{F}{E} & \rightarrow & \homset{L}{E} \\
+    \rho & \mapsto & \restr{\rho}{L}
+  \end{IEEEeqnarray*}
+is surjective.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+  Let $F = K(\alpha_1, \ldots, \alpha_n)$ (by prop \ref{prop:10}), and $K_i = K(\alpha_1, \ldots, \alpha_i)$ so that $K = K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n = F$ is a tower of simple extensions. By repeating lemma \ref{lemma:75} we have:
+  \begin{IEEEeqnarray*}{rCl}
+    \card{\homset{F}{E}} &\leq& [F : K_{n-1}] \card{\homset{K_{n-1}}{E}} \\
+    & \leq & [F : K_{n-1}][K_{n-1} : K_{n-2}] \cdots [K_{i+1} : K_i] \card{\homset{K_i}{E}} \\
+    & \leq & [F : K]
+  \end{IEEEeqnarray*}
+If the equality holds, every $\leq$ has to be an equality. For $K \subseteq L \subseteq F$, choose $\alpha_1, \ldots, \alpha_n$ so that $L = K_i$. Then $[F : L]\card{\homset{L}{E}} = [F : K]$, hence (i) by the tower law, and the condition in lemma \ref{lemma:75} shows that the LHS of (star) is different from $\phi$ for every step from $L = K_i$ to $F_i$ hence (ii)
+\end{proof}
+
+\begin{theorem}
+  \label{thm:77}
+  Let $F/K$ be a finite extension. Then we have that:
+  \begin{enumerate}
+  \item The following are equivalent:
+    \begin{enumerate}
+    \item There exists an extension $E/K$ with $\card{\homset{F}{E}} = [F : K]$
+    \item $F/K$ is separable
+    \item $F = K(\alpha_1, \ldots, \alpha_n)$ and the minimal polynomial $Q_i$ of $\alpha_i$ over K is separable (for $1 \leq i \leq n$)
+    \item $F = K(\alpha_1, \ldots, \alpha_n)$ and the minimal polynomial $P_i$ of $\alpha_i$ over $F = K(\alpha_1, \ldots, \alpha_{i-1})$ is separable (for $1 \leq i \leq n$)
+    \end{enumerate}
+  \item If $K \subseteq L \subseteq F$, then $F/K \ \text{separable} \Leftrightarrow F/L, \, L/K \ \text{separable}$.
+  \item The following are equivalent:
+    \begin{enumerate}
+    \item $F/K$ is Galois
+    \item $F/K$ is separable and normal
+    \item $F = K(\alpha_1, \ldots, \alpha_n)$ and the minimal polynomial $Q_i$ of $\alpha_i$ over K is separable and splits in $F$ (for $1 \leq i \leq n$).
+    \end{enumerate}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  (i)
+  \begin{description}
+  \item[$a \Rightarrow b$] For every $\alpha \in F$, we have:
+\[
+\card{\rootset[P_\alpha]{E}} = \card{\homset{K(\alpha)}{E}} = [K(\alpha) : K] = \deg P_\alpha
+\] where the first equality is by proposition \ref{prop:14} and the second by proposition \ref{prop:76}.
+  \item[$b \Rightarrow c$] Trivial.
+  \item[$c \Rightarrow d$] $P_i \mid Q_i$, so use lemma \ref{lemma:73}
+  \item[$d \Rightarrow a$] Take $E/K$ such that $Q_1$, \ldots, $Q_n$ splits in $E$. We show that every inequality in the proof of proposition \ref{prop:76} is an equality by checking the condition in lemma \ref{lemma:75}. For every $\tau \in \homset{K_{i-&}}{E}$, we have $\tau{}P_i$ separable by lemma \ref{lemma:73}. As $\tau{}P_i \mid \tau{}Q_i = Q_i$ and $Q_i$ splits in E, then $\card{\rootset[\tau{}P_i]{E}} = \deg P_i$.
+
+(ii)
+Choose $\alpha_1$, \ldots, $\alpha_n$ with $L = K_i$, and use $b \Leftrightarrow d$ in (i)
+
+(iii) Same proof as (i), in which we can take $E$ to be $F$ everywhere.
+  \end{description}
+\end{proof}
+Now we revisit paragraphs 1.5-1.7. For every finite separable $F/K$, the assertions theorem \ref{thm:18} and lemma \ref{lemma:19} hold with $\mathbb{C}$ replaced by some field $E$, by theorem \ref{thm:77}(i)(a) and proposition \ref{prop:76}(ii).
+
+\begin{theorem}[Primitive element theorem]
+\label{thm:78}
+  Every finite separable extension is simple.
+\end{theorem}
+\begin{proof}
+  By theorem \ref{thm:77} and proposition \ref{prop:76}, the condition (star) in the proof of theorem \ref{thm:20} holds.
+\end{proof}
+
+\begin{proposition}
+  \label{prop:79}
+  The following unconditionally (i.e. without the restriction of being a subfield of $\mathbb{C}$).
+  \begin{itemize}
+  \item lemma 22 (iii), corollary 26, with the condition that ``$P$ is a product of separable polynomials''.
+  \item proposition 33
+  \item theorem 34 (FTGT)
+  \item corollary 35
+  \item proposition 42
+  \end{itemize}
+\end{proposition}
+\begin{proof}
+  Lemma 22(iii) is a special case of proposition 76. Theorem 77(iii) corresponds to proposition 24, and the rest follows. In the proof of corollary 35, proposition 42, replace $\mathbb{C}$ with F, and use proposition 76 for $E = F$.
+\end{proof}
+
+For example, applying proposition \ref{prop:42} to finite fields gives:
+\begin{proposition}
+  \label{prop:80}
+Let $P \in \finitefield{p}[X]$ be a monic separable polynomial of degree $n$. If = $P = Q_1\cdots{}Q_m$ is the irreducible factorization in $\finitefield{p}[X]$ with $\deg Q_i = n_i$ (so $n = \sum n_i$), then $\operatorname{Fr_p} \in \Gal{P} \hookrightarrow S_n$ has cycle type $(n1, \ldots, n_m)$ when viewed as an element of $S_n$.
+\end{proposition}
+
+\subparagraph{Remark}
+
+$\Gal{P} \hookrightarrow S_n$ is defined up to conjugation in $S_n$, hence the cycle type is well-defined.
+
+\begin{proof}
+  Let $\finitefield{q}$ be the splitting field of $P$ over $\finitefield{p}$. As $\Gal{\finitefield{q}/\finitefield{p}} = \{ \operatorname{id}, \operatorname{Fr}_p, \operatorname{Fr}_p^2, \ldots, \operatorname{Fr}_p^{N-1} \}$ if $q = p^N$ (by theorem \ref{thm:68}, the conjugates of $\alpha$ over $\finitefield{p}$ are $\{ \alpha, \alpha^p, \alpha^{p^2}, \ldots, \alpha^{p^{N-1}} \}$ for some $d \mid N$, which are permuted cyclically by $\text{Fr}_p$. Now $P = Q_i\cdots{}Q_m$ and each $Q_i$ being irreducible, is the minimal polynomial of its root $\alpha_i \in \finitefield{q}$. So in $\finitefield{q}[X]$, we have that
+  \begin{IEEEeqnarray*}{rlr}
+    P = & (X-\alpha_1)(X-\alpha_1^p)\cdots{}(X - \alpha_1^{p^{n_1-1}}) & \leftarrow Q_1 \\
+    & (X-\alpha_2)(X-\alpha_é^p)\cdots(X-\alpha_2^{p^{n_2-1}}) & \leftarrow Q_2 \\
+    & \cdots{}(X-\alpha_m)\cdots{}(X-\alpha_m^{p^{n_m-1}}) & \leftarrow Q_m
+  \end{IEEEeqnarray*}
+and $\operatornam{Fr}_p$ acts on these n roots by a permutation of cycle type $(n_1, \ldots, n_m)$.
+\end{proof}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
