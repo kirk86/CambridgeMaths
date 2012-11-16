@@ -1,0 +1,76 @@
+
+\section{Example II: Symmetric function theorem}
+
+Let $K$ be a field and $n \geq 1$. Recall \autoref{def:43}: $F = K(X_1, \ldots, X_n)$ the field of rational functions in $n$ variables (the field of fractions of $K[X_1, \ldots, X_n]$. As used in the proof of \autoref{prop:42}, the symmetric group $G = S_n$ acts on $F$ by permuting $X_1$, \ldots, $X_n$, i.e. $G \subseteq \autset[K]{F}$. The fixed field $F^G$ is the subfield consisting of all symmetric rational functions in $X_1$, \ldots, $X_n$.
+
+\begin{definition}
+  Let $K$n $n$, $F$, $G$ as above. For $1 \leq i \leq n$, let
+\[
+s_i = \sum_{\{\lambda_1, \ldots, \lambda_i\} \subseteq \{1, \ldots, n \}} X_{\lambda_1}\cdots{}X_{\lambda_i} \in F^G
+\]
+be the i\textsuperscript{th} elementary symmetric polynomial\index{elementary symmetric polynomial}.
+\end{definition}
+
+\begin{proposition}[Rational symmetric function theorem]
+   Let $K$n $n$, $F$, $G$ as above, and let $L = K(s_1, \ldots, s_n) \subseteq F$ be the subfield of F consisting of all rational functions in $s_1$, \ldots, $s_n$ with coefficient in K. Then, we have that $L = F^G$, i.e. all symmetric functions are in $L$.
+\end{proposition}
+
+\begin{proof}
+  As $s_1, \ldots, s_n \in F^G$ we have $L \subseteq F^G$. As $X_1$, \ldots, $X_n$ are the roots of $P(X) = (X-X_1)\cdots{}(X-X_n) = X^n-s_1X^{n-1}+s_2X^{n-2}-\cdots{}+(-1)^ns_n \in L[X]$. $F = L(X_1, \ldots, X_n)$ is a splitting field of P, finite over L.So $F/F^G$ is also finite.
+
+\paragraph{Path I}
+ \autoref{prop:33} says $F/F^G$ is Galois with $G = \Gal{F/F^G}$. As $F$ is a splitting field of $P$ over $L$, and $P$ has no multiple roots, hence $F/L$ is also Galois, and $\Gal{P} = \Gal{F/L}$ injects to $G$ (permutation of the $X_i$) by \autoref{prop:79}. Thus $F^G = L$ follows from:
+\[
+\card{G} = \card{\Gal{F/F^G}} = [F : F^G] \leq [F : L] = \card{\Gal{F/L}} \leq \card{G}
+\]
+hence we have equality.
+
+\paragraph{Path II}
+
+We build from first principles. As $G \subseteq \autset[F^G]{F}$, we have:
+\[
+n! = \card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G] \leq [F : L] (asterisk)
+\]
+but a splitting field has degree at most $n!$. Let $L_i = L(X_1, \ldots, X_i)$ for $1 \leq i \leq n$, so that $L = L_0 \subseteq L_1 \subseteq L2 \subseteq \cdots \subseteq L_n = F$. Then $X_i$ is a root of:
+\[
+P_i(X) = \frac{P(X)}{(X-X_1)\cdots{}(X-X_{i-1})} = (X-X_i)\cdots{}(X-X_n) \in L_{i-1}[X] (star)
+\]
+which has degree $n-i+1$, hence $L_i = L_{i-1}(X_i)$ has at most degree $n-i+1$ over $L_{i-1}$. Thus $[F : L] \leq n(n-1)\cdots{}2\cdot{}1 = n!$ by tower law, hence (asterisk) implies $[F : L] = n!$ and $F^G = L$.
+\end{proof}
+
+\paragraph{Remark}
+
+In path II, as $[F : L] = n!$, we need $[L_i, L_{i-1}] = n - i + 1$ for all $i$, i.e. $Z_i = \{ 1, X_i, X_i^2, \ldots, X_i^{n-i} \}$ is a basis of $L_i/L_{i-1}$. Hence:
+\[
+Z = \{ z_1, \ldots, z_n \mid z_i \in Z_i \} = \{ X_1^{m_1}\cdots{}X_n^{m_n} \mid 0 \leq m_i \leq n-i \}
+\]
+is a basis of $F/L$ (as seen in the proof of the tower law.
+
+Now revisit (star) with $n = 3$, $K = \mathbb{Q}$, $(\alpha, \beta, \gamma) = (X_1, X_2, X_3)$. (insert figure) And consider:
+\begin{IEEEeqnarray*}{rCl}
+  P(X) &=& X^3-(\alpha+\beta+\gamma)X^2 + (\alpha\beta+\beta\gamma+\gamma\alpha)X -\alpha\beta\gamma \\
+  &=& P_1(X) \in \mathbb{Z}[s_1, s_2, s_3][X] \\
+  &=& (X-\alpha)\underbrace{(X^2-(s_1-\alpha)X + (s_2 -\alpha(s_1-\alpha)))}_{= P_2(X) \in \mathbb{Z}[s_1, s_2, s_3, \alpha, \beta][X]} \\
+  &=& (X-\alpha)(X-\beta)\underbrace{(X-(s_1-\alpha-\beta))}_{=P_3(X) \in \mathbb{Z}[s_1, s_2, s_3, \alpha, \beta][X]}
+\end{IEEEeqnarray*}
+
+\begin{theorem}[Symmetric function theorem]
+  Let $K$, $n$, $F$, $G$ be as above, and let $R$ be any subring of K (e.g. $R = \operatorname{Im} (\mathbb{Z} \rightarrow K)$, i.e. $\mathbb{Z}$ or $\finitefield{Q}$ according to $\mchar K$). Then, inside $F$, we have:
+\[
+R[X_1, \lots, X_n] \cap F^G = R[s_1, \ldots, s_n]
+\]
+i.e. every symmetric polynomial with coefficient in R is a polynomail in $s_1$, \ldots, $s_n$ with coefficient in $R$.
+\end{theorem}
+
+\begin{proof}
+  Clearly $R[s_1, \ldots, s_n] \subseteq R[X_1, \ldots, X_n] \cap F^G$. In (star), note that $P(X) \in R[s_1, \ldots, s_n][X]$ and $(X-X_1)\cdots{}(X-X_{i-1}) \in R[X_1, \ldots, X_{i-1}][X]$ are both monics with coefficient in the ring $R[s_1, \ldots, s_n, X_1, \ldots, X_i]$, hence by division algorithm we have $P_i(X) \in R[s_1, \ldots, s_n, X_1, \ldots, X_{i-1}][X]$ is a monic polynomial of degree $n-i+1$. As $P_i(X_i) = 0$, we see that $X_i^{n_i+1}$ is a linear combination of $Z_i = \{ 1, X_i^2, \ldots, X_i^{n_i} \}$ over $R[s_1, \ldots, s_n, X_1, \ldots, X_{i-1}]$, hence so is any higher power of $X_i$. Repeating or $1 \leq i \leq n$, eventually every monomial $X_1^{m_1}$, \ldots, $X_n^{m_n}$ is a linear combination of $Z$ over $R[s_1, \ldots, s_n]$, which is a basis of $F/L$. If we write $f \in R[X_1, \ldots, X_n] \cap F^G$ as a linear combination of $Z$ over $R[s_1, \ldots, s_n]$, then it must be the unique expression of $f$ as a $L$-linear combination of $Z$, namely $f = f\cdot{}1$. Thus $f \in R[s_1, \ldots, s_n]$.
+\end{proof}
+
+\paragraph{Remark}
+
+The proof shows that $R[X_1, \ldots, X_n]$ is a free $R[s_1, \ldots, s_n]$-module of rank $n!$ with a basis $Z$. We can prove that $R[s_1, \ldots, s_n]$ is isomorphic to the polynomial ring in $s_1$, \ldots, $s_n$ over $R$.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
