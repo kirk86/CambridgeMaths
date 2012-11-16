@@ -1,7 +1,9 @@
-\newtheorem{definition}{Definition}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{theorem}[definition]{Theorem}
+\declaretheorem{theorem}
+\declaretheorem[sibling=theorem]{lemma}
+\declaretheorem[sibling=theorem]{proposition}
+\declaretheorem[sibling=theorem]{corollary}
+\declaretheorem[sibling=theorem]{definition}
+
 
 %%% Local Variables: 
 %%% mode: latex

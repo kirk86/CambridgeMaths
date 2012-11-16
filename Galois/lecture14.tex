@@ -1,4 +1,158 @@
 
+\paragraph{Example}
+
+$\mathbb{Q}(x, y) = \mathbb{Q}[X, Y]/(X^3-2, Y^2 + Y + 1)$, $x = \overline{X}$, $y = \overline{Y}$, $\zeta = \zeta_3$.
+\begin{figure}[H]
+  \centering
+ 
+  \begin{tikzpicture}
+    \node (1) {$\mathbb{Q}(x, y)$};
+    \node (3) [below left = 1cm and 0.25cm of 1] {$\mathbb{Q}(xy)$};
+    \node (4) [below right = 1cm and 0.25cm of 1] {$\mathbb{Q}(xy^2)$};
+    \node (2) [left = 1cm of 3]{$\mathbb{Q}(x)$};
+    \node (5) [right = 1cm of 4]{$\mathbb{Q}(y)$};
+    \node (6) [below = 2.5cm of 1] {$\mathbb{Q}$};
+    
+    \path 
+      (1) edge node {} (2)
+      (1) edge node {} (3)
+      (1) edge node {} (4)
+      (1) edge node {} (5)
+      (6) edge node {} (2)
+      (6) edge node {} (3)
+      (6) edge node {} (4)
+      (6) edge node {} (5);
+    
+  \end{tikzpicture}
+
+  \caption{Abstract extensions}
+\end{figure}
+\begin{figure}[H]
+  \centering
+ 
+  \begin{tikzpicture}
+    \node (1) {$\mathbb{Q}(\sqrt[3]{2}, \zeta)$};
+    \node (3) [below left = 1cm and 0.25cm of 1] {$\mathbb{Q}(\sqrt[3]{2}\zeta)$};
+    \node (4) [below right = 1cm and 0.25cm of 1] {$\mathbb{Q}(\sqrt[3]{2}\zeta^2)$};
+    \node (2) [left = 1cm of 3]{$\mathbb{Q}(\sqrt[3]{2})$};
+    \node (5) [right = 1cm of 4]{$\mathbb{Q}(\zeta)$};
+    \node (6) [below = 2.5cm of 1] {$\mathbb{Q}$};
+    
+    \path 
+      (1) edge node {} (2)
+      (1) edge node {} (3)
+      (1) edge node {} (4)
+      (1) edge node {} (5)
+      (6) edge node {} (2)
+      (6) edge node {} (3)
+      (6) edge node {} (4)
+      (6) edge node {} (5);
+    
+  \end{tikzpicture}
+
+  \caption{Subfields of $\mathbb{C}$}
+\end{figure}
+There are 6 $\mathbb{Q}$-homomorphisms.
+
+\begin{definition}
+  \label{def:57}
+  A field $F$ is called algebraically closed\index{algebraically closed} if every $P \in F[X]$ splits in F itself. An algebraic extension $F/K$ is called an algebraic closure of $K$ if $F$ is algebraically closed.
+\end{definition}
+
+\begin{theorem}
+  \label{thm:58}
+  For every field $K$, its algebraic closure $\overline{K}$ exists, and is unique up to K-isomorphism. Any algebraic extension of $K$ is K-isomorphic to a sub extension of $\overline{K}/K$.
+\end{theorem}
+
+\begin{proof}
+  (Almost a proof)
+
+\paragraph{Existence}
+
+Suppose $\{ P_1, P_2, \ldots \}$ is the set of all irreducible monics in $K[X]$. Let $K_1$ be a splitting field of $P_1$ over $K$, then $K_2$ be a splitting field of $P_2$ over $K_1$ and so on, to obtain a sequence $K = K_0 \subseteq K_1 \subseteq \cdots$ and let $\overline{K} = \bigcup_{i=0}^\infty K_i$. Then, it is algebraic over $K$ as each step is a finite extension, and all irreducible polynomial of $K[X]$ split in this field. Then $\overline{K}$ is algebraically closed, as for every $P \in \overline{K}[X]$, its coefficients belong to some $K_i$, hence all the roots of $P$ are algebraic over $K_i$, hence over $K$, and are thus already in $\overline{K}$.
+
+\paragraph{Uniqueness}
+
+Let $F$ be another algebraic closure of $K$. As $P_1$ splits in $F$, we have that $\tau_1 \in \homset{K_1}{F}$ by \autoref{lemma:55}. As $P_2 = \tau{}P_1$ splits in $F$, we have that $\tau_2 \in \homset{K_2}{F}$, extending $\tau_1$. Repeating, after making infinitely many choices, we obtain $\tau \in \homset{\overline{K}}{F}$. As every element of $F$ is algebraic over $K$, hence a root of some $P_i$, it is in $\tau(\overline{K})$. Therefore, $\tau$ is an isomorphism from $\overline{K}$ to $F$.
+\end{proof}
+
+\paragraph{Remark}
+
+The real proof makes use of Zorn's lemma and the Well-ordering theorem to make the assertions rigorous.
+
+\section{Example I: Finite fields}
+
+\begin{lemma}
+  \label{lemma:59}
+  Let $K$ be a field with $q$ elements ($q \in \mathbb{N}$, supposing that such a field exists). Then, we have that:
+  \begin{enumerate}
+  \item $q = p^n$ for some $n \geq 1$, where $p = \mchar K$. 
+  \item Every element in $K$ is a root of $X^q -X \in \finitefield{p}[X]$, which splits in $K$. In particular, $K$ is a splitting field of $X^q-X$ over $\finitefield{p}$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+  \item As $\mathbb{Q} \not\subset K$, we have that $\mchar K = p > 0$, and $\finitefield{p} \hookrightarrow K$. If $[K : \finitefield{p}] = \infty$, then $\card{K} = \infty$, hence $[K : \finitefield{p}] = n < \infty$. Then we have $K \cong \finitefield{p^n}$ as a $\finitefield{p}$-vector space, hence $\card{K} = p^n$.
+  \item $K^\times = K \setminus \{ 0 \}$ is a finite group of order $q-1$, hence every $x \in K^\times$ satisfies $x^{q-1} = 1$ by Lagrange. Thus, $X^q-X = X(X^{q-1} - 1)$ has $q$ distinct roots in $K$ (i.e. all the elements of $K$), hence splits in $K$. Conversely, the roots clearly generate $K$ over $\finitefield{p}$.
+  \end{enumerate}
+\end{proof}
+
+\paragraph{Remark}
+
+Recall that $\forall p \in \finitefield{p}, \quad x^p = x$ by Fermat's little theorem. Conversely, we will show the existence of $K$ by proving that $X^q - X$ has $q$ distinct roots in its splitting field.
+
+\begin{definition}
+  \label{def:60}
+  Let $K$ be a field. Recall that $K[X]$ has $\{ 1, X, X^2, \ldots\}$ as a basis as a vector space over $K$. Let the derivation\index{derivation} map $D : K[X] \rightarrow K[X]$ be the K-linear map defined by $D(1) = 0$, and $D(X^n) = nX^{n-1}$ for $n\geq 1$.
+\end{definition}
+
+\begin{proposition}
+  \label{prop:61}
+  Let $K$ be a field.
+  \begin{enumerate}
+  \item $\forall P, Q \in K[X], \quad D(PQ) = D(P)Q + D(Q)P$
+  \item $\alpha \in K$ is a multiple root of $P$ if and only if $X-\alpha$ divides both $P$ and $D(P)$ in $K[X]$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Both sides are K-linear in $P$, $Q$ and $D(X^m\cdot{}X^n) = D(X^m)X^n + D(X^n)X^m$ for all $m, n \geq 0$.
+  \item If $P = (X-\alpha)Q$, then $D(P) = Q + (X-\alpha)D(Q)$. Hence $X-\alpha \mid D(P) \Leftrightarrow (X-\alpha) \mid Q \Leftrightarrow \alpha \text{ a multiple root}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+  \label{cor:62}
+  If $(\mchar K, N) = 1$ (i.e. $\mchar K = 0$ or $\mchar K$ does not divide $N$), then $X^N -1$ has no multiple root in $K$.
+\end{corollary}
+
+\begin{proof}
+  Since $N \neq 0$ in $K$, the only root of $D(X^N-1) = N*X^{N-1}$ is $X = 0$ which is not a root of $X^N -1$. Hence there are no multiple roots by \autoref{prop:61}.
+\end{proof}
+
+\paragraph{Remark}
+
+If $\mchar K = p > 0$, then $D(X^p-1) = pX^{p-1} = 0$, and $X^p-1 = (X-1)^p$ has a multiple root.
+
+\begin{lemma}
+  \label{lemma:63}
+  If $\mchar K  = p > 0$, then the map $K \rightarrow K$ defined by $x \mapsto x^p$ is a ring homomorphism (hence a $\finitefield{p}$-homomorphism).
+\end{lemma}
+
+\begin{proof}
+  We have: $0^p = 0$, $1^p = 1$, $(ab)^p = a^pb^p$,
+\[
+(a+b)^p = a^p + \sum_{i=1}^{p-1}\binom{p}{i}a^{p-i}b^i + b^p = a^p + b^p
+\]
+as $\binom{p}{i} = \frac{p!}{i!(p-i)!}$ is divisible by $p$ for $0 < i < p$.
+\end{proof}
+
+\begin{definition}
+  The $\finitefield{p}$ homomorphism in \autoref{lemma:63} is called the Frobenius map\index{Frobenius map} pf $K$, which we denote by $\operatorname{Fr}_p$. For $q = p^n$, the n\textsuperscript{th} iterate $\operatorname{Fr}_q = \left(\operatorname{Fr}_p\right)^n : K \rightarrow K$ is the $q^{\text{th}}$ power Frobenius map.
+\end{definition}
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "Galois"

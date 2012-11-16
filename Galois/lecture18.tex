@@ -16,7 +16,7 @@ where the equality holds if and only if $\card{\rootset[\tau{}P_\alpha]{E}} = \d
 
 \begin{proof}
   Immediate from \ref{prop:17}, which gives a bijection for every $\tau \in \homset{L}{E}$.
-\begin{IEEEeqnarray*}
+\begin{IEEEeqnarray*}{rCl}
 \{ \rho \in \homset{L(\alpha)}{E} \mid \restr{\rho}{L} = \tau &\rightarrow& \rootset[\tau{}P_\alpha(E)]{E} \\
 \rho & \mapsto& \rho(\alpha)
 \end{IEEEeqnarray*}
@@ -24,7 +24,7 @@ where the equality holds if and only if $\card{\rootset[\tau{}P_\alpha]{E}} = \d
 
 \begin{proposition}
   \label{prop:76}
-  If $F/K$ is finite then $\card{\homset{F}[E}} \leq [F : K]$ for any extension $E/K$. If the equality holds for $E/K$, then for any intermediate field $K \subseteq L \subseteq F$ we have:
+  If $F/K$ is finite then $\card{\homset{F}{E}} \leq [F : K]$ for any extension $E/K$. If the equality holds for $E/K$, then for any intermediate field $K \subseteq L \subseteq F$ we have:
 \begin{enumerate}
 \item $\card{\homset{L}{E}} = [L : K]$
 \item
@@ -75,7 +75,7 @@ If the equality holds, every $\leq$ has to be an equality. For $K \subseteq L \s
 \] where the first equality is by proposition \ref{prop:14} and the second by proposition \ref{prop:76}.
   \item[$b \Rightarrow c$] Trivial.
   \item[$c \Rightarrow d$] $P_i \mid Q_i$, so use lemma \ref{lemma:73}
-  \item[$d \Rightarrow a$] Take $E/K$ such that $Q_1$, \ldots, $Q_n$ splits in $E$. We show that every inequality in the proof of proposition \ref{prop:76} is an equality by checking the condition in lemma \ref{lemma:75}. For every $\tau \in \homset{K_{i-&}}{E}$, we have $\tau{}P_i$ separable by lemma \ref{lemma:73}. As $\tau{}P_i \mid \tau{}Q_i = Q_i$ and $Q_i$ splits in E, then $\card{\rootset[\tau{}P_i]{E}} = \deg P_i$.
+  \item[$d \Rightarrow a$] Take $E/K$ such that $Q_1$, \ldots, $Q_n$ splits in $E$. We show that every inequality in the proof of proposition \ref{prop:76} is an equality by checking the condition in lemma \ref{lemma:75}. For every $\tau \in \homset{K_{i-1}}{E}$, we have $\tau{}P_i$ separable by lemma \ref{lemma:73}. As $\tau{}P_i \mid \tau{}Q_i = Q_i$ and $Q_i$ splits in E, then $\card{\rootset[\tau{}P_i]{E}} = \deg P_i$.
 
 (ii)
 Choose $\alpha_1$, \ldots, $\alpha_n$ with $L = K_i$, and use $b \Leftrightarrow d$ in (i)
@@ -122,10 +122,10 @@ $\Gal{P} \hookrightarrow S_n$ is defined up to conjugation in $S_n$, hence the c
   Let $\finitefield{q}$ be the splitting field of $P$ over $\finitefield{p}$. As $\Gal{\finitefield{q}/\finitefield{p}} = \{ \operatorname{id}, \operatorname{Fr}_p, \operatorname{Fr}_p^2, \ldots, \operatorname{Fr}_p^{N-1} \}$ if $q = p^N$ (by theorem \ref{thm:68}, the conjugates of $\alpha$ over $\finitefield{p}$ are $\{ \alpha, \alpha^p, \alpha^{p^2}, \ldots, \alpha^{p^{N-1}} \}$ for some $d \mid N$, which are permuted cyclically by $\text{Fr}_p$. Now $P = Q_i\cdots{}Q_m$ and each $Q_i$ being irreducible, is the minimal polynomial of its root $\alpha_i \in \finitefield{q}$. So in $\finitefield{q}[X]$, we have that
   \begin{IEEEeqnarray*}{rlr}
     P = & (X-\alpha_1)(X-\alpha_1^p)\cdots{}(X - \alpha_1^{p^{n_1-1}}) & \leftarrow Q_1 \\
-    & (X-\alpha_2)(X-\alpha_é^p)\cdots(X-\alpha_2^{p^{n_2-1}}) & \leftarrow Q_2 \\
+    & (X-\alpha_2)(X-\alpha_2^p)\cdots(X-\alpha_2^{p^{n_2-1}}) & \leftarrow Q_2 \\
     & \cdots{}(X-\alpha_m)\cdots{}(X-\alpha_m^{p^{n_m-1}}) & \leftarrow Q_m
   \end{IEEEeqnarray*}
-and $\operatornam{Fr}_p$ acts on these n roots by a permutation of cycle type $(n_1, \ldots, n_m)$.
+and $\operatorname{Fr}_p$ acts on these n roots by a permutation of cycle type $(n_1, \ldots, n_m)$.
 \end{proof}
 
 %%% Local Variables: 
