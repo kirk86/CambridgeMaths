@@ -29,13 +29,13 @@ hence we have equality.
 
 We build from first principles. As $G \subseteq \autset[F^G]{F}$, we have:
 \[
-n! = \card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G] \leq [F : L] (asterisk)
+n! = \card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G] \leq [F : L] \label{eq:asterisk} \tag{*}
 \]
 but a splitting field has degree at most $n!$. Let $L_i = L(X_1, \ldots, X_i)$ for $1 \leq i \leq n$, so that $L = L_0 \subseteq L_1 \subseteq L2 \subseteq \cdots \subseteq L_n = F$. Then $X_i$ is a root of:
 \[
-P_i(X) = \frac{P(X)}{(X-X_1)\cdots{}(X-X_{i-1})} = (X-X_i)\cdots{}(X-X_n) \in L_{i-1}[X] (star)
+P_i(X) = \frac{P(X)}{(X-X_1)\cdots{}(X-X_{i-1})} = (X-X_i)\cdots{}(X-X_n) \in L_{i-1}[X] \label{eq:star} \tag{$\star$}
 \]
-which has degree $n-i+1$, hence $L_i = L_{i-1}(X_i)$ has at most degree $n-i+1$ over $L_{i-1}$. Thus $[F : L] \leq n(n-1)\cdots{}2\cdot{}1 = n!$ by tower law, hence (asterisk) implies $[F : L] = n!$ and $F^G = L$.
+which has degree $n-i+1$, hence $L_i = L_{i-1}(X_i)$ has at most degree $n-i+1$ over $L_{i-1}$. Thus $[F : L] \leq n(n-1)\cdots{}2\cdot{}1 = n!$ by tower law, hence \eqref{eq:asterisk} implies $[F : L] = n!$ and $F^G = L$.
 \end{proof}
 
 \paragraph{Remark}
@@ -46,7 +46,7 @@ Z = \{ z_1, \ldots, z_n \mid z_i \in Z_i \} = \{ X_1^{m_1}\cdots{}X_n^{m_n} \mid
 \]
 is a basis of $F/L$ (as seen in the proof of the tower law.
 
-Now revisit (star) with $n = 3$, $K = \mathbb{Q}$, $(\alpha, \beta, \gamma) = (X_1, X_2, X_3)$. (insert figure) And consider:
+Now revisit \eqref{eq:star} with $n = 3$, $K = \mathbb{Q}$, $(\alpha, \beta, \gamma) = (X_1, X_2, X_3)$ and consider:
 \begin{IEEEeqnarray*}{rCl}
   P(X) &=& X^3-(\alpha+\beta+\gamma)X^2 + (\alpha\beta+\beta\gamma+\gamma\alpha)X -\alpha\beta\gamma \\
   &=& P_1(X) \in \mathbb{Z}[s_1, s_2, s_3][X] \\
@@ -57,9 +57,9 @@ Now revisit (star) with $n = 3$, $K = \mathbb{Q}$, $(\alpha, \beta, \gamma) = (X
 \begin{theorem}[Symmetric function theorem]
   Let $K$, $n$, $F$, $G$ be as above, and let $R$ be any subring of K (e.g. $R = \operatorname{Im} (\mathbb{Z} \rightarrow K)$, i.e. $\mathbb{Z}$ or $\finitefield{Q}$ according to $\mchar K$). Then, inside $F$, we have:
 \[
-R[X_1, \lots, X_n] \cap F^G = R[s_1, \ldots, s_n]
+R[X_1, \ldots, X_n] \cap F^G = R[s_1, \ldots, s_n]
 \]
-i.e. every symmetric polynomial with coefficient in R is a polynomail in $s_1$, \ldots, $s_n$ with coefficient in $R$.
+i.e. every symmetric polynomial with coefficient in R is a polynomial in $s_1$, \ldots, $s_n$ with coefficient in $R$.
 \end{theorem}
 
 \begin{proof}
