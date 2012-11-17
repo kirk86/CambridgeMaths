@@ -1,0 +1,56 @@
+
+\paragraph{Example}
+
+Recall (\autoref{def:50}) that the discriminant for the splitting field $F = \mathbb{Q}(X_1, \ldots, X_n)$ over $L = \mathbb{Q}(s_1, \ldots, s_n) = F^G$ is:
+\[
+\Delta{}p = \prod_{i<j}(X_i-X_j)^2 \in \mathbb{Z}[X_1, \ldots, X_n] \cap L = \mathbb{Z}[s_1, \ldots, s_n]
+\]
+e.g. for $P = X^2 -s_1X + s_2$, we have $\Delta{}p = s_1^2-4s_2$. For $P = X^3 +s_2X-s_3$, we have $\Delta{}p = -4s-2^3-27s_3^2$.
+
+\section{Application II: Galois groups over $\mathbb{Q}$}
+
+\begin{theorem}
+\label{thm:84}
+  Let $P \in \mathbb{Z}[X]$ be a monic separable polynomial (as $P \in \mathbb{Q}[X]$) of degree $n$, and let $p$ be a prime such that $P \mod p \in \finitefield{p}[X]$ is also separable. If $P \mod p = Q_1\cdots{}Q_m$ is the irreducible factorization in $\finitefield{p}[X]$ and $\deg Q_i = n_i$, then $\Gal{P}$ contains an element with cycle type $(n_1, \ldots, n_m)$ as an element of $S_n$ (see the remark after \autoref{prop:80}).
+\end{theorem}
+
+\paragraph{Example}
+
+Let $P = X^5 + 2X + 6$. As $P \mod 3 = X^5-X =  X(X-1)(X+1)(X^2+1)$ in $\finitefield{3}[X]$, \autoref{thm:84} shows that $\Gal{P}$ contains an element of type $(1, 1, 1, 2)$, i.e. a transposition. If moreover $\Gal{P}$ has a 5-cycle, then $\Gal{P} \cong S_5$ by group theory.
+
+\begin{proof}
+  By \autoref{prop:80}, suffices to prove that $\Gal{P \mod p} \subseteq \Gal{P}$ inside $S_n$, up to conjugation. We use the setup in (section 2.6, i.e. previous one). Let $F = \mathbb{Q}(X_1, \ldots, X_n)$, on which $G = S_n$ acts by permuting $X_i$, i.e. $\rho(X_i) = X_{\rho(i)}$ for $\rho \in G$. Recall $F^G = \mathbb{Q}(s_1, \ldots, d_n)$ (by \autoref{prop:82}). Let $A = \mathbb{Z}[s_1, \ldots, s_n]$, a subring of $B = \mathbb{Z}[X_1, \ldots, X_n]$. Then \autoref{thm:83} says that $B \cap F^G = A$. Note that the action of $G$ on $F$ restricts to its action on B (permuting $X_i$), and define the 2\textsuperscript{nd} G-action on the ring $B[T_1, \ldots, T_n] = \mathbb{Z}[X_1, \ldots, X_n, T_1, \ldots, T_n]$ by permuting $T_i$ as $\rho(T_i) = T_{\rho(i)}$. We write $\underline{T}$ for $T_1, \ldots, T_n$. Now take a monic of degree $n!$ in $X$ with coefficients in $B[\underline{T}]$:
+\[
+R = \prod_{\sigma \in G}R_\sigma, \quad R_\sigma = X - \sum_{i=1}^n\sigma(X_i)T_i = X-(X_{\sigma(1)}T_1 + \cdots + X_{\sigma(n)}T_n) \in B[\underline{T}][X]
+\]
+Then the two actions of $\rho \in G$ permutes the factors $R_\sigma$ as:
+\[
+R_\sigma \mapsto R_{\rho\sigma} \quad \text{ and } \quad R_\sigma \mapsto R{\sigma\rho^{-1}}
+\]
+respectively. In particular, the product $R$ is fixed by both actions of $G$. As $R$ is fixed by the first action, so is each coefficient of $T_1^{m_1}\cdots{}T_n^{m_n}X$ (elements in $B$), hence they are in $B \cap F^G = A$. Thus $R \in A[\underline{T}][X]$.
+
+\begin{lemma}
+  \label{lemma:85}
+  Let $K$ be a field. $ P = X^n - a_1X^{n-1} + \cdots + (-1)^na_n \in K[X]$, and $E/K$ be a splitting field of $P$ over $K$, with $\rootset{E} = \{ \alpha_1, \ldots, \alpha_n \}$. This ordering gives the injection $H = \Gal{P} = \Gal{E/K} \hookrightarrow S_n = G$. Let $A$, $B$, $R$, and $R_\sigma$ as above.
+
+Define a ring homomorphism $\tau : B \rightarrow E$ by $\tau(X_i) = \alpha_i$. Then $\tau{}R \in E[\underline{T}][X]$ lies in $K[\underline{T}][X]$, and its irreducible factorization in $K(\underline{T})[X]$ is given by:
+\[
+\tau{}R  = \prod_{H\sigma \in H \textbackslash G} \tau{}R_{H\sigma}
+\]
+where $H\textbackslash{}G$ is the set of right cosets and $R_{H\sigma} = \prod_{\rho \in H\sigma} R_\rho \in B[\underline{T}][X]$. The stabilizer of $\tau{}R_{H\sigma} \in K(\underline{T})[X]$ under the 2\textsuperscript{nd} G-action is $\sigma^{-1}H\sigma$.
+\end{lemma}
+
+\begin{proof}
+  As $\tau$ is a ring homomorphism, $\tau{}R = \prod_{\sigma \in G} \tau{}R_\sigma$ in $E[\underline{T}][X]$. As $\tau(s_i) = a_i$, we have $\tau(A) \subseteq K$. Since $R \in A[\underline{T}][X]$, we have $\tau{}R \in K[\underline{T}][X]$. For each coset $H\sigma$, the polynomial $R_{H\sigma} \in B[\underline{T}][X]$ is fixed by the 1\textsuperscript{st} action of $H \subseteq G$. Note that the 1\textsuperscript{st} action of $H \subseteq G$ on $X_i$ is sent by $\tau$ to the $H = \Gal{E/K}$-action on $\alpha_i$. Hence $\tau{}R_{H\sigma} \in E[\underline{T}][X]$ is fixed by the action of $H = \Gal{E/K}$. Therefore, so is each coefficient of monomials of $T_1^{m_1}\cdots{}T_n^{m_n}X$ (elements in $E$), thus they are in $E^H = K$ (by \autoref{prop:33}). Hence $\tau{}R = \prod_{H\sigma \in H \textbackslash G}\tau{}R_{H\sigma}$ in $K[\underline{T}][X]$. We show that this is the irreducible factorisation in $K(\underline{T})[X]$. If $Q$ is a monic irreducible factor of $\tau{}R$ in $K(\underline{T})[X]$ such that $\tau{}R_{\sigma} \mid Q$ in $E(\underline{T})[X]$,  then for every $\rho \in H$, we have $\tau{}R_{\rho\sigma} = \tau(\rho(R_\sigma)) = \rho(\tau{}R_\sigma) \mid \rho{}Q = Q$ (as $\restr{\rho}{K} = \text{id}$). As each $\tau{}R_{\rho\sigma}$ is a distinct linear polynomial, their product $\tau{}Ro_{H\sigma}$ must divide $Q$ in $E(\underline{T})[X]$, hence also in $K(\underline{T})[X]$.
+
+Now that the 2\textsuperscript{nd} G-action on $T_i$ is simply sent by $\tau$ to the G-action on $T_i$. Hence $\rho \in G$ sends $\tau{}R_{H\sigma}$ to $\tau{}R_{H\sigma\rho^{-1}$, and $\rho$ fixes it if and only if $\rho \in \sigma^{-1}H\sigma$.
+\end{proof}
+
+Now we finish the proof of \autoref{thm:84}. Let $P = X^n - a_1X^{n-1} + \cdots + (-1)^na_n \in \mathbb{Z}[X]$, with its splitting field $E/Q$, and $\rootset[P]{E} = \{ \alpha_1, \ldots, \alpha_n \}$, so that $H = \Gal{P} = \Gal{E/K} \subseteq G$. Define $\tau : B \rightarrow E$ as in \autoref{lemma:85} by $X_i \mapsto \alpha_i$, then $\tau(s_i) = a_i$, hence $\tau{}R \in \mathbb{Z}[\underline{T}][X]$. By Gauss's lemma, the irreducible factorization of $\tau{}R$, monic in $\mathbb{Z}[\underline{T}][X]$, is the same as the irreducible factorization in $\mathbb{Q}(\underline{T})[X]$, since $\mathbb{Z}[\underline{T}]$ is a UFD and $\mathbb{Q}(\underline{T}) = \operatorname{Frac}(\mathbb{Z}[\underline{T}]$. Similarly for $P \mod p \in \finitefield{p}[X]$, let $\finitefield{q}/\finitefield{p}$ be its splitting field with the roots $\beta_1, \ldots, \beta_n \in \finitefield{q}$, so that $H' = \Gal{P \mod p} = \Gal{\finitefield{q}/\finitefield{p} \subseteq G$. Define $\tau': B \rightarrow \finitefield{q}$ by $X_i \mapsto \beta_i$. Then $\tau'(s_i) = a_i \mod p$, hence $\tau'R = \tau{}R \mod p \in \finitefield{p}[\underline{T}][X]$. Its factorization in $\finitefield{q}(\underline{T})[X]$ respects the factorization of $\tau{}R$ in $\mathbb{Z}[\underline{T}][X]$, i.e. each $\tau'R_{H'\sigma} \in \finitefield{p}(\underline{T})[X]$ must divide the mod-p of some $\tau{}R_{H\sigma} \in \mathbb{Z}[\underline{T}][X]$. As the 2\textsuperscript{nd} G-action (permuting $T_i$) is compatible with $\mod p$, the stabilizer $\sigma'^{-1}H\sigma'$ of the former is contained in the stabiliser $\sigma^{-1}H\sigma$ of the latter, hence $H' \subseteq \sigma'\sigma^{-1}H\sigma\sigma^{-1}$.
+
+\end{proof}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
