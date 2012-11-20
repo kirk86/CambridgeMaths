@@ -9,7 +9,7 @@ Here we rebuild Galois theory using more linear algebra, without ever mentioning
 
 \begin{lemma}
   \label{lemma:86}
-  Let $V$ be a finite dimensional vector space over $K$ and $E/K$ an extension. Let $\homset[\text{K-v.s.}]{V, E}$ be the set of all $K$-linear maps $V \rightarrow E$, and define the addition and $E$-action by:
+  Let $V$ be a finite dimensional vector space over $K$ and $E/K$ an extension. Let $\homset[\text{K-v.s.}]{V}{E}$ be the set of all $K$-linear maps $V \rightarrow E$, and define the addition and $E$-action by:
 \[
 (\rho + \rho')(x) = \rho(x) + \rho'(x), \ (\alpha\rho)(x)=\alpha\cdot{}\rho(x)
 \]
@@ -17,13 +17,13 @@ Then it is an $E$-vector space with $\dim_E (\homset[K-\text{v.s.}]{V}{E}) = \di
 \end{lemma}
 
 \begin{proof}
-  It satisfies the axioms of an $E$-vector space. Let $\{ e_1, \ldots, e_n \}$ be a basis of $V$. If we define $\rho_i \in \homset[K-\text{v.s.}]{V}{E}$ by $\rho_i(a_1e_1 + \cdots{} + a_ne_n) = a_i$, then every $\rho$ is uniquely written as $\rho = \rho(e_1)\rho_1 + \cdots{} + \rho(e_n)\rho_n$ (as we have that $\rho(x) = \rho(\sum_i a_ie_i) = \sum_i a_i\rho(e_i) = \sum_\rho_i(x)\rho(e_i) \in E$), hence $\{ p_1, \ldots, p_n \}$ is a basis of $\homset[K-\text{v.s.}]{V}{E}$ as an $E$-v.s.
+  It satisfies the axioms of an $E$-vector space. Let $\{ e_1, \ldots, e_n \}$ be a basis of $V$. If we define $\rho_i \in \homset[K-\text{v.s.}]{V}{E}$ by $\rho_i(a_1e_1 + \cdots{} + a_ne_n) = a_i$, then every $\rho$ is uniquely written as $\rho = \rho(e_1)\rho_1 + \cdots{} + \rho(e_n)\rho_n$ (as we have that $\rho(x) = \rho(\sum_i a_ie_i) = \sum_i a_i\rho(e_i) = \sum_i \rho_i(x)\rho(e_i) \in E$), hence $\{ p_1, \ldots, p_n \}$ is a basis of $\homset[K-\text{v.s.}]{V}{E}$ as an $E$-v.s.
 \end{proof}
 
 \begin{proposition}[Dedekind's lemma]
   \label{prop:87}
   \index{Dedekind's lemma}
-  Let $F/K$ be a finite extension. Then for any extension $E/K$, the subset $\homset{F}{E}$ of the $E$-vector space $\homset[K-\text{v.s.}]{V}{E}$ is $E$-linearly independent. In particular, $\card{\homset{F}{E}} \leq [F : K]$ (by \autoref{lemma:86}.
+  Let $F/K$ be a finite extension. Then for any extension $E/K$, the subset $\homset{F}{E}$ of the $E$-vector space $\homset[K-\text{v.s.}]{V}{E}$ is $E$-linearly independent. In particular, $\card{\homset{F}{E}} \leq [F : K]$ (by \autoref{lemma:86}).
 \end{proposition}
 
 \paragraph{Remark}
@@ -31,11 +31,14 @@ Then it is an $E$-vector space with $\dim_E (\homset[K-\text{v.s.}]{V}{E}) = \di
 We proved this inequality in \autoref{prop:76}.
 
 \begin{proof}
-  We prove that any finite subset $\{ \rho_1, \ldots, \rho_k \}$ of $\homset{F}{E}$ is $E$-linearly independent, by induction on $k$. Let $a_1\rho_1 + \cdots + a_k\rho_k = 0 \tag{*}$ be an $E$-linear relation. If $k = 1$, then $\rho_1 \neq 0$ hence $a_1 = 0$, hence the claim holds. Let $k > 1$, for any $x, y \in F$, we have $a_1\rho_1(x)\rho_1(y) + \cdots + a_k\rho_k(x)\rho_k(y) = a_1\rho_1(xy) + \cdots + a_k\rho_k(xy) = 0$. As $y$ is arbitrary, we have equality as a $K$-linear map (i.e. in $\homset[K-\text{v.s.}]{F}{E}$):
+  We prove that any finite subset $\{ \rho_1, \ldots, \rho_k \}$ of $\homset{F}{E}$ is $E$-linearly independent, by induction on $k$. Let the following $E$-linear relation hold: 
+\[
+a_1\rho_1 + \cdots + a_k\rho_k = 0 \tag{*} \label{prop:87:asterisk}
+\] If $k = 1$, then $\rho_1 \neq 0$ hence $a_1 = 0$, hence the claim holds. Let $k > 1$, for any $x, y \in F$, we have $a_1\rho_1(x)\rho_1(y) + \cdots + a_k\rho_k(x)\rho_k(y) = a_1\rho_1(xy) + \cdots + a_k\rho_k(xy) = 0$. As $y$ is arbitrary, we have equality as a $K$-linear map (i.e. in $\homset[K-\text{v.s.}]{F}{E}$):
 \[
 a_1\rho_1(x)\rho_1 + \cdots + a_k\rho_k(x)\rho_k = 0
 \]
-multiply (*) by $p_k(x)$ gives $a_1p_k(x)p_1 + \cdots + a_kp_k(x)p_k = 0$, so subtracting we obtain:
+multiply \eqref{prop:87:asterisk} by $p_k(x)$ gives $a_1p_k(x)p_1 + \cdots + a_kp_k(x)p_k = 0$, so subtracting we obtain:
 \[
 a_1(\rho_1(x)-\rho_k(x))\rho_1 + \cdots + a_{k-1}(\rho_{k-1}(x)-\rho_k(x)) = 0
 \]
@@ -50,11 +53,19 @@ This implies $\card{\autset[K]{F}} \leq [F : K]$ for finite $L/K$ (\autoref{lemm
 \end{proposition}
 
 \begin{proof}
-  Let $G = \{ \rho_1, \ldots, \rho_n\}$ (with $\rho_1 = \text{id}$), and write $\mathb{\rho}(x) = \left( \rho_1(x), \rho_2(x), \ldots, \rho_n(x) \right) \in F^n$ for $x \in F$. For $\mathb{x} = (x_1, \ldots, x_n) \in F^n$, and $\rho \in G$; write $\rho(\mathb{x}) = \big( \rho(x_1), \ldots, \rho(x_n) \big)$. Then $\rho(a\mathb{x}) = \rho(a)\rho(\mathb{x})$, since $\rho$ is a ring homomorphism, and the components of $\rho(\mathb{\rho}(x)) = (\rho\rho_1(x), \ldots, \rho\rho_n(x)) \in F^n$ are a permutation of those $\mathb{\rho}(x)$. Hence if $a_1\mathb{\rho}(x_1) + \cdots + a_k\mathb{\rho}(x_k) = 0 \tag{*}$ for $a_1, \ldots, a_k \in F$, then $\rho(a_1)\mathb{\rho}(x_1) + \cdots + \rho(a_k)\mathb{\rho}(x_k) = 0 \tag{\star}$ bu applying $\rho$ to (*). Now we prove that if $\{x_1, \ldots, x_n\}$ is an $F^G$-linearly independent subset of $F$, then $\{ \mathb{\rho}(x_1), \ldots, \mathb{\rho}(x_n) \}$ is $F$-linearly independent in $F^n$, which implies $k \leq n  = \card{G}$. Use induction on $k$. If $k = 1$, then $\mathb{\rho}(x_i) \neq 0$, since $x_1 \neq 0$, hence the claim holds. Assume an $F$-linear relation \eqref{*}. Replacing $a_i$ by $a_i/a_k$ when $a_k \neq 0$, we can assume $a_k + 0$ or $1$. Then as $\rho(a_k) = a_k$ for all $\rho \in G$, \eqref{*} - \eqref{star} gives:
+  Let $G = \{ \rho_1, \ldots, \rho_n\}$ (with $\rho_1 = \text{id}$), and write $\bm{\rho}(x) = \left( \rho_1(x), \rho_2(x), \ldots, \rho_n(x) \right) \in F^n$ for $x \in F$. For $\bm{x} = (x_1, \ldots, x_n) \in F^n$, and $\rho \in G$; write $\rho(\bm{x}) = \big( \rho(x_1), \ldots, \rho(x_n) \big)$. Then $\rho(a\bm{x}) = \rho(a)\rho(\bm{x})$, since $\rho$ is a ring homomorphism, and the components of $\rho(\bm{\rho}(x)) = (\rho\rho_1(x), \ldots, \rho\rho_n(x)) \in F^n$ are a permutation of those $\bm{\rho}(x)$. Hence if we have 
+ \[
+ a_1\bm{\rho}(x_1) + \cdots + a_k\bm{\rho}(x_k) = 0 \tag{*} \label{prop:88:asterisk}
+ \]
+ for $a_1, \ldots, a_k \in F$, then by applying $\rho$ to \eqref{prop:88:asterisk} we get:
+ \[
+ \rho(a_1)\bm{\rho}(x_1) + \cdots + \rho(a_k)\bm{\rho}(x_k) = 0 \tag{$\star$} \label{prop:88:star}
+ \]
+Now we prove that if $\{x_1, \ldots, x_n\}$ is an $F^G$-linearly independent subset of $F$, then $\{ \bm{\rho}(x_1), \ldots, \bm{\rho}(x_n) \}$ is $F$-linearly independent in $F^n$, which implies $k \leq n  = \card{G}$. Use induction on $k$. If $k = 1$, then $\bm{\rho}(x_i) \neq 0$, since $x_1 \neq 0$, hence the claim holds. Assume an $F$-linear relation \eqref{prop:88:asterisk}. Replacing $a_i$ by $a_i/a_k$ when $a_k \neq 0$, we can assume $a_k + 0$ or $1$. Then as $\rho(a_k) = a_k$ for all $\rho \in G$, \eqref{prop:88:asterisk} - \eqref{prop:88:star} gives:
 \[
-(a_1 - \rho(a_1))\mathb{\rho}(x_1) + \cdots + (a_{k-1} - \rho(a_{k-1}))\mathb{\rho}(x_{k-1}) = 0
+(a_1 - \rho(a_1))\bm{\rho}(x_1) + \cdots + (a_{k-1} - \rho(a_{k-1}))\bm{\rho}(x_{k-1}) = 0
 \]
-The induction hypothesis shows that all coefficients are 0, and since $\rho$ was arbitrary, we have $a_i \in F^G$. Now the first component of \eqref{*} needs $a_1x_1 + \cdots + a_kx_k = 0$ (as $\rho_1 = \text{id}$), and the $F^G$-linear independence of $\{ x_1, \ldots, x_k \}$ implies all $a_i$ are 0. Thus $F/F^G$ is finite with $[F : F^G] \leq n = \card{G}$. Since we had $\card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G]$ already, $\card{\autset[F^G]{F}} = [F : F^G]$ and $G = \Gal{F/F^G}$.
+The induction hypothesis shows that all coefficients are 0, and since $\rho$ was arbitrary, we have $a_i \in F^G$. Now the first component of \eqref{prop:88:asterisk} needs $a_1x_1 + \cdots + a_kx_k = 0$ (as $\rho_1 = \text{id}$), and the $F^G$-linear independence of $\{ x_1, \ldots, x_k \}$ implies all $a_i$ are 0. Thus $F/F^G$ is finite with $[F : F^G] \leq n = \card{G}$. Since we had $\card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G]$ already, $\card{\autset[F^G]{F}} = [F : F^G]$ and $G = \Gal{F/F^G}$.
 \end{proof}
 
 \section{Towers of extensions}
@@ -66,7 +77,21 @@ We almost reproved the fundamental theorem of Galois (\autoref{thm:34}). Remains
   \label{def:89}
   Let $K$ be a field. We call a pair $(F, \tau)$ of a field $F$ and a ring homomorphism $\tau : K \rightarrow F$ an extension\index{extension} of $K$, and denote it by $F_\tau$. 
 
-A morphism\index{morphism} $\rho : F_\tau \rightarrow F'_{\tau'}$ of extensions is a ring homomorphism $\rho : F \rightarrow F'$ such that $\rho\tau = \tau'$ (i.e. the diagram 1 commutes). We denote the set of all morphisms from $F_\tau$ to $F'_{\tau'}$ by $\homset[]{F_\tau}{F'_{\tau'}}$. If $\rho$ is bijective, then $\rho^{-1}$ is also a morphism, and we call $\rho$ an isomorphism. An automorphism of $F_\tau$ is an isomorphism from $F_\tau$ to itself, and $\autset[]{F_\tau}$ is the group of all automorphisms of $F_\tau$.
+A morphism\index{morphism} $\rho : F_\tau \rightarrow F'_{\tau'}$ of extensions is a ring homomorphism $\rho : F \rightarrow F'$ such that $\rho\tau = \tau'$, i.e. the following diagram commutes.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \node (1) {$K$};
+      \node (2) [below = of 1] {$F$};
+      \node (3) [right = of 2] {$F'$};
+
+      \path 
+        (1) edge[->] node[left] {$\tau$} (2)
+        (2) edge[->] node[below] {$\rho$} (3)
+        (1) edge[->] node[above right] {$\tau'$} (3);
+    \end{tikzpicture}
+  \end{figure}
+We denote the set of all morphisms from $F_\tau$ to $F'_{\tau'}$ by $\homset[]{F_\tau}{F'_{\tau'}}$. If $\rho$ is bijective, then $\rho^{-1}$ is also a morphism, and we call $\rho$ an isomorphism. An automorphism of $F_\tau$ is an isomorphism from $F_\tau$ to itself, and $\autset[]{F_\tau}$ is the group of all automorphisms of $F_\tau$.
 \end{definition}
 
 \paragraph{Remark}
