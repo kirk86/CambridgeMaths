@@ -33,14 +33,14 @@ We proved this inequality in \autoref{prop:76}.
 \begin{proof}
   We prove that any finite subset $\{ \rho_1, \ldots, \rho_k \}$ of $\homset{F}{E}$ is $E$-linearly independent, by induction on $k$. Let the following $E$-linear relation hold: 
 \[
-a_1\rho_1 + \cdots + a_k\rho_k = 0 \tag{*} \label{prop:87:asterisk}
+a_1\rho_1 + \cdots + a_k\rho_k = 0 \tag{$\ast{}$} \label{prop:87:asterisk}
 \] If $k = 1$, then $\rho_1 \neq 0$ hence $a_1 = 0$, hence the claim holds. Let $k > 1$, for any $x, y \in F$, we have $a_1\rho_1(x)\rho_1(y) + \cdots + a_k\rho_k(x)\rho_k(y) = a_1\rho_1(xy) + \cdots + a_k\rho_k(xy) = 0$. As $y$ is arbitrary, we have equality as a $K$-linear map (i.e. in $\homset[K-\text{v.s.}]{F}{E}$):
 \[
 a_1\rho_1(x)\rho_1 + \cdots + a_k\rho_k(x)\rho_k = 0
 \]
-multiply \eqref{prop:87:asterisk} by $p_k(x)$ gives $a_1p_k(x)p_1 + \cdots + a_kp_k(x)p_k = 0$, so subtracting we obtain:
+multiply \eqref{prop:87:asterisk} by $p_k(x)$ gives $a_1p_k(x)p_1 + \dotsb + a_kp_k(x)p_k = 0$, so subtracting we obtain:
 \[
-a_1(\rho_1(x)-\rho_k(x))\rho_1 + \cdots + a_{k-1}(\rho_{k-1}(x)-\rho_k(x)) = 0
+a_1(\rho_1(x)-\rho_k(x))\rho_1 + \dotsb + a_{k-1}(\rho_{k-1}(x)-\rho_k(x)) = 0
 \]
 Then all coefficients are 0 by induction hypothesis, and as $x$ is arbitrary, we have $a_i(\rho_i -\rho_k) = 0$, ($1 \leq i \leq k-1$). If $a_i \neq 0$, then multiplying by $a_i^{-1}$ gives $\rho_i = \rho_k$. Now the case $k = 1$ gives $a_k = 0$.
 \end{proof}
@@ -53,19 +53,19 @@ This implies $\card{\autset[K]{F}} \leq [F : K]$ for finite $L/K$ (\autoref{lemm
 \end{proposition}
 
 \begin{proof}
-  Let $G = \{ \rho_1, \ldots, \rho_n\}$ (with $\rho_1 = \text{id}$), and write $\bm{\rho}(x) = \left( \rho_1(x), \rho_2(x), \ldots, \rho_n(x) \right) \in F^n$ for $x \in F$. For $\bm{x} = (x_1, \ldots, x_n) \in F^n$, and $\rho \in G$; write $\rho(\bm{x}) = \big( \rho(x_1), \ldots, \rho(x_n) \big)$. Then $\rho(a\bm{x}) = \rho(a)\rho(\bm{x})$, since $\rho$ is a ring homomorphism, and the components of $\rho(\bm{\rho}(x)) = (\rho\rho_1(x), \ldots, \rho\rho_n(x)) \in F^n$ are a permutation of those $\bm{\rho}(x)$. Hence if we have 
+  Let $G = \{ \rho_1, \dotsc, \rho_n\}$ (with $\rho_1 = \text{id}$), and write $\bm{\rho}(x) = \left( \rho_1(x), \rho_2(x), \dotsc, \rho_n(x) \right) \in F^n$ for $x \in F$. For $\bm{x} = (x_1, \dotsc, x_n) \in F^n$, and $\rho \in G$; write $\rho(\bm{x}) = \big( \rho(x_1), \dotsc, \rho(x_n) \big)$. Then $\rho(a\bm{x}) = \rho(a)\rho(\bm{x})$, since $\rho$ is a ring homomorphism, and the components of $\rho(\bm{\rho}(x)) = (\rho\rho_1(x), \dotsc, \rho\rho_n(x)) \in F^n$ are a permutation of those $\bm{\rho}(x)$. Hence if we have 
  \[
- a_1\bm{\rho}(x_1) + \cdots + a_k\bm{\rho}(x_k) = 0 \tag{*} \label{prop:88:asterisk}
+ a_1\bm{\rho}(x_1) + \dotsb + a_k\bm{\rho}(x_k) = 0 \tag{$\ast$} \label{prop:88:asterisk}
  \]
- for $a_1, \ldots, a_k \in F$, then by applying $\rho$ to \eqref{prop:88:asterisk} we get:
+ for $a_1, \dotsc, a_k \in F$, then by applying $\rho$ to \eqref{prop:88:asterisk} we get:
  \[
- \rho(a_1)\bm{\rho}(x_1) + \cdots + \rho(a_k)\bm{\rho}(x_k) = 0 \tag{$\star$} \label{prop:88:star}
+ \rho(a_1)\bm{\rho}(x_1) + \dotsb + \rho(a_k)\bm{\rho}(x_k) = 0 \tag{$\star$} \label{prop:88:star}
  \]
-Now we prove that if $\{x_1, \ldots, x_n\}$ is an $F^G$-linearly independent subset of $F$, then $\{ \bm{\rho}(x_1), \ldots, \bm{\rho}(x_n) \}$ is $F$-linearly independent in $F^n$, which implies $k \leq n  = \card{G}$. Use induction on $k$. If $k = 1$, then $\bm{\rho}(x_i) \neq 0$, since $x_1 \neq 0$, hence the claim holds. Assume an $F$-linear relation \eqref{prop:88:asterisk}. Replacing $a_i$ by $a_i/a_k$ when $a_k \neq 0$, we can assume $a_k + 0$ or $1$. Then as $\rho(a_k) = a_k$ for all $\rho \in G$, \eqref{prop:88:asterisk} - \eqref{prop:88:star} gives:
+Now we prove that if $\{x_1, \dotsc, x_n\}$ is an $F^G$-linearly independent subset of $F$, then $\{ \bm{\rho}(x_1), \dotsc, \bm{\rho}(x_n) \}$ is $F$-linearly independent in $F^n$, which implies $k \leq n  = \card{G}$. Use induction on $k$. If $k = 1$, then $\bm{\rho}(x_i) \neq 0$, since $x_1 \neq 0$, hence the claim holds. Assume an $F$-linear relation \eqref{prop:88:asterisk}. Replacing $a_i$ by $a_i/a_k$ when $a_k \neq 0$, we can assume $a_k + 0$ or $1$. Then as $\rho(a_k) = a_k$ for all $\rho \in G$, \eqref{prop:88:asterisk} - \eqref{prop:88:star} gives:
 \[
-(a_1 - \rho(a_1))\bm{\rho}(x_1) + \cdots + (a_{k-1} - \rho(a_{k-1}))\bm{\rho}(x_{k-1}) = 0
+(a_1 - \rho(a_1))\bm{\rho}(x_1) + \dotsb + (a_{k-1} - \rho(a_{k-1}))\bm{\rho}(x_{k-1}) = 0
 \]
-The induction hypothesis shows that all coefficients are 0, and since $\rho$ was arbitrary, we have $a_i \in F^G$. Now the first component of \eqref{prop:88:asterisk} needs $a_1x_1 + \cdots + a_kx_k = 0$ (as $\rho_1 = \text{id}$), and the $F^G$-linear independence of $\{ x_1, \ldots, x_k \}$ implies all $a_i$ are 0. Thus $F/F^G$ is finite with $[F : F^G] \leq n = \card{G}$. Since we had $\card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G]$ already, $\card{\autset[F^G]{F}} = [F : F^G]$ and $G = \Gal{F/F^G}$.
+The induction hypothesis shows that all coefficients are 0, and since $\rho$ was arbitrary, we have $a_i \in F^G$. Now the first component of \eqref{prop:88:asterisk} needs $a_1x_1 + \dotsb + a_kx_k = 0$ (as $\rho_1 = \text{id}$), and the $F^G$-linear independence of $\{ x_1, \dotsc, x_k \}$ implies all $a_i$ are 0. Thus $F/F^G$ is finite with $[F : F^G] \leq n = \card{G}$. Since we had $\card{G} \leq \card{\autset[F^G]{F}} \leq [F : F^G]$ already, $\card{\autset[F^G]{F}} = [F : F^G]$ and $G = \Gal{F/F^G}$.
 \end{proof}
 
 \section{Towers of extensions}
