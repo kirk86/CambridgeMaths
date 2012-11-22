@@ -16,14 +16,25 @@ We have $[F_\tau] = [F : \tau(K)]$. If $[F_\tau] = 1$, then $\tau$ is bijective 
   \label{lemma:91}
   If $\sigma \in \homset[]{F_\tau}{F'_{\tau'}}$, then $\sigma(F)$, $F'$ are extensions of $\tau'(K)$ in our previous sense, and we have a bijection:
   \begin{IEEEeqnarray*}{rCl}
-    \homset[\tau'(K)]{\sigma(F)}{F'} &\rightarrow& \homset[]{F_\tau}{F'_{\tau'}}
+    \homset[\tau'(K)]{\sigma(F)}{F'} &\rightarrow& \homset[]{F_\tau}{F'_{\tau'}} \\
     \rho & \mapsto & \rho\sigma
   \end{IEEEeqnarray*}
   In particular, if $F_\tau$ is finite then $\card{\homset{F_\tau}{F'_{\tau'}}} \leq [F_\tau]$ by Dedekind (\autoref{prop:87}).
 \end{lemma}
 
+\begin{figure}
+  \centering
+  \begin{tikzcd}[column sep=small]
+    F \arrow{rr}{\sigma}[swap]{\cong} \arrow[bend left]{rrrr}{\rho'} &  & \sigma(F) \arrow{rr}{\rho} & & F' \\
+    & \tau(K)\arrow[hook]{ul} \arrow{rr}{\sigma}[swap]{\cong} & &\tau'(K) \arrow[hook]{ur} \arrow[hook]{ul}& \\
+    & & K \arrow{ur}{\tau}[swap]{\cong} \arrow{ul}{\tau'}[swap]{\cong} & &
+  \end{tikzcd}
+
+  \caption{Diagram representing the relations in \autoref{lemma:91}\label{fig:lemma:91}}
+\end{figure}
+
 \begin{proof}
-  (insert diagram 1) In the diagram, $\hookrightarrow$ denotes the inclusion map. As $\restr{\rho}{\tau'(K)} = \text{id}$ implies $\rho\sigma\tau = \tau'$, we have the claimed map. We have the inverse map $\rho' \mapsto \rho'\sigma^{-1}$. Since $\rho'\tau = \tau'$ implies $\restr{\rho'\sigma^{-1}}{\tau'(K)} = \rho'\tau\tau'^{-1} = \text{id}$. If $F_\tau$ is finite, then so is the extension $\sigma(F)_\sigma$ of $\tau(K)$, hence so is $\sigma(F)/\tau'(K)$.
+  In the \autoref{fig:label:91}, $\hookrightarrow$ denotes the inclusion map. As $\restr{\rho}{\tau'(K)} = \text{id}$ implies $\rho\sigma\tau = \tau'$, we have the claimed map. We have the inverse map $\rho' \mapsto \rho'\sigma^{-1}$. Since $\rho'\tau = \tau'$ implies $\restr{\rho'\sigma^{-1}}{\tau'(K)} = \rho'\tau\tau'^{-1} = \text{id}$. If $F_\tau$ is finite, then so is the extension $\sigma(F)_\sigma$ of $\tau(K)$, hence so is $\sigma(F)/\tau'(K)$.
 \end{proof}
 
 \begin{definition}
@@ -36,7 +47,14 @@ We have $[F_\tau] = [F : \tau(K)]$. If $[F_\tau] = 1$, then $\tau$ is bijective 
   Let $L_\tau$, $F_\sigma$ be a tower of extensions.
   \begin{enumerate}
   \item If $F'_\tau$ is an extension of $K$, then the set $\homset[]{F_{\sigma\tau}}{F'_{\tau'}}$ is a disjoint union of $\homset[]{F_\sigma}{F'_{\sigma'}}$ for each $\sigma' \in \homset[]{L_\tau}{F'_{\tau'}}$. In particular, $\autset[]{F_\sigma}$ is a subgroup of $\autset[]{F_{\sigma\tau}}$.
-      (insert diagram 2)
+    \begin{figure}[H]
+      \centering
+      \begin{tikzcd}[column sep=small]
+        F \ar{rr}{\rho} & & F' \\
+        & L \ular{\sigma} \urar{\sigma'} & \\
+        & K \ar[bend left]{uul}{\sigma\tau} \uar{\tau} \ar[bend right]{uur}{\tau'} &
+      \end{tikzcd}
+    \end{figure}
   \item We have that $F_{\sigma\tau}$ is finite if and only if $F_\sigma$, $L_\tau$ are finite. In this case, we have $[F_{\sigma\tau}] = [F_\sigma][F_\tau]$.
   \item Suppose $L_\tau$, $F_\sigma$ are finite. If $F_{\sigma\tau}$ is Galois, then so is $F_\sigma$.
   \end{enumerate}
@@ -54,7 +72,7 @@ But $\card{\homset[]{L_\tau}{F_{\sigma\tau}}} \leq [L_\tau]$ and $\card{\homset[
   \end{enumerate}
 \end{proof}
 
-This result gives the Fundamental theorem of Galois Theory (\autoref{thm:34}). \autoref{cor:35} is proved as in the proof of \autref{prop:79} since $\card{\homset[]{L_\tau}{F_{\sigma\tau}} = [L_\tau]}$ and $\homset[]{F_\sigma}{F'_{\sigma'}} \neq \emptyset$ for such $\sigma'$.
+This result gives the Fundamental theorem of Galois Theory (\autoref{thm:34}). \autoref{cor:35} is proved as in the proof of \autoref{prop:79} since $\card{\homset[]{L_\tau}{F_{\sigma\tau}} = [L_\tau]}$ and $\homset[]{F_\sigma}{F'_{\sigma'}} \neq \emptyset$ for such $\sigma'$.
 
 \section{Trace and norms}
 We return to our old notion of extensions ($L/K$ means $K \subseteq L$).
@@ -63,9 +81,9 @@ We return to our old notion of extensions ($L/K$ means $K \subseteq L$).
   \label{def:94}
   Let $L/K$ be a finite extension. For $\alpha \in L$, let $m_\alpha : L \rightarrow L$ be the multiplication by $\alpha$ map $m_\alpha(\beta) = \alpha\beta \quad (\forall \beta \in L)$, viewed as a $K$-linear transformation of the $K$-vector space $L$. We define the trace\index{trace} $\trace{L/K}{\alpha}$ and the norm $\norm{L/K}{\alpha}$ as the trace and determinant (respectively) of $m_\alpha$:
 \[
-\trace{L/K}{\alpha} = \operatorname{tr} m_\alpha \qquad \nomr{L/K}{\alpha} = \det (m_\alpha)
+\trace{L/K}{\alpha} = \operatorname{tr} m_\alpha \qquad \norm{L/K}{\alpha} = \det (m_\alpha)
 \]
-If $\{ \beta_1, \ldots, \beta_n \}$ is a basis of $L$ as a vector space over $K$, then we have:
+If $\{ \beta_1, \dotsc, \beta_n \}$ is a basis of $L$ as a vector space over $K$, then we have:
 \[
 m_\alpha(\beta_j) = \alpha\beta_j = \sum_{i=1}^{n}\beta_ia_{ij}
 \]
@@ -79,10 +97,10 @@ for some $a_{ij} \in K$. and $m_\alpha$ is then represented by the matrix $A = (
 
 In $\mathbb{Q}(\sqrt{2})/\mathbb{Q}$, consider the basis $\{ 1, \sqrt{2} \}$. We have 
 \[
-(1 + \sqrt{2}) \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+(1 + \sqrt{2}) \begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}1\\1\end{pmatrix}
 \]
 \[
-(1 + \sqrt{2}) \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatix}
+(1 + \sqrt{2}) \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}
 \]
 hence we have that the map $m_{1+\sqrt{2}}$ is represented by the matrix:
 \[
