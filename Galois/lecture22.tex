@@ -1,0 +1,99 @@
+
+\paragraph{Remark}
+
+If $F_\tau$, $F_{\tau'}$ are extensions in our previous sense (i.e. $\tau$, $\tau'$ are inclusion maps), then $\rho\tau = \tau'$ means $\restr{\rho}{K} = \text{id}$, i.e. morphisms are just K-homomorphisms. Every morphism is injective (\autoref{lemma:11}), and $\tau$ is itself a morphism $\tau : K_{\text{id}} \rightarrow F_\tau$. If $\rho$ is an automorphism of $F_\tau$, then $\restr{\rho}{\tau(K)} = \text{id}$, hence $\autset[]{F_\tau} = \autset[\tau(K)]{F}$. 
+
+\begin{definition}
+  \label{def:90}
+  Let $F_\tau$ be an extension of a field $K$. We consider $F$ as a vector space over $K$ by letting $x \in K$ act on $F$ via multiplication in $\tau(x)$ in $F$. We say $F_\tau$ is finite if it is a finite dimensional vector space over $K$, and let $[F_\tau] = \dim_K F$ be its degree. A finite extension is called Galois if $\card{\autset[]{F_\tau}} = [F_\tau]$.
+\end{definition}
+
+\paragraph{Remark}
+
+We have $[F_\tau] = [F : \tau(K)]$. If $[F_\tau] = 1$, then $\tau$ is bijective and $\tau(K) = F$. Morphisms are injective $K$-linear maps, so $\autset[]{F_\tau} = \homset[]{F_\tau}{F_\tau}$ for finite $F_\tau$ by rank-nullity.
+
+\begin{lemma}
+  \label{lemma:91}
+  If $\sigma \in \homset[]{F_\tau}{F'_{\tau'}}$, then $\sigma(F)$, $F'$ are extensions of $\tau'(K)$ in our previous sense, and we have a bijection:
+  \begin{IEEEeqnarray*}{rCl}
+    \homset[\tau'(K)]{\sigma(F)}{F'} &\rightarrow& \homset[]{F_\tau}{F'_{\tau'}}
+    \rho & \mapsto & \rho\sigma
+  \end{IEEEeqnarray*}
+  In particular, if $F_\tau$ is finite then $\card{\homset{F_\tau}{F'_{\tau'}}} \leq [F_\tau]$ by Dedekind (\autoref{prop:87}).
+\end{lemma}
+
+\begin{proof}
+  (insert diagram 1) In the diagram, $\hookrightarrow$ denotes the inclusion map. As $\restr{\rho}{\tau'(K)} = \text{id}$ implies $\rho\sigma\tau = \tau'$, we have the claimed map. We have the inverse map $\rho' \mapsto \rho'\sigma^{-1}$. Since $\rho'\tau = \tau'$ implies $\restr{\rho'\sigma^{-1}}{\tau'(K)} = \rho'\tau\tau'^{-1} = \text{id}$. If $F_\tau$ is finite, then so is the extension $\sigma(F)_\sigma$ of $\tau(K)$, hence so is $\sigma(F)/\tau'(K)$.
+\end{proof}
+
+\begin{definition}
+  \label{def:92}
+  Let $L_\tau$ be an extension of $K$, and $F_\sigma$ be an extension of $L : K \stackrel{\tau}{\rightarrow} L \stackrel{\sigma}{\rightarrow} F$. Then $\sigma\tau : K \rightarrow F$ is an extension $F_{\sigma\tau}$ of $K$. We cal this a tower $L_\tau$, $F_\sigma$ of extensions.
+\end{definition}
+
+\begin{proposition}
+  \label{prop:93}
+  Let $L_\tau$, $F_\sigma$ be a tower of extensions.
+  \begin{enumerate}
+  \item If $F'_\tau$ is an extension of $K$, then the set $\homset[]{F_{\sigma\tau}}{F'_{\tau'}}$ is a disjoint union of $\homset[]{F_\sigma}{F'_{\sigma'}}$ for each $\sigma' \in \homset[]{L_\tau}{F'_{\tau'}}$. In particular, $\autset[]{F_\sigma}$ is a subgroup of $\autset[]{F_{\sigma\tau}}$.
+      (insert diagram 2)
+  \item We have that $F_{\sigma\tau}$ is finite if and only if $F_\sigma$, $L_\tau$ are finite. In this case, we have $[F_{\sigma\tau}] = [F_\sigma][F_\tau]$.
+  \item Suppose $L_\tau$, $F_\sigma$ are finite. If $F_{\sigma\tau}$ is Galois, then so is $F_\sigma$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}
+  \item If $\rho \in \hom[]{F_{\sigma\tau}}{F'_{\tau'}}$, then $\sigma' = \rho\sigma : L \rightarrow F'$ is an extension of $F'_{\sigma'}$ of $L$, and $\rho \in \homset[]{F_\sigma}{F'_{\sigma'}}$. Then $\sigma'\tau = \rho\sigma\tau = \tau'$ shows $\sigma' \in \homset[]{L_\tau}{F'_{\tau'}}$. Conversely, if $\sigma' \in \homset[]{L_\tau}{F'_{\tau'}}$, and $\rho \in \homset[]{F_\sigma}{F'_{\sigma'}}$, then $\rho\sigma\tau = \sigma'\tau = \tau'$ shows $\rho \in \homset{F_{\sigma\tau}}{F'_{\tau'}}$.
+  \item Same as in \autoref{prop:8}
+  \item As $F_{\sigma\tau}$ is Galois, (ii) says that $\card{\autset{F_{\sigma\tau}}} = [F_{\sigma\tau}] = [F_\sigma][L_\tau]$. Applying (i) gives to $F'_{\tau'} = F_{\sigma\tau}$, together with the remark after \autoref{def:90} gives:
+\[
+\card{\autset[]{F_{\sigma\tau}}} = \card{\homset{F_{\sigma\tau}}{F_{\sigma\tau}}} = \sum_{\sigma' \in \homset[]{L_\tau}{F_{\sigma\tau}}} \card{\homset{F_\sigma}{F'_{\sigma'}}}
+\]
+But $\card{\homset[]{L_\tau}{F_{\sigma\tau}}} \leq [L_\tau]$ and $\card{\homset[]{F_\sigma}{F'_{\sigma'}}} \leq [F_\sigma]$ by \autoref{lemma:91}, hence both are equalities. In particular, for $\sigma' = \sigma$, we have $\card{\autset[]{F_\sigma}} = \card{F_\sigma}$. 
+  \end{enumerate}
+\end{proof}
+
+This result gives the Fundamental theorem of Galois Theory (\autoref{thm:34}). \autoref{cor:35} is proved as in the proof of \autref{prop:79} since $\card{\homset[]{L_\tau}{F_{\sigma\tau}} = [L_\tau]}$ and $\homset[]{F_\sigma}{F'_{\sigma'}} \neq \emptyset$ for such $\sigma'$.
+
+\section{Trace and norms}
+We return to our old notion of extensions ($L/K$ means $K \subseteq L$).
+
+\begin{definition}
+  \label{def:94}
+  Let $L/K$ be a finite extension. For $\alpha \in L$, let $m_\alpha : L \rightarrow L$ be the multiplication by $\alpha$ map $m_\alpha(\beta) = \alpha\beta \quad (\forall \beta \in L)$, viewed as a $K$-linear transformation of the $K$-vector space $L$. We define the trace\index{trace} $\trace{L/K}{\alpha}$ and the norm $\norm{L/K}{\alpha}$ as the trace and determinant (respectively) of $m_\alpha$:
+\[
+\trace{L/K}{\alpha} = \operatorname{tr} m_\alpha \qquad \nomr{L/K}{\alpha} = \det (m_\alpha)
+\]
+If $\{ \beta_1, \ldots, \beta_n \}$ is a basis of $L$ as a vector space over $K$, then we have:
+\[
+m_\alpha(\beta_j) = \alpha\beta_j = \sum_{i=1}^{n}\beta_ia_{ij}
+\]
+for some $a_{ij} \in K$. and $m_\alpha$ is then represented by the matrix $A = (a_{ij}) \in \operatorname{Mn}(K)$, so $\trace{L/K}{\alpha} = \operatorname{tr} A$ and $\norm{L/K}{\alpha} = \det A$. By linear algebra, we have:
+\[
+\alpha \neq 0 \Leftrightarrow m_\alpha \ \text{ invertible } \Leftrightarrow \norm{L/K}{\alpha} = \det m_\alpha \neq 0
+\]
+\end{definition}
+
+\paragraph{Example}
+
+In $\mathbb{Q}(\sqrt{2})/\mathbb{Q}$, consider the basis $\{ 1, \sqrt{2} \}$. We have 
+\[
+(1 + \sqrt{2}) \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+\]
+\[
+(1 + \sqrt{2}) \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatix}
+\]
+hence we have that the map $m_{1+\sqrt{2}}$ is represented by the matrix:
+\[
+\begin{pmatrix}
+1 & 2 \\
+1 & 1
+\end{pmatrix}
+\]
+Thus we can compute: $\trace{\mathbb{Q}(\sqrt{2})/\mathbb{Q}}{1+\sqrt{2}} = 2$, $\norm{\mathbb{Q}(\sqrt{2})/\mathbb{Q}}{1+\sqrt{2}} = -1$.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
