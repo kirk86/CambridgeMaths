@@ -1,0 +1,142 @@
+\begin{lemma}
+\label{lemma:95}
+  Let $L/K$ be a finite extension.
+  \begin{enumerate}
+  \item $\traceop_{L/K}$ is $K$-linear and $\normop_{L/K}$ is a (multiplicative) group homomorphism.
+  \item If $[L : K] = n$ and $x \in K$, then $\trace{L/K}{x} = nx$ and $\norm{L/K}{x} = x^n$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+  \item $\matTr (A + B) = \matTr A + \matTr B$, $\matTr (xA) = x \matTr A$, $\det AB = \det A \det B$.
+  \item Consider the trace and determinant of the scalar matrix $xI$.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Trace and separability}
+
+\begin{lemma}
+  \label{lemma:96}
+Let $L/K$ be a finite extension.
+\begin{enumerate}
+\item If $L = K(\alpha)$ and $P_\alpha = X^n + a_1X^{n-1} + \dotsb + a_n \in K[X]$ is the minimal polynomial of $\alpha \in L$, then:
+\[
+\trace{L/K}{\alpha} = -a_1 \qquad \norm{L/K}{\alpha} = (-1)^na_n
+\]
+\item If $K \subseteq L \subseteq F$, with $F/K$ finite, then we have $\traceop_{F/K} = \traceop_{L/K} \circ \traceop_{F/L}$ (and the same holds for norms).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+  \item For the basis $\{ 1, \alpha, \alpha^2, \dotsc, \alpha^{n-1} \}$ of $L/K$, the matrix of $m_\alpha$ is:
+\[
+\begin{pmatrix}
+0 &   & & & -a_n \\ 
+1 & 0 & & & -a_{n-1} \\
+  & 1 & \ddots & & \vdots \\
+  &   & \ddots & 0 & -a_2 \\
+  &   &        & 1 & -a_1 
+\end{pmatrix}
+\]
+as we know that $\alpha^n = -a_1\alpha^{n-1} - \dotsb - a_{n-1}\alpha - a_n$.
+
+\item Let $\{\beta_1, \dotsc, \beta_n \}$ be a basis of $L/K$, and $\{ \gamma_1, \dotsc, \gamma_n \}$ be a basis of $F/L$. For $\alpha \in F$, let $\big(\beta_{ij}\big) \in M_m(L)$ be the matrix for $m_\alpha : F \rightarrow F$ (as a vector space over L), and for each $\beta_{ij}$, let $\big(A_{ij}\big) \in M_n(K)$ be the matrix for $m_{\beta_{ij}} : L \rightarrow L$ (as a vector space over K). Then, with respect to the following $K$-basis of $F$:
+\[
+\begin{Bmatrix}
+\gamma_1\beta_1 & \cdots & \gamma_1\beta_n \\
+\vdots         &         & \vdots \\
+\gamma_m\beta_1 & \cdots & \gamma_m\beta_n 
+\end{Bmatrix}
+\]
+the matrix for $m_\alpha : F \rightarrow F$ as a vector space over $K$ is:
+\[
+A = \begin{pmatrix}
+A_{11} & \cdots & A_{1m} \\
+\vdots& & \vdots \\
+A_{m1} & \cdots & A_{mm}
+\end{pmatrix} \in M_{mn}(K)
+\]
+Thus we have the following equalities:
+\begin{IEEEeqnarray*}{rCl}
+  \trace{F/K}{\alpha} = \matTr A &=& \sum_{i=1}^m \matTr A_{ii} \\
+  &=& \sum_{i=1}^m \trace{L/K}{\beta_{ii}} \\
+  &=& \trace{L/K}{\sum_{i=1}^m \beta_{ii}} \\
+  &=& \trace{L/K}{\matTr (\beta_{ii}) } \\
+  &=& \trace{L/K}{\trace{F/L}{\alpha}}
+\end{IEEEeqnarray*}
+  \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+  \label{prop:97}
+  If $F/K$ is finite and non-separable then $\traceop_{F/K} = 0$ (zero map).
+\end{proposition}
+
+\begin{proof}
+  Take $\alpha \in F$ such that its minimal polynomial $P_\alpha$ is not separable, hence $P_\alpha(X) = Q(X^p)$ for some $Q \in K[X]$ where $\mchar K = p$ (\autoref{lemma:73}). Then $K \subseteq L = K(\alpha^p) \subseteq L' = K(\alpha) \subseteq F$, and $L' = L(\alpha)$. As $P_\alpha$ is irreducible in $K[X]$, so is $Q$, hence $Q$ is the minimal polynomial of $\alpha^p$ over K, and therefore $[L : K] = \deg Q$ and $[L' : K] = \deg P_\alpha = p  \deg Q$, hence by tower law, $[L' : L] = p$.
+
+Let $1 \leq i \leq p-1$. If $\alpha^i \in L$, then $\alpha^p \in L$ implies $\alpha \in L$, which is false. Hence, $\alpha^i \notin L$, and $L(\alpha^i) = L'$, so the minimal polynomial of $\alpha^i$ over $L$ is $X^p - (\alpha^p)^i \in L[X]$. Thus $\trace{L'/L}{\alpha^i} = 0$ by \autoref{lemma:96}. We also have that $\trace{L'/L}{1} = p\cdot{}1 = 0$ by \autoref{lemma:95}. As $\{ 1 , \alpha, \dotsc, \alpha^{p-1} \}$ is a basis for $L'/L$ and $\traceop_{L'/L}$ is $L$-linear (\autoref{lemma:95} we get $\traceop_{L'/L} = 0$. Finally, $\traceop_{F/K} = \traceop_{L/K} \circ \traceop_{L'/L} \circ \traceop_{F/L'} = 0$ by \autoref{lemma:96}.
+\end{proof}
+
+\begin{proposition}
+  \label{prop:98}
+  Let $F/K$ be separable with $[F : K] = n$. Let $E/K$ with $\homset{F}{E} = \{ \tau_1, \dotsc, \tau_n \}$ (it exists by \autoref{thm:77}, and if $F \subseteq \mathbb{C}$, simply take $\mathbb{C}$. Then we have that:
+\[
+\forall \alpha \in F \quad \trace{F/K}{\alpha} = \sum_{i=1}^n \tau_i(\alpha) \text{ and } \norm{F/K}{\alpha} = \prod_{i=1}^n \tau_i(\alpha)
+\]
+\end{proposition}
+
+\begin{proof}
+  Let $\{ \beta_1, \dotsc, \beta_n \}$ be a basis for $F/K$. As $\tau_1$, \ldots, $\tau_n$ are $E$-linearly independent in $\homset[K\text{-v.s.}]{F}{E}$ by Dedekind (\autoref{prop:87}), the vectors $\big(\tau_i(\beta_j)\big) \in E^n$ ($1 \leq i \leq n$) must be $E$-linearly independent, hence the matrix $P = \big(\tau_i(\beta_j)\big) \in M_n(E)$ is invertible.
+
+For $\alpha \in F$, let $A = (a_{ij}) \in M_n(K)$ with $\alpha\beta_j = \sum_{k=1}^n \beta_k\alpha_{kj}$. Then we have $\tau_i(\alpha)\tau_i(\beta_j) = \sum_{k=1}^n \tau_i(\beta_k)a_{kj}$ ($1 \leq i \leq n$). If $A'$ is the diagonal matrix with entries $\tau_1(\alpha)$, \ldots, $\tau_n(\alpha)$, then we have that $A'P = PA$, i.e. $A' = PAP^{-1}$ in $M_n{E}$. Hence $\trace{F/K}{\alpha} = \matTr A = \matTr A'$ and $\norm{F/K}{\alpha} = \det A = det A'$.
+\end{proof}
+
+\begin{theorem}
+  \label{thm:99}
+  If $F/K$ is a finite extension, $F/K$ is separable if and only if $\traceop_{F/K} \neq 0$.
+\end{theorem}
+
+\begin{proof}
+  The reverse implication has been proved in \autoref{prop:97}. We will now prove the forward implication. Let $E/K$ be as in \autoref{prop:98}, then $\traceop_{F/K} : F \rightarrow K \subseteq E$ is just $T_{F/K} = \tau_1 + \dotsb + \tau_n \in \homset[K\text{-v.s.}]{F}{E}$ which is not 0 by Dedeking (\autoref{prop:87}).
+\end{proof}
+
+\paragraph{Remark}
+
+We have that \autoref{thm:99} and \autoref{lemma:96} imply \autoref{thm:97}.
+
+\subsection{Norms and cyclic extensions}
+
+\begin{theorem}[Hilbert's theorem 90]
+\label{thm:100}
+  Let $F/K$ be a cyclic extension and let $\sigma$ be a generator of $\Gal{F/K}$. If $\norm{F/K}{\alpha} = 1$, then there exists $\beta \in F$ such that $\alpha = \beta / \sigma(\beta)$.
+\end{theorem}
+
+\begin{proof}
+  Let $[F : K] = n$. By Dedekind (\autoref{prop:87}) the subset $\{ \operatorname{id}, \sigma, \sigma^2, \dotsc, \sigma^{n-1} \}$ of $\homset[K\text{-v.s.}]{F}{F}$ is $F$-linearly independent, hence $\sum_{i=1}^n \big(\alpha\sigma(\alpha)\dotsm\sigma^{i-1}(\alpha)\big)\sigma^i \neq 0$. Hence take $\gamma \in F$ such that $\sum_{i=1}^n \big(\alpha\sigma(\alpha)\dotsm\sigma^{i-1}(\alpha)\big)\sigma^i(\gamma) = \beta \neq 0$. Applying $\sigma$ to $\beta$ gives:
+\[
+\sigma(\beta) = \sum_{i=1}^n \big(\sigma(\alpha)\sigma^2(\alpha)\dotsm\sigma^i(\alpha)\big)\sigma^i(\gamma)
+\]
+and since $\alpha\sigma(\alpha)\dotsm\sigma^{n-1}(\alpha) = \norm{F/K}{\alpha} = 1$, we see that $\beta = \alpha\sigma(\beta)$.
+\end{proof}
+
+\begin{corollary}
+  \label{cor:101}
+  Let $\unityroots{N} \subseteq K$ with $(\mchar K , N) = 1$ (hence $K$ has a primitive N\textsuperscript{th} root $\zeta$ of 1). If $F/K$ is cyclic of degree $N$ then $F = K(\sqrt[N]{a}$ for some $a \in K$.
+\end{corollary}
+
+\begin{proof}
+  A $\norm{F/K}{\zeta} = \zeta^N = 1$ (by \autoref{lemma:95}), then by \autoref{thm:100} there exists $\beta \in F$ with $\beta/\sigma(\beta) = \zeta$, i.e. $\sigma(\beta) = \zeta\beta$. Then $a = \beta^N$ will do (see proof of \autoref{thm:47}).
+\end{proof}
+
+\paragraph{Remark}
+
+The Lagrange resolvebt $x = \alpha + \beta\zeta + \gamma\zeta^2$ for cubics (see par. 1.11) is the element satisfying $x/\sigma(x) = \zeta$ where $\sigma = (\alpha \beta \gamma)$, so is a special case of the above. Hilbert's theorem 90 generalizes Kummer theory, and is in turn generalized by the theory of Galois Cohomology for arbitrary Galois extensions.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Galois"
+%%% End: 
