@@ -1,0 +1,75 @@
+
+\section{Infinite extensions etc.}
+
+\subsection{What was it all about}
+
+Let $K$ be a field. Then, the Galois theory over $K$ is the theory of fields that are finite dimensional vector spaces over $K$ (finite extensions) and the morphisms (i.e. $K$-homomorphisms) between them.
+
+However, from the point of view of Category theory, the set of morphisms control the objects. For example, by the Fundamental theorem of Galois, the Galois groups control the fields.
+
+(insert table 1)
+
+Principle of algebraic geometry (over any ring $K$). 
+\begin{enumerate}
+\item Any ring A, finitely generated over K, is a quotient ring of a polynomial ring $A = K[X_1, \dotsc, X_n]/I$ with an ideal $I$. Here $I = \big(f_1, \dotsc, f_n\big)$ and $f_i$ are the ``equations'' in $X_1$, \ldots, $X_n$ over $K$.
+\item A ``solution'' of these equations in a ring $E$ is a ring homomorphism $A \rightarrow E$. For example, a solution $x, y \in \mathbb{Q}$ of $x^n + y^n = 1$ (for $n > 2$, $xy = 0$, Fermat's last theorem) is equivalent to a ring homomorphism $\mathbb{Q}[X, Y]/(X^n + Y^n -1) \rightarrow \mathbb{Q}$, with $X \mapsto x$, $Y \mapsto y$.
+\end{enumerate}
+
+\subsection{Subfields of algebraic closures, and the absolute Galois groups}
+
+\begin{definition}
+  \label{def:102}
+  Let $E/K$ be an extension, and $F$, $F'$ be subfields of $E$ containing $K$. Their composite field $FF'$ is the intersection of all subfields of $E$ containing $F$, $F'$, i.e. the minimal such subfield.
+\end{definition}
+
+If $F = K(\alpha_1, \dotsc, \alpha_n$ and $F' = K(\beta_1, \dotsc, \beta_m)$ then $FF' = K(\alpha_1, \dotsc, \alpha_n, \beta_1, \dotsc \beta_m)$. So if $F$, $F'$ are finite then so is $FF'/K$.
+
+\begin{lemma}
+  \label{lemma:103}
+  Let $F$, $F'$, $E$ be as above, with $F/K$, $F'/K$ finite.
+  \begin{enumerate}
+  \item If $F/K$, $F'/K$ are separable (resp. Galois, soluble, abelian), then so is $FF'/K$.
+  \item Let $E = \overline{K}$ be an algebraic closure of $K$. Let $K^{\text{Sep}}$ (resp. $K^{\text{sol}}$, $K^{\text{ab}}$, $K^{\text{cyc}}$) be the union of all finite (separable, soluble, abelian, cyclotomic) extensions of $F$ inside $\overline{K}$. Then they are fields, hence algebraic extensions. The field $K^{\text{Sep}}$, called a separable closure pf $K$, is equal to the union of all finite Galois extensions of $K$ inside $\overline{K}$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+  \item \autoref{thm:77} solves the separable and Galois cases. Now $\Gal{FF'/K} \ni \sigma \mapsto \left(\restr{\sigma}{F}, \restr{\sigma}{F'}\right) \in \Gal{F/K}\times\Gal{F'/K}$ is injective. The soluble and abelian cases follow.
+
+  \item For each family of subdields, any two members are contained in a larger member by i), so the union is a field (for cyclotomic case, note that $K(\unityroots{N}), K(\unityroots{N'}) \subseteq K(\unityroots{NN'})$). Any finite separable extension $F = K(\alpha_1, \dotsc, \alpha_n)$ is contained in the splitting field (inside $\overline{K}$) of the product of minimal polynomials of $\alpha_i$ over $K$ which is Galois (\autoref{prop:79}).
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  A algebraic extension $F/K$ (not necessarily finite) is called a Galois extension if it is a union of finite Galois extensions. Then $\Gal{F/K} = \autset[K]{F}$ is called its Galois group. The group $G_K = \Gal{K^{\text{sep}}/K}$ is well-defined up to isomorphism, is called the absolute Galois group\index{absolute Galois group} of $K$.
+\end{definition}
+
+By \autoref{lemma:103}, for any field $K$, we have a sequence of Galois extensions: 
+\[
+K \subseteq K^{\text{cyc}} \subseteq K^{\text{ab}} \subseteq K^{\text{sol}} \subseteq K^{\text{sep}} \subseteq \overline{K}
+\].
+Every finite Galois extension has a $K$-isomorphic copy inside $K^{\text{sep}}$. If $F \subseteq K^{\text{sep}}$, then every element of $\Gal{F/K}$ can be extended to $K^{\text{sep}}$ using \autoref{prop:76}, hence $\sigma \mapsto \restr{\sigma}{F}$ gives a surjection $G_K \rightarrow \Gal{F/K}$.
+
+\subsection{What next?}
+
+\paragraph{Algebra}
+
+By Abel and Galois (insolvability of quintics), we have that $K^{\text{sol}} \neq \overline{K}$ in general. However, little can be said about $G_K$ for general $K$.  On the contrary, $G_K$ knows a lot about each specific field $K$. 
+
+\subparagraph{Example}
+
+\begin{enumerate}
+\item $K = \finitefield{p}$, we have that $\finitefield{p}^{\text{cyc}} = \dotsb = \overline{\finitefield{p}}$.
+\item $K = \mathbb{Q}$. We know that $\mathbb{Q}^{\text{cyc}} = \mathbb{Q}^{\text{ab}}$ (Kronecker-Weber theorem). For every finite soluble group G, there is a Galois extension $F/\mathbb{Q}$ with $\Gal{F/\mathbb{Q}} = G$ (Shefarenial theorem). Is it true for arbitrary finite group (inverse Galois problem)?
+\item $K/\mathbb{Q}$ finite (number fields). Class field theory describes $\Gal{K^{\text{ab}}/K}$. In some case $K^{\text{ab}}$ is understood via modular and elliptic functions (this is where Abel started).
+\end{enumerate}
+
+\paragraph{Geometry}
+
+(insert figure 2)
+
+\begin{tabular}{ll}
+  $G_K$ & fundamental groups \\
+  $\finitefield{p}$ has cyclic degree $n$ extension for each $n$ & (insert figure 3) $S^1 = \{ e^{i\theta} \mid \theta \in \mathbb{R} \}$. For each $n$, $\theta \mapsto n\theta$.
+\end{tabular}
