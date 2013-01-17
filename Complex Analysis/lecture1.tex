@@ -1,0 +1,105 @@
+
+\section{Complex differentiation}
+\label{sec:1}
+
+Recall the following:
+\begin{itemize}
+\item  $U \subseteq \CC$ is open\index{open} if $\forall x \in U, \exists \epsilon > 0 \text{ such that } B_\epsilon(x) = \{ y | \abs{y-x} < \epsilon \}  \subseteq U$.
+\item $U$ is path-connected\index{path-connected} of $\forall x, y \in U, \exists \gamma : [0, 1] \rightarrow U, \gamma \text{ continuous }, \gamma(0) = x, \gamma(1) = y$.
+\end{itemize}
+
+\begin{definition}
+  We say that a function $f : U \rightarrow \CC$ on an open set $U \in \CC$ is differentiable\index{differentiable} at $< \in U$ if:
+\[
+\lim_{z\rightarrow w} \frac{f(z) - f(w)}{z - w}
+\]
+exists. If so, we call this limit $f'(w)$.
+
+ We say that $f$ is holomorphic\index{holomorphic} at $w \in U$ if $\exists \epsilon > 0$ such that $f$ is differentiable on $B_\epsilon(w) \subseteq U$.
+\end{definition}
+
+\begin{definition}
+  An entire\index{entire} function $f : \CC \rightarrow \CC$ is one that is holomorphic on $\CC$.
+\end{definition}
+
+\begin{remark}
+  Sum and product rules, rules for differentiating inverses etc. carry over to complex differentiable functions.
+\end{remark}
+
+Tautologically, a function $f : U \rightarrow \CC$ can be written $f = u(x, y) + iv(x, y)$ for functions $u, v : \RR^2 \rightarrow \RR$. Recall that $u : U \rightarrow \RR$ (as a function of 2 real variables) is differentiable at $(c, d)$ with derivative $\mathrm{D}u_{(c, d)} = (\lambda, \mu)$ if:
+\[
+\frac{u(x, y) - u(c, d) - \left(\lambda(x - c) + \mu(y - d)\right)}{\norm{(x, y) - (c, d)}} \rightarrow 0 \text{ as } (x, y) \rightarrow (c, d)\mpunct{.}
+\]
+
+\begin{proposition}
+  Let $f(z) = u(x, y) + iv(x, y)$ be defined on an open $U \subseteq \CC$. Let $z = c+id \in U$. Then $f$ is differentiable at $z$ if and only if:
+  \begin{itemize}
+  \item $e$, $v$ are differentiable at $(c, d)$ and
+  \item $u_x = v_y$ and $u_y = -v_x$ at $(c, d)$ (Cauchy-Riemann equations\index{Cauchy-Riemann equations}.
+  \end{itemize}
+In this cases, we have that $f'(z) = u_x(c, d) + iv_x(c, d)$.
+\end{proposition}
+
+\begin{proof}
+  $f$ is differentiable at $w$ with derivative $f'(w) = p + iq$, $p, q \in \RR$, if and only if:
+\[
+\lim_{z\rightarrow w} \frac{f(z) - f(w) - f'(w)(z-w)}{\abs{z - w}} = 0\mpunct{.}
+\]
+Taking real and imaginary parts (putting $z = x + iy$, $w = c + id$ for $x, y, c, d, \in \RR$) and using the fact that $f'(w) =  + iq$, then we have:
+\[
+f'(w)(z-w) = p(x-c) - q (x - c) + i\left(q(x-c) + p(y-d)\right)\mpunct{.}
+\]
+The previous limit is zero if and only if:
+\[
+\lim_{(x, y) \rightarrow (c, d)} \frac{u(x, y) - u(c, d) - \left(p(x - c) - q(y - d)\right)}{\sqrt{(x-c)^2 + (y-d)^2}} = 0
+\]
+and
+\[
+\lim_{(x, y) \rightarrow (c, d)} \frac{v(x, y) - v(c, d) - \left(q(x-c) + p(y-d)\right)}{\sqrt{(x-c)^2 + (y-d)^2}} = 0\mpunct{.}
+\]
+Comparing to the definition of differentiability of $u, v : \RR^2 \rightarrow \RR$ yields that $u$, $v$ are differentiable at $(c, d)$ and:
+\[
+\mathrm{D}u_{(c, d)} = (p, -q) \text{ and } \mathrm{D}v_{(c, d)} = (q, p)
+\]
+which are the Cauchy-Riemann equations.
+\end{proof}
+
+\emph{Warning}: if $f = u + iv$, and $u_x = v_y$ and $u_y = -v_x$ hold at a point $w$, it doesn't follow that $f$ is differentiable at $w$ (see example sheet 1). To conclude that $f$ is differentiable, we need to have that $u$, $v$ are differentiable and not just that their partial derivatives exist.
+
+\begin{remark}
+  To see $f$ differentiable at $w$ implies that $u$, $v$ have partial derivatives satisfying the Cauchy-Riemann equations, consider:
+  \begin{IEEEeqnarray*}{rCl}
+    f'(w) &=& \lim_{\substack{h\rightarrow 0 \\ h \in \RR}} \frac{f(w + h) - f(w)}{h} \\
+    &=& \lim_{\substack{h\rightarrow 0 \\ h \in \RR_+}} \frac{u(c + h, d) - u(c, d)}{h} + i \frac{v(c+h, d) - v(c, d)}{h} \\
+    &=& u_x(c, d) + iv_x(c, d)\mpunct{.}
+  \end{IEEEeqnarray*}
+We can obtain a similar expression for the second Cauchy-Riemann equation taking $z \rightarrow w$ via $w + ih$, $h \rightarrow 0$.
+\end{remark}
+
+\paragraph{Examples}
+
+\begin{itemize}
+\item Any polynomial $p : \CC \rightarrow \CC$ defines an entire function.
+\item A ration $p/q$ of complex polynomials defines a function holomorphic on $\CC \setminus \{ \text{zeroes} (q) \}$.
+\item Further examples via power series.
+\item $f(z) = \abs{z}$ is not differentiable at any point of $\CC$. Let $f(z) = u(x, y) + iv(x, y)$, where $u(x, y) = \sqrt{x^2 + y^2}$ and $v = 0$. So $v_x = v_y = 0$. Away from $(x, y) = (0, 0)$, we have that:
+\[
+u_x = \frac{x}{\sqrt{x^2 + y^2}} \text{ and } u_y = \frac{y}{\sqrt{x^2 + y^2}}
+\]
+and the Cauchy-Riemann equations fail. At $(0, 0)$, it is not differentiable on the real line, and hence is not differentiable.
+\end{itemize}
+
+We have that (proof later in the course) if $f$ is holomorphic on an open set $U$, then $f'$ is also holomorphic on $U$. In particular, if $f$ is holomorphic on $U$, then if $f(z) = u(x, y) + iv(x, y)$, then $u$, $v$ are infinitely differentiable functions. Hence, we have that, differentiating the Cauchy-Riemann equations further:
+\[
+\begin{cases}
+u_x = v_y \\
+u_y = -v_x
+\end{cases}
+\Rightarrow u_{xx} = v_{yx} = -u_{yy}
+\]
+hence $u$ satisfies the Laplace equation\index{Laplace equation} $\nabla^2u = 0$. Hence, if $f$ is holomorphic on $U$, $\Re{f}$ and $\Im{f}$ are harmonic\index{harmonic}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End: 
