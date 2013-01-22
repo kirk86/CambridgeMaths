@@ -7,7 +7,7 @@ Suppose $X_1, \dotsc, X_n$ are i.i.d. $\Normal(\mu, 1)$ ($\mu$ unknown). A possi
 \]
 The sampling distribution of $T\left(\underline{x}\right)$ is $\Normal\left(\mu, \frac{1}{n}\right)$, hence $\EE_\mu \left[ T\left(\underline{x}\right) \right] = \mu$, for all $\mu \in \RR$.
 
-\subsection{Sufficiency}
+\section{Sufficiency}
 The concept of sufficiency addresses the question ``is there a statistic $T\left(\underline{X}\right)$ that in some sense captures all the information about $\theta$ contained in the sample?''
 
 \paragraph{Example\label{example:1.2}}
@@ -18,7 +18,7 @@ p_{\underline{X}}\left(\underline{x}; \theta\right) = \prod_{i = 1}^n \theta^{x_
 \]
 This depends on the data only through $T\left(\underline{x}\right) = \sum_{i=1}^n$ (the total number of $1$). The conditional \pmf of $\underline{X} \given T$ if $T\left(\underline{x}\right) = t$ is:
 \[
-p_{\underline{X} \given T} \left( \underline{x} \given t\right) = \frac{\PP_\theta(\underline{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t} = \frac{1}{\binom{n}{t}} \mpunct{.}
+p_{\underline{X} \given T} \left( \underline{x} \given t\right) = \frac{\PP_\theta(\underline{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t}} = \frac{1}{\binom{n}{t}} \mpunct{.}
 \]
 i.e. the conditional distribution of $\underline{X}$ given $T = t$ does not depend on $\theta$. Thus, if we know $T$, then additional knowledge of $\underline{X}$ (e.g. knowing the exact sequence of $0$ and $1$) does not give extra information about $\theta$. 
 
@@ -34,7 +34,7 @@ In practice, sufficient statistics are found using the following theorem.
   \label{thm:factorisation_criterion}
   $T$ is sufficient for $\theta$ if and only if there exist functions $g$ and $h$ such that:
 \[
-f_{\underline{X} \left(\underline{x}; \theta\right)} = g\left( T\left(\underline{x}\right), \theta\right)h\left(\underline{x}\right)
+f_{\underline{X}} \left(\underline{x}; \theta\right) = g\left( T\left(\underline{x}\right), \theta\right)h\left(\underline{x}\right)
 \]
 \end{theorem}
 
@@ -54,7 +54,7 @@ Conversely, suppose $T$ is sufficient for $\theta$. If $T\left(\underline{x}\rig
 \begin{IEEEeqnarray*}{rCl}
 \PP_\theta \left(\underline{X} = \underline{x}\right)  \\
 &=& \sum_{t'} \underbrace{\PP_\theta \left(\underline{X} = \underline{x}\right)}_{\text{for this $x$, this probability is zero unless $t' = t$}}\PP_\theta\left(T = t'\right)  \\
-&=& \underbrace{\PP_\theta \left(\underline{X} = \underline{x}\right \given T = t)}_{\text{independent of $\theta$ by assumption of sufficiency}}\PP_\theta(T = t)
+&=& \underbrace{\PP_\theta \left(\underline{X} = \underline{x}\right) \given T = t)}_{\text{independent of $\theta$ by assumption of sufficiency}}\PP_\theta(T = t)
 \end{IEEEeqnarray*}
 \end{proof}
 

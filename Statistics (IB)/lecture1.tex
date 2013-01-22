@@ -1,18 +1,17 @@
 
-\section{Estimation}
-\label{sec:1}
+\chapter{Estimation}
 
-\subsection{Introduction}
+\section{Introduction}
 \label{sec:1.1}
 
 The course exposes some of the theory and methods of statistics \textemdash{} the science of making sense of data. Statistics can be directly applied to areas such as: market research, clinical trials, environment, finance, chemical experiments, government, sport etc.
 
-In a typical problem of statistical inference, we have data which we regard as being generated from some unknown probability model. We aim to use the data to learn about the underlying model. Mathematically, let $X$ be a random variable taking values in a set $\mathscr{X}$, and suppose that the distribution of $X$ belongs to a family of distributions indexed by a parameter $\theta$ taking values in a parameter space $\Theta \subseteq \RR^d$ (a parametric family).
+In a typical problem of statistical inference, we have data which we regard as being generated from some unknown probability model. We aim to use the data to learn about the underlying model. Mathematically, let $X$ be a random variable taking values in a set $\curlyX$, and suppose that the distribution of $X$ belongs to a family of distributions indexed by a parameter $\theta$ taking values in a parameter space $\Theta \subseteq \RR^d$ (a parametric family).
 
 Examples:
 \begin{itemize}
-\item  $X ~ \Poisson (\mu)$, $\theta = \mu$, $\Theta = (0, \infty)$.
-\item $X ~ \Normal(\mu, \sigma^2)$, $\theta = (\mu, \sigma^2)$, $\Theta = \RR \times (0, \infty)$.
+\item  $X \sim \Poisson (\mu)$, $\theta = \mu$, $\Theta = (0, \infty)$.
+\item $X \sim \Normal(\mu, \sigma^2)$, $\theta = (\mu, \sigma^2)$, $\Theta = \RR \times (0, \infty)$.
 \end{itemize}
 
 Let $X1, \dotsc, X_n$  be independent identically distributed (i.i.d) random variables with the same distribution as $X$, so $\underline{X} = \left(X_1, \dotsc, X_n\right)$ is a simple random sample\index{random sample} (our data). We use the observed values $\underline{x}$ of $\underline{X}$ to make statistical inferences about $\theta$ such as:
@@ -22,7 +21,7 @@ Let $X1, \dotsc, X_n$  be independent identically distributed (i.i.d) random var
 \item testing a hypothesis such as $H: \theta \in \Theta_0$ where $\Theta_0 \subseteq \Theta$.
 \end{enumerate}
 
-\subsection{Probability review}
+\section{Probability review}
 \label{sec:1.2}
 
 \emph{See handout}
@@ -34,13 +33,13 @@ M_{Z_i^2}(t) = \EE [e^{Z_i^2t}] &=& \int_0^\infty e^{z^2t}\frac{1}{\sqrt{2*\pi}}
  &=& \sqrt{\frac{1}{1-2t}} \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi\frac{1}{1-2t}}} e^{-\frac{1}{2\frac{1}{1-2t}}z^2} \d z
 \end{IEEEeqnarray*}
 
-\subsection{Estimation and bias}
+\section{Estimation and bias}
 \label{sec:1.3}
 
 Suppose $X_1, \dotsc, X_n$ are i.i.d, each with probability density function (p.d.f.) or probability mass function (p.m.f.) $f(x ; \theta)$, where $\theta \in \Theta \subseteq \RR^d$ is unknown. We aim to estimate the value of $\theta$ by a (measurable) function $T(\dot)$ of the data. If $\underline{X}$ takes the value $\underline{x} = (x_1, \dotsc, x_n)$, then our estimate of $\theta$ is $\hat{\theta} = T(\underline{x})$. Note that $T$ does not involve $\theta$. $T(\underline{X})$ is our estimator\index{estimator} for $\theta$, and is a random quantity. The distribution of $T = T(\underline{X})$ is called its sampling distribution\index{sampling distribution}.
 
 \begin{definition}
-  An estimator $T(\underline{X})$ is unbiased\index{unbiased} for $\theta$ of $\EE_\theta \left[T(\underline{X})\right] = \theta, \forall \theta \in \Theta$. Otherwise, it is biased\index{biased}. Here $\EE_\theta$ is the expectation if $X_i$ has p.d.f/p.m.f $f(x ; \theta)$. The bias\index{bias} of $T(\underline{X})$ is $\EE_\theta\left[T(\underline{X})\right] - \theta$.
+  An estimator $T(\underline{X})$ is unbiased\index{unbiased} for $\theta$ if $\EE_\theta \left[T(\underline{X})\right] = \theta, \forall \theta \in \Theta$. Otherwise, it is biased\index{biased}. Here $\EE_\theta$ is the expectation if $X_i$ has p.d.f/p.m.f $f(x ; \theta)$. The bias\index{bias} of $T(\underline{X})$ is $\EE_\theta\left[T(\underline{X})\right] - \theta$.
 \end{definition}
 
 %%% Local Variables: 
