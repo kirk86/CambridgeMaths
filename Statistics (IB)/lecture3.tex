@@ -11,7 +11,27 @@ then $T(\vec{x})$ is minimal sufficient for $\theta$.
 \end{theorem}
 
 \begin{proof}
-  \emph{see handout}
+  \emph{Non examinable.} First, we aim to use the factorisation criterion to show sufficiency. Define an equivalence relation $\sim$ on $\curlyX^n$ by setting $\vec{x} \sim \vec{y}$ when $T(\vec{x}) = T(\vec{y})$. 
+Let $\mathcal{U} = \{ T(\vec{x}) \mid \vec{x} \in \curlyX^n \}$, and for each $u$ in $\mathcal{U}$, choose a representative $\vec{x}_u$ from the equivalence class $\{ \vec{x} \mid T(\vec{x}) = u$. 
+Let $\vec{x} \in \curlyX^n$ and suppose that $T(\vec{x}) = t$. Then $\vec{x}$ is in the equivalence class $\{\vec{x'} \mid T(\vec{x'}) = t$, which has representative $\vec{x}_t$, which may also be written as $\vec{x}_{T(x)}$. 
+We have $\vec{x} \sim \vec{x}_t$, so that $T(\vec{x}) = T(\vec{x}_t)$. Hence by hypothesis, the ratio $f_{\vec{X}}(\vec{x}; \theta) / f_{\vec{X}}(\vec{x}_{T(\vec{x})}; \theta)$ does not depend on $\theta$, so let this be $h(\vec{x})$.
+Let $g(t, \theta) = f_{\vec{X}}(\vec{x}_t, \theta)$, then we have:
+\[
+f_{\vec{X}}(\vec{x}; \theta) = f_{\vec{X}}(\vec{x}_{T(x)}; \theta)\frac{f_{\vec{X}}(\vec{x}; \theta)}{f_{\vec{X}}(\vec{x}_{T(\vec{x})}; \theta)} = g(T(\vec{x}), \theta)h(\vec{x}) \mpunct{,}
+\]
+and so $T = T(\vec{X})$ is sufficient for $\theta$ by the factorisation criterion.
+
+Next we aim to show that $T(\vec{X})$ is a function of every other sufficient statistics. Suppose that $S(\vec{X})$ is also sufficient for $\theta$, so that, by the factorisation criterion, there exist functions $g_S$ and $h_S$ such that:
+\[
+f_{\vec{X}}(\vec{x}; \theta) = g_S(S(\vec{x}, \theta))h_S(\vec{x})\mpunct{.}
+\]
+Suppose that $S(\vec{x}) = S(\vec{y})$, then we have:
+\[
+\frac{f_{\vec{X}}(\vec{x}; \theta)}{f_{\vec{X}}(\vec{y}; \theta} 
+= \frac{g_S(S(\vec{x}, \theta))h_S(\vec{x})}{g_S(S(\vec{y}, \theta))h_S(\vec{y})}
+= \frac{h_S(\vec{x})}{h_S(\vec{y})} \mpunct{.}
+\]
+This means that the ratio $f_{\vec{X}}(\vec{x}; \theta) / f_{\vec{X}}(\vec{x}_{T(\vec{x})}; \theta)$ does not depend on $\theta$, and this implies that $T(\vec{x}) = T(\vec{y})$ by hypothesis. So we have shown that $S(\vec{x}) = S(\vec{y}) \Rightarrow T(\vec{x}) = T(\vec{y})$, i.e. that $T$ is a function of $S$. Hence, we deduce that $T$ is minimal sufficient.
 \end{proof}
 
 \paragraph{Example}
