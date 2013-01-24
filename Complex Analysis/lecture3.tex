@@ -1,0 +1,116 @@
+
+\section{Power series}
+An important -- and later we will see, universal -- source of holomorphic functions is that of power series.
+
+\begin{definition}
+  A sequence $\left(f_n\right)_{n \in \NN}$ of functions defined on $T \subseteq \CC$ converges uniformly\index{uniform convergence} to $f$ if:
+\[
+\forall \epsilon > 0, \exists N \in \NN, \forall n \in \NN, n \geq N \Rightarrow \forall x \in T, \abs*{f_n(x) - f(x)} < \epsilon \mpunct{.}
+\]
+\end{definition}
+
+A few properties of uniform convergence:
+\begin{enumerate}
+\item The uniform limit of continuous functions is continuous.
+\item (Weierstrass M-test) If $\left(M_n\right)$ is a positive real sequence, and $\abs{f_n(x)} \leq M_n$ for all $x \in T, n \in \NN$, then if $\sum_{n \leq 1} M_n$ converges then $\sum_{n \leq 1} f_n$ converges uniformly.
+\end{enumerate}
+
+\paragraph{Power series}
+Let $\{ c_n \}_{n \geq 0} \subseteq \CC$. Fix $a \in \CC$. The power series $z \mapsto \sum_{n \geq 0} c_n(z - a)^n$ has the following property:
+\[
+\exists ! R \in [0, \infty], \text{ such that the power series: }\begin{cases}\text{ converges uniformly } & \text{ if $\abs{z - a } < R$ } \\ \text{diverges} & \text{if $\abs{z-a}$ > R}\end{cases} \mpunct{.}
+\]
+Moreover, if $0 < r < R$, the series converges uniformly on $\{ \abs{z - a} \leq e \}$. Explicitly, using the ``root test'', we have that:
+\begin{IEEEeqnarray*}{rCl}
+R &=& \sup \{ r \geq 0 \mid \abs{c_n}r^n \rightarrow 0 \text{ as } n \rightarrow \infty \} \\
+&=& \frac{1}{\lambda} \ \text{ for $\lambda = \limsup_{n \rightarrow \infty} \sqrt[n]{\abs{c_n}}$} \mpunct{.}
+\end{IEEEeqnarray*}
+
+\begin{proposition}
+  Let $f(z) = \sum_{n \geq 0} c_n (z - a)^n$ have radius of convergence $R > 0$. Then we have:
+  \begin{enumerate}
+  \item $f$ is holomorphic on $\{ \abs{z - a} < R \}$
+  \item $f'(z) = \sum_{n \geq 1} nc_n(z-a)^{n-1}$, which also has radius of convergence $R$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+  $f$ is infinitely differentiable on $\{ \abs{z - a} < R \}$, and $c_n = \frac{f^{(n)}(a)}{n!}$.
+\end{corollary}
+
+\begin{proof}
+  Without loss of generality, take $a = 0$. First, we show $\sum n c_n z^{n-1}$ does have radius of convergence $R$. Since $n\abs{c_n} \geq \abs{c_n}$ for $n \geq 1$, the radius of convergence is at most $R$. Now, if $R_1 < R$, and $\abs{z} < R_1$, then:
+\[
+\frac{\abs{n}\abs{c_n}\abs{z^{n-1}}}{\abs{c_n}R^{n-1}} = n \abs*{\frac{z}{R}}^{n-1} \mpunct{.}
+\]
+Hence by comparison to $\sum_{n \geq 1} c_n R_1^{n-1}$, we see that $\sum n c_n z^{n-1}$ does converge absolutely for $\abs{z} < R$.
+
+Now consider $\phi(z, w) = \sum_{n \geq 1} \left( c_n \sum_{j = 0}^{n-1} z^jw^{n-1-j} \right)$, for $\abs{z}, \abs{w} < R$. We have that:
+\[
+ \abs*{c_n \sum_{j = 0}^{n-1} z^j w^{n-1-j}} \leq n \abs{c_n}\rho^{n-1} \text{ if } \abs{z}, \abs{w} < \rho < R \mpunct{.}
+\]
+By the Weierstrass test, it follows that the sum converges uniformly on $\{ \abs{z} < \rho, \abs{w} < \rho \}$, and hence $\phi(z, w)$ is well-defined and continuous.
+
+If $z \neq w$, note that we have:
+\[
+\phi(z, w) = \sum_{n \geq 1} c_n \left(\frac{z^n - w^n}{z - w}\right) = \frac{f(z) - f(w)}{z - w} \mpunct {.}
+\]
+If $z = w$, we have on the other hand:
+\[
+\phi(z, w) = \sum_{n \geq 1} nc_nz^{n-1}
+\]
+Since $\phi$ is continuous, the limit exists, and we have that:
+\[
+\lim_{z \rightarrow w} \frac{f(z) - f(w)}{z - w} = \sum_{n \geq 1} n c_n z^{n-1} \mpunct{.}
+\]
+\end{proof}
+
+\begin{corollary}
+  If  $f(z) = \sum_{n \geq 0} c_n (z - a)^n$ on $\{ \abs{ z - a } < R \}$. If $f \equiv 0$ on $\abs{z - a} < \epsilon$ for some $\epsilon > 0$, then $f \equiv 0$ on the whole domain.
+\end{corollary}
+
+\begin{proof}
+  From the hypothesis, we must have that $\forall n \in \NN, f^{(n)} (a) = 0$. Hence $c_n = 0$ for all $n \in \NN$.
+\end{proof}
+
+\paragraph{Examples}
+
+\begin{enumerate}
+\item The exponential function $\exp(z) = e^z = \sum_{n \geq 0} \frac{z^n}{n!}$. It has radius of convergence $\infty$, and we have that:
+\[
+\frac{d}{dz} (e^z) = e^z
+\]
+and that:
+\[
+e^{z+w} = e^ze^w \mpunct{.}
+\]
+To verify this, consider $e^0 = 1$, and if $F(z) = e^{z+w}e^{-z}$, then $F'(z) = 0$ (check by chain and product rule), so $F$ is constant, and $F(0) = e^w$. 
+We have that $e^ze^{-z} = e^0 = 1$, hence the exponential never vanishes, and it is everywhere conformal.
+We also have $e^z = 1 \Leftrightarrow z = 2i\pi{}n, n \in \ZZ$. 
+If $w \in \CC$, $w \neq 0$, $\exists z \in \CC$ such that $e^z = w$. Writing $w = re^{i\theta}$, take $e^x = r$ and $y = \theta$ and now $z = x + iy$. As when $e^w = 1$, there are infinitely many solutions $w$.
+[picture of action of exp on a vertical strip. Turn infinite vertical strip to annulus]
+
+\item Logarithm
+  \begin{definition}
+    Let $U \subseteq \CC^*$ be open. A continuous function $\lambda : U \rightarrow \CC$ such that $\forall z \in U, e^{\lambda(z)} = z$ is called a branch\index{branch} of logarithm on $U$. 
+  \end{definition}
+  Note that if for example, $U = \CC^*$, no such branch exists. However, if $U \subseteq \CC \setminus \{x \in \RR \mid x \leq 0\}$, we can define a branch $\log z$ via:
+\[
+z \mapsto \log \abs{z} + i\theta, \theta \in (-\pi, \pi) \text{ the argument of $z$ }\mpunct{.}
+\]
+This is usually called the principal branch\index{principal branch} of the logarithm. There are other branches differing by constants, i.e. by $2\pi{}ik$ for $k \in \ZZ$.
+Remark that we could have chosen a slit in any direction, the critical aspect is that $U$ does not encircle the origin.
+
+\begin{proposition}
+  On $\{ x \in \CC \mid z \ni \RR_{\leq 0} \}$, the function $\log : U \rightarrow \CC$ (the principal branch) is holomorphic. Moreover, we have $\frac{d}{dz} \log z = \frac{1}{z}$, and if $\abs{z} < 1$, we have:
+\[
+\log (1 + z) = \sum_{n = 1}^\infty (-1)^{n-1}\frac{z^n}{n}
+\]
+\end{proposition}
+\end{enumerate}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End: 
