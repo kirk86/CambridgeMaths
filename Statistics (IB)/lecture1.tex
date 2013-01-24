@@ -14,10 +14,10 @@ Examples:
 \item $X \sim \Normal(\mu, \sigma^2)$, $\theta = (\mu, \sigma^2)$, $\Theta = \RR \times (0, \infty)$.
 \end{itemize}
 
-Let $X1, \dotsc, X_n$  be independent identically distributed (i.i.d) random variables with the same distribution as $X$, so $\underline{X} = \left(X_1, \dotsc, X_n\right)$ is a simple random sample\index{random sample} (our data). We use the observed values $\underline{x}$ of $\underline{X}$ to make statistical inferences about $\theta$ such as:
+Let $X1, \dotsc, X_n$  be independent identically distributed (i.i.d) random variables with the same distribution as $X$, so $\vec{X} = \left(X_1, \dotsc, X_n\right)$ is a simple random sample\index{random sample} (our data). We use the observed values $\vec{x}$ of $\vec{X}$ to make statistical inferences about $\theta$ such as:
 \begin{enumerate}
-\item giving an estimate $\hat{\theta} = \hat{\theta}(\underline{x})$ of the value of the true $\theta$ (point estimation).
-\item giving an interval estimate $\left(\hat{\theta}_1(\underline(x)), \hat{\theta}_2(\underline(x))\right)$ for $\theta$.
+\item giving an estimate $\hat{\theta} = \hat{\theta}(\vec{x})$ of the value of the true $\theta$ (point estimation).
+\item giving an interval estimate $\left(\hat{\theta}_1(\vec(x)), \hat{\theta}_2(\vec(x))\right)$ for $\theta$.
 \item testing a hypothesis such as $H: \theta \in \Theta_0$ where $\Theta_0 \subseteq \Theta$.
 \end{enumerate}
 
@@ -36,10 +36,10 @@ M_{Z_i^2}(t) = \EE [e^{Z_i^2t}] &=& \int_0^\infty e^{z^2t}\frac{1}{\sqrt{2*\pi}}
 \section{Estimation and bias}
 \label{sec:1.3}
 
-Suppose $X_1, \dotsc, X_n$ are i.i.d, each with probability density function (p.d.f.) or probability mass function (p.m.f.) $f(x ; \theta)$, where $\theta \in \Theta \subseteq \RR^d$ is unknown. We aim to estimate the value of $\theta$ by a (measurable) function $T(\dot)$ of the data. If $\underline{X}$ takes the value $\underline{x} = (x_1, \dotsc, x_n)$, then our estimate of $\theta$ is $\hat{\theta} = T(\underline{x})$. Note that $T$ does not involve $\theta$. $T(\underline{X})$ is our estimator\index{estimator} for $\theta$, and is a random quantity. The distribution of $T = T(\underline{X})$ is called its sampling distribution\index{sampling distribution}.
+Suppose $X_1, \dotsc, X_n$ are i.i.d, each with probability density function (p.d.f.) or probability mass function (p.m.f.) $f(x ; \theta)$, where $\theta \in \Theta \subseteq \RR^d$ is unknown. We aim to estimate the value of $\theta$ by a (measurable) function $T(\dot)$ of the data. If $\vec{X}$ takes the value $\vec{x} = (x_1, \dotsc, x_n)$, then our estimate of $\theta$ is $\hat{\theta} = T(\vec{x})$. Note that $T$ does not involve $\theta$. $T(\vec{X})$ is our estimator\index{estimator} for $\theta$, and is a random quantity. The distribution of $T = T(\vec{X})$ is called its sampling distribution\index{sampling distribution}.
 
 \begin{definition}
-  An estimator $T(\underline{X})$ is unbiased\index{unbiased} for $\theta$ if $\EE_\theta \left[T(\underline{X})\right] = \theta, \forall \theta \in \Theta$. Otherwise, it is biased\index{biased}. Here $\EE_\theta$ is the expectation if $X_i$ has p.d.f/p.m.f $f(x ; \theta)$. The bias\index{bias} of $T(\underline{X})$ is $\EE_\theta\left[T(\underline{X})\right] - \theta$.
+  An estimator $T(\vec{X})$ is unbiased\index{unbiased} for $\theta$ if $\EE_\theta \left[T(\vec{X})\right] = \theta, \forall \theta \in \Theta$. Otherwise, it is biased\index{biased}. Here $\EE_\theta$ is the expectation if $X_i$ has p.d.f/p.m.f $f(x ; \theta)$. The bias\index{bias} of $T(\vec{X})$ is $\EE_\theta\left[T(\vec{X})\right] - \theta$.
 \end{definition}
 
 %%% Local Variables: 

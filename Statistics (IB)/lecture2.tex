@@ -3,30 +3,30 @@
 
 Suppose $X_1, \dotsc, X_n$ are i.i.d. $\Normal(\mu, 1)$ ($\mu$ unknown). A possible estimator estimator for $\mu$ is the sample mean:
 \[
- T\left(\underline{X}\right) = \frac{1}{n}\sum_{i=1}^n X_i \mpunct{.}
+ T\left(\vec{X}\right) = \frac{1}{n}\sum_{i=1}^n X_i \mpunct{.}
 \]
-The sampling distribution of $T\left(\underline{x}\right)$ is $\Normal\left(\mu, \frac{1}{n}\right)$, hence $\EE_\mu \left[ T\left(\underline{x}\right) \right] = \mu$, for all $\mu \in \RR$.
+The sampling distribution of $T\left(\vec{x}\right)$ is $\Normal\left(\mu, \frac{1}{n}\right)$, hence $\EE_\mu \left[ T\left(\vec{x}\right) \right] = \mu$, for all $\mu \in \RR$.
 
 \section{Sufficiency}
-The concept of sufficiency addresses the question ``is there a statistic $T\left(\underline{X}\right)$ that in some sense captures all the information about $\theta$ contained in the sample?''
+The concept of sufficiency addresses the question ``is there a statistic $T\left(\vec{X}\right)$ that in some sense captures all the information about $\theta$ contained in the sample?''
 
 \paragraph{Example\label{example:1.2}}
 
-Let $X_1, \dotsc, X_n$ \iid $\Bernouilli(\theta)$, so that $\PP(X_i = 1) = 1 - \PP(X_i = 0) = \theta$, for some $\theta$, $0 < \theta < 1$. The joint \pmf of $\underline{X}$ is:
+Let $X_1, \dotsc, X_n$ \iid $\Bernouilli(\theta)$, so that $\PP(X_i = 1) = 1 - \PP(X_i = 0) = \theta$, for some $\theta$, $0 < \theta < 1$. The joint \pmf of $\vec{X}$ is:
 \[
-p_{\underline{X}}\left(\underline{x}; \theta\right) = \prod_{i = 1}^n \theta^{x_i}(1-\theta)^{1-x_i} = \theta^{\sum x_i}(1 - \theta)^{n - \sum x_i} \mpunct{.}
+p_{\vec{X}}\left(\vec{x}; \theta\right) = \prod_{i = 1}^n \theta^{x_i}(1-\theta)^{1-x_i} = \theta^{\sum x_i}(1 - \theta)^{n - \sum x_i} \mpunct{.}
 \]
-This depends on the data only through $T\left(\underline{x}\right) = \sum_{i=1}^n$ (the total number of $1$). The conditional \pmf of $\underline{X} \given T$ if $T\left(\underline{x}\right) = t$ is:
+This depends on the data only through $T\left(\vec{x}\right) = \sum_{i=1}^n$ (the total number of $1$). The conditional \pmf of $\vec{X} \given T$ if $T\left(\vec{x}\right) = t$ is:
 \[
-p_{\underline{X} \given T} \left( \underline{x} \given t\right) = \frac{\PP_\theta(\underline{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t}} = \frac{1}{\binom{n}{t}} \mpunct{.}
+p_{\vec{X} \given T} \left( \vec{x} \given t\right) = \frac{\PP_\theta(\vec{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t}} = \frac{1}{\binom{n}{t}} \mpunct{.}
 \]
-i.e. the conditional distribution of $\underline{X}$ given $T = t$ does not depend on $\theta$. Thus, if we know $T$, then additional knowledge of $\underline{X}$ (e.g. knowing the exact sequence of $0$ and $1$) does not give extra information about $\theta$. 
+i.e. the conditional distribution of $\vec{X}$ given $T = t$ does not depend on $\theta$. Thus, if we know $T$, then additional knowledge of $\vec{X}$ (e.g. knowing the exact sequence of $0$ and $1$) does not give extra information about $\theta$. 
 
 \begin{definition}
-  A statistic $T$ is sufficient\index{sufficient} for $\theta$ if the conditional distribution, of $\underline{X}$ given $T$ does not depend on $\theta$.
+  A statistic $T$ is sufficient\index{sufficient} for $\theta$ if the conditional distribution, of $\vec{X}$ given $T$ does not depend on $\theta$.
 \end{definition}
 
-In the previous example, $T\left(\underline{X}\right) = \sum_{i=1}^n X_i$ is sufficient for $\theta$.
+In the previous example, $T\left(\vec{X}\right) = \sum_{i=1}^n X_i$ is sufficient for $\theta$.
 
 In practice, sufficient statistics are found using the following theorem.
 
@@ -34,56 +34,56 @@ In practice, sufficient statistics are found using the following theorem.
   \label{thm:factorisation_criterion}
   $T$ is sufficient for $\theta$ if and only if there exist functions $g$ and $h$ such that:
 \[
-f_{\underline{X}} \left(\underline{x}; \theta\right) = g\left( T\left(\underline{x}\right), \theta\right)h\left(\underline{x}\right)
+f_{\vec{X}} \left(\vec{x}; \theta\right) = g\left( T\left(\vec{x}\right), \theta\right)h\left(\vec{x}\right)
 \]
 \end{theorem}
 
 \begin{proof}
   We prove the discrete case.
 
-Suppose that $p_{\underline{X}} \left(\underline{x}; \theta\right) = g\left(T\left(\underline{x}\right), \theta \right) h\left(\underline{x}\right)$. If $T\left(\underline{x}\right) = t$, then we have:
+Suppose that $p_{\vec{X}} \left(\vec{x}; \theta\right) = g\left(T\left(\vec{x}\right), \theta \right) h\left(\vec{x}\right)$. If $T\left(\vec{x}\right) = t$, then we have:
 \begin{IEEEeqnarray*}{rCl}
-p_{\underline{X} \given T} \left (\underline{x} \given t \right) &=& \frac{\PP_\theta \left( \underline{X} = \underline{x}, T\left(\underline{X}\right) = t\right)}{\PP_\theta \left(T = t\right)} \\
-&=& \frac{g\left(T\left(\underline{x}\right), \theta\right)h\left(\underline{x}\right)}{\sum_{\{\underline{x} \mid T\left(\underline{x'}\right) = t\}}g\left(T\left(\underline{x'}\right), \theta\right)h\left(\underline{x'}\right)} \\
-&=& \frac{g(t, \theta)h(\underline{x})}{g(t, \theta)\sum_{\{\underline{x} \mid T\left(\underline{x'}\right)} h(\underline{x'})} \\
-&=& \frac{h(\underline{x})}{\sum_{\{\underline{x} \mid T\left(\underline{x'}\right)\}} h(\underline{x'})} \mpunct{.}
+p_{\vec{X} \given T} \left (\vec{x} \given t \right) &=& \frac{\PP_\theta \left( \vec{X} = \vec{x}, T\left(\vec{X}\right) = t\right)}{\PP_\theta \left(T = t\right)} \\
+&=& \frac{g\left(T\left(\vec{x}\right), \theta\right)h\left(\vec{x}\right)}{\sum_{\{\vec{x} \mid T\left(\vec{x'}\right) = t\}}g\left(T\left(\vec{x'}\right), \theta\right)h\left(\vec{x'}\right)} \\
+&=& \frac{g(t, \theta)h(\vec{x})}{g(t, \theta)\sum_{\{\vec{x} \mid T\left(\vec{x'}\right)} h(\vec{x'})} \\
+&=& \frac{h(\vec{x})}{\sum_{\{\vec{x} \mid T\left(\vec{x'}\right)\}} h(\vec{x'})} \mpunct{.}
 \end{IEEEeqnarray*}
 This does not depend on $\theta$, hence $T$ is sufficient for $\theta$.
 
-Conversely, suppose $T$ is sufficient for $\theta$. If $T\left(\underline{x}\right)$, then 
+Conversely, suppose $T$ is sufficient for $\theta$. If $T\left(\vec{x}\right)$, then 
 \begin{IEEEeqnarray*}{rCl}
-\PP_\theta \left(\underline{X} = \underline{x}\right)  \\
-&=& \sum_{t'} \underbrace{\PP_\theta \left(\underline{X} = \underline{x}\right)}_{\text{for this $x$, this probability is zero unless $t' = t$}}\PP_\theta\left(T = t'\right)  \\
-&=& \underbrace{\PP_\theta \left(\underline{X} = \underline{x}\right) \given T = t)}_{\text{independent of $\theta$ by assumption of sufficiency}}\PP_\theta(T = t)
+\PP_\theta \left(\vec{X} = \vec{x}\right)  \\
+&=& \sum_{t'} \underbrace{\PP_\theta \left(\vec{X} = \vec{x}\right)}_{\text{for this $x$, this probability is zero unless $t' = t$}}\PP_\theta\left(T = t'\right)  \\
+&=& \underbrace{\PP_\theta \left(\vec{X} = \vec{x}\right) \given T = t)}_{\text{independent of $\theta$ by assumption of sufficiency}}\PP_\theta(T = t)
 \end{IEEEeqnarray*}
 \end{proof}
 
 \paragraph{Example}
-Consider \vref{example:1.2}, take $g(t, \theta) = \theta^t(1-\theta)^{n-t}$ and $h(\underline{x}) = 1$, we then see that $T(\underline{X}) = \sum X_i$ is sufficient for $\theta$ by \cref{thm:factorisation_criterion}.
+Consider \vref{example:1.2}, take $g(t, \theta) = \theta^t(1-\theta)^{n-t}$ and $h(\vec{x}) = 1$, we then see that $T(\vec{X}) = \sum X_i$ is sufficient for $\theta$ by \cref{thm:factorisation_criterion}.
 
 Now consider $X_1, \dotsc, X_n$ \iid $\Uniform [0, \theta]$. Write $1\left(A\right)$ for the indicator of $A$. Then we have:
 \begin{IEEEeqnarray*}{rCl}
-  f_{\underline{X}}(\underline{x}; \theta) &=& \prod_{i=1}^n \frac{1}{\theta} \indicator{0 \leq x_i \leq \theta} \\
+  f_{\vec{X}}(\vec{x}; \theta) &=& \prod_{i=1}^n \frac{1}{\theta} \indicator{0 \leq x_i \leq \theta} \\
 &=& \frac{1}{\theta^n}\indicator{\max_i x_i \leq \theta}\indicator{\min_i x_i \geq 0} \mpunct{.}
 \end{IEEEeqnarray*}
-By the \cref{thm:factorisation_criterion}, $T(\underline{X}) = \max_i X_i$ is sufficient for $\theta$. For example, consider:
+By the \cref{thm:factorisation_criterion}, $T(\vec{X}) = \max_i X_i$ is sufficient for $\theta$. For example, consider:
 \[
-g(t, \theta) = \frac{1}{\theta^n}\indicator{t \leq \theta} \text{ and } h(\underline{x}) = \indicator{\min_i x_i \leq 0} \mpunct{.}
+g(t, \theta) = \frac{1}{\theta^n}\indicator{t \leq \theta} \text{ and } h(\vec{x}) = \indicator{\min_i x_i \leq 0} \mpunct{.}
 \]
 
-Sufficient statistics are not unique: if $T$ is sufficient, then so is any bijective function of $T$. The complete sample $\underline{X}$ is always sufficient for $\theta$: let $T\left(\underline{X}\right)$, $g\left(\underline{t}, \theta\right) = f_{\underline{X}}(\underline{x}, \theta)$ and $h(\underline{x}) = 1$.
+Sufficient statistics are not unique: if $T$ is sufficient, then so is any bijective function of $T$. The complete sample $\vec{X}$ is always sufficient for $\theta$: let $T\left(\vec{X}\right)$, $g\left(\vec{t}, \theta\right) = f_{\vec{X}}(\vec{x}, \theta)$ and $h(\vec{x}) = 1$.
 
 The sample space $\curlyX^n$ is partitioned by $T$ into sets
 \[
-\left\{ \underline{x} \in \curlyX^n \mid T\left(\underline{x}\right) = t \right\} \mpunct{,}
+\left\{ \vec{x} \in \curlyX^n \mid T\left(\vec{x}\right) = t \right\} \mpunct{,}
 \]
 and if $T$ is sufficient, then this data reduction does not lose an information on $\theta$. 
 We now seek a statistic that achieves the maximum possible data reduction.
 
 \begin{definition}
-  A sufficient statistic $T(\underline{x})$ is \emph{minimal sufficient\index{minimal sufficient}} if it is a function of every other sufficient statistic, i.e. if $T'(\underline{x})$ is also sufficient, then
+  A sufficient statistic $T(\vec{x})$ is \emph{minimal sufficient\index{minimal sufficient}} if it is a function of every other sufficient statistic, i.e. if $T'(\vec{x})$ is also sufficient, then
 \[
-T'(\underline{x}) = T'(\underline{y}) \Rightarrow T(\underline{x}) = T(\underline{y}) \mpunct{.}
+T'(\vec{x}) = T'(\vec{y}) \Rightarrow T(\vec{x}) = T(\vec{y}) \mpunct{.}
 \]
 Equivalently, the partition for $T$ is coarser than that for $T'$ (i.e. if $A_{T' = t'}$ is a partition set for $T'$, then $A_{T' = t'} \subseteq A_{T = t}$ for some $t$).
 \end{definition}
