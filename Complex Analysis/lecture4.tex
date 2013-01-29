@@ -113,9 +113,37 @@ Hence, if $n = -1$, we get $2\pi{}i$. If $n \neq -1$, we have that $\left[\frac{
 \end{proof}
 
 \paragraph{Example}
-[schema of half-circle, -R to R]
+\begin{figure}
+  \centering
+   \begin{tikzpicture}[scale=0.75]
+    \tkzInit[xmin=-5,xmax=5,ymin=-1,ymax=5]
 
-Let $\gamma$ be as in the picture, and $f(z) = z^2$. We write $\gamma = \gamma_1 * \gamma_2$, with $\gamma_1 : [-R, R] \rightarrow \CC$ such that $\gamma_1(t) = t$ and with $\gamma_2 : [0, 1] \rightarrow \CC$ such that $\gamma_2(t) = Re^{i\pi{}t}$.
+    \tkzDefPoint(0,0){O}
+    \tkzDefPoint(-4,0){A}
+    \tkzDefPoint(4,0){B}
+
+    \tkzDefPoint(-5,0){xmin}
+    \tkzDefPoint(5,0){xmax}
+
+    \tkzDefPoint(0,5){ymax}
+    \tkzDefPoint(0,-1){ymin}
+
+    \tkzDrawSegment(xmin,xmax)
+    \tkzDrawSegment(ymin,ymax)
+
+    \tkzDrawArc[color=blue](O,B)(A)
+    \tkzDrawSegment[color=blue](B,A)
+
+    \tkzLabelPoint[below](A){$-R$}
+    \tkzLabelPoint[below](B){$R$}
+
+  \end{tikzpicture}
+
+  \caption{half-circle of radius $R$}
+  \label{fig:4.1}
+\end{figure}
+
+Let $\gamma$ be as in the figure\ref{fig:4.1}, and $f(z) = z^2$. We write $\gamma = \gamma_1 * \gamma_2$, with $\gamma_1 : [-R, R] \rightarrow \CC$ such that $\gamma_1(t) = t$ and with $\gamma_2 : [0, 1] \rightarrow \CC$ such that $\gamma_2(t) = Re^{i\pi{}t}$.
 Then we have the following:
 \begin{IEEEeqnarray*}{rCl}
 \int_\gamma f(z) dz &=& \int_{-R}^R t^2dt + \int_0^1 R^2e^{2\pi i t} i \pi R e^{i \pi t} dt \\
