@@ -1,0 +1,85 @@
+\section{Mean squared error}
+\emph{In this section, $\theta$ is scalar}.
+
+Roughly, we prefer estimators whose sampling distributions ``cluster more closely'' around the true value of $\theta$. 
+For example, in \ref{fig:4.1}, we prefer (a) to (b). However, in \ref{fig:4.2}, (a') is biased, but might still be preferred.
+
+\begin{definition}
+  The mean squared error\index{mean squared error} (m.s.e) of an estimator $\hat{\theta}$ of $\theta$ is:
+\[
+\EE_\theta \left[\left(\hat{\theta}-\theta\right)^2\right] \mpunct{.}
+\]
+For an unbiased estimator, we have: $\text{mse}(\hat{\theta}) = \text{var}_\theta(\hat{\theta})$. In general, we have:
+\begin{IEEEeqnarray*}{rCl}
+\EE_\theta \left[\left(\hat{\theta}-\theta\right)^2\right] &=& \EE_\theta \left[\left(\hat{\theta}-\EE_\theta(\hat{\theta})+\EE_\theta(\hat{\theta})-\theta\right)^2\right] \\
+&=& \EE_\theta\left[\left(\hat{\theta} - \EE_\theta(\hat{\theta})\right)^2\right] + \left(\EE_\theta(\hat{\theta}) - \theta\right)^2 + 2\left(\EE_\theta(\hat{\theta}) - \theta\right)\underbrace{\EE_\theta\left[\hat{\theta}-\EE_\theta(\hat{\theta})\right]}_{=\EE_\theta[\hat{\theta}] - \EE_\theta[\hat{\theta}] = 0} \\
+&=& \var_\theta (\hat{\theta}) + \text{bias}^2(\hat{\theta}) \mpunct{.}
+\end{IEEEeqnarray*}
+\end{definition}
+
+The next theorem gives a way to improve estimator in the m.s.e. sense.
+
+\begin{theorem}[Rao-Blackwell\index{Rao-Blackwell theorem} theorem]
+Let $T$ be a sufficient statistic for$\theta$ and let $\tilde{\theta}$ be an estimator for $\theta$ with $\EE_\theta\left[\tilde{\theta}^2\right] < \infty$ for all $\theta$.
+Let $\hat{\theta} = \EE_\theta\left[\tilde{\theta} \mid T\right]$. Then, for all $\theta$, we have:
+\[
+\EE_\theta\left[\left(\hat{\theta}-\theta\right)^2\right] \leq \EE_\theta \left[\left(\tilde{\theta} - \theta\right)^2\right]
+\]
+with equality if and only if $\tilde{\theta}$ is a function of $T$.
+  
+\end{theorem}
+
+\begin{proof}
+  We know that:
+\begin{IEEEeqnarray*}{rClr}
+\EE_\theta[\hat{\theta}] &=& \EE_\theta\left[\EE(\tilde{\theta} \mid T)\right] & \text{by definition}\\
+&=& \EE_\theta (\tilde{\theta}) & \text{by the conditional expectation formula} \mpunct{,}
+\end{IEEEeqnarray*}
+so we have that $\tilde{\theta}$ and $\hat{\theta}$ have the same bias.
+
+By the conditional variance formula, we have:
+\begin{IEEEeqnarray*}{rCl}
+\var_\theta(\tilde{\theta}) &=& \EE_\theta\left[ \var (\tilde{\theta} \given T)\right] + \var_\theta\big[\underbrace{\EE_\theta (\tilde{\theta} \given T)}_{=\hat{\theta}}\big] \\
+&=& \var_\theta (\hat{\theta}) \mpunct{,}
+\end{IEEEeqnarray*}
+and so we have that $\msef(\hat{\theta}) \leq \msef(\tilde{\theta})$. 
+We have equality when $\var_\theta (\tilde{\theta} \given T) = 0$ so $\tilde{\theta}$ is a function of $T$.
+\end{proof}
+
+\paragraph{Remarks}
+\begin{enumerate}
+\item $T$ is sufficient for $\theta$ so the conditional distribution of $\vec{X}$ given $T$ does not depend of $\theta$.
+Hence, $\hat{\theta} = \EE_\theta\left[\tilde{\theta}(\vec{X}) \given T\right]$ does \emph{not} depend on $\theta$ and is thus a bona fide estimator.
+
+\item The theorem says that, given any estimator, we can find one that is at least as good in terms of mean squared error and is a function of a sufficient statistic.
+
+\item If $\tilde{\theta}$ is unbiased then so is $\hat{\theta}$.
+
+\item If $\tilde{\theta}$ is already a function of $T$, then $\hat{\theta} = \tilde{\theta}$.
+\end{enumerate}
+
+\paragraph{Examples}
+
+Let $X_1, \dotsc, X_n$ be \iid $\Poisson(\lambda)$, so that:
+\[
+p_{\vec{X}}(\vec{x}, \lambda) = \frac{e^{-n\lambda}\lambda^{\sum x_i}}{\prod x_i !} \mpunct{.}
+\]
+Suppose $\theta = e^{-\lambda}$ (which is equivalent to $\PP(X_1 = 0)$).
+The joint density in terms of $\theta$ is $\theta^n(-\log\theta)^{\sum x_i}/\left(\prod x_i !\right)$.
+By the factorisation criterion, $T = \sum_{i=1}^n X_i$ is sufficient for $\theta$. An easy estimator for $\theta$ is $\tilde{\theta} = \indicator{X_1 = 0}$, which is unbiased.
+
+Rao-Blackwellisation gives:
+\begin{IEEEeqnarray*}{rCl}
+  \EE_\theta\left[\tilde{\theta} \given T = t \right] &=& \PP\left(X_1 = 0 \given \sum{i=1}^n X_i = t\right) \\
+&=& \frac{\PP\left(X_1 = 0, \sum_{i = 1}^n X_i = t\right)}{\PP\left(\sum_{i=1}^n X_i = t\right)} \\
+&=& \frac{\PP\left(X_1 = 0\right)\PP\left(\sum_{i=2}^n X_i = t\right)}{\PP\left(\sum_{i=1}^n X_i = t\right)} \\
+&=& \frac{\theta\frac{1}{t!}\theta^{n-1}\left(-(n-1)\log \theta\right)^t}{\frac{1}{t!}\theta^n \left(-n\log \theta\right)^t} \\
+&=& \left(\frac{n-1}{n}\right)^t \mpunct{.}
+\end{IEEEeqnarray*}
+Hence we have $\hat{\theta} = \EE_\theta(\tilde{\theta} \given T) = \left(1 - 1/n\right)^{\sum X_i}$.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End: 

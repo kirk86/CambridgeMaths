@@ -129,9 +129,13 @@ so $\EE_\theta[\hat{\theta}] = \int_0^\theta t\frac{nt^n-1}{\theta^n} dt = \frac
 L(\theta) =  g\left(T(\vec{x}), \theta\right) h(\vec{x}) \mpunct{.}
 \]
 To maximise $L(\theta)$ a function of $\theta$, we only need to maximise $g\left(T(\vec{x}), \theta\right)$, and so $\theta$ will be a function of the sufficient statistic $T$.
+
+\item It may be shown that, under regularity conditions, $\sqrt{n}\left(\hat{\theta} - \theta\right)$ has asymptotically (as $n \rightarrow \infty$) a multivariate normal distribution with mean $0$ and ``best possible variance''.
+
+\item If $\varphi = h(\theta)$, where $h$ is bijective, then the \mle of $\varphi$ is $\hat{\varphi} = h(\hat{\theta})$ (invariance property of \mle).
+
+\item Often, there is no closed form for the \mle and numerical methods must be used.
 \end{enumerate}
-
-
 
 %%% Local Variables: 
 %%% mode: latex
