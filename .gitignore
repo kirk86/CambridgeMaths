@@ -8,5 +8,8 @@
 # add tex source
 !*.tex
 
+# add images
+!*.png
+
 #remove Auctex region file
 _region_.tex

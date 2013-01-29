@@ -46,10 +46,17 @@ u = \frac{1}{2}\left(r + \frac{1}{r}\right)\cos \theta \text{ and } v = \frac{1}
 \]
 and hence a circle centered at the origin is mapped onto an ellipse:
 \[
-\{ \abs{z} = \rho \} \mapsto^f \left\{ \frac{u^2}{\frac{1}{4}\left(\rho + \frac{1}{\rho^2}\right)^2} + \frac{v^2}{\frac{1}{4}\left(\rho - \frac{1}{\rho}\right)^2} = 1 \right\} \mpunct{.}
+\{ \abs{z} = \rho \} \stackrel{f}{\mapsto} \left\{ \frac{u^2}{\frac{1}{4}\left(\rho + \frac{1}{\rho^2}\right)^2} + \frac{v^2}{\frac{1}{4}\left(\rho - \frac{1}{\rho}\right)^2} = 1 \right\} \mpunct{.}
 \]
-Now consider an off-centre circle through $-1$ and $-i$, then the image looks as follows [insert graph here], which is a crude approximation to an aerofoil. The Jouhowksi transformation can be used to transform fluid flow over a wing to understanding flow across a cylinder.
+Now consider an off-centre circle through $-1$ and $-i$, say, the circle is transformed as in the figure \ref{fig:2_jouhowski}, which is a crude approximation to an aerofoil. The Jouhowksi transformation can be used to transform fluid flow over a wing to understanding flow across a cylinder.
 \end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.75]{images/jouktrans.png}
+  \caption{Jouhowski transformation}
+  \label{fig:2_jouhowski}
+\end{figure}
 
 Observation: in building conformal equivalences by hand, it is often useful to describe a region bound by circular arcs as follows:
 \[
@@ -96,7 +103,7 @@ Observation: in building conformal equivalences by hand, it is often useful to d
   \caption{Region bound by a circular arc}
   \label{fig:region_bound_by_circular_arc}
 \end{figure}
-As we can see in \cref{fig:region_bound_by_circular_arc}, as $z$ moves on the arc of circle, the angle $\mu$ is constant, and $\mu = \theta - \phi = \arg ( z - \alpha ) - \arg ( z - \beta )$.
+As we can see in the figure \ref{fig:region_bound_by_circular_arc}, as $z$ moves on the arc of circle, the angle $\mu$ is constant, and $\mu = \theta - \phi = \arg ( z - \alpha ) - \arg ( z - \beta )$.
 
 \paragraph{Example}
 The upper half of the open disk is conformally equivalent to the upper half plane $H$ and to the open unit disk. 
