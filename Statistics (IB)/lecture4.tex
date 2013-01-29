@@ -2,7 +2,38 @@
 \emph{In this section, $\theta$ is scalar}.
 
 Roughly, we prefer estimators whose sampling distributions ``cluster more closely'' around the true value of $\theta$. 
-For example, in \ref{fig:4.1}, we prefer (a) to (b). However, in \ref{fig:4.2}, (a') is biased, but might still be preferred.
+For example, in figure \ref{fig:4.1}, we prefer (a) to (b). However, in figure \ref{fig:4.2}, (a') is biased, but might still be preferred.
+
+\begin{figure}[h]
+  \centering
+  \subfloat[][Comparison of two unbiased estimators]{
+  \begin{tikzpicture}[domain=-3:3,scale=1.5]
+    \draw[help lines, ->] (-3,0)--(3,0);
+    \draw (0,-0.05) -- (0, 0.05) node[below] {true $\theta$};
+
+    \node (a) at (0.5, 2) {$(a)$};
+    \node (b) at (1.5, 0.5) {$(b)$};
+    
+    \draw plot[id=a,samples=1000] function{exp(-(x/0.2)**2)/(0.2*sqrt(2*pi))};
+    \draw plot[id=b,samples=1000] function{exp(-x**2)/sqrt(2*pi)};
+  \end{tikzpicture}
+  \label{fig:4.1}
+}
+
+  \subfloat[][Comparison of a biased and an unbiased estimator]{
+  \begin{tikzpicture}[domain=-3:3,scale=1.5]
+    \draw[help lines, ->] (-3,0)--(3,0);
+    \draw (0,-0.05) -- (0, 0.05) node[below] {true $\theta$};
+
+    \node (a) at (0.7, 2) {$(a')$};
+    \node (b) at (1.5, 0.5) {$(b')$};
+
+    \draw plot[id=a_p,samples=1000] function{exp(-((x-0.3)/0.2)**2)/(0.2*sqrt(2*pi))};
+    \draw plot[id=b_p,samples=1000] function{exp(-x**2)/sqrt(2*pi)};
+  \end{tikzpicture}
+  \label{fig:4.2}
+}
+\end{figure}
 
 \begin{definition}
   The mean squared error\index{mean squared error} (m.s.e) of an estimator $\hat{\theta}$ of $\theta$ is:
