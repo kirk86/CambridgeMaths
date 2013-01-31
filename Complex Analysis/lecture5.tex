@@ -1,0 +1,107 @@
+\section{Cauchy's theorem}
+By the Fundamental Theorem of Calculus, we know that if $f(z)$ has an antiderivative, then $\int_\gamma f(z) dz = 0$ for any $\gamma : [a, b] \rightarrow U$ closed (i.e. $\gamma(a) = \gamma(b)$.
+
+\paragraph{Example}
+
+Recall the example of $z^n$ integrated along $t \mapsto e^{it} \subseteq \CC^*$. If $n \neq -1$, we have that:
+\[
+f(z) = \frac{d}{dz}\left(\frac{z^{n+1}}{n+1}\right) = z^n \Rightarrow \int_\gamma z^n dz = 0 \mpunct{.}
+\]
+On the other hand, if $n = -1$, then we ave $f(z) = \frac{d}{dz}(\log z)$ on a slit plane. Such a slit plane does not contain $\gamma$. Indeed, we have that $\int_\gamma \frac{1}{z} dz \neq 0$.
+
+\begin{proposition}
+  If $f : U \rightarrow \CC$ is continuous, $U \subseteq \CC$ open and path connected, and if:
+\[
+\int_\gamma f(z) dz = 0 
+\]
+for any closed path $\gamma : [a, b] \rightarrow U$, then there exists an antiderivative $F$, holomorphic on $U$, with $F'(z) = f(z)$.
+\end{proposition}
+
+\begin{proof}
+  Pick $a_0 \in U$. For each $w \in U$, pick a path$\gamma_w : [0, 1] \rightarrow U$ such that $\gamma_w(0) =  a_0$ and $\gamma_w(1) = w$. Now define $F$ as:
+\[
+F(w) = \int_{\gamma_w} f(z) dz \mpunct{.}
+\]
+Observe that the hypothesis $\int_\gamma f(z) dz = 0$ for closed paths $\gamma$ shows that the value of $F(w)$ does not depend on the choice of the path $\gamma_w$.
+
+Now, let us prove that $F$ is holomorphic, with $F' = f$. Since $U$ is open, we have that for all $w \in U$, $\exists r > 0, B_w(r) \subseteq U$. Consider some point $w + h \in B_w(r)$, and let $\delta_h$ be the radial path from $w$ to $w+h$ inside the ball. If $\gamma = \gamma_w * \delta_h * (-\gamma_{w+h})$, then $\gamma$ is closed and $\int_\gamma f(z) dz = 0$. So we have the following:
+\begin{IEEEeqnarray*}{rCl}
+F(w+h) &=& \int_{\gamma_w * \delta_h} f(z) dz \\
+&=& F(w) + \int_{\delta_h} f(z) dz \\
+&=& F(w) + hF(w) + \int_{\delta_h} \left(f(z) - f(w)\right) dz \mpunct{.}
+\end{IEEEeqnarray*}
+Hence, we deduce that:
+\begin{IEEEeqnarray*}{rCl}
+  \abs*{\frac{F(w+h) - F(w)}{h} - f(w)} &=& \abs*{\frac{1}{h} \int_{\delta_h} \left(f(z) - f(w)\right) dz} \\
+&\leq& \left(\frac{1}{\abs{h}} \text{length}(\delta_h)\right) \sup_{z \in \delta_h} \abs*{f(z) - f(w)} \mpunct{.}
+\end{IEEEeqnarray*}
+Now, the right-hand side tends to $0$ as $h$ tends to $0$ by continuity of $f$.
+\end{proof}
+
+Remark, suppose $U$ is not just path-connected, but convex, or star-shaped about $a_0$ (i.e. the radial path from $a_0$ to any point in $U$ is in $U$). 
+Then, we could have taken $\gamma_w$ to be the straight line segment from $a_0$ to $w$ for every $w$. 
+The previous proof only used that $\int_{\partial T} f(z) dz = 0$ where $T \subseteq U$ is a triangle, i.e. a contour made of three straight lines.
+
+\begin{theorem}%[Cauchy's theorem for triangles]
+  Let $U \subseteq \CC$ be an open path-connected set. Let $T \subseteq U$ be a triangle. If $f : U \rightarrow \CC$ is holomorphic, then we have:
+\[
+\int_{\partial T} f(z) dz = 0 \mpunct{.}
+\]
+\end{theorem}
+
+\begin{proof}
+  Let $\eta = \abs*{\int_{\partial T} f(z) dz}$, and let $l = \text{length}(\partial T)$. Let $T = T^0$, and subdivide $T^0$ into four equal subtriangles as in the figure \ref{fig:5.1}. We set $T^0 = T^0_1 \cup T^0_2 \cup T^0_3 \cup T^0_4$.
+  \begin{figure}
+    \centering
+    
+    \caption{Subdivision of the triangle}
+    \label{fig:5.1}
+  \end{figure}
+Note that we have:
+\[
+\int_{\partial T} f(z) dz = \sum_{i} \int_{\partial T^0_i} f(z) dz \mpunct{.}
+\]
+In particular, we have that, there exists an $i$, we have:
+\[
+\abs*{\int_{\partial T^0_i} f(z) dz} \geq \frac{\eta}{4} \mpunct{.}
+\]
+Let such a $T^0_i$ be $T^1$. Note that $\text{length}(T^1) = \text{length}(T^0)/2$. 
+Now we iterate the construction to produce a sequence of triangles $T^0 \supseteq T^1 \supseteq T^2 \supseteq \dotsb$ such that:
+\[
+\int_{\partial T_i} f(z) dz \geq \frac{\eta}{4^i} \text{ and } \text{length}(\partial T^i) = \frac{1}{2^i} \text{length}(\partial T) \mpunct{.}
+\]
+Observe that the $T^i$ are closed bounded, and form a descending chain. Hence, there exists $z_0$ such that $z_0 \in \bigcap_{i=1}^\infty T^i$.
+$f$ is complex differentiable at $z_0$, hence we have:
+\[
+\exists \epsilon > 0, \forall \delta > 0, \, \abs{w - z_0} < \delta \Rightarrow \abs*{f(w) - f(z_0) - (w-z_0)f'(z_0)} < \epsilon \abs{w - z_0} \mpunct{.}
+\]
+Now pick $n$ sufficiently large such that $T^n \subseteq B_{z_0}(\delta)$, and observe that:
+\[
+\int_{\partial T^n} dz = \int_{\partial T^n} z dz = 0 \mpunct{,}
+\]
+since $1$ and $z$ have antiderivatives. Now, we have:
+\begin{IEEEeqnarray*}{rCl}
+\abs*{\int_{\partial T^n} f(z) dz} &=& \abs*{\int_{\partial T^n} \left(f(z) - f(z_0) - (z - z_0)f'(z_0) \right) dz } \\
+&=& \text{length}(\partial T^n)\epsilon\sup_{z \in \partial T^n} \abs{z - z_0} \\
+& \leq & \epsilon  \text{length} (\partial T^n)^2  \\
+&=& \frac{\epsilon \text{length}(\partial T)^2}{4^n} \mpunct{.}
+\end{IEEEeqnarray*}
+
+Hence, we deduce that $\eta = 0$.
+\end{proof}
+
+\begin{corollary}
+  If $f$ is holomorphic on a star-shaped open set, we have $\int_\gamma f(z) dz = 0$ for any contour $\gamma$.
+\end{corollary}
+
+\begin{proof}
+  By the Triangle Cauchy theorem, $f$ has vanishing integrals for triangles. Now, by the preceding remark, we see that $f$ has an antiderivative on $U$.
+\end{proof}
+
+\paragraph{Remark}
+Convexity and star-shapedness are not central in this case: the correct notion is that $U$ is simply-connected\index{simply-connected}, i.e. any continuous map $\gamma : S^1 \rightarrow U$ extends to a map $\overline{D^2} \rightarrow U$.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End: 
