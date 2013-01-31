@@ -1,0 +1,123 @@
+\subparagraph{Uniform distribution}
+Let $X_1, \dotsc, X_n$ be \iid $\Uniform[0, \theta]$. Let $T = \max X_i$. 
+$T$ is sufficient for $\theta$. Let $\tilde{\theta} = 2X_1$ be an unbiased estimator for $\theta$.
+We have that:
+\begin{IEEEeqnarray*}{rCl}
+  \EE_\theta[\tilde{\theta} \given T = t] &=& 2\EE_\theta [X_1 \given \max X_i = t] \\
+&=& 2 \left\{ \EE_\theta[X_1 \given \max X_i = t, \, X_1 = \max X_i]\PP(X_1 = \max X_i) + \EE_\theta[X_i \given \max X_i = t, \, X_1 \neq \max X_i]\PP(X_1 \neq \max X_i) \right\} \\
+&=& 2 \left\{ t \frac{1}{n} + \frac{t}{2}\frac{n-1}{n} \right\} \\
+&=& \frac{n+1}{n}t \mpunct{.}
+\end{IEEEeqnarray*}
+hence $\tilde{\theta} = \frac{n+1}{n} \max X_i$.
+
+\section{Confidence intervals}
+\emph{In this section, $\theta$ is scalar.}
+
+\begin{definition}
+  A $100\gamma\%$ confidence interval\index{confidence interval} (C.I.) for $\theta$ is a random interval $\left(A(\vec{X}), B(\vec{X})\right)$ such that:
+\[
+\PP_\theta \left( (\left(A(\vec{X}), B(\vec{X}) \ni \theta \right) \right) = \gamma
+\]
+no matter what the true value of $\theta$ may be.
+\end{definition}
+
+Note that it is the endpoints of the interval that are random.
+Interpreting in terms of repeat sampling, if we calculate $\left(A(\vec{x}), B(\vec{x})\right)$ for a large number of samples $\vec{x}$, then approximately $100\gamma\%$ of them will cover the true $\theta$.
+
+\paragraph{Example}
+Let $X_1, \dotsc, X_n$ be \iid $\Normal(\theta, 1)$. Find a $95\%$ confidence interval for $\theta$.
+
+We know $\overline{X} \sim \Normal(\theta, 1/n)$, so we have $\sqrt{n}(\overline{X} - \theta) \sim \Normal(0, 1)$, for all $\theta$. For any $z_1$, $z_2$, such that $\Phi(z_2) - \Phi(z_1) = 0.95$ (where $\Phi$ is the distribution function of $\Normal(0, 1)$), we have:
+\[
+\PP_\theta \left[ z_1 \leq \sqrt{n}\left(\overline{X} - \theta\right) < z_2 \right] = 0.95 \mpunct{,}
+\]
+i.e.
+\[
+\PP_\theta \left[ \overline{X} - \frac{z_2}{\sqrt{n}} < \theta < \overline{X} - \frac{z_1}{\sqrt{n}} \right] = 0.95 \mpunct{.}
+\]
+so we have that the following is a $95\%$ confidence interval for $\theta$:
+\[
+\left( \overline{X} - \frac{z_2}{\sqrt{n}}, \, \overline{X} - \frac{z_1}{\sqrt{n}} \right) \mpunct{.}
+\]
+We know that $\Normal(0, 1)$ is symmetric, so the shortest such interval obtained by using $z_2 = z_{0.025} = -z_1$ where $z_\alpha$ is the upper $100\alpha\%$ of $\Normal(0, 1)$.
+\begin{figure}
+  \centering
+
+  \begin{tikzpicture}[domain=-3:3,xscale=1.5,yscale=3]
+    \draw[help lines, ->] (-3,0)--(3,0);
+    \draw[help lines, ->] (0, -1)--(0, 1);
+
+    \draw plot[id=nupp, samples=1000] function{exp(-x**2)/sqrt(2*pi)};
+
+  \end{tikzpicture}
+
+  \caption{$0.025$ Upper percentage point of $\Normal(0, 1)$}
+  \label{fig:5.1}
+\end{figure}
+We find that $z_{0.025} = 1.96$, so the confidence interval is:
+\[
+\left(\overline{X} - \frac{1.96}{\sqrt{n}}, \overline{X} + \frac{1.96}{\sqrt{n}} \right) \mpunct{.}
+\]
+
+The above example illustrates a procedure for finding confidence intervals:
+\begin{enumerate}
+\item Find a quantity $R(\vec{X}, \theta)$ such that the $\PP_\theta$-distribution of $R(\vec{X}, \theta)$ does not depend on $\theta$. 
+In the previous example, we had that $R(\vec{X}, \theta) = \sqrt{n}(\overline{X} - \theta)$. This is called the pivot\index{pivot}.
+
+\item Write don a probability statement of the form:
+\[
+\PP_\theta(z_1 < R(\vec{X}, \theta) < z_2) = \gamma \mpunct{.}
+\]
+Usually, $z_1$, $z_2$ are percentage points.
+
+\item Rearrange the inequalities inside the $\PP_\theta[ \, ]$ to find a confidence interval.
+\end{enumerate}
+
+\paragraph{Example}
+
+\subparagraph{Normal variables}
+
+Let $X_1, \dotsc, X_n$ be \iid $Normal(0, \sigma^2)$. Find a $99\%$ confidence interval for $\sigma^2$.
+From the probability review, we have that:
+\[
+\frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 \sim \Xi^2_n
+\]
+Recall $\Xi^2_n(\alpha)$ denotes the upper $100\alpha\%$ point of $\Xi^2_n$.
+So we have that:
+\[
+\PP_{\sigma^2} \left[ \Xi^2_n(0.995) < \frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 < \Xi^2_n(0.005) \right] = 0.99 \mpunct{,}
+\]
+i.e.
+\[
+\PP_{\sigma^2} \left[ \frac{\sum}{\Xi^2_n(0.005)} < \sigma^2 < \frac{\sum}{\Xi^2_n(0.995)} \right] \mpunct{.}
+\]
+Hence we have that the following is a $99\%$ confidence interval for $\sigma^2$:
+\[
+\left(\frac{\sum X_i^2}{\Xi^2_n(0.005)}, \, \frac{\sum X_i^2}{\Xi^2_n(0.995)} \right) \mpunct{.}
+\]
+If $n = 50$, we get $\Xi^2_{50}(0.005) = 79.49$ and $\Xi^2_{50} = 27.99$. 
+
+\subparagraph{Bernoulli variables}
+
+Let $X_1, \dotsc, X_n$ be \iid $\Bernouilli(p)$ random variables. We know that the \mle of $p$ is $\hat{p} = \overline{X}$.
+By the central limit theorem, we have that as $n$ tends to infinity, 
+\[
+\frac{\sqrt{n}(\hat{p})}{\sqrt{p(1^-p)}} \rightarrow \Normal(0, 1) \mpunct{.}
+\]
+Hence we have that, for $n$ large:
+\[
+\PP_p \left[ \hat{p} - z_{\frac{1-\gamma}{2}}\sqrt{\frac{p(1-p)}{n}} < p < \hat{p} + z_{frac{1-\gamma}{2}} \sqrt{\frac{p(1-p)}{n}} \right] \approxeq \gamma \mpunct{.}
+\]
+But $p$ is unknown, so we approximate $p$ by $\hat{p}$ to give an approximate asymptotic confidence interval for $p$:
+\[
+\left( \hat{p} - z_{\frac{1-\gamma}{2}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \, \hat{p} + z_{\frac{1-\gamma}{2}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \right) \mpunct{.}
+\]
+
+Note that it is possible to have confidence regions for vector parameters (see example sheet 1). Also, if $\left(A(\vec{X}), B(\vec{X})\right)$ is a $100\gamma\%$ confidence interval for $\theta$ and $\tau(\theta)$ is a monotone increasing function of $\theta$, then $\left(\tau(A(\vec{X})), \tau(B(\vec{X}))\right)$ is a $100\gamma\%$ confidence interval for $\tau(\theta)$.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End: 
