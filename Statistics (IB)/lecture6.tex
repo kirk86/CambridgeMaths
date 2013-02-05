@@ -1,0 +1,106 @@
+
+\section{Bayesian estimation}
+
+So far, we have seen the frequentist approach to statistics, where inferential statements about $\theta$ may be interpreted in terms of repeat sampling. 
+In contrast, the Bayesian approach treats $\theta$ as a random variable, taking values in $\Theta$. 
+The investigator's information and beliefs about the possible values of $\theta$, before any observation of data, are summarised by a (known) prior distribution\index{prior distribution} $\pi(\theta)$. 
+When data $\vec{X} = \vec{x}$ are observed, the resulting extra information about $\theta$ is combined with the prior to obtain the posterior distribution\index{posterior distribution} for $\theta$ given $\vec{X} = \vec{x}$, denoted $\pi(\theta \given \vec{x}$ ($=\pi_{\theta \given \vec{X}} (\theta \given \vec{x})$).
+Write $f_{\vec{X} \given \theta}(\vec{x} \given \theta)$ for the conditional probability distribution/mass function of $\vec{X}$ given $\theta$, and $f_{\vec{X}}(\vec{x})$ for the marginal probability distribution/mass function of $\vec{X}$.
+By Bayes' theorem, we have:
+\[
+\pi_{\theta \given \vec{X}}(\theta \given \vec{x}) = \frac{f_{\vec{X} \given \theta}(\vec{x} \given \theta) \pi (\theta)}{f_{\vec{X}}(\vec{x})}
+\]
+where:
+\[
+f_{\vec{X}}(\vec{x}) = 
+\begin{cases}
+\int f_{\vec{X} \given \theta}(\vec{x} \given \theta)\pi(\theta) d\theta & \text{ continuous case} \mpunct{,} \\
+\sum_i f_{\vec{X} \given \theta}(\vec{x} \given \theta_i)\pi(\theta_i) & \text{ discrete case} \mpunct{.}
+\end{cases}
+\]
+Thus, we have that:
+\begin{IEEEeqnarray*}{rCl}
+  \pi_{\theta \given \vec{X}}(\theta \given \vec{x}) & \propto & f_{\vec{X} \given \theta}(\vec{x} \given \theta)\pi(\theta) \label{eq:6_bayes_inference}\\
+\text{posterior} & \propto & \text{likelihood} \times \text{prior} \mpunct{,}
+\end{IEEEeqnarray*}
+where the constant of proportionality is chosen to make the total mass of $\pi(\theta \given \vec{x})$ equal to 1. In practice, we use \eqref{eq:6_bayes_inference} and can often then recognise the family for $\pi(\theta \given \vec{x})$.
+
+\paragraph{Example}
+
+Let $\theta$ be the proportion of defective components in a manufacturing process, and suppose that a priori $\theta$ is believed to have a $\Beta(a, b)$ distribution for some known $a$, $b$.
+For $i = 1, \dotsc, n$, let $X_i = 1$ if the i\textsuperscript{th} component is defective and $X_i = 0$ otherwise. Then we have:
+\begin{IEEEeqnarray*}{rCl}
+\pi(\theta \given \vec{x}) &\propto& f_{\vec{X} \given \theta}(\vec{x} \given \theta)\pi(\theta) \\
+&\propto& \theta^{\sum x_i}(1-\theta)^{n - \sum x_i}\theta^{a-1}(1-\theta)^{b-1}\indicator{0 < \theta < 1} \\
+&\propto& \theta^{\sum x_i + a - 1}(1 - \theta)^{n - \sum x_i + b - 1}\indicator{0 < \theta < 1} \mpunct{.}
+\end{IEEEeqnarray*}
+We recognise $\theta \given \vec{X}  = \vec{x} \sim \Beta\left(\sum x_i + a, n - \sum x_i + b\right)$, so we have that:
+\[
+\pi(\theta \given \vec{x}) = \frac{\theta^{\sum x_i + a - 1}(1-\theta)^{n - \sum x_i + b - 1}}{B\left(\sum x_i + a, n - \sum x_i + b\right)}\mpunct{.}
+\]
+Here a beta prior leads to a beta posterior
+We say that the beta family is conjugate\index{conjugate (prior)} for Bernouilli samples.
+The beta parameters are updated in the light of the data.
+
+A Bayesian approach to point estimation involves a loss function\index{loss function} $L(\theta, a)$ which represents the loss incurred in estimating a parameter to be $a$ when the true value is $\theta$. Common loss functions are the quadratic loss\index{quadratic loss} where $L(\theta, a) = (\theta - a)^2$ and absolute value loss\index{absolute value loss} $L(\theta, a) = \abs{\theta - a}$.
+
+The Bayes estimate\index{Bayes estimate} $\hat{\theta}^B$ minimises the expected posterior loss:
+\[
+h(a) = \int_\Theta L(\theta, a)\pi(\theta \given \vec{x})d\theta \mpunct{.}
+\]
+For quadratic loss, we have:
+\[
+h(a) = \int_\Theta (\theta - a)^2\pi(\theta \given \vec{x})d\theta
+\]
+in which case the equation $h'(a) = 0$ becomes:
+\[
+a \underbrace{\int \pi(\theta \given \vec{x})d\theta}_{= 1} = \underbrace{\int \theta \pi(\theta \given \vec{x})d\theta}_{\text{posterior mean of $\theta$}} \mpunct{.}
+\]
+Hence we have that $\hat{\theta}^B$ is the posterior mean.
+
+For absolute error loss, we have:
+\[
+h(a) = \int \abs{\theta - a} \pi(\theta \given \vec{x}) d\theta = \int_{-\infty}^a (a - \theta)\pi(\theta \given \vec{x})d\theta + \int_a^\infty (\theta - a)\pi(\theta \given \vec{x})d\theta \mpunct{,}
+\]
+in which case $h'(a) = 0$ becomes:
+\[
+\int_{-\infty}^a \pi(\theta \given \vec{x}) d\theta = \int_a^{\infty} \pi(\theta \given \vec{x})d\theta \mpunct{.}
+\]
+This occurs when each side is equal $1/2$, so $\hat{\theta}^B$ is such that:
+\[
+\int_{-\infty}^{\hat{\theta}^B} \pi(\theta \given \vec{x})d\theta = \frac{1}{2} \mpunct{.}
+\]
+$\hat{\theta}^B$ is the posterior median\index{posterior median}.
+
+\paragraph{Example}
+Given $\mu$, $X_1, \dotsc, X_n$ \iid $\Normal(\mu, 1)$. 
+Suppose that a priori, we have $\mu \sim \Normal(0, 1/\tau^2)$, for a known $\tau^2 > 0$. 
+This yields the following posterior:
+\begin{IEEEeqnarray*}{rCl}
+  \pi(\mu \given \vec{x}) &\propto& f_{\vec{X} \given \mu}(\vec{x} \given \mu)\pi(\mu) \\
+&\propto& \text{exp}\left\{-\frac{1}{2}\sum_{i=1}^n(x_i - \mu)^2\right\}\text{exp}\left\{-\frac{\mu^2\tau^2}{2}\right\} \\
+&\propto& \text{exp}\left\{- \frac{n + \tau^2}{2}\left(\mu - \frac{\sum x_i}{n + \tau^2}\right)^2\right\} \mpunct{.}
+\end{IEEEeqnarray*}
+We recognise this as:
+\[
+\mu \given \vec{X} = \vec{x} \sim \Normal\left(\frac{\sum x_i}{n + \tau^2}, \frac{1}{n + \tau^2}\right) \mpunct{.}
+\]
+The normal distribution is symmetric, so the posterior mean is equal to the posterior median, hence we know that, under both quadratic and absolute loss, we have:
+\[
+\hat{\theta}^B = \frac{\sum x_i}{n + \tau^2} \mpunct{.}
+\]
+
+\begin{figure}
+  \centering
+  
+  \caption{Prior and posterior}
+  \label{fig:6.1}
+\end{figure}
+[schema of prior vs posterior. Both normals. Mean shifted in direction of $\overline{x}$, variance is smaller]
+
+As in the figure \ref{fig:6.1}, we can see that the posterior mean is shifted in the direction of $\overline{x}$, and that the variance is smaller. 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End: 
