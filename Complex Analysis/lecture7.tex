@@ -1,0 +1,93 @@
+\begin{theorem}[Local maximum principle]
+If $f : B_a(r) \rightarrow \CC$ holomorphic, for some ball $B_a(r)$, and $\abs{f(z)} \leq \abs{f(a)}$ for all $z \in B_a(r)$, then $f$ is constant.
+I.e. ``a holomorphic $f$ cannot achieve an interior local maximum''.
+\end{theorem}
+
+\begin{proof}
+Fix some $0 < \rho < r$. We can write
+\begin{IEEEeqnarray*}{rCl}
+\abs{f(a)} &=& \abs*{ \int_0^1 f\left(a + \rho e^{2 \pi i t}\right) dt} \\
+&\leq& \sup_{\abs{z - a} = \rho} \abs*{f(z)}  \leq \abs*{f(z)} \mpunct{.}
+\end{IEEEeqnarray*}
+Hence we deduce that $\abs{f(z)} = \abs{f(a)}$ for all $z \in \{ z : \abs{z - a} = \rho \}$.
+Thus, we have that $\abs{f(z)}$ constant on $B_a(r)$, hence we can deduce that $f$ is constant.
+
+\end{proof}
+
+\begin{theorem}[name=Liouville's theorem, label=thm:liouville]
+  Let $f : \CC \rightarrow \CC$ be holomorphic (i.e. $f$ entire).
+If $f$ is bounded, then $f$ is constant.
+\end{theorem}
+
+Note that this is obviously false in $\RR$, for example $\cos x$, $\sin x$.
+
+\begin{proof}
+  Suppose $\abs{f(z)} \leq M$ for all $z \in \CC$.
+Let $z_1, z_2 \in \CC$, and let $R \leq 2 \max \{ \abs{z_1}, \abs{z_2} \}$.
+We have the following:
+\begin{IEEEeqnarray*}{rCl}
+\abs*{f(z_1) - f(z_2)} &=& \abs*{\frac{1}{2 \pi i} \int_{\partial B_0(R)} \left(\frac{f(w)}{w - z_1} - \frac{f(w)}{w - z_2}\right) dw} \\
+&=& \abs*{\frac{1}{2 \pi i} \int_{\partial B_0(R)} \frac{f(w)(z_1 - z_2)}{(w - z_1)(w-z_2)} dw } \\
+&\leq& \frac{1}{2 \pi} 2 \pi R \frac{M \abs{z_1 - z_2}}{(R/2)^2} \\
+&=& \frac{4M}{R}\abs{z_1 - z_2} \mpunct{.}
+\end{IEEEeqnarray*}
+As this holds for all $R$ large enough, $f(z_1) = f(z_2)$.
+\end{proof}
+
+\begin{theorem}[name=Fundamental theorem of algebra, label=thm:fta]
+Every non-constant polynomial has at least one root in $\CC$ (i.e. a non-constant polynomial $p(z)$ factorizes into linear factors over $\CC$).
+\end{theorem}
+
+\begin{proof}
+  Let $P(z) = a_nz^n + a_{n-1}z^{n-1} + \dotsb + a_0$ with $a_n \neq 0$ (and $n > 0$).
+As $\abs{z} \rightarrow \infty$ we have that $\abs{P(z)} \rightarrow \infty$ sine the leading term dominates.
+Hence, there exists $R > 0$ such that for all $\abs{z} > R$,, we have $\abs{P(z)} > 1$.
+
+Suppose for contradiction that $P(z)$ has no root.
+Let $f(z) = 1/P(z)$. This is holomorphic on $\CC$ as $P(z) \neq 0$ for $z \in \CC$.
+As $f$ is continuous, we have that $f$ is bounded on the closed bounded set $\overline{B_0(R)}$.
+However, on $\CC \setminus \overline{B_0(R)}$, we have $\abs{P(z)} \geq 1$ hence $\abs{f(z)} \leq 1$.
+Thus, we have that $f$ is bounded on $\CC$, and hence is constant by \cref{thm:liouville}, from which we deduce that $P(z)$ is constant, which is contradictory.
+\end{proof}
+
+\paragraph{Remark}
+
+There is no algebraic proof of \cref{thm:fta}.
+The construction of $\ZZ$ from $\NN$, and the one of $\QQ$ from $\ZZ$ are algebraic, and the construction of $\CC$ from $\RR$ is algebraic.
+However, the construction of $\RR$ from $\QQ$ is essentially an \emph{analytic} process, and other choices of metric would yield different completions.
+
+\section{Cauchy's formula for derivatives}
+
+\begin{theorem}[Cauchy's formula for derivatives]
+Let $U$ e a domain, and $f$ holomorphic on $U$.
+Suppose $\overline{B_a(r)} \subseteq U$, then for every $n \geq 0$, $f^{(n)}(a)$ exists, and
+\[
+f^{(n)}(a) = \frac{1}{2 \pi i} \int_{\partial B_a(r)} \frac{f(w)}{(w-a)^{n+1}} dw \mpunct{.}
+\]
+In particular, $f$ is infinitely differentiable on $U$.
+\end{theorem}
+
+Note that if $n = 0$, this is \cref{thm:cauchy_integral}.
+
+\paragraph{Remarks}
+
+We have that $f$ is holomorphic at $z \in U$ if and only $\Re f$ and $\Im f$ satisfy the Cauchy-Riemann equations and $\Re f$, $Im f$ differentiable.
+
+\paragraph{Cauchy's proof of Cauchy's theorem}
+
+Let $f$ be holomorphic on a domain $U$. Write $f(z) = u(x, y) = i v(x, y)$ and assume $u$, $v$ have continuous partial derivatives.
+Then, for $\gamma$ a closed contours, we have that $\int_\gamma f(z) dz = 0$.
+
+\begin{proof}
+We have the following equalities
+\begin{IEEEeqnarray*}{rCl}
+\int_\gamma f(z) \: dz &=& \int_\gamma (u + iv)(dx + idy) \\
+&=& \int_\gamma u dx - v dy + i \int_\gamma v dx + u dy \\
+&=& \int_D -\left(\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}\right) \: dx \: dy + i \int_D \left( \frac{\partial u}{\partial x} - \frac{\partial v}{\partial y} \right) \: dx \: dy \quad \text{(by Green's theorem)} \mpunct{.}
+\end{IEEEeqnarray*}
+\end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
