@@ -1,0 +1,109 @@
+
+\section{Cauchy integral formula}
+
+\begin{definition}
+  Let $U \subseteq \CC$ be open path-connected (not necessarily convex).
+Let $\phi : [0, 1] \rightarrow U$, $\psi : [0, 1] \rightarrow U$ be closed paths (and as always, piecewise continuously differentiable).
+We say $\psi$ is an elementary deformation\index{elementary deformation} of $\phi$ if there exists $0 = x_0 < x_1 < \dotsb < x_n = 1$, and convex open $C_1, \dotsc, C_n \subseteq U$ such that if $x_{i-1} \leq t \leq x_i$, $\phi(t), \psi(t) \in U$.
+\end{definition}
+
+\begin{proposition}
+  Given $f : U \rightarrow \CC$ holomorphic, and $\phi$, $\psi$ as above, we have:
+\[
+\int_\phi f(z)dz = \int_\psi f(z)dz \mpunct{.}
+\]
+\end{proposition}
+
+\begin{proof}
+  Let $\phi_i = \phi\vert_{[x_i, x_{i+1}]}$, and similarly $\psi_i = \psi\vert_{[x_i, x_{i+1}]}$. Let $\gamma_i$ be the straight line segment from $\phi(x_i)$ to $\psi(x_i)$. By Cauchy for convex sets, we have:
+\[
+\left(\int_{\phi_i} + \int_{\gamma_{i+1}} - \int_{\psi_i} - \int_{\gamma_i}\right)\left(f(z)dz\right) = 0 \mpunct{.}
+\]
+Summing over $i$, we obtain the required identity.
+\end{proof}
+
+\begin{theorem}%[Cauchy integral formula]
+Let $U \subseteq \CC$ be a domain, $f : U \rightarrow \CC$ be a holomorphic function. 
+Suppose $z_0 \in U$, and that $r > 0$ is such that $\overline{B_{z_0}}(r) \subseteq U$. Then, we have that, for all $z$ in $B_{z_0}(r)$,
+\[
+ f(z) = \frac{1}{2\pi{}i} \int_{\partial \overline{B_{z_0}(r)}} \frac{f(w)}{w - z} dz \mpunct{.}
+\]
+In particular, we have the mean value property\index{mean value property}:
+\[
+f(z_0) = \int_0^1 f(z_0 + re^{2\pi{}it}) dt \mpunct{,}
+\]
+i.e. $f(z_0)$ is the average of values of $f$ around a small ``linking circle''.
+\end{theorem}
+
+\begin{proof}
+  Let $\epsilon > 0$, then there exists $\delta > 0$ such that $\overline{B_z(\delta)} \subseteq B_{z_0}(r)$ and that, for $\abs{w - z} = \delta$, $\abs{f(w) - f(z)} \leq \epsilon$.
+
+Observe that $\partial B_{z_0}(r)$ and $\partial B_z(\delta)$ are related by an elementary deformation contained inside $U \setminus \{z\}$. 
+Indeed, these are linearly deformable to one another by the following homotopy:
+\[
+F(s, t) = (1 - s)\left(z_0 + re^{2\pi{}it}\right) + s\left(z + \delta e^{2\pi i t}\right) \mpunct{.}
+\]
+so we have, using the fact that $f(w)/(w - z)$ as a function of $w$ is holomorphic on $U \setminus \{z\}$:
+\begin{equation}
+  \label{eq:6.1}
+  \abs*{f(z) - \frac{1}{2\pi i}\int_{\partial B_{z_0}(r)} \frac{f(w)}{w - z} dw} = \abs*{f(z) - \frac{1}{2 \pi i} \int_{\partial B_z(\delta)} \frac{f(w)}{w - z}dw} \mpunct{.}
+\end{equation}
+
+Recalling that:
+\[
+\int_{\partial B_z(\delta)} \frac{1}{z - w} dw = 2 \pi i \mpunct{,}
+\]
+rewrite \eqref{eq:6.1} as:
+\[
+\abs*{\frac{1}{2 \pi i} \int_{\partial B_z(\delta)} \frac{f(z) - f(w)}{z - w} dw} \leq \frac{1}{2 \pi} 2 \pi \delta \frac{\epsilon}{\delta} = \epsilon \mpunct{.}
+\]
+\end{proof}
+
+\begin{definition}
+  Let $\phi : [0, 1] \rightarrow U$, $\psi : [0, 1] \rightarrow U$ be piecewise smooth closed curves, with $\phi(0) = \phi(1) = a$, $\psi(0) = \psi(1) = b$. 
+A homotopy\index{homotopy} from $\phi$ to $\psi$ is a continuous map $F : [0, 1] \times [0, 1] \rightarrow U$ such that:
+\begin{enumerate}
+\item $F(0, t) = \phi(t)$ and $F(1, t) = \psi(t)$,
+\item For all $s$ in $[0, 1]$, we have $F(s, t) = F_s(t)$ is closed and piecewise smooth.
+\end{enumerate}
+We say $\phi$, $\psi$ are homotopic\index{homotopic}.
+\end{definition}
+
+\begin{proposition}
+  If $U \subseteq \CC$ is a domain, $f : U \rightarrow \CC$ holomorphic and $\phi$, $\psi$ are homotopic closed paths in $U$, then we have:
+\[
+\int_\phi f(z) dz = \int_\psi f(z) dz
+\]
+\end{proposition}
+
+\begin{remark}
+  \begin{enumerate}
+  \item If every closed path in $U$ is homotopic to a constant path, $U$ is said to be simply connected\index{simply connected}.
+  \item Often, the definition is given just saying that $F_s(t)$ is closed for all $s$, with no condition of differentiability.
+  \end{enumerate}
+\end{remark}
+
+\begin{proof}
+  We claim that if $\phi$, $\psi$ are homotopic, then there exists a sequence $\phi = \phi_0, \phi_1, \dotsc, \phi_n = \psi$ such that $\phi_i, \phi_{i+1}$ are related by an elementary distribution deformation.
+
+Let $F$ be a given homotopy, and pick $\epsilon > 0$ such that for all $s, t \in [0, 1]$, we have $B_{F(s, t)}(\epsilon) \subseteq U$. 
+As $F$ is uniformly continuous, there exists $\delta > 0$ such that:
+\[
+\norm{(s,t) - (s', t')}_2 < \delta \Rightarrow \abs*{F(s, t) - F(s', t')} < \epsilon \mpunct{.}
+\]
+Now pick $n$ such that $2/n < \delta$, and let $\phi_i = F_{i/n}$, for $i = 0, \dotsc, n$. Let $x_j = j/n$, and $C_{ij} = B_{F(x_i, x_j)}(\epsilon)$. 
+Now, we have that, for $(i-1)/n < s < i/n$, $(j-1)/n < t < j/n$, we have:
+\[
+\norm{(s, t) - (x_i, x_j)}_2 < 2/n < \delta
+\]
+hence we have
+\[
+\abs*{F(s, t) - F(x_i, x_j)} < \epsilon
+\]
+thus we deduce that on the interval $[x_{j-1}, x_j]$, $\phi_{i-1}$, $\phi_i$ have image in convex $C_{ij}$.
+\end{proof}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End: 
