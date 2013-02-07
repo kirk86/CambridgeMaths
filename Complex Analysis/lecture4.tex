@@ -14,7 +14,7 @@ Now evaluate at $0$ to check the expressions agree.
 
 \paragraph{Heuristic remark}
 
-Instead of slitting the plane, one could view $\log$ as a multi-valued function $z \mapsto \{ \ln \abs{z} + i\theta \mid \theta \text{ is any value of } \arg z\}$. 
+Instead of slitting the plane, one could view $\log$ as a multi-valued function $z \mapsto \{ \ln \abs{z} + i\theta \mid \theta \text{ is any value of } \arg z\}$.
 A point $p \in \CC$ such that the multi-valued function $f$ has no continuous single-value branch in any neighbourhood $B_\epsilon(p) \setminus \{p\}$ is called a branch point\index{branch point} of $f$.
 For example, $0$ is a branch point of $\log$. We can set $z^\alpha = e^{\alpha\log z}$ and hence define for example $\sqrt{z}$ either as a function on a slit plane, or as a multi-valued function with branch point at $0$.
 To resolve the problem of branch points, it is possible to say that $\log$, $z^{1/2}$ are well-defined on certain Riemann surfaces (spaces mapping to $\CC^*$).
@@ -38,7 +38,7 @@ with equality if and only if $f$ is constant.
 \abs*{\int_a^b f(t)} &=& \int_a^b e^{-i\theta}f(t) dt \\
 &=& \int_a^b \Re (e^{-i\theta} f(t)) dt \quad \text{ as we know that the previous line is real} \\
 &\leq& \int_a^b \abs{f(t)} dt \\
-&\leq& (b-a)M \mpunct{.} 
+&\leq& (b-a)M \mpunct{.}
 \end{IEEEeqnarray*}
 We have equality if and only if $\abs{f(t)} = M$ and $\arg f(t) = \theta$, i.e. $f$ is constant.
 \end{proof}
@@ -72,8 +72,8 @@ If $\gamma : [a, b] \rightarrow \CC$ is $C^1$-smooth, we let:
 \int_{-\gamma} f(z)dz = -\int_\gamma f(z) dz \mpunct{.}
 \]
 
-\item The integral along $\gamma$ is independent of the parametrisation of the path. 
-Indeed, let $\phi : [a', b'] \rightarrow [a, b]$ be $C^1$ with $\phi(a') = a$ and $\phi(b') = b$. 
+\item The integral along $\gamma$ is independent of the parametrisation of the path.
+Indeed, let $\phi : [a', b'] \rightarrow [a, b]$ be $C^1$ with $\phi(a') = a$ and $\phi(b') = b$.
 Then if $\delta = \gamma \circ \phi$, we claim:
 \[
 \int_\delta f(z) dz = \int_\gamma f(z) dz \mpunct{.}
@@ -89,9 +89,9 @@ where we have set $u = \phi(t)$.
 
 If $\gamma$ is only piecewise $C^1$ smooth, we define:
 \[
-\int_\gamma f(z)dz = \sum_i \int_{\gamma_i} f(z)dz 
+\int_\gamma f(z)dz = \sum_i \int_{\gamma_i} f(z)dz
 \]
-where $\gamma = \gamma_1 * \gamma_2 * \dotsb * \gamma_r$ is a concatenation of smooth $\gamma_i$. 
+where $\gamma = \gamma_1 * \gamma_2 * \dotsb * \gamma_r$ is a concatenation of smooth $\gamma_i$.
 Integration is additive in the sense that, if $a < \tilde{a} < b$, then we have:
 \[
 \int_\gamma f(z)dz = \int_{\gamma\rvert_{[a, \tilde{a}]}} f(z)dz + \int_{\gamma\rvert_{[\tilde{a}, b]}} f(z) dz \mpunct{.}
@@ -116,8 +116,6 @@ Hence, if $n = -1$, we get $2\pi{}i$. If $n \neq -1$, we have that $\left[\frac{
 \begin{figure}
   \centering
    \begin{tikzpicture}[scale=0.75]
-    \tkzInit[xmin=-5,xmax=5,ymin=-1,ymax=5]
-
     \tkzDefPoint(0,0){O}
     \tkzDefPoint(-4,0){A}
     \tkzDefPoint(4,0){B}
@@ -175,7 +173,7 @@ Then we have the following:
 
 $F$ is called an antiderivative\index{antiderivative} of $f$ on $U$.
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "complex_analysis"
-%%% End: 
+%%% End:
