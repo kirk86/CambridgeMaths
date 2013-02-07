@@ -1,9 +1,9 @@
 
 \section{Bayesian estimation}
 
-So far, we have seen the frequentist approach to statistics, where inferential statements about $\theta$ may be interpreted in terms of repeat sampling. 
-In contrast, the Bayesian approach treats $\theta$ as a random variable, taking values in $\Theta$. 
-The investigator's information and beliefs about the possible values of $\theta$, before any observation of data, are summarised by a (known) prior distribution\index{prior distribution} $\pi(\theta)$. 
+So far, we have seen the frequentist approach to statistics, where inferential statements about $\theta$ may be interpreted in terms of repeat sampling.
+In contrast, the Bayesian approach treats $\theta$ as a random variable, taking values in $\Theta$.
+The investigator's information and beliefs about the possible values of $\theta$, before any observation of data, are summarised by a (known) prior distribution\index{prior distribution} $\pi(\theta)$.
 When data $\vec{X} = \vec{x}$ are observed, the resulting extra information about $\theta$ is combined with the prior to obtain the posterior distribution\index{posterior distribution} for $\theta$ given $\vec{X} = \vec{x}$, denoted $\pi(\theta \given \vec{x}$ ($=\pi_{\theta \given \vec{X}} (\theta \given \vec{x})$).
 Write $f_{\vec{X} \given \theta}(\vec{x} \given \theta)$ for the conditional probability distribution/mass function of $\vec{X}$ given $\theta$, and $f_{\vec{X}}(\vec{x})$ for the marginal probability distribution/mass function of $\vec{X}$.
 By Bayes' theorem, we have:
@@ -12,7 +12,7 @@ By Bayes' theorem, we have:
 \]
 where:
 \[
-f_{\vec{X}}(\vec{x}) = 
+f_{\vec{X}}(\vec{x}) =
 \begin{cases}
 \int f_{\vec{X} \given \theta}(\vec{x} \given \theta)\pi(\theta) d\theta & \text{ continuous case} \mpunct{,} \\
 \sum_i f_{\vec{X} \given \theta}(\vec{x} \given \theta_i)\pi(\theta_i) & \text{ discrete case} \mpunct{.}
@@ -73,8 +73,8 @@ This occurs when each side is equal $1/2$, so $\hat{\theta}^B$ is such that:
 $\hat{\theta}^B$ is the posterior median\index{posterior median}.
 
 \paragraph{Example}
-Given $\mu$, $X_1, \dotsc, X_n$ \iid $\Normal(\mu, 1)$. 
-Suppose that a priori, we have $\mu \sim \Normal(0, 1/\tau^2)$, for a known $\tau^2 > 0$. 
+Given $\mu$, $X_1, \dotsc, X_n$ \iid $\Normal(\mu, 1)$.
+Suppose that a priori, we have $\mu \sim \Normal(0, 1/\tau^2)$, for a known $\tau^2 > 0$.
 This yields the following posterior:
 \begin{IEEEeqnarray*}{rCl}
   \pi(\mu \given \vec{x}) &\propto& f_{\vec{X} \given \mu}(\vec{x} \given \mu)\pi(\mu) \\
@@ -92,15 +92,23 @@ The normal distribution is symmetric, so the posterior mean is equal to the post
 
 \begin{figure}
   \centering
-  
+
+  \begin{tikzpicture}[domain=-4:4,xscale=1.5,yscale=3]
+    \draw[help lines, ->] (-3,0)--(3,0);
+    \draw[help lines, ->] (0, -0.5)--(0, 1);
+
+    \draw plot[id=be_prior, samples=1000] function{exp(-x**2)/sqrt(2*pi)};
+    \draw plot[id=be_posterior, samples=1000] function{exp(-(x-1)**2 / 0.2)/sqrt(2*pi*0.2)};
+  \end{tikzpicture}
+
   \caption{Prior and posterior}
   \label{fig:6.1}
 \end{figure}
 [schema of prior vs posterior. Both normals. Mean shifted in direction of $\overline{x}$, variance is smaller]
 
-As in the figure \ref{fig:6.1}, we can see that the posterior mean is shifted in the direction of $\overline{x}$, and that the variance is smaller. 
+As in the figure \ref{fig:6.1}, we can see that the posterior mean is shifted in the direction of $\overline{x}$, and that the variance is smaller.
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
-%%% End: 
+%%% End:
