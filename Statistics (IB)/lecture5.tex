@@ -1,5 +1,5 @@
 \subparagraph{Uniform distribution}
-Let $X_1, \dotsc, X_n$ be \iid $\Uniform[0, \theta]$. Let $T = \max X_i$. 
+Let $X_1, \dotsc, X_n$ be \iid $\Uniform[0, \theta]$. Let $T = \max X_i$.
 $T$ is sufficient for $\theta$. Let $\tilde{\theta} = 2X_1$ be an unbiased estimator for $\theta$.
 We have that:
 \begin{IEEEeqnarray*}{rCl}
@@ -61,10 +61,10 @@ We find that $z_{0.025} = 1.96$, so the confidence interval is:
 
 The above example illustrates a procedure for finding confidence intervals:
 \begin{enumerate}
-\item Find a quantity $R(\vec{X}, \theta)$ such that the $\PP_\theta$-distribution of $R(\vec{X}, \theta)$ does not depend on $\theta$. 
+\item Find a quantity $R(\vec{X}, \theta)$ such that the $\PP_\theta$-distribution of $R(\vec{X}, \theta)$ does not depend on $\theta$.
 In the previous example, we had that $R(\vec{X}, \theta) = \sqrt{n}(\overline{X} - \theta)$. This is called the pivot\index{pivot}.
 
-\item Write don a probability statement of the form:
+\item Write down a probability statement of the form:
 \[
 \PP_\theta(z_1 < R(\vec{X}, \theta) < z_2) = \gamma \mpunct{.}
 \]
@@ -77,7 +77,7 @@ Usually, $z_1$, $z_2$ are percentage points.
 
 \subparagraph{Normal variables}
 
-Let $X_1, \dotsc, X_n$ be \iid $Normal(0, \sigma^2)$. Find a $99\%$ confidence interval for $\sigma^2$.
+Let $X_1, \dotsc, X_n$ be \iid $\Normal(0, \sigma^2)$. Find a $99\%$ confidence interval for $\sigma^2$.
 From the probability review, we have that:
 \[
 \frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 \sim \Xi^2_n
@@ -95,12 +95,12 @@ Hence we have that the following is a $99\%$ confidence interval for $\sigma^2$:
 \[
 \left(\frac{\sum X_i^2}{\Xi^2_n(0.005)}, \, \frac{\sum X_i^2}{\Xi^2_n(0.995)} \right) \mpunct{.}
 \]
-If $n = 50$, we get $\Xi^2_{50}(0.005) = 79.49$ and $\Xi^2_{50} = 27.99$. 
+If $n = 50$, we get $\Xi^2_{50}(0.005) = 79.49$ and $\Xi^2_{50} = 27.99$.
 
 \subparagraph{Bernoulli variables}
 
 Let $X_1, \dotsc, X_n$ be \iid $\Bernouilli(p)$ random variables. We know that the \mle of $p$ is $\hat{p} = \overline{X}$.
-By the central limit theorem, we have that as $n$ tends to infinity, 
+By the central limit theorem, we have that as $n$ tends to infinity,
 \[
 \frac{\sqrt{n}(\hat{p})}{\sqrt{p(1^-p)}} \rightarrow \Normal(0, 1) \mpunct{.}
 \]
@@ -117,7 +117,7 @@ Note that it is possible to have confidence regions for vector parameters (see e
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
-%%% End: 
+%%% End:

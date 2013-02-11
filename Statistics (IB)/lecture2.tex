@@ -20,7 +20,7 @@ This depends on the data only through $T\left(\vec{x}\right) = \sum_{i=1}^n$ (th
 \[
 p_{\vec{X} \given T} \left( \vec{x} \given t\right) = \frac{\PP_\theta(\vec{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t}} = \frac{1}{\binom{n}{t}} \mpunct{.}
 \]
-i.e. the conditional distribution of $\vec{X}$ given $T = t$ does not depend on $\theta$. Thus, if we know $T$, then additional knowledge of $\vec{X}$ (e.g. knowing the exact sequence of $0$ and $1$) does not give extra information about $\theta$. 
+i.e. the conditional distribution of $\vec{X}$ given $T = t$ does not depend on $\theta$. Thus, if we know $T$, then additional knowledge of $\vec{X}$ (e.g. knowing the exact sequence of $0$ and $1$) does not give extra information about $\theta$.
 
 \begin{definition}
   A statistic $T$ is sufficient\index{sufficient} for $\theta$ if the conditional distribution, of $\vec{X}$ given $T$ does not depend on $\theta$.
@@ -45,16 +45,16 @@ Suppose that $p_{\vec{X}} \left(\vec{x}; \theta\right) = g\left(T\left(\vec{x}\r
 \begin{IEEEeqnarray*}{rCl}
 p_{\vec{X} \given T} \left (\vec{x} \given t \right) &=& \frac{\PP_\theta \left( \vec{X} = \vec{x}, T\left(\vec{X}\right) = t\right)}{\PP_\theta \left(T = t\right)} \\
 &=& \frac{g\left(T\left(\vec{x}\right), \theta\right)h\left(\vec{x}\right)}{\sum_{\{\vec{x} \mid T\left(\vec{x'}\right) = t\}}g\left(T\left(\vec{x'}\right), \theta\right)h\left(\vec{x'}\right)} \\
-&=& \frac{g(t, \theta)h(\vec{x})}{g(t, \theta)\sum_{\{\vec{x} \mid T\left(\vec{x'}\right)} h(\vec{x'})} \\
-&=& \frac{h(\vec{x})}{\sum_{\{\vec{x} \mid T\left(\vec{x'}\right)\}} h(\vec{x'})} \mpunct{.}
+&=& \frac{g(t, \theta)h(\vec{x})}{g(t, \theta)\sum_{\{\vec{x} \mid T\left(\vec{x'}\right) =t\}} h(\vec{x'})} \\
+&=& \frac{h(\vec{x})}{\sum_{\{\vec{x} \mid T\left(\vec{x'}\right) = t\}} h(\vec{x'})} \mpunct{.}
 \end{IEEEeqnarray*}
 This does not depend on $\theta$, hence $T$ is sufficient for $\theta$.
 
-Conversely, suppose $T$ is sufficient for $\theta$. If $T\left(\vec{x}\right)$, then 
+Conversely, suppose $T$ is sufficient for $\theta$. If $T\left(\vec{x}\right) = t$, then
 \begin{IEEEeqnarray*}{rCl}
 \PP_\theta \left(\vec{X} = \vec{x}\right)  \\
 &=& \sum_{t'} \underbrace{\PP_\theta \left(\vec{X} = \vec{x}\right)}_{\text{for this $x$, this probability is zero unless $t' = t$}}\PP_\theta\left(T = t'\right)  \\
-&=& \underbrace{\PP_\theta \left(\vec{X} = \vec{x}\right) \given T = t)}_{\text{independent of $\theta$ by assumption of sufficiency}}\PP_\theta(T = t)
+&=& \underbrace{\PP_\theta \left(\vec{X} = \vec{x} \given T = t\right)}_{\text{independent of $\theta$ by assumption of sufficiency}}\PP_\theta(T = t)
 \end{IEEEeqnarray*}
 \end{proof}
 
@@ -77,7 +77,7 @@ The sample space $\curlyX^n$ is partitioned by $T$ into sets
 \[
 \left\{ \vec{x} \in \curlyX^n \mid T\left(\vec{x}\right) = t \right\} \mpunct{,}
 \]
-and if $T$ is sufficient, then this data reduction does not lose an information on $\theta$. 
+and if $T$ is sufficient, then this data reduction does not lose an information on $\theta$.
 We now seek a statistic that achieves the maximum possible data reduction.
 
 \begin{definition}
@@ -90,7 +90,7 @@ Equivalently, the partition for $T$ is coarser than that for $T'$ (i.e. if $A_{T
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
-%%% End: 
+%%% End:

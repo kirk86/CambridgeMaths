@@ -2,7 +2,7 @@
 \section{Mean squared error}
 \emph{In this section, $\theta$ is scalar}.
 
-Roughly, we prefer estimators whose sampling distributions ``cluster more closely'' around the true value of $\theta$. 
+Roughly, we prefer estimators whose sampling distributions ``cluster more closely'' around the true value of $\theta$.
 For example, in figure \ref{fig:4.1}, we prefer (a) to (b). However, in figure \ref{fig:4.2}, (a') is biased, but might still be preferred.
 
 \begin{figure}[h]
@@ -14,7 +14,7 @@ For example, in figure \ref{fig:4.1}, we prefer (a) to (b). However, in figure \
 
     \node (a) at (0.5, 2) {$(a)$};
     \node (b) at (1.5, 0.5) {$(b)$};
-    
+
     \draw plot[id=a,samples=1000] function{exp(-(x/0.2)**2)/(0.2*sqrt(2*pi))};
     \draw plot[id=b,samples=1000] function{exp(-x**2)/sqrt(2*pi)};
   \end{tikzpicture}
@@ -52,7 +52,7 @@ For an unbiased estimator, we have: $\text{mse}(\hat{\theta}) = \text{var}_\thet
 The next theorem gives a way to improve estimator in the m.s.e. sense.
 
 \begin{theorem}[Rao-Blackwell\index{Rao-Blackwell theorem} theorem]
-Let $T$ be a sufficient statistic for$\theta$ and let $\tilde{\theta}$ be an estimator for $\theta$ with $\EE_\theta\left[\tilde{\theta}^2\right] < \infty$ for all $\theta$.
+Let $T$ be a sufficient statistic for $\theta$ and let $\tilde{\theta}$ be an estimator for $\theta$ with $\EE_\theta\left[\tilde{\theta}^2\right] < \infty$ for all $\theta$.
 Let $\hat{\theta} = \EE_\theta\left[\tilde{\theta} \mid T\right]$. Then, for all $\theta$, we have:
 \[
 \EE_\theta\left[\left(\hat{\theta}-\theta\right)^2\right] \leq \EE_\theta \left[\left(\tilde{\theta} - \theta\right)^2\right]

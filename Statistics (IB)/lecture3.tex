@@ -11,9 +11,9 @@ then $T(\vec{x})$ is minimal sufficient for $\theta$.
 \end{theorem}
 
 \begin{proof}
-  \emph{Non examinable.} First, we aim to use the factorisation criterion to show sufficiency. Define an equivalence relation $\sim$ on $\curlyX^n$ by setting $\vec{x} \sim \vec{y}$ when $T(\vec{x}) = T(\vec{y})$. 
-Let $\mathcal{U} = \{ T(\vec{x}) \mid \vec{x} \in \curlyX^n \}$, and for each $u$ in $\mathcal{U}$, choose a representative $\vec{x}_u$ from the equivalence class $\{ \vec{x} \mid T(\vec{x}) = u$. 
-Let $\vec{x} \in \curlyX^n$ and suppose that $T(\vec{x}) = t$. Then $\vec{x}$ is in the equivalence class $\{\vec{x'} \mid T(\vec{x'}) = t$, which has representative $\vec{x}_t$, which may also be written as $\vec{x}_{T(x)}$. 
+  \emph{Non examinable.} First, we aim to use the factorisation criterion to show sufficiency. Define an equivalence relation $\sim$ on $\curlyX^n$ by setting $\vec{x} \sim \vec{y}$ when $T(\vec{x}) = T(\vec{y})$.
+Let $\mathcal{U} = \{ T(\vec{x}) \mid \vec{x} \in \curlyX^n \}$, and for each $u$ in $\mathcal{U}$, choose a representative $\vec{x}_u$ from the equivalence class $\{ \vec{x} \mid T(\vec{x}) = u$.
+Let $\vec{x} \in \curlyX^n$ and suppose that $T(\vec{x}) = t$. Then $\vec{x}$ is in the equivalence class $\{\vec{x'} \mid T(\vec{x'}) = t$, which has representative $\vec{x}_t$, which may also be written as $\vec{x}_{T(x)}$.
 We have $\vec{x} \sim \vec{x}_t$, so that $T(\vec{x}) = T(\vec{x}_t)$. Hence by hypothesis, the ratio $f_{\vec{X}}(\vec{x}; \theta) / f_{\vec{X}}(\vec{x}_{T(\vec{x})}; \theta)$ does not depend on $\theta$, so let this be $h(\vec{x})$.
 Let $g(t, \theta) = f_{\vec{X}}(\vec{x}_t, \theta)$, then we have:
 \[
@@ -27,7 +27,7 @@ f_{\vec{X}}(\vec{x}; \theta) = g_S(S(\vec{x}, \theta))h_S(\vec{x})\mpunct{.}
 \]
 Suppose that $S(\vec{x}) = S(\vec{y})$, then we have:
 \[
-\frac{f_{\vec{X}}(\vec{x}; \theta)}{f_{\vec{X}}(\vec{y}; \theta} 
+\frac{f_{\vec{X}}(\vec{x}; \theta)}{f_{\vec{X}}(\vec{y}; \theta}
 = \frac{g_S(S(\vec{x}, \theta))h_S(\vec{x})}{g_S(S(\vec{y}, \theta))h_S(\vec{y})}
 = \frac{h_S(\vec{x})}{h_S(\vec{y})} \mpunct{.}
 \]
@@ -37,7 +37,7 @@ This means that the ratio $f_{\vec{X}}(\vec{x}; \theta) / f_{\vec{X}}(\vec{x}_{T
 \paragraph{Example}
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma^2)$, and let $\theta = (\mu, \sigma^2)$. We have the following:
 \begin{IEEEeqnarray*}{rCl}
-\frac{f_{\vec{x}}(\vec{x}, \mu, \sigma^2)}{f_{\vec{x}}(\vec{y}, \mu, \sigma^2)} &=& 
+\frac{f_{\vec{x}}(\vec{x}, \mu, \sigma^2)}{f_{\vec{x}}(\vec{y}, \mu, \sigma^2)} &=&
 \frac{\left(\frac{1}{\sqrt{2\pi\sigma^2}}\right)^n\exp\left\{-\frac{1}{2\sigma^2}\sum (x_i - \mu)^2\right\}}{\left(\frac{1}{\sqrt{2\pi\sigma^2}}\right)^n \exp\left\{-\frac{1}{2\sigma^2}\sum (y_i - \mu)^2\right\}} \\
 &=& \exp\left\{ -\frac{1}{2\sigma^2}\left(\sum x_i^2 - \sum y_i^2\right) + \frac{\mu}{\sigma^2}\left(\sum x_i - \sum y_i\right)\right\} \mpunct{.}
 \end{IEEEeqnarray*}
@@ -75,7 +75,7 @@ It is often easier to maximise the log-likelihood:
 \begin{itemize}
 \item Let $X_1, \dotsc, X_n$ be \iid $\Bernouilli(p)$. Then the likelihood and log-likelihood functions are:
 \[
-L(p = p^{\sum x_i}(1-p)^{n - \sum x_i} \text{ and } 
+L(p) = p^{\sum x_i}(1-p)^{n - \sum x_i} \text{ and }
 \ell(p) = \left(\sum x_i\right)\log p + \left(n - \sum x_i\right)\log (1 - p) \mpunct{.}
 \]
 Taking the derivative, we have that:
@@ -95,7 +95,7 @@ Solving the simultaneous equations:
 \[
 \frac{\partial \ell}{\partial \mu} = 0 \quad \frac{\partial \ell}{\partial \sigma^2} = 0
 \]
-gives $\hat{\mu} = \overline{X}$, and $\hat{\sigma^2} = \frac{1}{n}\sum\left(X_i - \overline{X}\right)^2$. We can check that this is indeed a maximum. 
+gives $\hat{\mu} = \overline{X}$, and $\hat{\sigma^2} = \frac{1}{n}\sum\left(X_i - \overline{X}\right)^2$. We can check that this is indeed a maximum.
 Hence, the maximum likelihood estimator of $(\mu, \sigma^2)$ is:
 \[
 \left(\hat{\mu}, \hat{\sigma^2}\right) = \left(\overline{X}, \frac{1}{n}\sum\left(X_i - \overline{X}\right)^2\right) \mpunct{.}
@@ -103,7 +103,7 @@ Hence, the maximum likelihood estimator of $(\mu, \sigma^2)$ is:
 
 \item Let $X_i, \dotsc, X_n$ be \iid $\Uniform[0, \theta]$. The likelihood function is:
 \[
-L(\theta) = -\frac{1}{\theta^n}\indicator{\max_i x_i \leq \theta}\indicator{\min_i x_i \geq 0} \mpunct{.}
+L(\theta) = \frac{1}{\theta^n}\indicator{\max_i x_i \leq \theta}\indicator{\min_i x_i \geq 0} \mpunct{.}
 \]
 For $\theta \geq \max x_i$, we have $L(\theta) = \frac{1}{\theta^n}$ and is decreasing as $\theta$ increases. For $\theta < \max x_i$, $L(\theta) = 0$.
 [Graph of L(theta)]
@@ -111,7 +111,7 @@ From the graph, the \mle is $\hat{\theta} = \max_i X_i$.
 
 Is $\hat{\theta}$ unbiased? First we need to find the distribution of $\max X_i$. We do this via the distribution function of $\max X_i$. For $0 \leq t \leq \theta$, we have:
 \begin{IEEEeqnarray*}{rCl}
-F_\theta(t) = \PP\left(\hat{\theta} \leq t\right) = \PP( \max X_i \leq t) &=& \PP (X_i  \leq t, i = 1, \dotsc, n) \\
+F_{\hat{\theta(t)}} = \PP\left(\hat{\theta} \leq t\right) = \PP( \max X_i \leq t) &=& \PP (X_i  \leq t, i = 1, \dotsc, n) \\
 &=& \left(\PP(X_1 \leq t)\right)^n \text{ as the $X_i$ are \iid } \\
 &=& \left(\frac{t}{\theta}\right)^n
 \end{IEEEeqnarray*}
@@ -137,7 +137,7 @@ To maximise $L(\theta)$ a function of $\theta$, we only need to maximise $g\left
 \item Often, there is no closed form for the \mle and numerical methods must be used.
 \end{enumerate}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
-%%% End: 
+%%% End:
