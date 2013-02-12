@@ -1,0 +1,105 @@
+then, we have that the likelihood ratio is
+\begin{IEEEeqnarray*}{rCl}
+\Lambda_{\vec{x}} (H_0; H_1) &=& \frac{\left( \frac{1}{\sqrt{2 \pi \sigma_0^2}} \right)^n \exp \left\{ -\frac{1}{2 \sigma_0^2}\sum (x_i - \mu_1)^2 \right\} }{\left( \frac{1}{\sqrt{2 \pi \sigma_0^2}} \right)^n \exp \left\{ -\frac{1}{2 \sigma_0^2}\sum (x_i - \mu_0)^2 \right\}} \\
+&=& \exp \left\{ \frac{(\mu_1 - \mu_0)}{\sigma_0^2} \sum x_i + \frac{n}{2 \sigma_0^2} (\mu_0^2 - \mu_1^2) \right\} \mpunct{.}
+\end{IEEEeqnarray*}
+
+The likelihood ratio is an increasing function of $\sum x_i$ (as we have $\mu_1 < \mu_0$, and hence is an increasing function of $\overline{x}$.
+The likelihood ratio test of size $\alpha$ rejects $H_0$ if $\overline{x} > k$ where $k$ is chosen such that
+\[
+\PP \big(\overline{X} > k \given H_0 \big) = \alpha \mpunct{.}
+\]
+Under $H_0$, we have that $\overline{X} \sim \Normal(\mu_0, \sigma_0^2/n)$, and hence we have that
+\[
+\PP \big( \overline{X} > k \given H_0 \big) = \PP \left( \underbrace{\frac{\sqrt{n}\left(\overline{X} - \mu_0 \right)}{\sigma_0}}_{Z \sim \Normal(0, 1)} > \tilde{k} \given H_0 \right) \mpunct{,}
+\]
+and this is $\alpha$ if $\tilde{k} = z_\alpha$ (upper $100\alpha\%$ point of $\Normal(0, 1)$).
+We reject $H_0$ if $Z = \sqrt{n}(\overline{X} - \mu_0)/\sigma_0 > z_\alpha$.
+This is called a Z-test\index{Z-test}.
+
+The p-value\index{p-value} (or significance value\index{significance value}) of an observed value $Z = z$ in the previous example is
+\[
+p^* = \PP(Z > z \given H_0) \mpunct{,}
+\]
+i.e. it is the probability under $H_0$ of obtaining data as extreme or more extreme than our observed data.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[domain=-3:3,xscale=1.5,yscale=3]
+    \draw[help lines, ->] (-3,0)--(3,0);
+    \draw[help lines, ->] (0, -0.5)--(0, 1);
+
+    \draw plot[id=standard_normal_p_value, samples=1000] function{exp(-x**2/2)/sqrt(2*pi)};
+
+    \fill[fill=red] (1, 0) -- plot[id=p_value_tail,domain=1:3,samples=400] function{exp(-x**2/2)/sqrt(2*pi)} -- (3,0) -- cycle;
+  \end{tikzpicture}
+  \caption{$p^*$}
+\end{figure}
+
+\section{Composite hypotheses}
+
+Now consider testing $H_0 : \theta \in \Theta_0$ versus $H_1 : \theta \in \Theta_1$ where $\Theta_0 \cap \Theta_1 \neq \varnothing$.
+Define the power function\index{power function} of a test with critical region $C$ to be
+\[
+W(\theta) = \PP_\theta (\vec{X} \in C) = \PP_\theta (\text{reject } H_0) \mpunct{.}
+\]
+We would like $W(\theta)$ to be small on $\Theta_0$ and large on $\Theta_1$.
+The size\index{size} of the test is $\alpha = \sup_{\theta \in \Theta_0} W(\theta)$.
+
+It is sometimes possible to extent the Neyman-Pearson theory in the following case.
+We say a test with a power function $W(\theta)$ is a uniformly most powerful\index{uniformly most powerful} size $\alpha$ test if
+\begin{enumerate}
+\item $\sup_{\theta \in \Theta_0} W(\theta) = \alpha$
+\item for any other test with power function $W^* (\theta)$ and size less or equal to $\alpha$, we have $W^*(\theta) \leq W(\theta)$ for all $\theta \in \Theta_1$
+\end{enumerate}
+The uniformly most powerful test may not exist, but likelihood ratio tests of one sided hypotheses are often uniformly most powerful.
+
+\paragraph{Example}
+Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma_0^2)$, with $\sigma_0^2$ known. Consider the test with the following hypotheses
+\[
+H_0 : \mu \leq \mu_0 \text{ and } H_1 : \mu > \mu_0
+\]
+where $\mu_0$ is a known value.
+
+First consider the test in example 2.1 with critical region $C = \{ \vec{x} : \sqrt{n}(\overline{x} - \mu_0)/\sigma_0 > z_\alpha$.
+For $\mu \in \RR$, the power function of this test is
+\begin{IEEEeqnarray*}{rCl}
+  W(\mu) &=& \PP_\mu (\text{reject $H_0$}) \\
+  &=& \PP_\mu \left( \frac{\sqrt{n}(\overline{X} - \mu_0)}{\sigma_0} > z_\alpha \right) \\
+&=& \PP_\mu \left( \underbrace{\frac{\sqrt{n}(\overline{X} - \mu)}{\sigma_0}}_{\sim \Normal(0, 1)} > z_\alpha + \frac{\sqrt{n}(\mu_0 - \mu)}{\sigma_0} \right) \\
+&=& 1 - \Phi \left(z_\alpha + \frac{\sqrt{n}(\mu_0 - \mu)}{\sigma_0} \right) \mpunct{.}
+\end{IEEEeqnarray*}
+$W(\mu)$ is an increasing function of $\mu$.
+We also know that $W(\mu_0) = \alpha$.
+Hence we have that $\sup_{\mu \leq \mu_0} W(\mu) = \alpha$, i.e. we have shown the first condition of the definition of a uniformly most powerful test.
+
+Observe that for any $\mu_1 > \mu_0$, the most powerful test of $H_0' : \mu = \mu_1$ versus $H_1' : \mu = \mu_1$ has critical region $C$ (the calculations in example 2.1 depended only on the fact that $\mu_1 > \mu_0$ and not on the particular value of $\mu_1$).
+Let $C^*$ and $W^*$ belong to any other test of $H_0 : \mu \leq \mu_0$ versus $H_1 : \mu > \mu_0$ with size less than or equal to $\alpha$.
+Then $C^*$ can be regarded as a test of $H_0'$ versus $H_1'$, with size smaller than $\alpha$, hence by \cref{thm:np} we have that $W^*(\mu_1) \leq W(\mu_1)$. This holds for all $\mu_1 > \mu_0$, and hence we have verified the second condition of the definition of an uniformly most powerful test.
+
+Thus, we have that $C$ is a uniformly most powerful test $\alpha$ for $H_0 : \mu \leq \mu_0$ versus $H_1 : \mu > \mu_0$.
+
+\section{Generalised likelihood ratio tests}
+
+So far, we have considered situations that can be reduced to likelihood ratio tests of simple hypotheses.
+Now consider testing $H_0 : \theta \in \Theta_0$ versus $H_1 : \theta \in \Theta_1 = \Theta \setminus \Theta_0$.
+We define the generalised likelihood ratio\index{generalised likelihood ratio} of $H_0$ and $H_1$ to be
+\[
+\Lambda_{\vec{x}} (H_0; H_1)  = \frac{\sup_{\theta \in \Theta} L(\theta, \vec{x})}{\sup_{\theta \in \Theta_0} L(\theta, \vec{x})} \quad \left(\geq 1\right) \mpunct{.}
+\]
+Intuitively, large values of $\Lambda$ indicate departure from $H_0$.
+Note that, if we would be to define
+\[
+\Lambda^*_{\vec{x}} (H_0; H_1)= \frac{\sup_{\theta \in \Theta_1} L(\theta, \vec{x})}{\sup_{\theta \in \Theta_0} L(\theta, \vec{x})} \mpunct{,}
+\]
+then we would have that
+\[
+\Lambda = \max \left\{1, \Lambda^*\right\} \mpunct{,}
+\]
+so large values of $\Lambda$ correspond to large values of $\Lambda^*$.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:
