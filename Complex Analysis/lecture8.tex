@@ -1,0 +1,111 @@
+\section{Taylor's theorem}
+
+\begin{theorem}[name=Taylor's theorem, label=thm:taylor]
+  Let $f : B_a(r) \rightarrow \CC$ be holomorphic. Then $f$ has a convergent power series representation on $B_a(r)$
+\[
+f(w) = \sum_{n=0}^\infty c_n(w - a)^n \mpunct{.}
+\]
+The coefficients are given by
+\[
+c_n = \frac{f^{(n)}(a)}{n!} = \frac{1}{2 \pi i} \int_{\partial B_a(\rho)} \frac{f(z)}{(z-a)^{n+1}} \: dz
+\]
+where $0 < \rho < r$.
+\end{theorem}
+
+\begin{remark}
+We saw directly that a convergent power series was infinitely differentiable, and that the coefficients of power series are given by $c_n = f^{(n)}(a)/n!$.
+\end{remark}
+
+\begin{proof}
+Consider a point $w$ with $\abs{w - a} < \rho < r$. By \cref{thm:cauchy}, we have that:
+\[
+f(w) = \frac{1}{2 \pi i}\int_{\partial B_a(\rho)} \frac{f(z)}{z - w} dz \mpunct{.}
+\]
+Now remark that we have
+\[
+\frac{1}{z - w} = \frac{1}{(z - a)\left( 1 - \frac{w - a}{z - a} \right)} = \sum_{n = 0}^\infty \frac{(w-a)^n}{(z-a)^{n+1}} \mpunct{.}
+\]
+By comparison to a geometric progression, this converges uniformly on $\abs{z - a} = \rho$.
+As we have that the Riemann integral behaves nicely with respect to uniform convergence, we can exchange summation of a uniformly convergent power series and its integration.
+Hence, we have that
+\begin{IEEEeqnarray*}{rCl}
+f(w) &=& \frac{1}{2 \pi i} \int_{\partial B_a(\rho)} f(z) \sum_{n=0}^\infty \frac{(w-a)^n}{(z- a)^{n+1}} dz \\
+&=& \sum_{n=0}^\infty \left( \frac{1}{2 \pi i} \int_{\partial B_a(\rho)} \frac{f(z)}{(z-a)^{n+1}} \right) (w-a)^n \mpunct{.}
+\end{IEEEeqnarray*}
+which exhibits a convergent power series representing $f$.
+\end{proof}
+
+Contrast that result with the fact that  $exp \left(-\frac{1}{x^2}\right)$ has identically zero ``Taylor series'' at $0$. This gives a proof of Cauchy's formula for derivatives, but it is a bit sleight-of-hand. We sketch an alternative
+
+\begin{proof}
+  We want to prove that:
+\[
+f^{(n)}(a) = \frac{n!}{2 \pi i} \int_\gamma \frac{f(z)}{(z-a)^{n+1} dz \mpunct{.}
+\]
+  Proof by induction on $n$. Suppose that the result holds for $n = k$.
+  We have that
+  \begin{IEEEeqnarray*}{rCl}
+f^{(k)}(a + h) - f^{(k)}(a) &=& \frac{k!}{2 \pi i} \int_{\partial B_a(2r)} f(w) \left( \frac{1}{(w - a -h)^{k+1}} - \frac{1}{(w-a)^{k+1}} \right) dw \\
+&=& \frac{k!}{2 \pi i} \int_{\partial B_a(2r)} f(w) \left( (k+1) \int_{ [a, a+h] } (w - \xi)^{-(k+2)} d\xi \right) dw \mpunct{.}
+  \end{IEEEeqnarray*}
+
+Now consider
+\[
+F(h) = \frac{f^{(k)}(a+h) - f^{(k)}(a)}{h} - \frac{(k+1)!}{2 \pi i}\int_{\partial B_a(2r)} \frac{f(w)}{(w-a)^{k+2}} dw \mpunct{.}
+\]
+and use the fundamental theorem of calculus a second time to obtain
+\[
+F(h) = \frac{(k+2)!}{2 \pi i h} \int_{\partial B_a(2r)} f(w) \left( \int_{[a, a+h]} \int_{[a, \xi]} (w - \tau)^{-(k+3)} d\tau \: d\xi \right) \: dw \mpunct{.}
+\]
+Now we know that $f$ is holomorphic, hence continuous and bounded on $\overline{B_a(2r)}$, say $\abs{f(z)} < M$. We have that $\xi \in [a, a+h]$ implies $\abs{w - \tau} \leq r$ for $w \in \partial B_a(2r)$, and that $\tau \in [a, a+h]$ implies that
+\[
+\abs{F(h)} \leq \frac{(k+2)!}{2 \pi \abs{h}} 4 \pi r M \frac{abs{h}^2}{r^{h+3}} = O(\abs{h}) \mpunct{.}
+\]
+\end{proof}
+
+\begin{corollary}[Morera's theorem]
+Let $U$ be a domain and $f : U \rightarrow \CC$ continuous. If we have that
+\[
+\int_\gamma f(z) dz = 0
+\]
+for all closed paths $\gamma$, then $f$ is holomorphic on $U$.
+\end{corollary}
+
+Note that this is a ``converse'' to Cauchy's theorem bu we do not assume $U$ is simply connected.
+
+\begin{proof}
+As $\int_\gamma f(z) dz = 0$ for all closed paths $\gamma$, we know that $f$ has an antiderivative $F(z)$, defined as
+\[
+
+F(z) = \int_{a_0}^z f(w) dw \mpunct{.}
+\]
+with $F'(t) = f(t)$.
+By definition, $F(z)$ is holomorphic, as it is clearly differentiable with derivative $f$.
+So $F(z)$ is infinitely differentiable, and in particular, $f(z) = F'(z)$ is holomorphic.
+\end{proof}
+
+Let $f : B_a(r) \rightarrow \CC$ be holomorphic. We have $f(z) = \sum_{n \geq 0} c_n(z-a)^n$.
+Observe that if $\forall n, c_n  = 0$ then $f \equiv 0$ on $B_a(r)$.
+Otherwise, there exists a smallest $N > 0$ such that $c_N \neq 0$.
+Then $f(z) = (z - a)^N g(z)$ where $g(z) = \sum_{n \geq N}c_n(z-a)^{n-N}$ and $g(a) \neq 0$.
+
+\begin{definition}
+  If $N > 0$, we say hat $f$ has a zero of order $N$ at $a$. We have that
+\[
+N = min \{ n \mid f^{(n)}(a) \neq 0 \}
+\]
+\end{definition}
+
+\begin{lemma}[Principle of isolated zeros]
+  If $f : B_a(r) \rightarrow \CC$ is holomorphic and $f$ is not identically $0$, then there exists some $0 \rho < r$ such that $f(z) \neq 0$ for $z \in B_a(\rho) \setminus \{ a \}$.
+\end{lemma}
+
+\begin{proof}
+  If $f(a) \neq 0$, this is true by continuity of $f$.
+  If there exists a zero of order $N$, then the result holds by continuity of $g$, where $f(z) = (z-a)^N g(z)$.
+\end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
