@@ -35,12 +35,12 @@ f(w) &=& \frac{1}{2 \pi i} \int_{\partial B_a(\rho)} f(z) \sum_{n=0}^\infty \fra
 which exhibits a convergent power series representing $f$.
 \end{proof}
 
-Contrast that result with the fact that  $exp \left(-\frac{1}{x^2}\right)$ has identically zero ``Taylor series'' at $0$. This gives a proof of Cauchy's formula for derivatives, but it is a bit sleight-of-hand. We sketch an alternative
+Contrast that result with the fact that  $exp \left(-\frac{1}{x^2}\right)$ has identically zero ``Taylor series'' at $0$. This gives a proof of Cauchy's formula for derivatives, but it is a bit sleight-of-hand. We sketch an alternative.
 
 \begin{proof}
   We want to prove that:
 \[
-f^{(n)}(a) = \frac{n!}{2 \pi i} \int_\gamma \frac{f(z)}{(z-a)^{n+1} dz \mpunct{.}
+f^{(n)}(a) = \frac{n!}{2 \pi i} \int_\gamma \frac{f(z)}{(z-a)^{n+1}} dz \mpunct{.}
 \]
   Proof by induction on $n$. Suppose that the result holds for $n = k$.
   We have that
@@ -71,12 +71,11 @@ Let $U$ be a domain and $f : U \rightarrow \CC$ continuous. If we have that
 for all closed paths $\gamma$, then $f$ is holomorphic on $U$.
 \end{corollary}
 
-Note that this is a ``converse'' to Cauchy's theorem bu we do not assume $U$ is simply connected.
+Note that this is a ``converse'' to Cauchy's theorem but we do not assume $U$ is simply connected.
 
 \begin{proof}
 As $\int_\gamma f(z) dz = 0$ for all closed paths $\gamma$, we know that $f$ has an antiderivative $F(z)$, defined as
 \[
-
 F(z) = \int_{a_0}^z f(w) dw \mpunct{.}
 \]
 with $F'(t) = f(t)$.
@@ -96,9 +95,9 @@ N = min \{ n \mid f^{(n)}(a) \neq 0 \}
 \]
 \end{definition}
 
-\begin{lemma}[Principle of isolated zeros]
+\begin{proposition}[name=Principle of isolated zeros]
   If $f : B_a(r) \rightarrow \CC$ is holomorphic and $f$ is not identically $0$, then there exists some $0 \rho < r$ such that $f(z) \neq 0$ for $z \in B_a(\rho) \setminus \{ a \}$.
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
   If $f(a) \neq 0$, this is true by continuity of $f$.
