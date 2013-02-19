@@ -1,0 +1,97 @@
+\section{The identity theorem}
+
+
+\begin{definition}
+If $S \subseteq \CC$, a non-isolated point of $S$ is some $w \in S$ such that
+\[
+\forall \epsilon > 0, \ S \cap B_w(\epsilon) \setminus \{ w \} \neq \varnothing \mpunct{.}
+\]
+\end{definition}
+
+\begin{theorem}[name=Identity theorem,label=thm:identity]
+If $U \subseteq \CC$ is a domain, and $f, g : U \rightarrow \CC$ are holomophic on $U$ such that $S = \{ z \in U \mid f(z) = g(z) \}$ has a non-isolated point, then $f(z) = g(z)$ for all $z \in U$.
+\end{theorem}
+
+\begin{proof}
+Let $w \in S$ be a non-isolated point of $S$. $h = f - g$ is holomorphic on $U$, hence on some $B_w(r) \subseteq U$.
+$h$ has a non-isolated zero at $w$, hence $h \equiv 0$ on $B_w(r)$.
+Now suffices to show that if $h : U \rightarrow \CC$ is holomorphic and $h \equiv 0$ on $B_w(r) \subseteq U$, then $h \equiv 0$ on $U$.
+We consider
+\[
+A = \{ w \in U \mid \exists r, \ h \equiv 0 \text{ on } B_w(r) \subseteq U \}
+\]
+and
+\[
+B = \{ q \in U \mid \exists n \geq 0 \text{ such that } h^{(n)}(q) \neq 0 \} \mpunct{.}
+\]
+Clearly, we have that $A \cap B = \varnothing$, $A$ is open by definition, and $B$ is open since $h^{(n)}$ is continuous.
+As a path-connected space is connected, we must have that one of $A$, $B$ is empty.
+However, we know that $A \neq \varnothing$, hence we have that $B = \varnothing$ and $A = U$.
+
+\end{proof}
+
+\begin{corollary}[Global maximum principle]
+  Let $U \in \CC$ be a bounded domain, and let $\overline{U}$ be its closure.
+If $f : U \rightarrow \CC$ is holomorphic on $U$, and $f$ extends to a continuous function on $\overline{U}$, then $\abs{f}$ attains its maximum at a point of $\partial U = \overline{U} \setminus U$.
+\end{corollary}
+
+
+\begin{proof}
+By  the local maximum principle, we have that ``if $f : B_a(r) \rightarrow \CC$ holomorphic, then $\abs{f}$ is maximised at $a$ implies that $f$ is constant''.
+Since $U$ is bounded, $\overline{U}$ closed and bounded. Since $f : \overline{U} \rightarrow \CC$ continuous, it achieves a maximum $M = \max_{x \in \overline{U}} \abs{f(x)}$.
+If there exists $a \in U$ such that $\abs{f(a)} = M$, then there exists $\rho > 0$ such that $B_a(\rho) \subseteq U$ on which $f$ is holomorphic.
+By the local maximum principle, $f$ is then constant on $B_a(\rho) \subseteq U$.
+Now, by \cref{thm:identity}, $f$ is constant on $U$, hence on $\overline{U}$.
+\end{proof}
+
+\begin{definition}
+  Let $U \subseteq \tilde{U}$ be domains in $\CC$.
+Let $h : U \rightarrow \CC$ be holomorphic.
+A holomorphic function $\varphi : \tilde{U} \rightarrow \CC$ such that $\varphi\rangle_U \equiv h$ is called an analytic continuation\index{analytic continuation} of $h$ to $\tilde{U}$.
+\end{definition}
+
+Note that these need not exist, but if it does, we have that it is unique by \cref{thm:identity}.
+
+\paragraph{Example}
+Let $h(z) = \sum_{n=0}^\infty z^n$, defined on $B_0(1) = \{ \abs{z} < 1 \}$ (this has radius of convergence $1$). However, we have that $h(z) = 1/(1-z)$ shows that $h$ has an analytic continuation to all of $\CC \setminus \{ 1 \}$.
+
+\paragraph{Example}
+Now consider $h(z) = \sum_{n=0}^\infty z^{n^2}$ on $B_0(1) =  \{ \abs{z} < 1 \}$. This has radius of convergence $1$, but has no analytic continuation to any domain other than $B_0(1)$.
+Indeed, this can be proved by considering a point on the unit circle that is a root of unity for some suitable power, say, $n^2$, then we have that the limit as we approach the point does not exist.
+
+\paragraph{Example}
+We have that $\zeta(z) = \sum_{n=1}^\infty n^{-z}$ defines a holomorphic function on $\Re z > 1$.
+Clearly, $\zeta$ diverges as $z \rightarrow 1$, so it cannot be extended to a neighbourhood of $1$, but there is an extension of $\zeta$ to $\CC \setminus \{ 1 \}$ (proved in Part II number fields).
+
+
+\begin{theorem}[Removal of singularities]
+Let $U \subseteq \CC$ be a domain, $z_0 \in \CC$.
+Suppose that $f : U \setminus \{ z_0 \} \rightarrow \CC$ is holomorphic, and $f$ is bounded near $z_0$, then there exists $a \in \CC$, such that $f(z) \rightarrow a$ as $z \rightarrow z_0$.
+If we define
+\[
+g(z) = \begin{cases}f(z) & \text{if } z \neq z_0 \mpunct{,} \\ a & \text{if } z = z_0 \mpunct{;} \end{cases}
+\]
+then $g$ is holomorphic on $U$.
+\end{theorem}
+
+\begin{proof}
+  Let $h : U \rightarrow \CC$ be defined by $h(z)= (z - z_0)^2f(z)$ for $z \neq z_0$, and $h(z_0) = 0$.
+Then we have that if $f$ is bounded by $M$ on some small ball about $z_0$
+\[
+  \abs*{\frac{h(z) - h(z_0)}{z - z_0}} \leq M \abs{z - z_0}
+\]
+hence $h$ is holomorphic in an open neighbourhood of $z_0$.
+$h$ has a Taylor series $h(z) = \sum a_n (z - z_0)^n$ valid on $B_{z_0}(\rho)$.
+In fact, we have that $h(z_0) = 0$ and $h'(z_0) = 0$ (from above), thus let
+\[
+g(z) = \sum_{n=0}^\infty a_{n+2}(z - z_0)^n \mpunct{.}
+\]
+By construction, $g \equiv h$ on $B_{z_0}(\rho) \setminus \{ z_0 \}$, and we have that, as $g(z) \rightarrow a_2$ as $z \rightarrow z_0$.
+So indeed $f$ has a limit as $z \rightarrow z_0$.
+The rest follows.
+\end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:

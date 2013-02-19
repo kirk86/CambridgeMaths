@@ -1,0 +1,109 @@
+\section{Isolated singularities}
+
+\begin{proposition}
+Let $U$ be a domain, $z_0 \in U$.
+Let $f : U \setminus \{ z_0 \} \rightarrow \CC$ be holomorphic.
+Assume $\abs{f(z)} \rightarrow \infty$ as $z \rightarrow z_0$.
+Then there is a unique $k \in \NN$, and a unique holomorphic $g : U \rightarrow \CC$ such that $g(z_0) \neq 0$ and $f(z) = (z- z_0)^{-k}g(z)$ for $z \neq z_0$.
+\end{proposition}
+
+\begin{proof}
+There exist $\delta > 0$, such that if $z \in B_{z_0} (\delta)$ then $\abs{f(z)} \geq 1$.
+In particular, $f$ does not vanish on this $\delta$-ball.
+Define $h : B_{z_0}(\delta) \rightarrow \CC$ by
+\[
+h(z) = \begin{cases} 1/f(z) & \text{ if } 0 < \abs{z - z_0} < \delta \mpunct{,} \\ 0 & \text{ if } z = z_0 \mpunct{.} \end{cases}
+\]
+$h$ is holomorphic on $B_{z_0}(\delta)$ by removal of singularity, and hence there is a well-defined order of vanishing of $h$ at $z_0$, i.e. there exists a unique $k \in \NN$ such that $h(z) = (z - z_0)^kl(z)$ where $l(z_0) \neq 0$ and $l(z)$ holomorphic.
+
+Now let $g(z) = 1/l(z)$ for $z \in B_{z_0}(\delta)$.
+Observe that $g(z) = (z-z_0)^k f(z)$ for $z \in N_{z_0}(\delta) \setminus \{ z_0 \}$.
+Then $g(z)$ has the required properties, except perhaps that $g$ is defined only on $B_{z_0}(\delta)$.
+However, the expression $g(z) = (z  - z_0)^k f(z)$ is well-defined on all of $U$, hence $g$ is holomorphic on $U$ (and unique by the identity theorem).
+
+\end{proof}
+
+\begin{definition}
+  If $f : U \setminus \{ z_0 \} \rightarrow \CC$ is holomorphic, we say that $z_0$ is a singularity\index{singularity} of $f$ (or an isolated singularity).
+
+  \begin{itemize}
+  \item if $f$ is bounded near $z_0$, we say $z_0$ is a removable singularity\index{removable singularity}. (Re)defining the value of $f$ at $z_0$, $f$ extends holomorphically to $U$.
+  \item if $\abs{f} \rightarrow \infty$ as $z \rightarrow z_0$, we have that $f(z) = (z - z_0)^{-k}g(z)$ with  $g(z_0) \neq 0$, and we say that $f$ has a pole\index{pole} of order $k$ at $z_0$.
+  \item if neither of the above, i.e. if $\abs{f(z)}$ has \emph{no} limit as $z \rightarrow z_0$, then we say $f$ has an essential singularity at $z_0$.
+  \end{itemize}
+\end{definition}
+
+\begin{theorem}[Casorati-Weierstrass]
+If $U$ is a domain and $f : U \setminus \{ z_0 \} \rightarrow \CC$ is holomorphic with an essential singularity at $z_0$, then for all $w \in \CC$, there exists a sequence $z_n \rightarrow z_0$ such that $f(z_n) \rightarrow w$.
+\end{theorem}
+
+There is a stronger result
+\begin{theorem}[Picard's theorem]
+  If $f$ has an essential singularity at $z_0$, then there exists at most one $b \in \CC$ such that for all $w \in \CC \setminus \{ b \}$, the equation $f(z) = w$ has a solution in $B_{z_0}(r)$ for every positive $r$.
+  I.e for all $r > 0$, we have $f\Big\rvert_{B_{z_0}(r)}$ is onto $\CC \setminus \{ b \}$.
+\end{theorem}
+
+\paragraph{Example}
+$z \mapsto e^{1/z}$ has an essential singularity at $0$.
+
+\begin{remark}
+  The function $z \mapsto e^z$ takes a vertical strip to an annulus, and a horizontal strip to a sector in $\CC$.
+We also have that $z \rightarrow 1/z$ takes a neighbourhood of $\infty$ to a neighbourhood of $0$ and vice-versa.
+Hence $z \mapsto e^{1/z}$ hits every value except $0$ in every neighbourhood $B_0(\delta) \setminus \{ 0 \}$.
+\end{remark}
+
+\begin{remark}
+  An exercise int he definitions shows that the following are equivalent:
+  \begin{itemize}
+  \item $f$ has a pole of order $k$ at $z_0$
+  \item $f(z) = 1/h(z)$, $h$ is holomorphic at $z_0$ with a zero of order $k$.
+  \end{itemize}
+
+We can view functions with poles as holomorphic functions valued in $C \cup \{ \infty \}$.
+If $f$ has at worst poles on $U$, i.e. no essential singularities, then we say $f$ is meromorphic\index{meromorphic} on $U$.
+\end{remark}
+
+\paragraph{Example}
+
+Given polynomials $P(z)$, $Q(z)$ then $P(z)/Q(z)$ is meromorphic on $\CC$, or (better) a holomorphic function $\CC \cup \{ \infty \} \rightarrow \CC \cup \{ \infty \}$.
+
+\paragraph{Example}
+
+The Möbius maps are holomorphic maps $\CC \cup \{ \infty \} = \CC\PP^1$ to itself.
+
+\begin{remark}
+  The maximum principle says there is no non-constant holomorphic function $\phi : \CC\PP^1 \rightarrow \CC$.
+As $\phi$ is continuous on a closed bounded space, has bounded image so $\abs{\phi}$ achieves a mmaximum. Work in a local co-ordinate near that point, and violate the maximum principle.
+
+Hence poles are in some sense necessary for a non-trivial theory.
+\end{remark}
+
+Let $f : B_a(r) \setminus \{ a \} \rightarrow \CC$ be holomorphic. If $f$ extends to a holomorphic function on $B_a(r)$, it would have a Taylor series $f(z) = \sum_{n \geq 0} c_n(z - a)^n$.
+On the other hand, if $f$ has a non-removable singularity, we cannot hope for such an expansion.
+
+\begin{theorem}[name=Laurent's theorem,label=thm:laurent]
+  Let $0 \leq r < R \leq \infty$, and let $A = \{ r < \abs{z - a} < R \}$. Let $f$ be holomorphic on $f : A \rightarrow \CC$ be holomorphic. Then $f$ has a unique power series expansion
+\[
+f(z) = \sum_{n = -\infty}^{\infty} c_n(z - a)^n
+\]
+on $A$, uniformly convergent on any compact subset of $A$.
+In addition, we have that
+\[
+c_n = \frac{1}{2 \pi i} \int_{\abs{z - a} = \rho} \frac{f(z)}{(z-a)^{n+1}} \: dz
+\]
+for $r < \rho < R$.
+\end{theorem}
+
+\begin{remark}
+  If $f : B_a(\delta) \setminus \{ a \} \rightarrow \CC$ is holomorphic, taking $r = 0$ in theorem \ref{thm:laurent}, then one of the following hold:
+  \begin{itemize}
+    \item $c_n = 0$ for all $n < 0$ (removable singularity),
+    \item $c_n = 0$ for all $n < -k$ for some $k > 0$ (pole of order $k$ is $k$ chosen maximal),
+    \item $c_n \neq 0$ for arbitrarily large negative values of $n$ (essential singularity).
+  \end{itemize}
+\end{remark}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
