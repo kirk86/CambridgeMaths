@@ -1,0 +1,103 @@
+$T = \sum \frac{(o_i - e_i)^2}{e_i}$ is Pearson's chi-squared statistic\index{Pearson's chi-squared statistic} and reject $H_0$ if $T > \xi^2_{k-1-\abs{\Theta}}(\alpha$.
+
+\paragraph{Example 2.4}
+
+We consider an experiment whereby we cross 556 smooth yellow peas with wrinked green female peas. From the progeny, we let
+\begin{itemize}
+\item $N_1$ be the number of smooth yellow peas,
+\item $N_2$ be the number of smooth green peas,
+\item $N_3$ be the number of wrinkled yellow peas,
+\item $N_4$ be the number of wrinkled green peas.
+\end{itemize}
+We test the goodness of fit test of the model:
+\[
+H_0 : (p_1, p_2, p_3, p_4) = (9/16, 3/16, 3/16, 1/16) \mpunct{.}
+\]
+Observe that $(n_1, n_2, n_3, n_4) = (315, 108, 102, 31)$. We find that $(e_1, e_2, e_3, e_4) = (312.75, 104.25, 104.25, 34.75)$, hence we have that
+\[
+2 \log \Lambda = 0.618 \text{ and } \sum \frac{(o_i - e_i)^2}{e_i} = 0.604 \mpunct{.}
+\]
+
+
+\section{Testing independence in contingency tables\label{sec:2.6}}
+Contingency tables\index{contingency table} arise when observations or individuals are classified according to two or more criteria.
+
+\paragraph{Example 2.5\label{ex:2.5}}
+[insert first part of example 2.5 on the handout]
+
+Consider a two-way contingency table with $r$ rows and $c$ columns.
+Let $p_{ij}$ be the probability that a randomly selected individual is classified in row $i$ and column $j$, i.e. is in the $(i, j)$ cell of the table.
+Let
+\begin{IEEEeqnarray*}{rCl}
+p_{i+} ( = p_{i\cdot} ) &=& \sum_{j=1}^c p_{ij} = \PP(\text{in row $i$}) \mpunct{,} \\
+p_{+j} ( = p_{\cdot j} ) &=& \sum_{i = 1}^r p_{ij} = \PP(\text{in column $j$}) \mpunct{.}
+\end{IEEEeqnarray*}
+We must have that $p_{++} = \sum_{i, j} p_{ij} = 1$, i.e. $\sum_i p_{i+} = 1 = \sum_j p_{+j}$.
+
+Suppose a random sample of $n$ individuals is taken.
+Let $N_{ij}$ be the number of these in the $(i, j)$ cell.
+Let $N_{i+} = \sum_j N_{ij}$, $N_{+j} = \sum_i N_{ij}$, $N_{++} = \sum_{i, j} N_{ij}$.
+Then, we have that
+\[
+(N_{11}, N_{12}, \dotsc, N_{1c}, N_{21}, \dotsc, N_{2c}, \dotsc, N_{rc}) \sim \text{Multinomial}(n; p_{11}, p_{12}, \dotsc, p_{1c}, p_{21}, \dotsc, p_{2c}, \dotsc, p_{rc}) \mpunct{.}
+\]
+
+We test $H_0 : \text{the two classifications are independent}$, i.e.
+\[
+H_0 : p_{ij} = p_{i+}p_{+j} \text{ for } i = 1, \dotsc, r \quad j = 1, \dotsc, c
+\]
+with constraints $sum_i p_{i+} = 1$ and $\sum_j p_{+j} = 1$,
+versus $H_1 : p_{ij} \text{ unrestricted, except for the usual normalization conditions}$.
+
+Under $H_1$, the maximum likelihood estimators are $\hat{p_{ij}} = n_{ij}/n$ (as obtained in \ref{sec:2.5}.
+
+Under $H_0$, we have that $L \propto \prod (p_{i+}p_{+j})^{n_{ij}}$. Use Lagrangian methods with:
+\[
+\mathscr{L} = \sum_i n_{i+} \log p_{i+} + \sum_j n_{+j} \log p_{+j} - \lambda\left(\sum p_i - 1\right) - \mu\left(\sum p_{+j} - 1\right) \mpunct{.}
+\]
+We the find that $\hat{p_{i+}} = n_{i+}/n$ and $\hat{p_{+j}} = n_{+j}/n$.
+
+Let $o_{ij} = n_{ij}$, $e_{ij} = n\hat{p_{i+}}\hat{p_{+j}} = n_{i+}n_{+j}/n$.
+Now we have that
+\begin{IEEEeqnarray*}{rCl}
+2 \log \Lambda &=& 2 \sum_{i = 1}^r \sum_{j=1}^c o_{ij} \log \left(\frac{o_{ij}}{e_{ij}}\right) \\
+&\approx& T = \sum_{i = 1}^r \sum_{j=1}^c \frac{(o_{ij} - e_{ij})^2}{e_{ij}} \mpunct{.}
+\end{IEEEeqnarray*}
+We have that $\abs{\Theta} = rc - 1$, and $\abs{\Theta_0} = (r-1) + (c-1)$, hence $\abs{\Theta} - \abs{\Theta_0} = rc - 1 - (r - 1) - (c - 1) = (r-1)(c-1)$.
+Hence $2 \log \Lambda$ and $T$ are compared to $\xi^2_{(r-c)(c-1)} (\alpha)$.
+
+\paragraph{Example 2.5 (continued)}
+[see handout, second part of example 2.5 and overleaf]
+
+\section{Testing homogeneity in contingency tables}
+\label{sec:2.7}
+
+\paragraph{Example 2.6}
+[see handout]
+
+In general, we have independent observations from $r$ multinomial distributions, each with $c$ categories.
+\[
+(N_{i1}, \dotsc, N_{ic}) \sim \text{Multinomial}(n_{i+}, p_{i1}, \dotsc, p_{ic}) \mpunct{.}
+\]
+We test the following hypothesis
+\[
+H_0 : p_{1j} = p_{2j} = \dotsc = p_{rj} ( = p_j \text{, say}), \ j = 1, \dotsc, c
+\]
+with the constraint that $\sum_j p_j = 1$, against the hypothesis:
+\[
+H_1 : p_{ij} \text{ unrestricted}
+\]
+with the constraint $p_{i+} = 1$ for $i = 1, \dotsc, r$.
+
+Using a generalized likelihood ratio test, we find that
+\[
+2 \log \Lambda = 2 \sum_{i = 1}^r \sum_{j = 1}^c n_{ij} \log \left( \frac{n n_{ij}}{n_{i+}n_{+j}} \right) \mpunct{,}
+\]
+which is identical to the $2 \log \Lambda$ as in \cref{sec:2.6}, and similarly for $T$.
+Here, we have that $\abs{\Theta_0} = c-1$, $\abs{\Theta} = r(c-1)$, so that $\abs{\Theta} - \abs{\Theta_0} = (r-1)(c-1)$.
+Hence, both $2 \log \Lambda$ and $T$ are referred to $\xi^2_{(r-1)(c-1)} (\alpha)$.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:
