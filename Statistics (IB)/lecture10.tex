@@ -28,7 +28,26 @@ In fact, the $p$-value is approximately $\PP(\chi^2_3 > 0.6) \approx 0.9$, the v
 Contingency tables\index{contingency table} arise when observations or individuals are classified according to two or more criteria.
 
 \paragraph{Example 2.5\label{ex:2.5}}
-[insert first part of example 2.5 on the handout]
+500 people with recent car changes were asked about their previous and new cars.
+The results of the poll are presented in \vref{table:ex:2.5}.
+This is a two-way contingency table: each person is classified according to previous car size and new car size.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{rrrr}
+    \toprule
+    & \multicolumn{3}{c}{New car} \\
+    \cmidrule{2-4}
+    Previous car & Large & Medium & Small \\
+    \midrule
+    Large & $56$ & $52$ & $42$ \\
+    Medium & $50$ & $83$ & $67$ \\
+    Small & $18$ & $51$ & $81$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Number of people per old and new car size.}
+  \label{table:ex:2.5}
+\end{table}
 
 Consider a two-way contingency table with $r$ rows and $c$ columns.
 Let $p_{ij}$ be the probability that a randomly selected individual is classified in row $i$ and column $j$, i.e. is in the $(i, j)$ cell of the table.
@@ -44,7 +63,7 @@ Let $N_{ij}$ be the number of these in the $(i, j)$ cell.
 Let $N_{i+} = \sum_j N_{ij}$, $N_{+j} = \sum_i N_{ij}$, $N_{++} = \sum_{i, j} N_{ij}$.
 Then, we have that
 \[
-(N_{11}, N_{12}, \dotsc, N_{1c}, N_{21}, \dotsc, N_{2c}, \dotsc, N_{rc}) \sim \text{Multinomial}(n; p_{11}, p_{12}, \dotsc, p_{1c}, p_{21}, \dotsc, p_{2c}, \dotsc, p_{rc}) \mpunct{.}
+(N_{11}, N_{12}, \dotsc, N_{1c}, N_{21}, \dotsc, N_{2c}, \dotsc, N_{rc}) \sim \Multinomial (n; p_{11}, p_{12}, \dotsc, p_{1c}, p_{21}, \dotsc, p_{2c}, \dotsc, p_{rc}) \mpunct{.}
 \]
 
 We test $H_0 : \text{the two classifications are independent}$, i.e.
@@ -72,17 +91,83 @@ We have that $\abs{\Theta} = rc - 1$, and $\abs{\Theta_0} = (r-1) + (c-1)$, henc
 Hence $2 \log \Lambda$ and $T$ are compared to $\chi^2_{(r-c)(c-1)} (\alpha)$.
 
 \paragraph{Example 2.5 (continued)}
-[see handout, second part of example 2.5 and overleaf]
+Now suppose that we wish to test $H_0$, the hypothesis that the new and previous car sizes are independent.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{rrrr}
+    \toprule
+    & \multicolumn{3}{c}{New car} \\
+    \cmidrule{2-4}
+    Previous car & Large & Medium & Small \\
+    \midrule
+    Large & 37.2 & 55.8 & 57.0 \\
+    Medium & 49.6 & 74.4 & 76.0 \\
+    Small & 37.2 & 55.8 & 57.0 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Expected values for car ownership under $H_0$}
+  \label{tab:ex:2.5.2}
+\end{table}
+
+We obtain, using the previous formula (and the values of $e_{ij}$ as in \vref{tab:ex:2.5.2})
+\[
+\sum_{i, j} \frac{(o_{ij}-e_{ij})^2}{e_{ij}} = 36.20 \mpunct{.}
+\]
+We have $(3-1)(3-1)=4$ degrees of freedom, hence we find that $\chi^2_4 (0.05) = 9.488$ and $\chi^2_4 (0.01) = 13.28$.
+The observed value of $36.20$ is significant at the $1\%$ level, hence we have strong evidence against $H_0$.
+We can thus conclude that the new and present car sizes are not independent.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{rSSS}
+    \toprule
+    & \multicolumn{3}{c}{New car} \\
+    \cmidrule{2-4}
+    Previous car & {Large} & {Medium} & {Small} \\
+    \midrule
+    Large & 3.08 & -0.51 & -1.99 \\
+    Medium & 0.06 & 1.00 & -1.03 \\
+    Small & -3.14 & -0.64 & 3.18 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Deviation from expected value for car ownership}
+  \label{tab:ex:2.5.3}
+\end{table}
+
+In fact, we can consider the values of $(o_{ij} - e_{ij})/e_{ij}$ in each cell (as in \vref{tab:ex:2.5.3}), and we see that:
+\begin{itemize}
+\item more owners of large cars than expected under $H_0$ bought another large car,
+\item more owners of small cars than expected under $H_0$ bought another small car,
+\item fewer than expected under $H_0$ changed from a small to a large car.
+\end{itemize}
 
 \section{Testing homogeneity in contingency tables}
 \label{sec:2.7}
 
 \paragraph{Example 2.6}
-[see handout]
+\begin{table}[h]
+  \centering
+  \begin{tabular}{rrrr}
+    \toprule
+    & Improved & No difference & Worse \\
+    \midrule
+    Placebo & 18 & 17 & 15 \\
+    Half dose & 20 & 10 & 20 \\
+    Full dose & 25 & 13 & 12 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of the experiment}
+  \label{tab:ex:2.6}
+\end{table}
+
+$150$ patients are randomly divided into three groups of $50$ patients. The experiment is carried out, and the result are reported in \vref{tab:ex:2.6}.
+Let $H_0$ be the hypothesis that ``the probability of `improved' is the same for each of the three treatment groups, and so are the probabilities of `no difference' and `worse' ''.
+$H_0$ is the hypothesis that we have homogeneity between the rows.
 
 In general, we have independent observations from $r$ multinomial distributions, each with $c$ categories.
 \[
-(N_{i1}, \dotsc, N_{ic}) \sim \text{Multinomial}(n_{i+}, p_{i1}, \dotsc, p_{ic}) \mpunct{.}
+(N_{i1}, \dotsc, N_{ic}) \sim \Multinomial(n_{i+}, p_{i1}, \dotsc, p_{ic}) \mpunct{.}
 \]
 We test the following hypothesis
 \[
