@@ -31,7 +31,7 @@ Under $H_0$, we have that $\frac{sqrt{n}}{\sigma_0}\Big(\overline{X} - \mu_0\Big
 Hence we reject $H_0$ if $\abs*{\sqrt{n}\big(\overline{x} - \mu_0\big)/\sigma_0} > Z_{\alpha/2}$ for a size $\alpha$ test.
 This is a two-tailed test\index{two-tailed test}.
 
-Note that since $n\Big(\overline{X} - \mu_0\Big)^2/\sigma_0^2 \sim \xi^2_1$ under $H_0$, so the above test is equivalent to rejecting $H_0$ if $n \big(\overline{x} - \mu_0 \big)^2/\sigma_0^2 > \xi^2_1(\alpha)$ (check that $z_{\alpha/2} = \xi^2_1(\alpha)$).
+Note that since $n\Big(\overline{X} - \mu_0\Big)^2/\sigma_0^2 \sim \chi^2_1$ under $H_0$, so the above test is equivalent to rejecting $H_0$ if $n \big(\overline{x} - \mu_0 \big)^2/\sigma_0^2 > \chi^2_1(\alpha)$ (check that $z_{\alpha/2} = \chi^2_1(\alpha)$).
 
 \subparagraph{Wiks' theorem}
 It turns out that we can still use generalised likelihood ratio tests even when we cannot find the exact null distribution of the test statistic.
@@ -39,9 +39,9 @@ Suppose $\dim \Theta = k$ and that $\Theta_0$ imposes $p$ independent restrictio
 We write $\abs{\Theta} = k$ and $\abs{\Theta_0} = k - p$.
 We say $\Theta$ has ``$k$ free parameters'' and $\Theta_0$ has ``$k-p$ free parameters''.
 
-Under regularity conditions, with $\vec{X} = \big(X_1, \dotsc, X_n\big)$ with $X_i$ \iid, we have that if $H_0$ is true, then $2 \log \Lambda_{\vec{x}} (H_0; H_1)$ is approximately distributed as $\xi^2_p$ for large $n$, and if $H_0$ is not true, then $2 \log \Lambda$ tends to be larger (Wiks' theorem).
+Under regularity conditions, with $\vec{X} = \big(X_1, \dotsc, X_n\big)$ with $X_i$ \iid, we have that if $H_0$ is true, then $2 \log \Lambda_{\vec{x}} (H_0; H_1)$ is approximately distributed as $\chi^2_p$ for large $n$, and if $H_0$ is not true, then $2 \log \Lambda$ tends to be larger (Wiks' theorem).
 
-In example 2.3, we have that $\abs{\Theta} = 1$, and $\abs{\Theta_0} = 0$, so we have that $p = \abs{\Theta} - \abs{\Theta_0}$, and we have seen that $2 \log \Lambda \sim \xi^2_1$.
+In example 2.3, we have that $\abs{\Theta} = 1$, and $\abs{\Theta_0} = 0$, so we have that $p = \abs{\Theta} - \abs{\Theta_0}$, and we have seen that $2 \log \Lambda \sim \chi^2_1$.
 
 \section{Goodness-of-fit test}
 
@@ -71,7 +71,7 @@ Under $H_0$, we can find $\hat{\theta}$ (the \mle of $\theta$) by maximising $\s
 &=& 2 \sum n_i \log \left( \frac{\hat{p_i}}{p_i(\hat{\theta})} \right) \\
 &=& 2 \sum n_i \log \left( \frac{n_i}{n p_i(\theta)} \right) \mpunct{,}
 \end{IEEEeqnarray*}
-the generalised likelihood ratio test rejects $H_0$ if $2 \log \Lambda > \xi^2_{k - 1 - \abs{\Theta_0}}$.
+the generalised likelihood ratio test rejects $H_0$ if $2 \log \Lambda > \chi^2_{k - 1 - \abs{\Theta_0}}$.
 
 If we let $o_i = n_i$ (the observed number in $A_i$), $e_i = n p_i(\hat{\theta})$ (the ``expected'' number in $A_i$ under $H_0$) and $\delta_i = o_i - e_i$ so that $o_i = e_i + \delta_i$.
 If $H_0$ is true, we expect $\delta_i << e_i$.
