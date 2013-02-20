@@ -25,8 +25,7 @@ Thus, we have that:
 \end{IEEEeqnarray*}
 where the constant of proportionality is chosen to make the total mass of $\pi(\theta \given \vec{x})$ equal to 1. In practice, we use \eqref{eq:6_bayes_inference} and can often then recognise the family for $\pi(\theta \given \vec{x})$.
 
-\paragraph{Example}
-
+\begin{example}
 Let $\theta$ be the proportion of defective components in a manufacturing process, and suppose that a priori $\theta$ is believed to have a $\Beta(a, b)$ distribution for some known $a$, $b$.
 For $i = 1, \dotsc, n$, let $X_i = 1$ if the i\textsuperscript{th} component is defective and $X_i = 0$ otherwise. Then we have:
 \begin{IEEEeqnarray*}{rCl}
@@ -38,9 +37,10 @@ We recognise $\theta \given \vec{X}  = \vec{x} \sim \Beta\left(\sum x_i + a, n -
 \[
 \pi(\theta \given \vec{x}) = \frac{\theta^{\sum x_i + a - 1}(1-\theta)^{n - \sum x_i + b - 1}}{B\left(\sum x_i + a, n - \sum x_i + b\right)}\mpunct{.}
 \]
-Here a beta prior leads to a beta posterior
-We say that the beta family is conjugate\index{conjugate (prior)} for Bernouilli samples.
+Here a beta prior leads to a beta posterior.
+We say that the beta family is conjugate\index{conjugate (prior)} for Bernoulli samples.
 The beta parameters are updated in the light of the data.
+\end{example}
 
 A Bayesian approach to point estimation involves a loss function\index{loss function} $L(\theta, a)$ which represents the loss incurred in estimating a parameter to be $a$ when the true value is $\theta$. Common loss functions are the quadratic loss\index{quadratic loss} where $L(\theta, a) = (\theta - a)^2$ and absolute value loss\index{absolute value loss} $L(\theta, a) = \abs{\theta - a}$.
 
@@ -72,7 +72,7 @@ This occurs when each side is equal $1/2$, so $\hat{\theta}^B$ is such that:
 \]
 $\hat{\theta}^B$ is the posterior median\index{posterior median}.
 
-\paragraph{Example}
+\begin{example}
 Given $\mu$, $X_1, \dotsc, X_n$ \iid $\Normal(\mu, 1)$.
 Suppose that a priori, we have $\mu \sim \Normal(0, 1/\tau^2)$, for a known $\tau^2 > 0$.
 This yields the following posterior:
@@ -90,7 +90,7 @@ The normal distribution is symmetric, so the posterior mean is equal to the post
 \hat{\theta}^B = \frac{\sum x_i}{n + \tau^2} \mpunct{.}
 \]
 
-\begin{figure}
+\begin{figure}[h]
   \centering
 
   \begin{tikzpicture}[domain=-4:4,xscale=1.5,yscale=3]
@@ -104,9 +104,9 @@ The normal distribution is symmetric, so the posterior mean is equal to the post
   \caption{Prior and posterior}
   \label{fig:6.1}
 \end{figure}
-[schema of prior vs posterior. Both normals. Mean shifted in direction of $\overline{x}$, variance is smaller]
 
 As in the figure \ref{fig:6.1}, we can see that the posterior mean is shifted in the direction of $\overline{x}$, and that the variance is smaller.
+\end{example}
 
 %%% Local Variables:
 %%% mode: latex

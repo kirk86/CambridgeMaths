@@ -58,7 +58,7 @@ Let $\hat{\theta} = \EE_\theta\left[\tilde{\theta} \mid T\right]$. Then, for all
 \EE_\theta\left[\left(\hat{\theta}-\theta\right)^2\right] \leq \EE_\theta \left[\left(\tilde{\theta} - \theta\right)^2\right]
 \]
 with equality if and only if $\tilde{\theta}$ is a function of $T$.
-  
+
 \end{theorem}
 
 \begin{proof}
@@ -74,7 +74,7 @@ By the conditional variance formula, we have:
 \var_\theta(\tilde{\theta}) &=& \EE_\theta\left[ \var (\tilde{\theta} \given T)\right] + \var_\theta\big[\underbrace{\EE_\theta (\tilde{\theta} \given T)}_{=\hat{\theta}}\big] \\
 &=& \var_\theta (\hat{\theta}) \mpunct{,}
 \end{IEEEeqnarray*}
-and so we have that $\msef(\hat{\theta}) \leq \msef(\tilde{\theta})$. 
+and so we have that $\msef(\hat{\theta}) \leq \msef(\tilde{\theta})$.
 We have equality when $\var_\theta (\tilde{\theta} \given T) = 0$ so $\tilde{\theta}$ is a function of $T$.
 \end{proof}
 
@@ -90,9 +90,7 @@ Hence, $\hat{\theta} = \EE_\theta\left[\tilde{\theta}(\vec{X}) \given T\right]$ 
 \item If $\tilde{\theta}$ is already a function of $T$, then $\hat{\theta} = \tilde{\theta}$.
 \end{enumerate}
 
-\paragraph{Examples}
-
-\subparagraph{Poisson distribution}
+\begin{example}[Poisson distribution]
 Let $X_1, \dotsc, X_n$ be \iid $\Poisson(\lambda)$, so that:
 \[
 p_{\vec{X}}(\vec{x}, \lambda) = \frac{e^{-n\lambda}\lambda^{\sum x_i}}{\prod x_i !} \mpunct{.}
@@ -110,9 +108,9 @@ Rao-Blackwellisation gives:
 &=& \left(\frac{n-1}{n}\right)^t \mpunct{.}
 \end{IEEEeqnarray*}
 Hence we have $\hat{\theta} = \EE_\theta(\tilde{\theta} \given T) = \left(1 - 1/n\right)^{\sum X_i}$.
+\end{example}
 
-
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
-%%% End: 
+%%% End:

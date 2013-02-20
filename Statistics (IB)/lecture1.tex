@@ -8,11 +8,13 @@ The course exposes some of the theory and methods of statistics \textemdash{} th
 
 In a typical problem of statistical inference, we have data which we regard as being generated from some unknown probability model. We aim to use the data to learn about the underlying model. Mathematically, let $X$ be a random variable taking values in a set $\curlyX$, and suppose that the distribution of $X$ belongs to a family of distributions indexed by a parameter $\theta$ taking values in a parameter space $\Theta \subseteq \RR^d$ (a parametric family).
 
-Examples:
+\begin{example}
+Consider the following parametric families and their parameter spaces.
 \begin{itemize}
 \item  $X \sim \Poisson (\mu)$, $\theta = \mu$, $\Theta = (0, \infty)$.
 \item $X \sim \Normal(\mu, \sigma^2)$, $\theta = (\mu, \sigma^2)$, $\Theta = \RR \times (0, \infty)$.
 \end{itemize}
+\end{example}
 
 Let $X1, \dotsc, X_n$  be independent identically distributed (i.i.d) random variables with the same distribution as $X$, so $\vec{X} = \left(X_1, \dotsc, X_n\right)$ is a simple random sample\index{random sample} (our data). We use the observed values $\vec{x}$ of $\vec{X}$ to make statistical inferences about $\theta$ such as:
 \begin{enumerate}
@@ -42,7 +44,7 @@ Suppose $X_1, \dotsc, X_n$ are i.i.d, each with probability density function (p.
   An estimator $T(\vec{X})$ is unbiased\index{unbiased} for $\theta$ if $\EE_\theta \left[T(\vec{X})\right] = \theta, \forall \theta \in \Theta$. Otherwise, it is biased\index{biased}. Here $\EE_\theta$ is the expectation if $X_i$ has p.d.f/p.m.f $f(x ; \theta)$. The bias\index{bias} of $T(\vec{X})$ is $\EE_\theta\left[T(\vec{X})\right] - \theta$.
 \end{definition}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
-%%% End: 
+%%% End:

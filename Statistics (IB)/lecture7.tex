@@ -8,7 +8,7 @@ In hypothesis testing\index{hypothesis testing}, based on data $\vec{X} = \vec{x
 
 \paragraph{Examples}
 \begin{itemize}
-\item Suppose $X_i \sim \Bernouilli(\theta)$, $H_0 : \theta = 1/2$ versus $H_1 : \theta = 3/4$.
+\item $X_i \sim \Bernouilli(\theta)$, $H_0 : \theta = 1/2$ versus $H_1 : \theta = 3/4$.
 \item $X_i \sim \Bernouilli(\theta)$, $H_0 : \theta = 1/2$ versus $H_1 : \theta \neq 1/2$.
 \item $X_i \sim \Bernouilli(\theta)$, $H_0 \leq 1/2$ versus $H_1 : \theta > 1/2$.
 \item $H_0 : f = f_0$ versus $H_1 : f = f_1$ where $f_0$ and $f_1$ are completely specified but could be from different parametric families.
@@ -31,9 +31,9 @@ If we carry out a hypothesis test, we either reach the correct conclusion, or we
 Suppose $H_0$ and $H_1$ are both simple hypotheses.
 Let $\alpha = \PP(\text{Type I error}) = \PP(\vec{X} \in C \given H_0$ be the size\index[size (test)]{size} of the test.
 Let $\beta = \PP(\text{Type II error}) = \PP(\vec{X} \not\in C \given H_1)$.
-The power\index[power (test)]{power} of the test is $\PP(\vec{X} \in C \given H_0 \text{ false}) = 1 - \beta$.
+The power\index{power (test)} of the test is $\PP(\vec{X} \in C \given H_0 \text{ false}) = 1 - \beta$.
 
-The likelihood\index[likelihood (hypothesis)]{likelihood} of a simple hypothesis is defined as
+The likelihood\index{likelihood (hypothesis)} of a simple hypothesis is defined as
 \[
 L_{\vec{x}} (H) = f_\vec{X} \left( \vec{x} \given H \right) \mpunct{.}
 \]
@@ -81,10 +81,6 @@ Hence, we have that:
 In practice, we fix $\PP(\text{Type I error})$ to be $\alpha$ say, and we use \vref{thm:np} to find the ``best'' (i.e. the most powerful) test among tests of size $\leq \alpha$.
 $H_0$ and $H_1$ are not treated symmetrically. $H_0$ is called the null hypothesis\index{null hypothesis} and is often conservative (e.g. one of ``no change'', ``no association''\dots).
 $H_1$ is called the alternative hypothesis\index{alternative hypothesis} and usually represents the kind of departure from $H_0$ that is of interest.
-
-\paragraph{Example}
-
-Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma_0^2)$ with $\sigma_0^2$ known, $\mu$ unknown. Consider the test $H_0 : \mu = \mu_0$ versus $H_1 : \mu = \mu_1$, where $\mu_0$ and $\mu_1$ are known fixed values with $\mu_1 > \mu_0$.
 
 %%% Local Variables:
 %%% mode: latex

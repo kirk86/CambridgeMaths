@@ -34,7 +34,7 @@ Suppose that $S(\vec{x}) = S(\vec{y})$, then we have:
 This means that the ratio $f_{\vec{X}}(\vec{x}; \theta) / f_{\vec{X}}(\vec{x}_{T(\vec{x})}; \theta)$ does not depend on $\theta$, and this implies that $T(\vec{x}) = T(\vec{y})$ by hypothesis. So we have shown that $S(\vec{x}) = S(\vec{y}) \Rightarrow T(\vec{x}) = T(\vec{y})$, i.e. that $T$ is a function of $S$. Hence, we deduce that $T$ is minimal sufficient.
 \end{proof}
 
-\paragraph{Example}
+\begin{example}
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma^2)$, and let $\theta = (\mu, \sigma^2)$. We have the following:
 \begin{IEEEeqnarray*}{rCl}
 \frac{f_{\vec{x}}(\vec{x}, \mu, \sigma^2)}{f_{\vec{x}}(\vec{y}, \mu, \sigma^2)} &=&
@@ -42,6 +42,7 @@ Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma^2)$, and let $\theta = (\mu,
 &=& \exp\left\{ -\frac{1}{2\sigma^2}\left(\sum x_i^2 - \sum y_i^2\right) + \frac{\mu}{\sigma^2}\left(\sum x_i - \sum y_i\right)\right\} \mpunct{.}
 \end{IEEEeqnarray*}
 This ratio is constant as a function of $(\mu, \sigma^2)$ if and only if $\sum x_i^2 = \sum y_i^2$ and $\sum x_i = \sum y_i$. Hence by \cref{thm:1.2}, we have $T(\vec{X}) = \left(\sum X_i, \sum X_i^2\right)$ is minimal sufficient for $(\mu, \sigma^2)$.
+\end{example}
 
 \paragraph{Notes}
 

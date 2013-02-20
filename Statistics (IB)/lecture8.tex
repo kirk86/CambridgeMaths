@@ -1,4 +1,7 @@
-then, we have that the likelihood ratio is
+\begin{example}[label=example:z-test]
+Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma_0^2)$ with $\sigma_0^2$ known, $\mu$ unknown. Consider the test $H_0 : \mu = \mu_0$ versus $H_1 : \mu = \mu_1$, where $\mu_0$ and $\mu_1$ are known fixed values with $\mu_1 > \mu_0$.
+
+We have that the likelihood ratio is
 \begin{IEEEeqnarray*}{rCl}
 \Lambda_{\vec{x}} (H_0; H_1) &=& \frac{\left( \frac{1}{\sqrt{2 \pi \sigma_0^2}} \right)^n \exp \left\{ -\frac{1}{2 \sigma_0^2}\sum (x_i - \mu_1)^2 \right\} }{\left( \frac{1}{\sqrt{2 \pi \sigma_0^2}} \right)^n \exp \left\{ -\frac{1}{2 \sigma_0^2}\sum (x_i - \mu_0)^2 \right\}} \\
 &=& \exp \left\{ \frac{(\mu_1 - \mu_0)}{\sigma_0^2} \sum x_i + \frac{n}{2 \sigma_0^2} (\mu_0^2 - \mu_1^2) \right\} \mpunct{.}
@@ -16,14 +19,15 @@ Under $H_0$, we have that $\overline{X} \sim \Normal(\mu_0, \sigma_0^2/n)$, and 
 and this is $\alpha$ if $\tilde{k} = z_\alpha$ (upper $100\alpha\%$ point of $\Normal(0, 1)$).
 We reject $H_0$ if $Z = \sqrt{n}(\overline{X} - \mu_0)/\sigma_0 > z_\alpha$.
 This is called a Z-test\index{Z-test}.
+\end{example}
 
-The p-value\index{p-value} (or significance value\index{significance value}) of an observed value $Z = z$ in the previous example is
+The p-value\index{p-value} (or significance value\index{significance value}) of an observed value $Z = z$ in \vref{example:z-test} is
 \[
 p^* = \PP(Z > z \given H_0) \mpunct{,}
 \]
 i.e. it is the probability under $H_0$ of obtaining data as extreme or more extreme than our observed data.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \begin{tikzpicture}[domain=-3:3,xscale=1.5,yscale=3]
     \draw[help lines, ->] (-3,0)--(3,0);
@@ -36,7 +40,8 @@ i.e. it is the probability under $H_0$ of obtaining data as extreme or more extr
   \caption{$p^*$}
 \end{figure}
 
-\section{Composite hypotheses\label{sec:2.5}}
+\section{Composite hypotheses}
+\label{sec:2.5}
 
 Now consider testing $H_0 : \theta \in \Theta_0$ versus $H_1 : \theta \in \Theta_1$ where $\Theta_0 \cap \Theta_1 \neq \varnothing$.
 Define the power function\index{power function} of a test with critical region $C$ to be
@@ -54,14 +59,14 @@ We say a test with a power function $W(\theta)$ is a uniformly most powerful\ind
 \end{enumerate}
 The uniformly most powerful test may not exist, but likelihood ratio tests of one sided hypotheses are often uniformly most powerful.
 
-\paragraph{Example}
+\begin{example}
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma_0^2)$, with $\sigma_0^2$ known. Consider the test with the following hypotheses
 \[
 H_0 : \mu \leq \mu_0 \text{ and } H_1 : \mu > \mu_0
 \]
 where $\mu_0$ is a known value.
 
-First consider the test in example 2.1 with critical region $C = \{ \vec{x} : \sqrt{n}(\overline{x} - \mu_0)/\sigma_0 > z_\alpha$.
+First consider the test in \vref{example:z-test} with critical region $C = \{ \vec{x} : \sqrt{n}(\overline{x} - \mu_0)/\sigma_0 > z_\alpha$.
 For $\mu \in \RR$, the power function of this test is
 \begin{IEEEeqnarray*}{rCl}
   W(\mu) &=& \PP_\mu (\text{reject $H_0$}) \\
@@ -78,6 +83,7 @@ Let $C^*$ and $W^*$ belong to any other test of $H_0 : \mu \leq \mu_0$ versus $H
 Then $C^*$ can be regarded as a test of $H_0'$ versus $H_1'$, with size smaller than $\alpha$, hence by \cref{thm:np} we have that $W^*(\mu_1) \leq W(\mu_1)$. This holds for all $\mu_1 > \mu_0$, and hence we have verified the second condition of the definition of an uniformly most powerful test.
 
 Thus, we have that $C$ is a uniformly most powerful test $\alpha$ for $H_0 : \mu \leq \mu_0$ versus $H_1 : \mu > \mu_0$.
+\end{example}
 
 \section{Generalised likelihood ratio tests}
 

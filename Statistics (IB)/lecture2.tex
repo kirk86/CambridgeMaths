@@ -1,17 +1,16 @@
 
-\paragraph{Example}
-
+\begin{example}
 Suppose $X_1, \dotsc, X_n$ are i.i.d. $\Normal(\mu, 1)$ ($\mu$ unknown). A possible estimator estimator for $\mu$ is the sample mean:
 \[
  T\left(\vec{X}\right) = \frac{1}{n}\sum_{i=1}^n X_i \mpunct{.}
 \]
 The sampling distribution of $T\left(\vec{x}\right)$ is $\Normal\left(\mu, \frac{1}{n}\right)$, hence $\EE_\mu \left[ T\left(\vec{x}\right) \right] = \mu$, for all $\mu \in \RR$.
+\end{example}
 
 \section{Sufficiency}
 The concept of sufficiency addresses the question ``is there a statistic $T\left(\vec{X}\right)$ that in some sense captures all the information about $\theta$ contained in the sample?''
 
-\paragraph{Example\label{example:1.2}}
-
+\begin{example}[label=example:1.2]
 Let $X_1, \dotsc, X_n$ \iid $\Bernouilli(\theta)$, so that $\PP(X_i = 1) = 1 - \PP(X_i = 0) = \theta$, for some $\theta$, $0 < \theta < 1$. The joint \pmf of $\vec{X}$ is:
 \[
 p_{\vec{X}}\left(\vec{x}; \theta\right) = \prod_{i = 1}^n \theta^{x_i}(1-\theta)^{1-x_i} = \theta^{\sum x_i}(1 - \theta)^{n - \sum x_i} \mpunct{.}
@@ -21,6 +20,7 @@ This depends on the data only through $T\left(\vec{x}\right) = \sum_{i=1}^n$ (th
 p_{\vec{X} \given T} \left( \vec{x} \given t\right) = \frac{\PP_\theta(\vec{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t}} = \frac{1}{\binom{n}{t}} \mpunct{.}
 \]
 i.e. the conditional distribution of $\vec{X}$ given $T = t$ does not depend on $\theta$. Thus, if we know $T$, then additional knowledge of $\vec{X}$ (e.g. knowing the exact sequence of $0$ and $1$) does not give extra information about $\theta$.
+\end{example}
 
 \begin{definition}
   A statistic $T$ is sufficient\index{sufficient} for $\theta$ if the conditional distribution, of $\vec{X}$ given $T$ does not depend on $\theta$.
@@ -58,18 +58,19 @@ Conversely, suppose $T$ is sufficient for $\theta$. If $T\left(\vec{x}\right) = 
 \end{IEEEeqnarray*}
 \end{proof}
 
-\paragraph{Example}
-Consider \vref{example:1.2}, take $g(t, \theta) = \theta^t(1-\theta)^{n-t}$ and $h(\vec{x}) = 1$, we then see that $T(\vec{X}) = \sum X_i$ is sufficient for $\theta$ by \cref{thm:factorisation_criterion}.
+\begin{example}
+Consider \vref{example:1.2}, take $g(t, \theta) = \theta^t(1-\theta)^{n-t}$ and $h(\vec{x}) = 1$, we then see that $T(\vec{X}) = \sum X_i$ is sufficient for $\theta$ by \nameref{thm:factorisation_criterion}.
 
 Now consider $X_1, \dotsc, X_n$ \iid $\Uniform [0, \theta]$. Write $1\left(A\right)$ for the indicator of $A$. Then we have:
 \begin{IEEEeqnarray*}{rCl}
   f_{\vec{X}}(\vec{x}; \theta) &=& \prod_{i=1}^n \frac{1}{\theta} \indicator{0 \leq x_i \leq \theta} \\
 &=& \frac{1}{\theta^n}\indicator{\max_i x_i \leq \theta}\indicator{\min_i x_i \geq 0} \mpunct{.}
 \end{IEEEeqnarray*}
-By the \cref{thm:factorisation_criterion}, $T(\vec{X}) = \max_i X_i$ is sufficient for $\theta$. For example, consider:
+By the \nameref{thm:factorisation_criterion}, $T(\vec{X}) = \max_i X_i$ is sufficient for $\theta$. For example, consider:
 \[
 g(t, \theta) = \frac{1}{\theta^n}\indicator{t \leq \theta} \text{ and } h(\vec{x}) = \indicator{\min_i x_i \leq 0} \mpunct{.}
 \]
+\end{example}
 
 Sufficient statistics are not unique: if $T$ is sufficient, then so is any bijective function of $T$. The complete sample $\vec{X}$ is always sufficient for $\theta$: let $T\left(\vec{X}\right)$, $g\left(\vec{t}, \theta\right) = f_{\vec{X}}(\vec{x}, \theta)$ and $h(\vec{x}) = 1$.
 

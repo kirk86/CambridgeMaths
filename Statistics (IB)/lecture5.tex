@@ -1,4 +1,4 @@
-\subparagraph{Uniform distribution}
+\begin{example}[Uniform distribution]
 Let $X_1, \dotsc, X_n$ be \iid $\Uniform[0, \theta]$. Let $T = \max X_i$.
 $T$ is sufficient for $\theta$. Let $\tilde{\theta} = 2X_1$ be an unbiased estimator for $\theta$.
 We have that:
@@ -9,6 +9,7 @@ We have that:
 &=& \frac{n+1}{n}t \mpunct{.}
 \end{IEEEeqnarray*}
 hence $\tilde{\theta} = \frac{n+1}{n} \max X_i$.
+\end{example}
 
 \section{Confidence intervals}
 \emph{In this section, $\theta$ is scalar.}
@@ -24,7 +25,7 @@ no matter what the true value of $\theta$ may be.
 Note that it is the endpoints of the interval that are random.
 Interpreting in terms of repeat sampling, if we calculate $\left(A(\vec{x}), B(\vec{x})\right)$ for a large number of samples $\vec{x}$, then approximately $100\gamma\%$ of them will cover the true $\theta$.
 
-\paragraph{Example}
+\begin{example}[label=ex:confidence_interval]
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(\theta, 1)$. Find a $95\%$ confidence interval for $\theta$.
 
 We know $\overline{X} \sim \Normal(\theta, 1/n)$, so we have $\sqrt{n}(\overline{X} - \theta) \sim \Normal(0, 1)$, for all $\theta$. For any $z_1$, $z_2$, such that $\Phi(z_2) - \Phi(z_1) = 0.95$ (where $\Phi$ is the distribution function of $\Normal(0, 1)$), we have:
@@ -40,7 +41,7 @@ so we have that the following is a $95\%$ confidence interval for $\theta$:
 \left( \overline{X} - \frac{z_2}{\sqrt{n}}, \, \overline{X} - \frac{z_1}{\sqrt{n}} \right) \mpunct{.}
 \]
 We know that $\Normal(0, 1)$ is symmetric, so the shortest such interval obtained by using $z_2 = z_{0.025} = -z_1$ where $z_\alpha$ is the upper $100\alpha\%$ of $\Normal(0, 1)$.
-\begin{figure}
+\begin{figure}[h]
   \centering
 
   \begin{tikzpicture}[domain=-3:3,xscale=1.5,yscale=3]
@@ -58,8 +59,9 @@ We find that $z_{0.025} = 1.96$, so the confidence interval is:
 \[
 \left(\overline{X} - \frac{1.96}{\sqrt{n}}, \overline{X} + \frac{1.96}{\sqrt{n}} \right) \mpunct{.}
 \]
+\end{example}
 
-The above example illustrates a procedure for finding confidence intervals:
+\vref{ex:confidence_interval} illustrates a procedure for finding confidence intervals:
 \begin{enumerate}
 \item Find a quantity $R(\vec{X}, \theta)$ such that the $\PP_\theta$-distribution of $R(\vec{X}, \theta)$ does not depend on $\theta$.
 In the previous example, we had that $R(\vec{X}, \theta) = \sqrt{n}(\overline{X} - \theta)$. This is called the pivot\index{pivot}.
@@ -73,10 +75,7 @@ Usually, $z_1$, $z_2$ are percentage points.
 \item Rearrange the inequalities inside the $\PP_\theta[ \, ]$ to find a confidence interval.
 \end{enumerate}
 
-\paragraph{Example}
-
-\subparagraph{Normal variables}
-
+\begin{example}[Normal variables]
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(0, \sigma^2)$. Find a $99\%$ confidence interval for $\sigma^2$.
 From the probability review, we have that:
 \[
@@ -96,9 +95,9 @@ Hence we have that the following is a $99\%$ confidence interval for $\sigma^2$:
 \left(\frac{\sum X_i^2}{\Xi^2_n(0.005)}, \, \frac{\sum X_i^2}{\Xi^2_n(0.995)} \right) \mpunct{.}
 \]
 If $n = 50$, we get $\Xi^2_{50}(0.005) = 79.49$ and $\Xi^2_{50} = 27.99$.
+\end{example}
 
-\subparagraph{Bernoulli variables}
-
+\begin{example}[Bernoulli variables]
 Let $X_1, \dotsc, X_n$ be \iid $\Bernouilli(p)$ random variables. We know that the \mle of $p$ is $\hat{p} = \overline{X}$.
 By the central limit theorem, we have that as $n$ tends to infinity,
 \[
@@ -112,6 +111,7 @@ But $p$ is unknown, so we approximate $p$ by $\hat{p}$ to give an approximate as
 \[
 \left( \hat{p} - z_{\frac{1-\gamma}{2}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \, \hat{p} + z_{\frac{1-\gamma}{2}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \right) \mpunct{.}
 \]
+\end{example}
 
 Note that it is possible to have confidence regions for vector parameters (see example sheet 1). Also, if $\left(A(\vec{X}), B(\vec{X})\right)$ is a $100\gamma\%$ confidence interval for $\theta$ and $\tau(\theta)$ is a monotone increasing function of $\theta$, then $\left(\tau(A(\vec{X})), \tau(B(\vec{X}))\right)$ is a $100\gamma\%$ confidence interval for $\tau(\theta)$.
 

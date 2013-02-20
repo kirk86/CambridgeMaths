@@ -1,8 +1,7 @@
 $T = \sum \frac{(o_i - e_i)^2}{e_i}$ is Pearson's chi-squared statistic\index{Pearson's chi-squared statistic} and reject $H_0$ if $T > \chi^2_{k-1-\abs{\Theta}}(\alpha$.
 
-\paragraph{Example 2.4}
-
-We consider an experiment whereby we cross 556 smooth yellow peas with wrinked green female peas. From the progeny, we let
+\begin{example}[name=Mendel's peas, label=ex:2.4]
+We consider an experiment whereby we cross $556$ smooth yellow peas with wrinked green female peas. From the progeny, we let
 \begin{itemize}
 \item $N_1$ be the number of smooth yellow peas,
 \item $N_2$ be the number of smooth green peas,
@@ -22,13 +21,13 @@ We find that $(e_1, e_2, e_3, e_4) = (312.75, 104.25, 104.25, 34.75)$, hence we 
 Now, we have that $\abs{\Theta_0} = 0$ and $\abs{\Theta_1} = 4 - 1 = 3$, hence we must refer our test statistic to $\chi^2_3$.
 We have that $\chi^2_3 (0.05) = 7.815$, so neither value is significant at the $5\%$ level, and there is no evidence against Mendel's theory.
 In fact, the $p$-value is approximately $\PP(\chi^2_3 > 0.6) \approx 0.9$, the values are ``very ordinary''.
-
+\end{example}
 
 \section{Testing independence in contingency tables\label{sec:2.6}}
 Contingency tables\index{contingency table} arise when observations or individuals are classified according to two or more criteria.
 
-\paragraph{Example 2.5\label{ex:2.5}}
-500 people with recent car changes were asked about their previous and new cars.
+\begin{example}[label=ex:2.5]
+$500$ people with recent car changes were asked about their previous and new cars.
 The results of the poll are presented in \vref{table:ex:2.5}.
 This is a two-way contingency table: each person is classified according to previous car size and new car size.
 
@@ -48,6 +47,7 @@ This is a two-way contingency table: each person is classified according to prev
   \caption{Number of people per old and new car size.}
   \label{table:ex:2.5}
 \end{table}
+\end{example}
 
 Consider a two-way contingency table with $r$ rows and $c$ columns.
 Let $p_{ij}$ be the probability that a randomly selected individual is classified in row $i$ and column $j$, i.e. is in the $(i, j)$ cell of the table.
@@ -90,7 +90,7 @@ Now we have that
 We have that $\abs{\Theta} = rc - 1$, and $\abs{\Theta_0} = (r-1) + (c-1)$, hence $\abs{\Theta} - \abs{\Theta_0} = rc - 1 - (r - 1) - (c - 1) = (r-1)(c-1)$.
 Hence $2 \log \Lambda$ and $T$ are compared to $\chi^2_{(r-c)(c-1)} (\alpha)$.
 
-\paragraph{Example 2.5 (continued)}
+\begin{example}[continues=ex:2.5]
 Now suppose that we wish to test $H_0$, the hypothesis that the new and previous car sizes are independent.
 
 \begin{table}[h]
@@ -141,11 +141,12 @@ In fact, we can consider the values of $(o_{ij} - e_{ij})/e_{ij}$ in each cell (
 \item more owners of small cars than expected under $H_0$ bought another small car,
 \item fewer than expected under $H_0$ changed from a small to a large car.
 \end{itemize}
+\end{example}
 
 \section{Testing homogeneity in contingency tables}
 \label{sec:2.7}
 
-\paragraph{Example 2.6}
+\begin{example}
 \begin{table}[h]
   \centering
   \begin{tabular}{rrrr}
@@ -164,6 +165,9 @@ In fact, we can consider the values of $(o_{ij} - e_{ij})/e_{ij}$ in each cell (
 $150$ patients are randomly divided into three groups of $50$ patients. The experiment is carried out, and the result are reported in \vref{tab:ex:2.6}.
 Let $H_0$ be the hypothesis that ``the probability of `improved' is the same for each of the three treatment groups, and so are the probabilities of `no difference' and `worse' ''.
 $H_0$ is the hypothesis that we have homogeneity between the rows.
+
+\emph{the carrying out of the test is left as an exercise to the reader.}
+\end{example}
 
 In general, we have independent observations from $r$ multinomial distributions, each with $c$ categories.
 \[
