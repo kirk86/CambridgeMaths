@@ -1,0 +1,130 @@
+\section{Confidence sets and hypothesis tests}
+Confidence intervals/sets can be obtained by ``inverting'' hypothesis tests, and vice versa.
+
+\begin{definition}
+The acceptance region\index{acceptance region} $A$ of a test is the complement of the critical region, i.e. $A = \overline{C}$.
+\end{definition}
+
+\begin{theorem}
+We have the following ``conversion'' from confidence intervals/sets to hypothesis tests:
+\begin{enumerate}
+\item   Suppose that for every $\theta_0 \in \Theta$ there is a size $\alpha$ test of $H_0 : \theta = \theta_0$.
+Denote the acceptance region by $A(\theta_0)$.
+Then the set $I(\vec{X}) = \{ \theta \mid \vec{X} \in A(\theta) \}$ is a $100(1 - \alpha)\%$ confidence set for $\theta$.
+\item Conversely suppose $I(\vec{X})$ is a $100(1-\alpha)\%$ confidence set for $\theta$.
+Then $A(\theta_0) = \{ \vec{X} \mid \theta_0 \in I(\vec{X}) \}$ is the acceptance region for a size $\alpha$ test of $H_0 : \theta = \theta_0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Note first that $\theta_0 \in I(\vec{X})$ if and only if $\vec{X} \in A(\theta_0)$ in both cases.
+\begin{enumerate}
+\item Since the test is size $\alpha$, we have for all $\theta_0 \in \Theta$
+\[
+\PP_{\theta_0} ( I (\vec{X}) \ni \theta_0 ) = \PP_{\theta_0} (\vec{X} \in A(\theta_0)) = 1 - \alpha \mpunct{.}
+\]
+\item Since $I(\vec{X})$ is a $100(1-\alpha)\%$ confidence region for $\theta$, we have, for all $\theta_0 \in \Theta$
+\[
+\PP_{\theta_0}( \vec{X} \in A(\theta_0) ) = \PP_{\theta_0} ( I(\vec{X}) \ni \theta_0 ) = 1 - \alpha \mpunct{.}
+\]
+$A(\theta_0)$ defines a test of size $\alpha$.
+\end{enumerate}
+\end{proof}
+
+\chapter{Linear Models}
+
+\section{The multivariate normal distribution}
+A random vector\index{random vector} $\vec{X} = (X_1, \dotsc, X_n)$ has mean $\vec{\mu} = \EE (\vec{X}) = (\EE(X_1), \dotsc, \EE(X_n)) = (\mu_1, \dotsc, \mu_n)$, and a covariance matrix\index{covariance matrix} $\cov \vec{X} = \EE \left[ (\vec{X} - \vec{\mu})(\vec{X} - \vec{\mu})^T \right]$ with the $(i, j)$ element being $\cov (X_i, X_j)$ (provided the relevant expectations exist).
+
+For a $m \times n$ matrix $A$, we have:
+\begin{equation}
+  \label{eq:3.1}
+\EE [A\vec{X}] = A \vec{\mu} \text{ and } \cov (A\vec{X}) = A (\cov \vec{X}) A^T \mpunct{.}
+\end{equation}
+
+Define $\cov( \vec{V}, \vec{W} )$ to be the matrix with the $(i, j)$ element being $\cov (V_i, W_j)$. Then we have that
+\[
+\cov (A\vec{X}, B\vec{X}) = A (\cov \vec{X}) B^T \mpunct{.}
+\]
+
+$\vec{X}$ has a multivariate normal distribution\index{multivariate normal} if, for every $\vec{t} \in \RR^n$, the random variable $\vec{t}^t\vec{X}$ has a normal distribution.
+If $\EE(\vec{X}) = \vec{\mu}$ and $\cov \vec{X} = \Sigma$, we write $\vec{X} \sim \Normal_n (\vec{\mu}, \Sigma)$.
+Note that $\Sigma$ is symmetric (as $\cov (X_i, X_j) = \cov(X_j, X_i)$), and it is positive semi-definite (as we have that by \eqref{eq:3.1}, $\vec{t}^t\Sigma\vec{t} = \var \vec{t}^t \vec{X} \geq 0$).
+By \eqref{eq:3.1}, we know that $\vec{t}^t\vec{X} \sim \Normal(\vec{t}^t\vec{\mu}, \vec{t}^t\Sigma\vec{t})$, hence we know that $\vec{t}^t\vec{X}$ has moment generating function
+\[
+M_{\vec{t}^t\vec{X}}(s) = \EE\left[ e^{s \vec{t}^t\vec{X}} \right] = \exp \left\{ \vec{t}^t\vec{\mu}s + \frac{1}{2} \vec{t}^t\Sigma\vec{t} s^2 \right\}\mpunct{.}
+\]
+Hence $\vec{X}$ has m.g.f.
+\begin{equation}
+  \label{eq:3.2}
+M_{\vec{X}}(\vec{t}) \stackrel{\text{def}}{=} \EE \left[e^{\vec{t}^T\vec{X}}\right] = M_{\vec{t}^t\vec{X}}(1) = \exp \left\{ \vec{t}^T\vec{\mu} + \frac{1}{2}\vec{t}^T\Sigma\vec{t} \right\} \mpunct{.}
+\end{equation}
+
+\begin{proposition}
+The multivariate normal\index{multivariate normal} distribution has the following properties
+\begin{enumerate}
+\item If $\vec{X} \sim \Normal_n(\vec{\mu}, \Sigma)$ and $A$ is a $m \times n$ matrix, then we have
+\[
+A\vec{X} \sim \Normal_m(A\vec{\mu}, A \Sigma A^T) \mpunct{.}
+\]
+\item If $\vec{X} \sim \Normal(\vec{0}, \sigma^2 I)$ where $I$ denotes the identity matrix, then we have
+\[
+\frac{\norm{X}^2}{\sigma^2} = \frac{\vec{X}^T\vec{X}}{\sigma^2} = \frac{\sum X_i^2}{\sigma^2} \sim \chi^2_n \mpunct{.}
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The first proof is left as an exercise to the reader.
+The second part is immediate from the definition of $\chi^2_n$.
+\end{proof}
+
+\begin{proposition}
+  Let $\vec{X} \sim \Normal_n(\vec{\mu}, \Sigma)$, and let $\vec{X} = (\vec{X_1}, \vec{X_2})$, where $\vec{X_1}$ is $n_1 \times 1$ and $X_2$ is $n_2 \times 1$ where $n = n_1 + n_2$.
+Similarly partition $\vec{\mu} = (\vec{\mu_1}, \vec{\mu_2})$ and partition $\Sigma$ as:
+\[
+\Sigma =
+\begin{pmatrix}
+  \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{21}
+\end{pmatrix} \mpunct{.}
+\]
+Then we have the following:
+\begin{enumerate}
+\item $\vec{X_1} \sim \Normal_{n_1}(\vec{\mu_1}, \Sigma_{11})$,
+\item $X_1$ and $X_2$ are independent if and only if $\Sigma_{12} = 0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  The first part is left as an exercise to the reader.
+
+From \eqref{eq:3.2}, we have that
+\[
+M_{\vec{X}} (\vec{t}) = \exp \left\{ \vec{t}^T\vec{\mu} + \frac{1}{2} \vec{t}^T\Sigma\vec{t} \right\} \mpunct{.}
+\]
+Write $\vec{t} = (\vec{t_1}, \vec{t_2})$ where $\vec{t_1}$ is $n_1 \times 1$ and $\vec{t_2}$ is $n_2 \times 1$. Then we have that:
+\[
+M_{\vec{X}} (\vec{t}) = \exp \left\{ \vec{t_1}^T\vec{\mu_1} + \vec{t_2}^T\vec{\mu_2} + \frac{1}{2} \vec{t_1}^T\Sigma_{11}\vec{t_1} + \frac{1}{2} \vec{t_2}^T\Sigma_{22}\vec{t_2} + \frac{1}{2} \vec{t_1}^T\Sigma_{12}\vec{t_2} + \frac{1}{2} \vec{t_2}^T\Sigma_{21}\vec{t_1} \right\} \mpunct{.}
+\]
+
+From the first part, we know that $M_{X_i}(t_i) = \exp \left\{ \vec{t_i}^T\vec{\mu_i} + \frac{1}{2}\vec{t_i}^T\Sigma_{ii} \vec{t_i} \right\}$.
+So $M_{\vec{X}}(\vec{t}) = M_{\vec{X_1}}(\vec{t_1})M_{\vec{X_2}}(\vec{t_2})$ for all $\vec{t}$ if and only if $\Sigma_{12}$.
+\end{proof}
+
+When $\Sigma$ is positive definite, $\vec{X}$ has a probability density function
+\[
+f_{\vec{X}}(\vec{x}; \vec{\mu}, \Sigma) = \frac{1}{\abs{\Sigma}^{1/2}} \left(\frac{1}{\sqrt{2 \pi}} \right)^n \exp \left\{ -\frac{1}{2} (\vec{x} - \vec{\mu})^T\Sigma^{-1}(\vec{x} - \vec{\mu}) \right\} \mpunct{.}
+\]
+
+\section{Normal random samples}
+We know consider the following quantities for normal data:
+\begin{IEEEeqnarray*}{rCl}
+  \overline{X} &=& \frac{1}{n}\sum_{i=1}^n X_i \\
+  S_{xx} &=& \sum_{n=1}^n (X_i - \overline{X})^2 = \sum_{i=1}^n X_i^2 - n\overline{X}^2
+\end{IEEEeqnarray*}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:
