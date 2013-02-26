@@ -60,7 +60,7 @@ Hence $\vec{X}$ has m.g.f.
 M_{\vec{X}}(\vec{t}) \stackrel{\text{def}}{=} \EE \left[e^{\vec{t}^T\vec{X}}\right] = M_{\vec{t}^t\vec{X}}(1) = \exp \left\{ \vec{t}^T\vec{\mu} + \frac{1}{2}\vec{t}^T\Sigma\vec{t} \right\} \mpunct{.}
 \end{equation}
 
-\begin{proposition}
+\begin{proposition}[label=prop:3.1]
 The multivariate normal\index{multivariate normal} distribution has the following properties
 \begin{enumerate}
 \item If $\vec{X} \sim \Normal_n(\vec{\mu}, \Sigma)$ and $A$ is a $m \times n$ matrix, then we have
@@ -79,7 +79,7 @@ The first proof is left as an exercise to the reader.
 The second part is immediate from the definition of $\chi^2_n$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}[label=prop:3.2]
   Let $\vec{X} \sim \Normal_n(\vec{\mu}, \Sigma)$, and let $\vec{X} = (\vec{X_1}, \vec{X_2})$, where $\vec{X_1}$ is $n_1 \times 1$ and $X_2$ is $n_2 \times 1$ where $n = n_1 + n_2$.
 Similarly partition $\vec{\mu} = (\vec{\mu_1}, \vec{\mu_2})$ and partition $\Sigma$ as:
 \[

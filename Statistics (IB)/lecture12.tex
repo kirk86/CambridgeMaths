@@ -1,0 +1,107 @@
+\begin{theorem}[label=thm:3.3]
+ If $X_1, \dotsc, X_n$ are \iid $\Normal(\mu, \sigma^2)$ then
+ \begin{enumerate}
+ \item $\overline{X} \sim \Normal(\mu, \sigma^2/n)$
+ \item $S_{xx} \sim \sigma^2 \chi^2_{n-1}$,
+ \item $\overline{X}$ and $S_{xx}$ are independent.
+ \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  We know $\vec{X} \sim \Normal_n (\vec{\mu}, \sigma^2 I)$ where $\vec{\mu} = \mu\vec{1}$, where $\vec{1}$ is the $n \times 1$ vector of ones.
+Let $A$ be such that:
+\[
+A =\begin{pmatrix}
+  \frac{1}{\sqrt{n}} & \frac{1}{\sqrt{n}} & \frac{1}{\sqrt{n}} & \frac{1}{\sqrt{n}} & \dots & \frac{1}{\sqrt{n}} \\
+
+  \frac{1}{\sqrt{2 \times 1}} & - \frac{1}{\sqrt{2 \times 1}} & 0 & 0 & \dots & 0 \\
+  \frac{1}{\sqrt{3 \times 1}} & \frac{1}{\sqrt{3 \times 2}} & - \frac{2}{\sqrt{3 \times 2}} & 0 & \dots & 0 \\
+  \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \frac{1}{\sqrt{n(n-1)}} & \frac{1}{\sqrt{n(n-1)}} & \frac{1}{\sqrt{n(n-1)}} & \frac{1}{\sqrt{n(n-1)}} & \dots & \frac{-(n-1)}{\sqrt{n(n-1)}}
+\end{pmatrix}
+\]
+$A$ is orthogonal, as the rows form an orthogonal basis of $\RR^n$.
+Let $\vec{Y} = A \vec{X}$.
+By \cref{prop:3.1}, we have that
+\[
+\vec{Y} \sim \Normal_n (A \vec{\mu}, A \sigma^2 I A^T) \sim \Normal_n(A \vec{\mu}, \sigma^2 I) \mpunct{.}
+\]
+We also have $A\vec{\mu} = (\sqrt{n}\mu, 0, 0, \dotsc, 0)$, so we have $Y_1 \sim \Normal(\sqrt{n}\mu, \sigma^2)$ and $Y_i \sim \Normal(0, \sigma^2)$, for $i \geq 2$ by \cref{prop:3.2}, and $Y_1, \dotsc, Y_i$ are independent.
+
+Note that we have
+\[
+Y_1 = (A\vec{X})_1 = \frac{1}{\sqrt{n}} \sum_{i = 1}^n = \sqrt{n} \overline{X} \mpunct{.}
+\]
+hence we have $\sqrt{n}\overline{X} \sim \Normal(\sqrt{n}\mu, \sigma^2)$, hence we deduce that $\overline{X} = \Normal(\mu, \sigma^2/n)$.
+
+Note further that we have
+\begin{IEEEeqnarray*}{rCl}
+  Y_2^2 + \dotsb + Y_n^2 &=& \vec{Y}^T\vec{Y} - Y_1^2 \\
+&=& \vec{X}^T A^TA\vec{X} - n \overline{X}^2 \\
+&=& \sum_{i = 1}^n X_i^2 - n\overline{X}^2 \\
+&=& S_{xx} \mpunct{.}
+\end{IEEEeqnarray*}
+hence we have $S_{xx} = Y_2^2 + \dotsb + Y_n^2 = \sigma^2\chi_{n-1}^2$ by definition of $\chi^2$.
+
+Now we have that $Y_1$ and $(Y_2, \dotsc, Y_n)$ are independent by \cref{prop:3.2}, so $\overline{X}$ and $S_{xx}$ are independent.
+\end{proof}
+
+\begin{definition}
+  Suppose $Z \sim \Normal(0, 1)$ and $Y \sim \chi^2_k$, where $Z$ and $Y$ are independent. Then the quantity
+\[
+T = \frac{z}{\sqrt{Y/k}}
+\]
+has a $t$-distribution\index{t-distribution} on $k$ degrees of freedom.
+We write $T \sim t_k$.
+\end{definition}
+
+\begin{example}
+  Suppose $X_1, \dotsc, X_n$ are \iid $\Normal(\mu, \sigma^2)$, where $\mu$ and $\sigma^2$ are unknown.
+From \cref{thm:3.3}, we know that $\sqrt{n}(\overline{X} - \mu)/\sigma \sim \Normal(0, 1)$, and that $S_{xx} / \sigma^2 \sim \chi^2_{n-1}$, with both quantities independent.
+Hence, we have that the quotient
+\begin{IEEEeqnarray*}{rCl}
+T &=& \frac{\sqrt{n}(\overline{X} - \mu)/\sigma}{\sqrt{S_{xx}/(\sigma^2(n-1))}} \\
+&=& \\frac{\sqrt{n}(\overline{X} - \mu)}{\sqrt{\frac{S_{xx}}{n-1}}} \sim t_{n-1} \mpunct{.}
+\end{IEEEeqnarray*}
+Let $\tilde{\sigma}^2 = S_{xx}/(n-1)$. Then a $100(1-\alpha)\%$ confidence intervals for $\mu$ is found from
+\[
+1- \alpha = \PP\left(-t_{n-1}(\alpha/2) \leq \frac{\sqrt{n}(\overline{X} - \mu)}{\tilde{\sigma}} \leq t_{n-1}(\alpha/2)\right)
+\]
+where $t_{n-1}(\alpha/2)$ is the upper $100\alpha/2\%$ point of the $t_{n-1}$ distribution, and has endpoints $\overline{X} = \pm \tilde{\sigma}t_{n-1}(\alpha/2)/\sqrt{n}$.
+See the example sheet for the use of $T$ in hypothesis testing.
+\end{example}
+
+\begin{definition}
+  Suppose that $V \sim \chi^2_r$ and $W \sim \chi^2_s$ are independent random variables.
+Then the following quantity
+\[
+F = \frac{V/r}{W/s}
+\]
+has an $F$-distribution\index{F-distribution} on $r$ and $s$ degrees of freedom.
+We write $F \sim F_{r, s}$.
+\end{definition}
+
+If $X \sim F_{r, s}$, then we have that $1/X \sim F_{s, r}$ from the definition.
+If $T \sim t_n$, then $T^2 \sim F_{1, n}$.
+See example sheet for the use of $F$ in statistical inference.
+
+\section{The linear model}
+\label{sec:3.3}
+
+Linear models can be used to explain or model the relationship between a response\index{response} (or output\index{output} or dependent\index{dependent}) variable $Y$ and one or more explanatory variables\index{explanatory variable} (or covariates\index{covariate} or predictors\index{predictor}).
+
+For example, we could model the way in which car insurances claim sizes depend on the age of the driver, the region in where the policy holder lives, etc.
+Here, the claim size is the response, and the age and region are explanatory variables.
+
+In the linear model\index{linear model}, we assume that $Y_1, \dotsc, Y_n$ are $n$ observations of the response variable. The model is
+\begin{equation}
+  \label{eq:3.3}
+Y_i  = \beta_1 x_{i1} + \dotsb + \beta_p x_{ip} + \epsilon_i \quad i = 1, \dotsc, n
+\end{equation}
+where $\beta_1, \dotsc, \beta_p$ are unknown parameters ($n > p$), and $x_{i1}, \dotsc, x_{ip}$ are the values of $p$ covariates for the i\textsuperscript{th} (assumed known).
+$\epsilon_1, \dotsc, \epsilon_n$ are independent (or uncorrelated) random variables with mean $0$ and variance $\sigma^2$.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:
