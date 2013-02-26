@@ -1,0 +1,128 @@
+\section{Laurent series}
+
+\begin{theorem}[name=Laurent's theorem,label=thm:laurent]
+  Let $0 \leq r < R \leq \infty$, and let $A = \{ r < \abs{z - a} < R \}$. Let $f$ be holomorphic on $f : A \rightarrow \CC$ be holomorphic. Then $f$ has a unique power series expansion
+\[
+f(z) = \sum_{n = -\infty}^{\infty} c_n(z - a)^n
+\]
+on $A$, uniformly convergent on any compact subset of $A$.
+In addition, we have that
+\[
+c_n = \frac{1}{2 \pi i} \int_{\abs{z - a} = \rho} \frac{f(z)}{(z-a)^{n+1}} \: dz
+\]
+for $r < \rho < R$.
+\end{theorem}
+
+\begin{remark}
+  If $f : B_a(\delta) \setminus \{ a \} \rightarrow \CC$ is holomorphic, taking $r = 0$ in theorem \ref{thm:laurent}, then one of the following hold:
+  \begin{itemize}
+    \item $c_n = 0$ for all $n < 0$ (removable singularity),
+    \item $c_n = 0$ for all $n < -k$ for some $k > 0$ (pole of order $k$ is $k$ chosen maximal),
+    \item $c_n \neq 0$ for arbitrarily large negative values of $n$ (essential singularity).
+  \end{itemize}
+\end{remark}
+
+\begin{proof}
+[insert figure]
+
+Let $r < \rho' < \rho'' < R$ be intermediate radii, and define closed curves $\tilde{\gamma}, \tilde{\tilde{\gamma}}$ as shown.
+
+We know by the Cauchy integral formula:
+\[
+f(w) = \frac{1}{2 \pi i}\int_{\tilde{\gamma}} \frac{f(z)}{z - w} \: dz \mpunct{,}
+\]
+and we also have that
+\[
+0 = \frac{1}{2 \pi i}\int_{\tilde{\tilde{\gamma}}} \frac{f(z)}{z - w} \: dz \mpunct{.}
+\]
+Hence we have that
+\[
+f(w) = \frac{1}{2 \pi i} \left( \int_{\abs{z - a} = \rho''} \frac{f(z)}{z - w} \: dz - \int_{\abs{z - a} = \rho'} \frac{f(z)}{z - w} \: dz \right) \mpunct{.}
+\]
+Note the we have a minus sign, as the circle $\abs{z - a} = \rho'$ is traversed clockwise.
+
+Now write
+\[
+\frac{1}{z - w} = \frac{1}{z - a}\frac{1}{1 - \frac{w - a}{z - a}} = \sum_{n = 0}^\infty \frac{(w - a)^n}{(z - a)^{n+1}} \mpunct{.}
+\]
+This is uniformly convergent if $\abs{z - a} = \rho''$ as we have that $\abs{w - a} < \rho''$.
+
+Similarly, we have that
+\[
+\frac{-1}{z - w} = \frac{1}{w - a}\frac{1}{1 - \frac{z - a}{w - a}} = \sum_{m = 1}^\infty \frac{(z - a)^{m-1}}{(w-a)^m} \mpunct{.}
+\]
+This is uniformly convergent if $\abs{z - a} = \rho'$.
+
+By uniform convergence, if we substitute these we can exchange integration and summation, and we have that
+\[
+f(w) = \sum_{n = 0}^\infty \left(\frac{1}{2 \pi i} \int_{\abs{z - a} = \rho''} \frac{f(z)}{(z - a)^{n + 1}} \: dz \right)(w-a)^n + \sum_{m = 1}^\infty \left( \frac{1}{2 \pi i} \int_{\abs{z - a} = \rho'} \frac{f(z)}{(z - a)^{-m+1}} \: dz \right) (w - a)^{-m} \mpunct{.}
+\]
+Now let $n = m$ in the second sum, and by homotopy invariance of contour integrals, we can replace $\rho$ and  $\rho''$ by $\rho \in (r, R)$.
+\end{proof}
+
+\begin{corollary}
+If $f$ is holomorphic on an annulus $A$, then $f = f_+ + f_-$ is a sum of functions, one of which extends holomorphically to one side $D_+ \subseteq \CC\PP^1$ bound by $A$, and the other of which extends holomorphically to the other side $D_- \subseteq \CC\PP^1$, with $D_+ \cup D_- = \CC\PP^1$ and $D_+ \cap D_- = A$.
+\end{corollary}
+
+\begin{remark}
+  The Laurent series of a function $f$ is unique.
+In Taylor's theorem, if $f(z) = \sum_{n=0}^\infty c_n(z-a)^n$ then we have that $c_n = f^{(n)}(a)/n!$.
+There is no analogous expression for coefficients of a Laurent series.
+\end{remark}
+
+\paragraph{Example}
+By definition, we have $\sin z = z - z^3/3! + z^5/5! - \dotsb$ convergent in $\CC$.
+Consider $\mathop{cosec} z = 1/sin(z)$. This is holomorphic except for $z = k\pi$, for $k \in \ZZ$. Hence $\mathop{cosec}$ has a Laurent expansion in $\{ 0 < \abs{z} < \pi \}$.
+However, we have that
+\[
+\sin z = z\left(1 - \frac{z^2}{3!} + O(z^4) \right)
+\]
+hence we have that
+\[
+\mmathop{cosec} z = \frac{1}{z}\left( 1 - \frac{z^2}{3!} + O(z^4) \right)^{-1} = \frac{1}{z}\left(1 + \frac{z^2}{6} + O(z^4)\right)
+\]
+for small $\abs{z}$.
+We deduce that
+\[
+\mathop{cosec} z = \frac{1}{z} + \frac{z}{6} + \dotsb
+\]
+hence we have that $c_{-1} = 1$, $c_1 = 1/6$. $\mathop{cosec}$ has a simple pole.
+
+On the other hand, contrast with $\sin (1/z)$ which has an essential singularity at $0$.
+Hence, we have that $\mathop{cosec}(1/z)$ has singularities at $z = 1/(k\pi)$ for all $k \in \NN$, hence $0 \in \CC$ is not an isolated singularity.
+
+\begin{definition}
+  If $f : B_a(r) \setminus \{ a \} \rightarrow \CC$ is holomorphic, with Laurent series $f(z) = \sum_{-\infty}^\infty c_n (z - a)^n$, then $c_{-1}$ is called the residue\index{residue} of $f$ at $a$. We write $\Res_a f$.
+\end{definition}
+
+\begin{lemma}
+  If $\gamma \subseteq B_a(r) \setminus \{ a \}$ is a simple closed curve whose interior contains $a$, then we have:
+\[
+\int_\gamma f(z) \: dz = 2 \pi i \Res_a (f)
+\]
+\end{lemma}
+
+\begin{remark}
+In a punctured disk, a simple closed curve is homotopic to either a curve around the puncture, or to a curve whose interior does not contain the puncture.
+\end{remark}
+
+\begin{proof}
+  By homotopy invariance, let $\gamma$ be $\abs{z - a} = r_0$, $ 0 < r_0 < r$. We have that:
+  \begin{IEEEeqnarray*}{rCl}
+    \int_\gamma f(z) dz &=& \int_{\abs{z - a} = r_0} \left(\sum_{n \in \ZZ} c_n(z-a)^n\right) dz \\
+&=& \sum_{n \in \ZZ} c_n \int_{\abs{z - a} = r_0} (z - a)^n dz \\
+&=& 2 \pi i c_{-1} \mpunct{.}
+  \end{IEEEeqnarray*}
+\end{proof}
+
+For non-simple curves, $\gamma$ is not homotopic to a circle in the general case, but has a winding number\index{winding number} about $a$.
+
+\begin{definition}
+  If $\gamma  : [0, 1] \rightarrow \CC$ is a path, closed and piecewise $C^1$-smooth, and if $w \not\in \mathrm{image}(\gamma)$, the winding number $n_\gamma(w) = \frac{1}{2 \pi i}\int_\gamma \frac{1}{z - w} dz$.
+\end{definition}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
