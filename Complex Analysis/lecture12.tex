@@ -1,0 +1,111 @@
+\section{Winding number}
+
+Recall that for a closed path $\gamma : [a, b] \rightarrow \CC$, piecewise $C^1$, we defined the winding number of $\gamma$ about $w \in \CC \setminus \mathop{image}(\gamma)$ as
+\[
+n(\gamma, w) = \frac{1}{2 \pi i}\int_\gamma \frac{1}{z - w} dz \mpunct{.}
+\]
+Clearly, with this definition, the winding number is well defined.
+However, it is not obvious that it is integer valued.
+
+Consider an alternative definition. Suppose $\gamma(t) = w + r(t)e^{i \theta(t)}$, with $r(t) > 0$ and $\theta(t)$ continuous.
+Then $r(t) = \abs{ \gamma(t) - w }$ which is continuous.
+If such a $\theta(t)$ exists, then define the winding number $\tilde{n}(\gamma, w) = (\theta(b) - \theta(a))/(2 \pi)$, i.e. the total angle swept by $\gamma(t)$.
+$\theta(b)$, $\\theta(a)$ are two values of $\arg z_0$, where $z_0 = \gamma(a) = \gamma(b)$.
+Hence we have trivially $\tilde{n}(\gamma, w) \in \ZZ$.
+However, the existence of such a $\theta$ is not immediate, hence this is not an obviously well-defined quantity.
+
+\begin{lemma}
+  If $\gamma : [a, b] \rightarrow \CC \setminus \{ w \}$ is continuous, then there exists a continuous function $\theta : [a, b] \rightarrow \RR$ such that $\gamma(t) = w + r(t)e^{i \theta(t)}$ where $r(t) = \abs{\gamma(t) - w} > 0$.
+\end{lemma}
+
+\begin{remark}
+  If $\theta_1$ and $\theta_2$ both satisfy the conclusion of the lemma, then $\theta_1(t) - \theta_2(t)$ is continuous and valued in $2 \pi \ZZ$.
+Hence $\theta_1 - \theta_2$ is constant, and $\tilde{n}(\gamma, w)$ is well-defined.
+\end{remark}
+
+\begin{proof}
+  Without loss of generality, translate such that $w = 0$, and by replacing $\gamma$ by $\gamma/\abs{\gamma}$, assume $\abs{\gamma(t)} = 1$.
+  If $\mathop{image}(\gamma) \subseteq \{ \Re (z) > 0 \}$, just take $\theta(t) = \arg (\gamma(t))$ for $\arg$ the principal branch of the argument, i.e. the one valued in $(-\pi, \pi)$.
+  Similarly, if $\gamma(t) \subseteq \{ \Re(z/e^{i\alpha}) > 0 \}$, we can let $\theta(t) = \alpha + \arg(\gamma(t)/e^{i\alpha})$.
+
+Now $\gamma$ is continuous on $[a, b]$, hence uniformly continuous. Let $\epsilon > 0$ such that $\abs{s - t} < \epsilon$ implies $\abs{\gamma(s) - \gamma(t)} < \sqrt{2}$. If $a = a_0 < a_1 < \dotsb < a_n = b$ such that $a_n - a_{n-1} < \epsilon$, then for $t \in [a_{n-1}, a_n]$, we have $\abs*{\gamma(t) - \gamma\left( \frac{a_{n-1} + a_n}{2}\right)} < \sqrt{2}$ and hence the image of $[a_{n-1}, a_n]$ by $\gamma$ is contained in a semi-circle.
+For all $n$, there exists a $\theta_n : [a_{n-1}, a_n] \rightarrow \RR$ continuous, such that $\gamma(t) = \exp (i \theta_n(t))$ on $[a_{n-1}, a_n]$.
+Then we have $\theta_{n-1}(a_{n-1}) = \theta_n(a_{n-1}) + b_n$ for some $b_n \in \2 \pi \ZZ$.
+Redefine $\theta_n$ to be $\theta_n^{\text{old}} + b_n$ successively, for $n = 2, 3, \dotsc, N$.
+Now the $\{ \theta_n \}$ are restrictions of a continuous function $\theta(t)$.
+\end{proof}
+
+\begin{lemma}
+  If $\gamma$ is piecewise $C^1$-smooth, and if $w \not\in \mathop{image}(\gamma)$, then $n(\gamma, w) = \tilde{n}(\gamma, w)$.
+\end{lemma}
+
+\begin{proof}
+  We have that:
+  \begin{IEEEeqnarray*}{rCl}
+    2 \pi i n(\gamma, w) &=& \int_\gamma \frac{1}{ z - w} dz \\
+&=& \int_a^b \frac{\gamma'(t)}{\gamma(t) - w} dt \\
+&=& \int_a^b \frac{r'(t)}{r(t)} + i\theta'(t) dt \\
+&=& \left[ \log r(t) + i \theta(t)\right]_a^b \\
+&=& i (\theta(b) - \theta(a)) \\
+&=& 2 \pi i \tilde{n}(\gamma, w) \mpunct{.}
+  \end{IEEEeqnarray*}
+\end{proof}
+\begin{remark}
+We can view $\tilde{n}(\gamma, w)$ as the variation of a branch of a logarithm along $\gamma$.
+
+The formulation $n(\gamma, w) = \frac{1}{2 \pi i}\int_\gamma \frac{1}{z - w} dz$ is holomorphic in $w \in \CC \setminus \mathop{image}(\gamma)$. In particular, it is continuous, and valued in $\ZZ$, hence it is constant on path-connected components of $\CC \setminus \mathop{image}(w)$.
+In particular $\CC \setminus \mathop{image}(\gamma)$ has a unique unbounded component. If $w$ is in this component, then we have that $n(\gamma, w) = 0$.
+\end{remark}
+
+\begin{theorem}[Cauchy's residue theorem]
+Let $f$ be meromorphic on a simply connected region $U$, i.e. $f$ is holomorphic except for finitely many poles at $z_1, \dotsc, z_k$.
+Let $\gamma \subseteq U$ be a closed curve, with $z_i \not\in \mathop{image}(\gamma)$. Then we have that
+\[
+\frac{1}{2 \pi i}\int_\gamma f(z) dz = \sum_{j = 1}^n n(\gamma, z_j)\Res_f(z_i) \mpunct{.}
+\]
+\end{theorem}
+
+\begin{remark}
+  In fact, $\gamma$ bounds a compact region which contains at most finitely many poles.
+The most important case is when $\gamma$ is simple, and we have that
+\[
+\frac{1}{2 \pi i} \int_\gamma f(z) dz = \sum_{z_i \in \text{region bound by $\gamma$} \Res_f (z_i)
+\]
+\end{remark}
+
+\begin{proof}
+  At $z_i$, $f$ has a Laurent series $f(z) = \sum_{n \in \ZZ} c_n^i (z - z_i)^n$.
+Let $g_i(z) = \sum_{-\infty}^{-1} c_n^i(z - z_i)^n$, the ``principal part'' of the series at $z_i$. The function $f - g_1 - \dotsb - g_n$ is holomorphic except fr removable singularities at $z_i$, hence by Cauchy, we have that
+\[
+\int_\gamma (f - g_1 - \dotsb - g_n) dz = 0
+\]
+which is equivalent to
+\[
+\int_\gamma f(z) dz = \sum_i \int_\gamma g_i(z) dz \mpunct{.}
+\]
+Then the usual exchange of summation and integration says that
+\[
+\int_\gamma g_i(z) dz = 2 \pi i n(\gamma, z_i) \Res_f (z_i) \mpunct{.}
+\]
+\end{proof}
+
+\paragraph{Residues}
+
+It is useful to have a set of tools for computing residues.
+\begin{enumerate}
+\item If $f$ has a simple pole at $a$, $f(z) = c_{-1}(z - a)^{-1} + c_0 + \dotsb $, then we have that $\Res_f (a) = \lim_{z \rightarrow a} (z - a)f(z)$.
+\item If $f(z) = g(z)/h(z)$, where $g$, $h$ are holomorphic at $z = a$ and $g(a) \neq 0$, $h$ having a simple zero at $a$.
+Then we have that
+\[
+\Res_f (a) = \lim_{z \rightarrow a} \frac{(z - a)g(z)}{h(z)} = \frac{g(a)}{h'(a)} \mpunct{.}
+\]
+\item If $f(z) = (z - a)^{-k}g(z)$ with $g$ holomorphic, then we have that
+\[
+\Res_f(a) = \frac{g^{(k-1)}(a)}{(k-1)!}
+\]
+\end{enumerate}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
