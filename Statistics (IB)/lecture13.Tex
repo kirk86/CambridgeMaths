@@ -1,0 +1,145 @@
+From \eqref{eq:3.3}, we have that
+\begin{IEEEeqnarray*}{C}
+  \EE [ Y_i ] = \beta_1 x_{i1} + \dotsb + \beta_p x_{ip} + \epsilon_i \\
+  \var (Y_i) = \var (\epsilon_i) = \sigma^2 \\
+  Y_1, \dotsc, Y_n \text{ are independent (or uncorrelated)} \mpunct{.}
+\end{IEEEeqnarray*}
+Note that \eqref{eq:3.3} is linear in the parameters $\beta_1, \dotsc, \beta_p$.
+
+\begin{example}[name=Simple linear regression, label=ex:3.2]
+\emph{see handout, example 3.2(a)}
+From each of ten streets with cycle lanes, the distance (in feet) from the middle of the street to a cyclist in the cycle lane and the distance (in feet) between the cyclist and a passing car were measured.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{SS}
+    \toprule
+    {Distance from centre} & {Distance to car} \\
+    \midrule
+    12.8 & 5.5
+  \end{tabular}
+  \caption{Data for simple linear regression}
+  \label{tab:ex:3.2}
+\end{table}
+\end{example}
+
+\begin{example}[name=One way analysis of variance, label=ex:3.3]
+
+\end{example}
+
+the linear model may be written in matrix form.
+Let $\vec{Y} = (Y_1, \dotsc, Y_n)$ be a $n\times 1$ random vector, $\vec{\beta} = (\beta_1, \dotsc, \beta_p)$, $\vec{\epsilon} = (\epsilon_1, \dotsc, \epsilon_n)$.
+Finally, we have that the $n\times p$ matrix $X$ has form
+\[
+X =
+\begin{pmatrix}
+  x_{11} & \dots & x_{1p} \\
+  \vdots & \ddots & \vdots \\
+  x_{n1} & \dots & x_{np}
+\end{pmatrix}
+\]
+then we have that
+\begin{equation}
+  \label{eq:3.4}
+ \vec{Y} = X\vec{\beta} + \vec{\epsilon} \mpunct{.}
+\end{equation}
+with $\EE(\epsilon) = \vec{0}$ and $\cov (\epsilon) = \sigma^2 I$.
+This means that we have $\EE (\vec{Y}) = X\vec{\beta}$ and $\cov(\vec{Y}) = \sigma^2 I$.
+We assume throughout that $X$ has ful rank $p$.
+Note that we assume the error variance is the same for each observation, this is homoscedastic\index{homoscedastic} case.
+
+\begin{example}[continues=ex:3.2]
+\emph{add matrix formulation for example 3.2}
+\end{example}
+
+\begin{example}[continues=ex:3.3]
+  \emph{add matrix formulation for example 3.3}
+\end{example}
+
+\section{Least squares estimation}
+
+In a linear model $\vec{Y} = X\vec{\beta} + \vec{\epsilon}$ with $\cov \epsilon = \sigma^2 I$, the least squares estimator $\vec{\hat{\beta}}$ of $\vec{\beta}$ minimises that quantity
+\begin{IEEEeqnarray*}{rCl}
+S(\vec{\beta}) = \norm{ \vec{Y} - X\vec{\beta} }^2 &=& (\vec{Y} - X \vec{\beta})^T(\vec{Y} - X \vec{\beta}) \\
+&=& \sum_{i=1}^n \left(Y_i - \sum_{j = 1}^p x_{ij}\beta_j\right)^2
+\end{IEEEeqnarray*}
+
+We want to have $\frac{\partial S}{\partial \beta_k} = 0$ at $\vec{\beta} = \vec{\hat{\beta}}$ for $k = 1, \dotsc, p$.
+This is equivalent to
+\[
+-2 \sum_{i=1}^n x_{ik} \left(Y_i - \sum_{j=1}^p x_{ij} \hat{\beta}_j \right) = 0
+\]
+i.e. we have
+\[
+\sum_{i=1}^n x_{ik} \sum_{j=1}^p\hat{\beta}_j = \sum{i=1}^n x_{ik}Y_i
+\]
+
+In matrix form we have
+\begin{equation}
+  \label{eq:3.5}
+X^TX\vec{\hat{\beta}} = X^T\vec{Y}
+\end{equation}
+i.e. we get the least squares equations\index{least squares equations}.
+As we assume that $X$ has full rank $p$, we must have that
+\[
+\vec{t}^TX^TX\vec{t} = (X\vec{t})^T(X\vec{t}) = \norm{X\vec{t}}^2 > 0
+\]
+for $\vec{t} \neq \vec{0}$, $\vec{t} \in \RR^p$.
+Hence $X^TX$ is positive definite, and hence has an inverse.
+Thus from \eqref{3.5}
+\[
+\vec{\hat{\beta}} =  (X^T X)^{-1} X^T \vec{Y} \mpunct{.}
+\]
+which is linear in the $Y_i$.
+We have that $\frac{\partial^2 S}{\partial \beta_l \partial \beta_k} = 2 (X^T X)_{lk}$, so we have indeed found a minimum.
+
+We find that
+\begin{equation}
+  \label{eq:3.6}
+\EE[\hat{\beta}] = (X^T X)^{-1} X^T \EE(\vec{Y}) = (X^TX)^{-1} X^T X \vec{\beta} = \vec{\beta}
+\end{equation}
+so $\vec{\hat{\beta}}$ is unbiased for $\vec{\beta}$.
+We also have
+\[
+\cov (\vec{\hat{\beta}}) = (X^T X)^{-1} X^T \cov \vec{Y} X (X^T X)^{-1} = \sigma^2 (X^T X)^{-1} \mpunct{.}
+\]
+
+\begin{theorem}[Gauss-Markov]
+ In the full rank linear model, let $\hat{\beta}$ be the least squares estimator of $\vec{\beta}$, and let $\vec{\beta}^*$ be any other unbiased estimator for $\vec{\beta}$ which is linear in the $Y_i$.
+Then, we have that
+\[
+\var (\vec{t}^T \vec{\hat{\beta}}) \leq \var (\vec{t}^T \vec{\beta}^*)
+\]
+for all $\vec{t} \in \RR^p$.
+
+We say $\vec{\hat{\beta}}$ is the \emph{best linear unbiased estimator} for $\vec{\beta}$ (BLUE).
+\end{theorem}
+
+\begin{proof}
+  Let $\vec{\beta}^* = A \vec{Y}$ for some $A$, hence we have that
+\[
+\vec{\beta}^* - \vec{\hat{\beta}} = \left[ A - (X^T X)^{-1} X^T \right] \vec{Y} = B\vec{Y} \text{ say} \mpunct{.}
+\]
+We know that $\vec{\beta}^*$ and $\vec{\hat{\beta}}$ are both unbiased, so
+\[
+\vec{0} = \EE[\vec{\beta}^* - \vec{\hat{\beta}} ] = B X \vec{\beta} \text{ for all $\vec{\beta}$}
+\]
+hence we must have that $B X = 0$.
+
+For covariances matrices, note that
+\begin{IEEEeqnarray*}{rCl}
+  \cov[ v + w ] &=& \EE \left[ \left( (v + w) - (\mu_v + \mu_w) \right) \left( (v + w) - (\mu_v + \mu_w) \right)^T \right] \\
+&=& \cov \vec{V} + \cov \vec{W} + \cov (\vec{V}, \vec{W}) + \cov(\vec{W}, \vec{V}) \mpunct{.}
+\end{IEEEeqnarray*}
+Hence we have that
+\begin{IEEEeqnarray*}{rCl}
+  \cov \vec{\beta}^* &=& \cov \left( \vec{\hat{\beta}} + B\vec{Y} \right) \\
+&=& \cov \vec{\hat{\beta}} + \cov (B\vec{Y}) + \cov(\vec{\hat{\beta}}) + \cov(B\vec{Y}, \vec{\hat{\beta}}) \\
+&=& \cov(\hat{\beta}) + \sigma^2 B B^T
+\end{IEEEeqnarray*}
+
+\end{proof}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:
