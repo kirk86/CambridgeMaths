@@ -1,0 +1,127 @@
+
+\paragraph{Example}
+
+Let us compute the following integral:
+\[
+\int_0^\infty \frac{1}{1 + x^4} \: dx
+\]
+
+Let $\gamma_R$ be the closed contour comprising $[-R, R] \subseteq \RR$ and the arc of semicircle of radius $R$. $f(z) = 1/(1 + z^4)$ has poles at $e^{i \pi / 4}$ and $e^{3 i \pi /4}$ inside $\gamma$.
+
+Hence we have that
+\[
+\int_{\gamma_R} \frac{1}{1 + z^4} \: dz = 2 \pi i \sum_{p_i} \mathrm{Residues}
+\]
+but we have that
+\[
+\int_{\gamma_R} \frac{1}{1 + z^4} \: dz = \int_{-R}^R \frac{1}{1 + x^4} \: dx + \int_0^\pi \frac{i R e^{i\theta}}{1 + R^4 e^{4 i \theta}} \: d\theta \mpunct{.}
+\]
+
+The integral over the semicircle has order $O(1/R^3)$, and hence vanishes as $R \rightarrow \infty$. Now we have that
+\[
+\Res_f(p_i) = \frac{1}{4 p_i^3}
+\]
+and since $p_i^4 = -1$, we have $\Res_f (p_i) = -p_i/4$, so we have that
+\[
+\int_0^\infty \frac{1}{1 + x^4} \: dx = \frac{\pi}{2 \sqrt{2}} \mpunct{.}
+\]
+
+\paragraph{Example}
+Compute the following integral
+\[
+\int_{-\infty}^\infty \frac{\cos x}{1 + x + x^2} \: dx \mpunct{.}
+\]
+We know that $1/(1 + z + z^2)$ has a simple pole at $ê^{2 \pi i /3}$.
+Note that $\cos z$ becomes large on a semicircle of radius $R$ (it takes value $O(e^R)$), thus we take instead
+\[
+f(z) = \frac{e^{i z}}{1 + z + z^2} \mpunct{.}
+\]
+
+Then, we have that, putting $\gamma_R$ the semicircle of radius $R$
+\begin{IEEEeqnarray*}{rCl}
+\int_{\gamma_R} f(z) dz &=& \int_{-R}^R f(x) dx + \int_0^\pi f(R e^{i\theta})i R e^{i\theta} d\theta \\
+&=& 2 \pi i \Res_f (e^{2 \pi /3}) \\
+&=& 2 \pi i \frac{e^{i w}}{2w + 1} \\
+&=& \frac{2 \pi}{\sqrt{3}} (e^{i (-1 + \sqrt{3}i)/2}) \mpunct{.}
+\end{IEEEeqnarray*}
+where $w = e^{2 \pi i / 3}$.
+
+Note that
+\[
+\Re \left(\int_{-R}^R f(x) dx \right) = \int_{-\infty}^\infty \frac{\cos x}{1 + x + x^2} dx \mpunct{.}
+\]
+We also have that
+\[
+\abs*{\int_0^\pi f(R e^{i\theta}) i R e^{i\theta} d\theta} \leq \int_0^\pi \frac{R e^{- R \sin \theta}}{\abs{1 + R e^{i \theta} + R^2 e^{2 i \theta}}} d\theta \mpunct{.}
+\]
+
+\paragraph{Example}
+Compute the following integral
+\[
+\int_0^\infty \frac{\cos x}{x} dx \mpunct{.}
+\]
+
+Consider the contour $\gamma_{R}$, then we have that this contour runs through a pole of the integrand. Hence, we replace $\gamma_R$ by a modified contour $\gamma_{R, \epsilon}$.
+
+\begin{lemma}
+ Let $f$ be holomorphic on $B_a(r) \setminus \{ a \}$ with a simple pole at $a$.
+ Let $0 < \epsilon < r$, and let $\gamma_\epsilon : [\alpha, \beta] \rightarrow \CC$ be $t \mapsto a + \epsilon e^{it}$.
+ Then we have that
+\[
+\lim_{\epsilon \rightarrow 0} \int_{\gamma_\epsilon} f(z) dz = (\beta - \alpha)i \Res_f (a) \mpunct{.}
+\]
+\end{lemma}
+
+\begin{proof}
+  We write $f(z) = \frac{c}{z - a} + g(z)$ where $g$ is holomorphic, and $c = \Res_f (a)$.
+  We have that
+\[
+\abs*{\int_{\gamma_\epsilon} g(z) dz} \leq (\beta - \alpha) \epsilon \sup_{\gamma_\epsilon} \abs{ g(z) } \mpunct{.}
+\]
+but $g$ is holomorphic, hence in particular continuous and bounded in a neighbourhood of $a$.
+Thus, we have that this quantity tends to $0$ as $\epsilon$ tends to $0$.
+Hence, we have that
+\[
+\lim_{\epsilon \rightarrow 0} \int_{\gamma_\epsilon} f(z) dz = \lim_{\epsilon \rightarrow 0} \int_{\gamma_\epsilon} \frac{c}{z - a} dz \mpunct{.}
+\]
+This is equal to
+\[
+c \lim_{\epsilon \rightarrow 0} \int_\alpha^\beta \frac{1}{\epsilon e^{i t}} \epsilon e^{i t} dt = i (\beta - \alpha) c \mpunct{.}
+\]
+\end{proof}
+
+\begin{lemma}[Jordan's lemma]
+ Let $f$ be holomorphic on $\{ \abs{z} > r \}$ and suppose that on this region, $z f(z)$ is bounded.
+ Let $\gamma_R : [0, \pi] \rightarrow \CC$ be the path $t \mapsto R e^{i t}$.
+ Then, for all $\alpha > 0$ we have that
+\[
+f(z) e^{i \alpha z} dz \rightarrow 0 \text{ as } R \rightarrow \infty \mpunct{.}
+\]
+\end{lemma}
+
+\begin{proof}
+  Suppose $\abs{f(z)} \leq C/\abs{z}$ for sufficiently large $\abs{z}$.
+  On $(0, \pi/2]$, we have that
+\[
+\frac{d}{d\theta} \left(\frac{\sin \theta}{\theta}\right) = \frac{\theta \cos \theta - \sin \theta}{\theta^2} \leq 0 \mpunct{.}
+\]
+Hence $\sin \theta / \theta$ is decreasing, and $\sin t \geq 2 t/\pi$ for $t \in [0, \pi/2]$.
+On $\gamma_R$ we have that $\abs{e^{i \alpha z} = e^{- \alpha R \sin t}$, but we have that
+\[
+e^{- \alpha R \sin t} \leq
+\begin{cases}
+  e^{-2 \alpha R t / \pi} & 0 \leq t \leq \pi/2  \mpunct{,}\\
+  e^{-2 2 R t' /\pi} & 0 \leq t' = \pi - t \leq \pi /2 \mpunct{.}
+\end{cases}
+\]
+then we have that
+\[
+\abs*{ \int_0^{\pi/2} e^{i \alpha R e^{it}} f(R e^{it}) i R e^{it} dt }
+&\leq& \int_0^{\pi/2} e^{- \alpha R t} C dt
+&=& \frac{1}{\alpha R} (1 - e^{- \alpha R \pi /2})
+\]
+\end{proof}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
