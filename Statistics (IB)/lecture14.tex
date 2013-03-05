@@ -1,0 +1,120 @@
+Note that taking $t = (0, 0, \dotsc, 1, \dotsc, 0, 0)$ with a $1$ in the $i$\textsuperscript{th} position, we have that
+\[
+\var \hat{\beta}_i \leq \var \beta_i^*
+\]
+
+\begin{definition}
+  We have the following values
+\[
+\hat{\vec{Y}} = X \hat{\vec{\beta}} \text{ is the vector of fitted values\index{fitted values}.}
+\]
+\[
+\vec{R} = \vec{Y} - \vec{\hat{Y}} \text{ is the vector of residuals\index{residuals}.}
+\]
+Then we define the residual sum of squares\index{residual sum of squares} (RSS) as
+\[
+RSS = \norm{R}^2 = (\vec{Y} - X \vec{\hat{\beta}})^T(\vec{Y} - X \vec{\hat{\beta}} \mpunct{.}
+\]
+\end{definition}
+
+Note that $X^T \vec{R} = X^T Y - X^T X \hat{\vec{\beta}} = 0$ by \eqref{eq:3.5}.
+Hence $\vec{R}$ is orthogonal to the column space of $X$, and $\hat{\vec{Y}}$ is just the orthogonal projection of $\vec{Y}$ onto the column space of $X$.
+Write $\hat{\vec{Y}}$ as follows
+\[
+\hat{\vec{Y}} = X \vec{\hat{\beta}} = X(X^TX)^{-1}X^T\vec{Y} = P \vec{Y}
+\]
+where $P = X(X^TX)^{-1}X^T$. $P$ represents an orthogonal projection of $\RR^n$ onto the column space of $X$.
+Note that we have $P^2 = P$ (i.e. $P$ is idempotent) and $P^T = P$ (i.e. $P$ is symmetric).
+
+\section{Linear models with normal theory assumptions}
+\label{sec:3.5}
+Suppose that we have a model $\vec{Y} = X \vec{\beta} + \vec{\epsilon}$, with $\vec{\epsilon} \sim \Normal_n(0, \sigma^2I)$ and $\mathop{rank} X = p ( < n)$.
+Note that this is a special case of \cref{sec:3.4}, hence all previous results hold.
+In particular, we have that $\vec{Y} \sim \Normal_n (X \vec{\beta}, \sigma^2 I)$.
+
+The log-likelihood is
+\[
+\ell ( \vec{\beta}, \sigma^2 ) = -\frac{n}{2} \log (2 \pi) - \frac{n}{2} \log \sigma^2 - \frac{1}{2 \sigma^2} S(\vec{\beta})
+\]
+where $S(\beta) = (\vec{Y} - X \vec{\beta})^T(\vec{Y} - X \vec{\beta})$.
+Maximizing $\ell$ with respect to $\vec{\beta}$ is equivalent to minimizing $S(\vec{\beta})$ is $\hat{\vec{\beta}} = (X^TX)^{-1}X^T\vec{Y}$, i.e. the same as the least square estimator.
+For the maximum likelihood estimator of $\sigma^2$, we require that
+\[
+\left. \frac{\partial \ell}{\partial \sigma^2} \right\vert_{(\hat{\vec{\beta}}, \hat{\sigma^2})} = 0 \mpunct{,}
+\]
+\[
+\text{i.e. } -\frac{n}{2 \hat{\sigma}^2} + \frac{1}{\hat{\sigma}^4} = 0
+\]
+\[
+\text{i.e. } \hat{\sigma}^2 = \frac{1}{n} S (\hat{\vec{\beta}}) = \frac{1}{n}(\vec{Y} - X \hat{\vec{\beta}})^T(\vec{Y} - X \hat{\vec{\beta}})
+\]
+\[
+\text{i.e. } \hat{\sigma}^2 = \frac{1}{n}\mathrm{RSS} \mpunct{.}
+\]
+See the example sheet for $\hat{\vec{\beta}}$ and $\hat{\sigma}^2$ for simple linear regression and one way anova (analysis of variance).
+
+\begin{lemma}[label=lemma:3.5]
+  If $\vec{Z} \sim \Normal_n (0, \sigma^2 I)$ and $A$ is $n \times n$ symmetric and idempotent with rank $r$, then $\vec{Z}^T A \vec{Z} \sim \sigma^2 \chi^2_r$.
+\end{lemma}
+
+\begin{proof}
+  As $A$ is idempotent, we have that all eigenvalues $\lambda_i$ verify $\lambda_i \in \{ 0, 1 \}$ for $i = 1, \dotsc, n$.
+As $A$ is symmetric, there exists an orthogonal matrix $Q$ such that
+\begin{equation}
+  \label{eq:lemma:3.5}
+Q^TAQ = \mathop{diag}(\lambda_1, \dotsc, \lambda_n) = \mathop{diag} (\underbrace{1, \dotsc, 1}_{r}, \underbrace{0, \dotsc, 0}_{n - r}) = \Lambda \mpunct{.}
+\end{equation}
+Now let $\vec{W} = Q^T\vec{Z}$, so $\vec{W} \sim \Normal_n( 0, \sigma^2 I)$, so we have that
+\begin{IEEEeqnarray*}{rCl}
+  \vec{Z}^T A \vec{Z} &=& \vec{W}^T Q^T A Q \vec{W} \\
+&=& \vec{W}^T \Lambda \vec{W} \\
+&=& \sum_{i=1}^r W_i^2 \sim \sigma^2 \chi^2 \mpunct{.}
+\end{IEEEeqnarray*}
+\end{proof}
+
+\begin{lemma}[label=lemma:3.6]
+  For a symmetric idempotent matrix $A$, we have that $\mathop{rank} A = \tr A$
+\end{lemma}
+\begin{proof}
+From \eqref{eq:lemma:3.5} we have that
+\begin{IEEEeqnarray*}{rCl}
+ \mathop{rank} A &=& \mathop{rank} \Lambda \\
+&=& \tr Q^T A Q \\
+&=& \tr A Q Q^T \\
+&=& \tr A \mpunct{.}
+\end{IEEEeqnarray*}
+\end{proof}
+
+\begin{theorem}[label=thm:3.7, name=joint distribution of $\vec{\hat{\beta}}$ and $\hat{\sigma}^2$]
+  We have the following:
+  \begin{enumerate}
+  \item $\vec{\hat{\beta}} \sim \Normal_p \left(\vec{\beta}, \sigma^2 (X^TX)^{-1}\right)$.
+  \item  $\mathrm{RSS} \sim \sigma^2\chi^2_{n - p}$ and so $\hat{\sigma}^2 \sim \frac{\sigma^2}{n} \chi^2_{n - p}$
+  \item $\vec{\hat{\beta}}$ and $\hat{\sigma}^2$ are independent.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  We have that
+  \begin{enumerate}
+  \item $\vec{\hat{\beta}} = (X^TX)^{-1}X^T\vec{Y} \ (= C\vec{Y})$ say, hence we have that
+\[
+\vec{\hat{\beta}} \sim \Normal_n \left(\vec{\beta}, \sigma^2 (X^TX)^{-1}\right) \mpunct{.}
+\]
+\item We apply \cref{lemma:3.5} to $\vec{Z} = \vec{Y} - X\vec{\beta} \sim \Normal_n (0, \sigma^2 I)$, and $A = I - P$ where $P = X(X^TX)^{-1}X^T$.
+$P$ is symmetric and idempotent, hence $A = I - P$ is symmetric and idempotent.
+By \cref{lemma:3.6}, we have that
+\begin{IEEEeqnarray*}{rCl}
+  \mathop{rank} P &=& \tr P \\
+&=& \tr X(X^TX)^{-1}X^T \\
+&=& \tr (X^TX)^{-1}X^TX \\
+&=& \tr I_p \\
+&=& p \mpunct{.}
+\end{IEEEeqnarray*}
+hence we have that $\mathop{rank} P = \mathop{rank} (I - P) = n - p$.
+  \end{enumerate}
+\end{proof}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:

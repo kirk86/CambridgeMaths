@@ -57,6 +57,7 @@ Note that we assume the error variance is the same for each observation, this is
 \end{example}
 
 \section{Least squares estimation}
+\label{sec:3.4}
 
 In a linear model $\vec{Y} = X\vec{\beta} + \vec{\epsilon}$ with $\cov \epsilon = \sigma^2 I$, the least squares estimator $\vec{\hat{\beta}}$ of $\vec{\beta}$ minimises that quantity
 \begin{IEEEeqnarray*}{rCl}
@@ -86,7 +87,7 @@ As we assume that $X$ has full rank $p$, we must have that
 \]
 for $\vec{t} \neq \vec{0}$, $\vec{t} \in \RR^p$.
 Hence $X^TX$ is positive definite, and hence has an inverse.
-Thus from \eqref{3.5}
+Thus from \eqref{eq:3.5}
 \[
 \vec{\hat{\beta}} =  (X^T X)^{-1} X^T \vec{Y} \mpunct{.}
 \]
@@ -135,9 +136,14 @@ Hence we have that
 \begin{IEEEeqnarray*}{rCl}
   \cov \vec{\beta}^* &=& \cov \left( \vec{\hat{\beta}} + B\vec{Y} \right) \\
 &=& \cov \vec{\hat{\beta}} + \cov (B\vec{Y}) + \cov(\vec{\hat{\beta}}) + \cov(B\vec{Y}, \vec{\hat{\beta}}) \\
-&=& \cov(\hat{\beta}) + \sigma^2 B B^T
+&=& \cov(\hat{\beta}) + \sigma^2 B B^T \mpunct{.}
 \end{IEEEeqnarray*}
-
+So for $\vec{t} \in \RR^p$, we have
+\begin{IEEEeqnarray*}{rCl}
+ \var (\vec{t}^T \vec{\beta}^* ) &=& \vec{t}^T \cov (\vec{\beta}^2) \vec{t} \quad \text{by \eqref{eq:3.1}} \\
+&=& \var (\vec{t}^T \hat{\vec{\beta}}) + \sigma^2 \norm{ B^T \vec{t} }^2 \\
+&\geq& \var (\vec{t}^T \hat{\vec{\beta}}) \mpunct{.}
+\end{IEEEeqnarray*}
 \end{proof}
 %%% Local Variables:
 %%% mode: latex
