@@ -1,0 +1,112 @@
+\begin{lemma}[label=lemma:3.8]
+  Suppose $\vec{Z} \sim \Normal_n(0, \sigma^2 I)$ and $A_1$ and $A_2$ are symmetric idempotent $n \times n$ matrices with $A_1 A_2 = 0$.
+Then $\vec{Z}^T A_1 \vec{Z}$ and $\vec{Z}^T A_2 \vec{Z}$ are independent.
+\end{lemma}
+
+\begin{proof}
+  Let $\vec{W}_i = A_i\vec{Z}$, for $i = 1, 2$, and let $\vec{W} = (\vec{W_1}, \vec{W_2}) = A\vec{Z}$ where $A = (A_1, A_2)$.
+Then, we have that
+\[
+\vec{W} \sim \Normal_{2n} \left( \begin{pmatrix}\vec{0} \\ \vec{0}\end{pmatrix}, \sigma^2 \begin{pmatrix} A_1 & 0 \\ 0 & A_2 \end{pmatrix} \right) \mpunct{,}
+\]
+so we have that $\vec{W}_1$ and $\vec{W}_2$ are independent.
+Hence, we have that $\vec{W}_1^T\vec{W} = \vec{Z}^TA_1\vec{Z}$ ad $\vec{W}_2^T\vec{W}_2 = \vec{Z}^TA_2\vec{Z}$ are independent.
+\end{proof}
+
+\section{Applications of the distribution theory}
+\label{sec:3.6}
+
+\subsection{Inference for $\beta_j$}
+\label{sec:3.6.1}
+
+We know that $\hat{\vec{\beta}} \sim \Normal_p \left( \vec{\beta}, \sigma^2 (X^TX)^{-1} \right)$, so that
+\[
+\hat{\beta_j} \sim \Normal \left(\beta_j, \sigma^2 (X^TX)^{-1}_{jj}\right) \mpunct{.}
+\]
+
+The standard error\index{standard error} of $\hat{\beta}_j$ is
+\[
+\mathop{s.e.} (\beta_j) = \sqrt{\tilde{\sigma}^2 (X^TX)^{-1}_{jj}}
+\]
+where $\tilde{\sigma}^2 = \mathrm{RSS}/(n-p)$ as in \cref{sec:3.5}.
+Thus we have that
+\begin{IEEEeqnarray*}{rCl}
+  \frac{\hat{\beta}_j - \beta_j}{\mathop{s.e.}(\hat{\beta}_j)} &=& \frac{\hat{\beta}_j - \beta_j}{\sqrt{\tilde{\sigma}^2 (X^TX)^{-1}_{jj}}} \\
+&=& \frac{(\hat{\beta}_j - \beta_j)/\sqrt{\sigma^2(X^TX)^{-1}_{jj}}}{\sqrt{\mathrm{RSS}/\left((n-p)\sigma^2\right)}} \\
+&\sim& t_{n-p} \mpunct{.}
+\end{IEEEeqnarray*}
+
+So a $100(1-\alpha)\%$ confidence interval for $\beta_j$ has endpoints
+\[
+\hat{\beta}_j \pm \mathop{s.e.}(\hat{\beta_j}) \times t_{n-p} (\alpha / 2) \mpunct{.}
+\]
+Consider the $T_0$ test $H_0 : \beta_j = 0$.
+We have that under $H_0$
+\[
+\frac{\hat{\beta}_j}{\mathop{s.e.}(\hat{\beta}_j)} \sim t_{n-p} \mpunct{,}
+\]
+so we can refer this quantity to appropriate percentage points of $t_{n-p}$.
+
+\begin{example}[continues=ex:3.2]
+  \emph{see handout}
+\end{example}
+
+\subsection{The expected response at $x^*$}
+\label{sec:3.6.2}
+
+Let $\vec{x}^^*$ be a new vector of values for the explanatory variables.
+The expected response at $\vec{x}^*$ is ${\vec{x}^*}^T\vec{\beta}$.
+We estimate this by ${\vec{x}^*}^T\hat{\vec{\beta}}$.
+By \cref{thm:3.7} and \cref{prop:3.1}, we have that
+\[
+{\vec{x}^*}^T\left(\hat{\vec{\beta}} - \vec{\beta}\right) \sim \Normal(0, {\vec{x}^*}^T (X^TX)^{-1}\vec{x}^*) \mpunct{.}
+\]
+Let $\tau^2 = {\vec{x}^*}^T (X^TX)^{-1}\vec{x}^*)$. We have that
+\[
+\frac{{\vec{x}^*}^T(\hat{\vec{\beta}} - \vec{\beta})}{\tilde{\sigma} \tau} \sim t_{n-p}
+\]
+A $100(1 - \alpha)\%$ confidence interval for the expected response ${\vec{x}^*}^T\vec{\beta}$ has endpoints
+\[
+{\vec{x}^*}^T\hat{\vec{\beta}} \pm \tilde{\sigma}\tau t_{n-p}(\alpha / 2) \mpunct{.}
+\]
+
+\subsection{The response at $x^{*}$}
+\label{sec:3.6.3}
+
+The response at $\vec{x}^*$ is $\vec{Y}^* = {\vec{x}^*}^T + \epsilon^*$, where $\epsilon^* \sim \Normal(0, \sigma^2)$ and $\vec{Y}^*$ is independent of $Y_1, \dotsc, Y_n$.
+
+We predict $\vec{Y}^*$ by $\hat{\vec{Y}}^* = {\vec{x}^*}^T\hat{\vec{\beta}}$.
+A $100(1-\alpha)\%$ prediction interval for $\vec{Y}^*$ is an interval $I(\vec{Y})$ such that $\PP(Y^* \in I(\vec{Y})) = 1 - \alpha$ where the probability is over the joint distribution of $(\vec{Y}^*, Y_1, \dotsc, Y_n)$.
+
+Observe that
+\[
+\hat{\vec{Y}}^* - \vec{Y}^* = {\vec{x}^*}^T(\hat{\vec{\beta}} - \vec{\beta}) - \epsilon^*
+\]
+so that we have
+\[
+\EE \left( \hat{\vec{Y}}^* - \vec{Y}^* \right) = {\vec{x}^*}^T(\vec{\beta} - \beta) = 0 \mpunct {,}
+\]
+and
+\begin{IEEEeqnarray*}{rCl}
+  \var \left( \hat{\vec{Y}}^* - \vec{Y}^* \right) &=& \var \left({\vec{x}^*}^T\hat{\vec{\beta}}\right) + \var (\epsilon^*) \\
+&=& \sigma^2 {\vec{x}^*}^T(X^TX)^{-1}\vec{x}^* + \sigma^2 \\
+&=& \sigma^2(\tau^2 + 1) \mpunct{.}
+\end{IEEEeqnarray*}
+Hence, we have that
+\[
+\hat{\vec{Y}}^* - \vec{Y}^* \sim \Normal(0, \sigma^2(\tau^2  + 1)) \mpunct{.}
+\]
+
+We find that
+\[
+\frac{\hat{\vec{Y}}^* - \vec{Y}^*}{\tilde{\sigma}\sqrt{\tau^2 + 1}} \sim t_{n-p} \mpunct{.}
+\]
+The interval with endpoints
+\[
+\hat{\vec{Y}}^* \pm \tilde{\sigma}\sqrt{(\tau^2 + 1)} t_{n-p}(\alpha / 2)
+\]
+is a $100(1-\alpha)\%$ prediction interval for $\vec{Y}^*$.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:

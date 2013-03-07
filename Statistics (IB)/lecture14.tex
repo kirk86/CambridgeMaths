@@ -112,8 +112,41 @@ By \cref{lemma:3.6}, we have that
 &=& p \mpunct{.}
 \end{IEEEeqnarray*}
 hence we have that $\mathop{rank} P = \mathop{rank} (I - P) = n - p$.
+By \cref{lemma:3.5}, we have that $\vec{Z}^TA\vec{Z} \sim \sigma^2 \chi^2_{n-p}$.
+Note that $(I - P)X = 0$, so that
+\begin{IEEEeqnarray*}{rCl}
+  \vec{Z}^TA\vec{Z} &=& (\vec{Y} - X\vec{\beta})^T(I - P)(\vec{Y} - X \vec{\beta}) \\
+&=& \vec{Y}^T(I - P)\vec{Y} \mpunct{.}
+\end{IEEEeqnarray*}
+We know that $\vec{R} = \vec{Y} - \hat{\vec{Y}} = (I - P)\vec{Y}$, so we have that
+\[
+\mathrm{RSS} = \vec{R}^T\vec{R} = \vec{Y}^T(I - P)^T(I - P)\vec{Y} = \vec{Y}^T(I - P)\vec{Y} \mpunct{,}
+\]
+so we have that
+\[
+\mathrm{RSS} = \vec{Z}^TA\vec{Z} \sim \sigma^2 \chi^2_{n-p}
+\]
+\item Consider the vector $\vec{V} = D\vec{Y}$ where
+\[
+\vec{V} \begin{pmatrix}\hat{\vec{\beta}} \\ \vec{R}\end{pmatrix} \text{ and } D = \begin{pmatrix}C \\ I - P\end{pmatrix} \mpunct{.}
+\]
+By \cref{prop:3.1}, we have that $\vec{V}$ is multivariate normal with
+\begin{IEEEeqnarray*}{rCl}
+\cov \vec{V} &=& \sigma^2 D D^T \\
+ &=& \sigma^2 \begin{pmatrix}C \\ I - P\end{pmatrix}\left( C^T (I - P)^T \right) \\
+&=& \sigma^2 \begin{pmatrix}C C^T & C (I - P) \\ (I - P)C^T & I - P\end{pmatrix} \mpunct{.}
+\end{IEEEeqnarray*}
+we have that $C(I-P) = 0$ as $(X^TX)^{-1}X^T(I - P) = 0$.
+Hence, we have that $\hat{\vec{\beta}}$ and $\vec{R}$ are independent by \cref{prop:3.2}.
+Thus, we have that $\hat{\vec{\beta}}$ and $\mathrm{RSS} = \vec{R}^T\vec{R}$ are independent, and so $\hat{\vec{\beta}}$ and $\hat{\sigma^2}$ are independent.
+From (ii), we know that $\EE[\mathrm{RSS}] = \sigma^2/(n-p)$, so we have that
+\[
+\tilde{\sigma^2} = \frac{\mathrm{RSS}}{n - ^p}
+\]
+is an unbiased estimator for $\sigma^2$.
   \end{enumerate}
 \end{proof}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "statistics"
