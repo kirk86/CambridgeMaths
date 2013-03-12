@@ -1,0 +1,112 @@
+
+\section{Rouché's theorem}
+
+\paragraph{Summing series}
+
+Show that
+\[
+\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6} \mpunct{.}
+\]
+
+Let $f(z) = \frac{\pi \cos (\pi z)}{z^2 \sin (\pi z)}$. $f$ has simple poles at $n \in \ZZ \setminus \{ 0 \}$, and a triple pole at $0$.
+The residues of $f$ are as follows. If $n \in \ZZ \setminus \{ 0 \}$, we have that locally $f = h(z)/k(z)$ where $h(n) \neq 0$ and $k$ has a simple $0$.
+Hence we have that
+\[
+\Res_f = \frac{h(n)}{k'(n)} = \frac{1}{n^2}
+\]
+
+If $n = 0$, we have that
+\begin{IEEEeqnarray*}{rCl}
+  \frac{\cos z}{\sin z} &=& (1 - z^2/2 + O(z^4))(z - z^3/3! + O(z^5))^{-1} \\
+&=& (1 - z^2/2 + O(z^4))(1 + z/6 + O(z^3)) \\
+&=& 1/z - z/3 + O(z^3) \mpunct{.}
+\end{IEEEeqnarray*}
+Hence we have that $\Res_f (0) = - \pi^2/3$.
+
+With a view to estimate $\abs{f}$, consider the contour $\gamma_N$ the square of side $2N + 1$ centered at the origin.
+By the residue theorem, we have that
+\[
+\int_{\gamma_N} f(z) dz = 2\pi i \left( 2 \sum_{n=1}^N \frac{1}{n^2} - \frac{\pi^2}{3} \right) \mpunct{.}
+\]
+
+We aim to show that $\int_{\gamma_N} f(z) dz \rightarrow 0$ as $N \rightarrow \infty$.
+We have that
+
+\begin{IEEEeqnarray*}{rCl}
+\abs*{\int_{\gamma_N} f(z) dz} &\leq& \sup_{\gamma_N} \abs*{\frac{\pi \cot {\pi z}}{z^2}} \mathop{\ell}{\gamma_N} \\
+&\leq& \sup_{\gamma_N} \abs{\cot (\pi z)} \frac{4 (2N + 1) \pi}{(N + 1/2)^2 \mpunct{.}
+\end{IEEEeqnarray*}
+Suffices to prove that, on $\gamma_N$, $\abs{\cot {\pi z}}$ is bounded.
+On vertical sides, $z = \pm (N + 1/2) + iy$ and we have that
+\[
+\abs{\cot (\pi z)} = \abs{\tan (i \pi y)} = \abs{\tanh (\pi y)} \leq 1 \mpunct{.}
+\]
+On horizontal sides, we have that $z = x \pm i(N + 1/2)$, and we have that
+\begin{IEEEeqnarray*}
+  \abs{\cot (\pi z)} &=& \abs*{\frac{e^{i \pi (x \pm i (N + 1/2))} + e^{-i \pi (x \pm i (N + 1/2))}}{e^{i \pi (x \pm i (N + 1/2))} - e^{-i \pi (x \pm i (N + 1/2))}}} \\
+&\leq& \abs*{\frac{e^{\pi (N + 1/2)} + e^{- \pi ( N + 1/2)}}{e ^{\pi (N + 1/2)} - e^{- \pi (N + 1/2)}}} \\
+&=& \mathop{coth}(N+1/2) \pi \mpunct{.}
+\end{IEEEeqnarray*}
+However, we have that $\mathop{coth}$ is a decreasing function for real values, hence this suffices.
+
+\subsection{The argument principle}
+Recall that the zeroes and poles of a meromorphic function have a natural multiplicity. If $f(z) = (z -a)^k g(z)$ and $g(a) \neq 0$, $g$ holomorphic near $a$, then $\abs{k}$ is the multiplicity (resp. order) of the zero (resp. pole).
+
+\begin{theorem}[name=Argument principle, key=thm:argument_principle]
+ Let $f$ be meromorphic on a domain $U$ and let $\gamma \subseteq U$ be a simple closed curve.
+Suppose no zeroes or poles of $f$ lie on $\gamma$, then we have that
+\[
+\frac{1}{2 \pi i} \int_\gamma \frac{f'(z)}{f(z)} dz = N - P = n(\Gamma, 0)
+\]
+where $N$ (resp. $P$) are the numbers of zeroes (resp. poles) of $f$ inside $\gamma$ counted with multiplicity, and $\Gamma = f \circ \gamma$.
+\end{theorem}
+
+Note that as $z$ moves along a simple contour $\gamma$, then $f(z)$ has a total change in argument of $2 \pi (N - P)$.
+
+\begin{proof}
+  Suppose that $f(z) = (z - a)^kg(z)$, as above. Then we have that
+\[
+\frac{f'(z)}{f(z)} = \frac{k}{z - a} + \frac{g'(z)}{g(z)} \mpunct{.}
+\]
+Since $g(a) \neq 0$, we see that $\frac{f'(z)}{f(z)}$ has a simple pole at $a$, and moreover the residue is $+k$ if $f$ had a zero of order $k > 0$ and $-k$ if $f$ had a pole of order $k > 0$.
+By the residue theorem, we have that
+\[
+\frac{1}{2 \pi i} \int_{\gamma} \frac{f'(z)}{f(z)} dz = \sum_{a \text{ inside } \gamma} Res_{f'/f}(a) = N - P \mpunct{.}
+\]
+Note that since $f$ has no zeroes or poles on $\gamma$, the composite $\Gamma = g \circ \gamma$ is a closed curve in $\CC^* = \CC \setminus \{ 0 \}$.
+By definition, we have that
+\[
+n_\Gamma(0) = \frac{1}{2 \pi i}\int_\Gamma \frac{dw}{w} \mpunct{.}
+\]
+Letting $w = f(z)$, we obtain the 2\textsuperscript{nd} identity of the theorem.
+\end{proof}
+
+\begin{corollary}[Rouché's theorem]
+  Let $f$, $g$ be holomorphic on a domain $U$.
+Let $\gamma$ be a simple closed curve in $U$.
+Assume $\abs{f} > \abs{g}$ on $\gamma$.
+Then $f$ and $f + g$ have the same number of zeroes inside $\gamma$, when counted with multiplicity.
+\end{corollary}
+
+\begin{proof}
+  We want to show that $(f + g)/f = 1 + g/f$ has the same number of zeroes as poles (counted with multiplicity) inside $\gamma$.
+Remark that $\abs{f} > \abs{g}$ on $\gamma$ implies that neither $f$ nor $f + g$ can vanish on $\gamma$.
+Let $h = 1 + g / f$, this has no zeroes nor poles on $\gamma$ so if $N$, $P$ are the number of zeroes and poles of $h$ inside $\gamma$, $N-P = n_{h \circ g}(0)$.
+But if $\abs{f} > \abs{g}$, we have that $z \in \gamma$, and $h(z) \in B_1(1) \subseteq \{ z \mid \Re z > 0 \}$.
+On this domain, the principal branch of $\log$ and $\mathrm{arg}$ are continuous.
+Hence, the winding number $n_{h \circ g}(0) = 0$.
+\end{proof}
+
+\paragraph{Example}
+Let $P(z) = z^4 + 6z + 3$. On $\abs{z} = 2$, we have that
+\[
+16 = \abs{z^4} > 15 = 6\abs{z} + 3 \geq \abs{6z + 3} \mpunct{.}
+\]
+If $z^4 = f$, $6z + 3 = g$, we have that all zeroes of $P$ satisfy $\abs{z} < 2$.
+If $\abs{z} = 1$ and $6 \abs{z} > 4 > \abs{z^4 + 3}$, so $P(z)$ and $6z$ have the same number of zeroes inside $\{ \abs{z} < 1 \}$, so $P$ has $3$ roots (with multiplicity) in the annulus $\{ 1 < \abs{z} < 2 \}$.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
