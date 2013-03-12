@@ -47,7 +47,7 @@ Define $\cov( \vec{V}, \vec{W} )$ to be the matrix with the $(i, j)$ element bei
 \cov (A\vec{X}, B\vec{X}) = A (\cov \vec{X}) B^T \mpunct{.}
 \]
 
-$\vec{X}$ has a multivariate normal distribution\index{multivariate normal} if, for every $\vec{t} \in \RR^n$, the random variable $\vec{t}^t\vec{X}$ has a normal distribution.
+$\vec{X}$ has a multivariate normal distribution\index{multivariate normal} if, for every $\vec{t} \in \RR^n$, the random variable $\vec{t}^T\vec{X}$ has a normal distribution.
 If $\EE(\vec{X}) = \vec{\mu}$ and $\cov \vec{X} = \Sigma$, we write $\vec{X} \sim \Normal_n (\vec{\mu}, \Sigma)$.
 Note that $\Sigma$ is symmetric (as $\cov (X_i, X_j) = \cov(X_j, X_i)$), and it is positive semi-definite (as we have that by \eqref{eq:3.1}, $\vec{t}^t\Sigma\vec{t} = \var \vec{t}^t \vec{X} \geq 0$).
 By \eqref{eq:3.1}, we know that $\vec{t}^t\vec{X} \sim \Normal(\vec{t}^t\vec{\mu}, \vec{t}^t\Sigma\vec{t})$, hence we know that $\vec{t}^t\vec{X}$ has moment generating function

@@ -1,4 +1,4 @@
-\begin{example}[label=example:z-test]
+\begin{example}[label=example:z-test, name=$Z$-test]
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(\mu, \sigma_0^2)$ with $\sigma_0^2$ known, $\mu$ unknown. Consider the test $H_0 : \mu = \mu_0$ versus $H_1 : \mu = \mu_1$, where $\mu_0$ and $\mu_1$ are known fixed values with $\mu_1 > \mu_0$.
 
 We have that the likelihood ratio is
@@ -7,14 +7,14 @@ We have that the likelihood ratio is
 &=& \exp \left\{ \frac{(\mu_1 - \mu_0)}{\sigma_0^2} \sum x_i + \frac{n}{2 \sigma_0^2} (\mu_0^2 - \mu_1^2) \right\} \mpunct{.}
 \end{IEEEeqnarray*}
 
-The likelihood ratio is an increasing function of $\sum x_i$ (as we have $\mu_1 < \mu_0$, and hence is an increasing function of $\overline{x}$.
+The likelihood ratio is an increasing function of $\sum x_i$ (as we have $\mu_1 < \mu_0$), and hence is an increasing function of $\overline{x}$.
 The likelihood ratio test of size $\alpha$ rejects $H_0$ if $\overline{x} > k$ where $k$ is chosen such that
 \[
 \PP \big(\overline{X} > k \given H_0 \big) = \alpha \mpunct{.}
 \]
 Under $H_0$, we have that $\overline{X} \sim \Normal(\mu_0, \sigma_0^2/n)$, and hence we have that
 \[
-\PP \big( \overline{X} > k \given H_0 \big) = \PP \left( \underbrace{\frac{\sqrt{n}\left(\overline{X} - \mu_0 \right)}{\sigma_0}}_{Z \sim \Normal(0, 1)} > \tilde{k} \given H_0 \right) \mpunct{,}
+\PP \big( \overline{X} > k \given H_0 \big) = \PP \biggl( \underbrace{\frac{\sqrt{n}\left(\overline{X} - \mu_0 \right)}{\sigma_0}}_{Z \sim \Normal(0, 1)} > \tilde{k} \given H_0 \biggr) \mpunct{,}
 \]
 and this is $\alpha$ if $\tilde{k} = z_\alpha$ (upper $100\alpha\%$ point of $\Normal(0, 1)$).
 We reject $H_0$ if $Z = \sqrt{n}(\overline{X} - \mu_0)/\sigma_0 > z_\alpha$.
@@ -78,7 +78,7 @@ $W(\mu)$ is an increasing function of $\mu$.
 We also know that $W(\mu_0) = \alpha$.
 Hence we have that $\sup_{\mu \leq \mu_0} W(\mu) = \alpha$, i.e. we have shown the first condition of the definition of a uniformly most powerful test.
 
-Observe that for any $\mu_1 > \mu_0$, the most powerful test of $H_0' : \mu = \mu_1$ versus $H_1' : \mu = \mu_1$ has critical region $C$ (the calculations in example 2.1 depended only on the fact that $\mu_1 > \mu_0$ and not on the particular value of $\mu_1$).
+Observe that for any $\mu_1 > \mu_0$, the most powerful test of $H_0' : \mu = \mu_0$ versus $H_1' : \mu = \mu_1$ has critical region $C$ (the calculations in \vref{example:z-test} depended only on the fact that $\mu_1 > \mu_0$ and not on the particular value of $\mu_1$).
 Let $C^*$ and $W^*$ belong to any other test of $H_0 : \mu \leq \mu_0$ versus $H_1 : \mu > \mu_0$ with size less than or equal to $\alpha$.
 Then $C^*$ can be regarded as a test of $H_0'$ versus $H_1'$, with size smaller than $\alpha$, hence by \cref{thm:np} we have that $W^*(\mu_1) \leq W(\mu_1)$. This holds for all $\mu_1 > \mu_0$, and hence we have verified the second condition of the definition of an uniformly most powerful test.
 

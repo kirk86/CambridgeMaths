@@ -1,4 +1,4 @@
-$T = \sum \frac{(o_i - e_i)^2}{e_i}$ is Pearson's chi-squared statistic\index{Pearson's chi-squared statistic} and reject $H_0$ if $T > \chi^2_{k-1-\abs{\Theta}}(\alpha$.
+We call $T = \sum \frac{(o_i - e_i)^2}{e_i}$ the Pearson's chi-squared statistic\index{Pearson's chi-squared statistic} and we reject $H_0$ if $T > \chi^2_{k-1-\abs{\Theta}}(\alpha)$.
 
 \begin{example}[name=Mendel's peas, label=ex:2.4]
 We consider an experiment whereby we cross $556$ smooth yellow peas with wrinked green female peas. From the progeny, we let
@@ -70,25 +70,28 @@ We test $H_0 : \text{the two classifications are independent}$, i.e.
 \[
 H_0 : p_{ij} = p_{i+}p_{+j} \text{ for } i = 1, \dotsc, r \quad j = 1, \dotsc, c
 \]
-with constraints $sum_i p_{i+} = 1$ and $\sum_j p_{+j} = 1$,
-versus $H_1 : p_{ij} \text{ unrestricted, except for the usual normalization conditions}$.
+with constraints $\sum_i p_{i+} = 1$ and $\sum_j p_{+j} = 1$,
+versus $H_1 : p_{ij} \text{ unrestricted}$ (except for the usual normalization conditions).
 
-Under $H_1$, the maximum likelihood estimators are $\hat{p_{ij}} = n_{ij}/n$ (as obtained in \ref{sec:2.5}.
+Under $H_1$, the maximum likelihood estimators are $\hat{p_{ij}} = n_{ij}/n$ (as obtained in \ref{sec:2.5}).
 
 Under $H_0$, we have that $L \propto \prod (p_{i+}p_{+j})^{n_{ij}}$. Use Lagrangian methods with:
 \[
 \mathscr{L} = \sum_i n_{i+} \log p_{i+} + \sum_j n_{+j} \log p_{+j} - \lambda\left(\sum p_i - 1\right) - \mu\left(\sum p_{+j} - 1\right) \mpunct{.}
 \]
-We the find that $\hat{p_{i+}} = n_{i+}/n$ and $\hat{p_{+j}} = n_{+j}/n$.
+We the find that $\hat{p}_{i+} = n_{i+}/n$ and $\hat{p}_{+j} = n_{+j}/n$.
 
-Let $o_{ij} = n_{ij}$, $e_{ij} = n\hat{p_{i+}}\hat{p_{+j}} = n_{i+}n_{+j}/n$.
+Let $o_{ij} = n_{ij}$, $e_{ij} = n\hat{p}_{i+}\hat{p}_{+j} = n_{i+}n_{+j}/n$.
 Now we have that
 \begin{IEEEeqnarray*}{rCl}
 2 \log \Lambda &=& 2 \sum_{i = 1}^r \sum_{j=1}^c o_{ij} \log \left(\frac{o_{ij}}{e_{ij}}\right) \\
 &\approx& T = \sum_{i = 1}^r \sum_{j=1}^c \frac{(o_{ij} - e_{ij})^2}{e_{ij}} \mpunct{.}
 \end{IEEEeqnarray*}
-We have that $\abs{\Theta} = rc - 1$, and $\abs{\Theta_0} = (r-1) + (c-1)$, hence $\abs{\Theta} - \abs{\Theta_0} = rc - 1 - (r - 1) - (c - 1) = (r-1)(c-1)$.
-Hence $2 \log \Lambda$ and $T$ are compared to $\chi^2_{(r-c)(c-1)} (\alpha)$.
+We have that $\abs{\Theta} = rc - 1$, and $\abs{\Theta_0} = (r-1) + (c-1)$, and hence
+\[
+\abs{\Theta} - \abs{\Theta_0} = rc - 1 - (r - 1) - (c - 1) = (r-1)(c-1) \mpunct{.}
+\]
+Thus $2 \log \Lambda$ and $T$ are compared to $\chi^2_{(r-c)(c-1)} (\alpha)$.
 
 \begin{example}[continues=ex:2.5]
 Now suppose that we wish to test $H_0$, the hypothesis that the new and previous car sizes are independent.

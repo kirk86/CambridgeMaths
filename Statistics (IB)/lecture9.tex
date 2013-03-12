@@ -75,9 +75,9 @@ Under $H_0$, we can find $\hat{\theta}$ (the \mle of $\theta$) by maximising $\s
 \end{IEEEeqnarray*}
 the generalised likelihood ratio test rejects $H_0$ if $2 \log \Lambda > \chi^2_{k - 1 - \abs{\Theta_0}}$.
 
-If we let $o_i = n_i$ (the observed number in $A_i$), $e_i = n p_i(\hat{\theta})$ (the ``expected'' number in $A_i$ under $H_0$) and $\delta_i = o_i - e_i$ so that $o_i = e_i + \delta_i$.
-If $H_0$ is true, we expect $\delta_i << e_i$.
-Then, we have that
+Let $o_i = n_i$ (the observed number in $A_i$), $e_i = n p_i(\hat{\theta})$ (the ``expected'' number in $A_i$ under $H_0$) and $\delta_i = o_i - e_i$.
+If $H_0$ is true, we expect that $\delta_i << e_i$.
+Hence, we have that
 \begin{IEEEeqnarray*}{rCl}
   2 \log \Lambda_{\vec{x}} (H_0; H_1) &=& 2\sum_{i=1}^k o_i \log \left( \frac{o_i}{e_i} \right) \\
 &=& 2 \sum (e_i + \delta_i) \log \left( 1 + \frac{\delta_i}{e_i} \right) \\

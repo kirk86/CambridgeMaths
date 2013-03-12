@@ -16,7 +16,7 @@ In hypothesis testing\index{hypothesis testing}, based on data $\vec{X} = \vec{x
 
 A simple hypothesis\index{simple hypothesis} $H$ specifies $f$ completely (e.g. $H_0 : \theta = 1/2$, $H_1 : f = f_1$, \dots); otherwise $H$ is composite\index{composite (hypothesis)} (e.g. $H_1 : \theta \neq 1/2$, $H_0 : \theta \leq 1/2$, \dots).
 
-A hypothesis test\index{hypothesis test} partitions $\curlyX^n$ into two regions $C$ and $\overline{C}$ (complement of $C$) such that if $\vec{x} \in C$ then $H_0$ is rejected if $\vec{x} \in \overline{X}$ then $H_0$ is not rejected.
+A hypothesis test\index{hypothesis test} partitions $\curlyX^n$ into two regions $C$ and $\overline{C}$ (complement of $C$) such that if $\vec{x} \in C$ then $H_0$ is rejected, and if $\vec{x} \in \overline{C}$ then $H_0$ is not rejected.
 The critical region\index{critical region} (or rejection region\index{rejection region}) $C$ defines the test.
 Alternatively, a test may be defined by a function $\varphi$ on $\curlyX^n$ such that $\varphi(\vec{x}) = 1$ if $\vec{x} \in C$ and $\varphi(\vec{x}) = 0$ otherwise.
 
@@ -29,7 +29,7 @@ If we carry out a hypothesis test, we either reach the correct conclusion, or we
 \section{Testing simple hypotheses}
 
 Suppose $H_0$ and $H_1$ are both simple hypotheses.
-Let $\alpha = \PP(\text{Type I error}) = \PP(\vec{X} \in C \given H_0$ be the size\index[size (test)]{size} of the test.
+Let $\alpha = \PP(\text{Type I error}) = \PP(\vec{X} \in C \given H_0)$ be the size\index{size} of the test.
 Let $\beta = \PP(\text{Type II error}) = \PP(\vec{X} \not\in C \given H_1)$.
 The power\index{power (test)} of the test is $\PP(\vec{X} \in C \given H_0 \text{ false}) = 1 - \beta$.
 
@@ -50,7 +50,7 @@ C = \{ \vec{x} : \Lambda_{\vec{x}}(H_0; H_1) > k \} \text{ for some $k$ }\mpunct
 Suppose $H_0 : f = f_0$ versus $H_1 : f = f_1$ where $f_0$ and $f_1$ are continuous \pdfs that are positive on the same region.
 Then, among all tests of size at most $\alpha$, the test with the smallest probability of a Type II error (i.e. the most powerful test) is the LR-test with critical region:
 \[
-C = \{ \vec{x} : \frac{f_1(\vec{x})}{f_0(\vec{x})} > k \} \mpunct{,}
+C = \left\{ \vec{x} : \frac{f_1(\vec{x})}{f_0(\vec{x})} > k \right\} \mpunct{,}
 \]
 where $k$ is chosen such that
 \[
@@ -62,10 +62,13 @@ where $k$ is chosen such that
   Let $\beta = \PP (\vec{X} \not\in C \given H_1) = \int_{\overline{C}} f_1(\vec{x}) d\vec{x}$.
 Let $C^*$ be the critical region for any other test with size at most $\alpha$,
 and let $\alpha^* = \PP (\vec{X} \in C^*  \given H_0)$,
-$\beta^* = \PP (\vec{X} \in \overline{C^^*} \given H_1)$.
+$\beta^* = \PP (\vec{X} \in \overline{C^*} \given H_1)$.
 We want to show $\beta \leq \beta^*$.
 
-By assumption, we have $\alpha^* \leq \alpha$, i.e. $\int_C^* f_0(\vec{x})d\vec{x} \leq \int_C f_0(\vec{x})d\vec{x}$.
+By assumption, we have $\alpha^* \leq \alpha$, i.e.
+\[
+\int_{C^*} f_0(\vec{x})d\vec{x} \leq \int_C f_0(\vec{x})d\vec{x} \mpunct{.}
+\]
 Also, for $\vec{x} \in C$ (resp. $\vec{x} \not\in C$), we have that $f_1(\vec{x}) > k f_0(\vec{x})$ (resp. $f_1(\vec{x}) \leq k f_0(\vec{x})$).
 Hence, we have that:
 \begin{IEEEeqnarray*}{rCl}
