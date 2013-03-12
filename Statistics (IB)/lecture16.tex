@@ -1,0 +1,94 @@
+\section{Hypothesis testing}
+\label{sec:3.7}
+
+As before, we suppose a linear model $\vec{Y} = X \vec{\beta} + \vec{\epsilon}$ with normal theory assumptions.
+Suppose additionally that we have
+\[
+X_{n \times p} = \big( {X_0}_{n \times p_0} \mid {X_1}_{n \times (p - p_0)} \big)
+\]
+and
+\[
+\vec{\beta}_{p \times 1} =\begin{pmatrix}\vec{\beta_0} \\ \vec{\beta_1}\end{pmatrix} \mpunct{.}
+\]
+We want tot test $H_0 : \vec{\beta_1} = \vec{0}$ against $H_1 : \vec{\beta_1} \neq \vec{0}$.
+
+Under $H_0$, we have that $\vec{Y} = X_0 \vec{\beta_0} + \vec{\epsilon}$, hence the m.l.es of $\vec{\beta_0}$ and $\sigma^2$ are
+\[
+\hat\hat{\vec{\beta_0}} = (X_0^TX_0)^{-1} X_0^T Y
+\]
+and
+\[
+\hat\hat{\sigma}^2 = \frac{1}{n} \mathrm{RSS}_0 = \frac{1}{n}(\vec{Y} - X_0 \hat{\hat{\vec{\beta_0}}})^T(\vec{Y} - X_0 \hat{\hat{\vec{\beta_0}}}) \mpunct{.}
+\]
+The fitted values under $H_0$ are
+\[
+\hat{\hat{\vec{Y}}} =  X_0 (X_0^T X_0) ^{-1} X_0 ^T \vec{Y} = P_0 \vec{Y} \text{ say,}
+\]
+where $P_0 = X_0(X_0^TX_0)^{-1}X_0^T$.
+
+Under $H_1$, the m.l.es are $\hat{\beta} = (X^TX)^{-1}X^T\vec{Y}$ and $\hat{\sigma}^2 = \mathrm{RSS}/n$.
+
+The generalised likelihood ratio of $H_0$ and $H_1$ is
+\begin{IEEEeqnarray*}{rCl}
+\Lambda_{\vec{Y}}(H_0 ; H_1) &=& \frac{\left(\frac{1}{\sqrt{2 \pi \hat{\sigma}^2}}\right)^n \exp \left \{ - \frac{1}{2 \hat{\sigma}^2} (\vec{Y} - X \hat{\vec{\beta}})^T(\vec{Y} - X \hat{\vec{\beta}}) \right \}}{\left(\frac{1}{\sqrt{2 \pi \hat{\hat{\sigma}^2}}}\right)^n \exp \left \{ - \frac{1}{2 \hat{\hat{\sigma}^2}} (\vec{Y} - X_0 \hat\hat{{\vec{\beta_0}}})^T(\vec{Y} - X_0 \hat{\hat{\vec{\beta_0}}}) \right \}} \\
+&=& \left( \frac{\hat{\hat{\sigma}}^2}{\hat{\sigma}^2} \right)^{n/2} \\
+&=& \left( \frac{\mathrm{RSS}_0}{\mathrm{RSS}} \right)^{n/2} \\
+&=& \left( 1 + \frac{(\mathrm{RSS}_0 - \mathrm{RSS})}{\mathrm{RSS}} \right)^{n/2} \mpunct{.}
+\end{IEEEeqnarray*}
+We reject $H_0$ when $2 \log \Lambda$ is large, equivalently when $(\mathrm{RSS}_0 - \mathrm{RSS})/\mathrm{RSS}$ is large.
+
+We have $\mathrm{RSS} = \vec{Y}^T(I - P)\vec{Y}$ (see the proof of \cref{thm:3.7}).
+We have that
+\begin{IEEEeqnarray*}{rCl}
+\mathrm{RSS}_0 - \mathrm{RSS} &=& \vec{Y}^T(I - P_0)\vec{Y} - \vec{Y}^2(I - P)\vec{Y} \\
+&=& \vec{Y}^T (P - P_0) \vec{Y} \mpunct{.}
+\end{IEEEeqnarray*}
+$I - P$ and $P - P_0$ are symmetric and idempotent.
+We have that
+\[
+\mathop{rank} P = n -p
+\]
+by \cref{thm:3.7}, and that
+\begin{IEEEeqnarray*}{rCl}
+\mathop{rank} (P - P_0) &=& \mathop{tr} (P - P_0) \\
+&=&  \mathop{tr} P - \mathop{tr} P_0 \\
+&=& \mathop{rank} P - \mathop{rank} P_0 \mpunct{.}
+\end{IEEEeqnarray*}
+We have further that
+\begin{IEEEeqnarray*}{rCl}
+(I - P)(P - P_0) &=& (I - P)P - (I - P)P_0 \\
+&=& 0 - P_0 - P P_0 \\
+&=& 0
+\end{IEEEeqnarray*}
+Finally, we have that
+\[
+\vec{Y}^T(I - P)\vec{Y} = (\vec{Y} - X_0 \vec{\beta}_0)^T(I - P)(\vec{Y} - X_0 \vec{\beta}_0)
+\]
+as we know that $(I - P)X_0 \vec{\beta}_0 = 0$, and that
+\[
+\vec{Y}^T(P - P_0) \vec{Y} = (\vec{Y} - X_0\vec{\beta}_0)^T(P - P_0)(\vec{Y} - X_0 \vec{\beta}_0)
+\]
+as we have that $(P - P_0)X_0\vec{\beta}_0$.
+
+Now applying \cref{lemma:3.5} and \cref{lemma:3.8} to
+\[
+\vec{Z} = \vec{Y} - X_0 \vec{\beta}_0 \quad A_1 = I - P \quad A_2 = P - P_0
+\]
+to see that, \emph{under $H_0$}, $\vec{Y}^T(I - P)\vec{Y}$ and $\vec{Y}^T(P - P_0)\vec{Y}$ are independent $\sigma^2\chi^2_{n-o}$ and $\sigma^2\chi^2_{p - p_0}$ respectively.
+Hence under $H_0$, we have that
+\[
+F = \frac{\vec{Y}^T(P - P_0)\vec{Y} / (p - p_0)}{\vec{Y}^T (I - P)\vec{Y} / (n - p)} = \frac{(\mathrm{RSS}_0 - \mathrm{RSS})/(p - p_0)}{\mathrm{RSS}/(n- p)} \sim F_{p-p_0, n - p} \mpunct{.}
+\]
+For a size $a$ test of $H_0$ vs $H_1$, we reject $H_0$  when
+\[
+F > F_{p - p_0, n - p}(\alpha) \mpunct{.}
+\]
+$\mathrm{RSS}_0 - \mathrm{RSS}$ is the ``reduction in residual sum of squares due to fitting $\vec{\beta}_1$''.
+Note that the above can be extended to more complex $H_0$.
+
+\emph{see examples on sheet}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "statistics"
+%%% End:
