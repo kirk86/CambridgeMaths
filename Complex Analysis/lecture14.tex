@@ -1,0 +1,124 @@
+
+\paragraph{Corrigendum}
+
+Compute the following integral
+\[
+\int_0^\infty \frac{\sin x}{x} dx \mpunct{.}
+\]
+The function $\sin (z) /z$ has a removable singularity at $0$.
+If $f(z) = \sin(z) / z$, then on $\gamma_R$ the integrand is of order $O(e^R/R)$, which does not tend to $0$ as $R \rightarrow \infty$.
+Instead, we consider $f(z) = e^{iz}/z$. This function has a simple pole at $0$.
+Hence take the contour that avoids the origin by an $\epsilon$ semi-circle, and use Jordan's lemma to see that the integral is bounded.
+Putting everything together, we have that
+\[
+\int_0^\infty \frac{\sin x}{x} dx = \frac{\pi}{2} \mpunct{.}
+\]
+
+\section{More contour integrals}
+
+\paragraph{Example}
+Compute the following integral:
+\[
+\int_0^{\pi/2} \frac{1}{1 + \sin^2 t} dt
+\]
+
+Recall that $\sin t = (e^{it} - e^{-it}) / 2i = (z + 1/z) / 2i$, hence if $z = e^{it}$, we have $dt = \frac{dz}{iz}$.
+Moreover, we have that
+\[
+\int_0^{\pi/2} \frac{1}{1 + \sin^2 t} dt = \frac{1}{4}\int_0^{2\pi} \frac{1}{1 + \sin^2 t} dt \mpunct{.}
+\]
+Hence we get
+\[
+\int_0^{\pi/2} \frac{1}{1 + \sin^2 t} dt = \frac{1}{4} \int_\gamma \frac{1}{1 + \frac{(z - 1/z)^2}{-4}} \frac{dz}{iz} = \frac{1}{4} \int_\gamma \frac{iz}{z^4 - 6 z^2 + 1} dz
+\]
+the quadratic $y^2 - 6y + 1$ has roots at $3 \pm 2 \sqrt{2}$, so the poles of $z / (z^4 - 6z^2 + 1)$ occur at $1 \pm \sqrt{2}$ and $-1 \pm \sqrt{2}$.
+These are simple poles, and the residues are $-i\sqrt{2}/16$, and we have that
+\[
+\int_0^{\pi/2} \frac{1}{1 + \sin^2 t} dt = \frac{\pi}{\sqrt{2} \mpunct{.}
+\]
+Note that using the above substitution, we can compute ``any'' integral of the shape
+\[
+\int_0^{2\pi} \frac{P (\sin t)}{Q (\sin t)} dt
+\]
+where $P$ and $Q$ are polynomials.
+
+\paragraph{Example}
+Compute the following integral:
+\[
+\int_{-\infty}^{+\infty} \frac{e^{a x}}{\cosh x} dx
+\]
+with $-1 < a < 1$.
+Note that we have
+\[
+\cosh z = 0 \Leftrightarrow e^z + e^{-z} = 0 \Leftrightarrow z = \left( n + \frac{1}{2}\right) i \pi \mpunct{.}
+\]
+
+As an alternative to summing residue contributions from many poles, note that $\cosh (x + i \pi) = - \cosh x$.
+Now consider a large rectangle of height $i \pi$ running from $-S$ to $R$, sitting on the real axis. Let $\gamma_+$ be the vertical part of the contour, we have that
+\[
+\int_{\gamma_+} f(z) dz = \int_0^^\pi \frac{e^{a(R + iy)}}{\cosh(R + iy)} i dy}  \mpunct{.}
+\]
+
+We estimate the integral by
+\begin{IEEEeqnarray*}{rCl}
+  \abs*{\int_{\gamma_+} f(z) dz } &\leq& \int_0^{2\pi} \frac{ 2 e^{aR} }{ \abs*{ e^{R + iy} + e^{-R + iy}}} dy \\
+&\leq \int_0^\pi \frac{2 e^{aR} }{\abs*{e^R - e^{-R}}} dy \mpunct{.}
+\end{IEEEeqnarray*}
+which tends to $0$ as $R \rightarrow \infty$, as we have that $a < 1$.
+Similarly, we have that $\int_{\gamma_-} f(z) dz \rightarrow 0$ as $S \rightarrow \infty$ as $a > -1$.
+As $R, S \rightarrow \infty$, we have that
+\[
+\int_{-\infty}^\infty \frac{e^'{ax}}{\cosh x} dx + \int_{+ \infty}^{- \infty} \frac{e^{a i \pi}e^{a x}}{\cosh (x + i\pi)} dx = 2 \pi i \Res_f ( i \pi / 2 ) \mpunct{.}
+\]
+We have that $f(z) = e^{az}/\cosh(z)$ has residue $e^{ap}/\sinh(p)$ at $p = i \pi /2$, hence we have the final result is:
+\[
+\int_{-\infty}^{+\infty} \frac{e^{ax}}{\cosh x} dx (1 + e^{a i \pi}) = 2 \pi i (- i e^{i a \pi /2}) \mpunct{,}
+\]
+i.e. we have
+\[
+\int_{-\infty}^{+\infty} \frac{e^{a x}}{\cosh x} dx = \pi \mathop{sec} \left(\frac{\pi a}{2} \right) \mpunct{.}
+\]
+
+\paragraph{Example}
+Compute the following integral
+\[
+\int_0^\infty \frac{\log x}{1 + x^2} dx
+\]
+We can only define $\log z$ in a slit plane.
+Hence we consider the contour that avoids the origin and runs $i \pi$ above the negative real axis.
+We have that
+\[
+\int_\epsilon^R \frac{\log x}{1 + x^2} dx + \int_{\gamma_R} f(z) dz + \int_R^\epsilon \rac{\log (x) + i \pi}{1 + x^2} (-dx) + \int_{\gamma_\epsilon} f(z) dz = (2 \pi i) \pi/4 \mpunct{.}
+\]
+
+On the large semicircle, we have that
+\[
+\abs*{\int f(z) dz} \leq \int_0^\pi \abs*{ \frac{ \log R + i  \theta}{1 + R^2 + e^{2 i \theta}}} R d\theta = O(R^{-1} \log R)
+\]
+which tends to $0$ as $R \rightarrow \infty$.
+On the small semi-circle, we have that
+\[
+\abs*{\int f(z) dz} \leq \int_0^\pi \abs*{ \frac{ \abs{ \log \epsilon } + i \theta}{1 - \epsilon^2}} \epsilon d\theta = O(\epsilon \log \epsilon)
+\]
+which tends to $0$ as $\epsilon \rightarrow 0$.
+Hence as a result we have that
+\[
+2\int_0^\infty \frac{\log x}{1 + x^2} dx = 0 \mpunct{.}
+\]
+
+A variation that can be useful is the ``keyhole contour'', that integrates along a circle avoiding a slit in the plane.
+For example consider
+\[
+\int_0^\infty \frac{\sqrt{x}}{Q(x)} dx
+\]
+with $Q$ quadratic.
+
+A second variation. Consider $\sqrt{z(1 - z)}$. This has branch points at $0$ and $1$. Consider the plane slit along $[0, 1] \subseteq \RR$. For example, consider the following integral
+\[
+\int_0^1 \frac{1}{\sqrt{x(1-x)}(a-x)} dx = \frac{\pi}{\sqrt{a (a-1)}} \mpunct{.}
+\]
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
