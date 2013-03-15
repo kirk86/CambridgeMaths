@@ -30,7 +30,7 @@ Hence $\theta_1 - \theta_2$ is constant, and $\tilde{n}(\gamma, w)$ is well-defi
 
 Now $\gamma$ is continuous on $[a, b]$, hence uniformly continuous. Let $\epsilon > 0$ such that $\abs{s - t} < \epsilon$ implies $\abs{\gamma(s) - \gamma(t)} < \sqrt{2}$. If $a = a_0 < a_1 < \dotsb < a_n = b$ such that $a_n - a_{n-1} < \epsilon$, then for $t \in [a_{n-1}, a_n]$, we have $\abs*{\gamma(t) - \gamma\left( \frac{a_{n-1} + a_n}{2}\right)} < \sqrt{2}$ and hence the image of $[a_{n-1}, a_n]$ by $\gamma$ is contained in a semi-circle.
 For all $n$, there exists a $\theta_n : [a_{n-1}, a_n] \rightarrow \RR$ continuous, such that $\gamma(t) = \exp (i \theta_n(t))$ on $[a_{n-1}, a_n]$.
-Then we have $\theta_{n-1}(a_{n-1}) = \theta_n(a_{n-1}) + b_n$ for some $b_n \in \2 \pi \ZZ$.
+Then we have $\theta_{n-1}(a_{n-1}) = \theta_n(a_{n-1}) + b_n$ for some $b_n \in 2 \pi \ZZ$.
 Redefine $\theta_n$ to be $\theta_n^{\text{old}} + b_n$ successively, for $n = 2, 3, \dotsc, N$.
 Now the $\{ \theta_n \}$ are restrictions of a continuous function $\theta(t)$.
 \end{proof}
@@ -69,7 +69,7 @@ Let $\gamma \subseteq U$ be a closed curve, with $z_i \not\in \mathop{image}(\ga
   In fact, $\gamma$ bounds a compact region which contains at most finitely many poles.
 The most important case is when $\gamma$ is simple, and we have that
 \[
-\frac{1}{2 \pi i} \int_\gamma f(z) dz = \sum_{z_i \in \text{region bound by $\gamma$} \Res_f (z_i)
+\frac{1}{2 \pi i} \int_\gamma f(z) dz = \sum_{z_i \in \text{region bound by $\gamma$}} \Res_f (z_i)
 \]
 \end{remark}
 

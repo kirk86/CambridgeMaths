@@ -34,7 +34,7 @@ Hence we get
 the quadratic $y^2 - 6y + 1$ has roots at $3 \pm 2 \sqrt{2}$, so the poles of $z / (z^4 - 6z^2 + 1)$ occur at $1 \pm \sqrt{2}$ and $-1 \pm \sqrt{2}$.
 These are simple poles, and the residues are $-i\sqrt{2}/16$, and we have that
 \[
-\int_0^{\pi/2} \frac{1}{1 + \sin^2 t} dt = \frac{\pi}{\sqrt{2} \mpunct{.}
+\int_0^{\pi/2} \frac{1}{1 + \sin^2 t} dt = \frac{\pi}{\sqrt{2}} \mpunct{.}
 \]
 Note that using the above substitution, we can compute ``any'' integral of the shape
 \[
@@ -56,7 +56,7 @@ Note that we have
 As an alternative to summing residue contributions from many poles, note that $\cosh (x + i \pi) = - \cosh x$.
 Now consider a large rectangle of height $i \pi$ running from $-S$ to $R$, sitting on the real axis. Let $\gamma_+$ be the vertical part of the contour, we have that
 \[
-\int_{\gamma_+} f(z) dz = \int_0^^\pi \frac{e^{a(R + iy)}}{\cosh(R + iy)} i dy}  \mpunct{.}
+\int_{\gamma_+} f(z) dz = \int_0^\pi \frac{e^{a(R + iy)}}{\cosh (R + iy)} i dy  \mpunct{.}
 \]
 
 We estimate the integral by
@@ -68,7 +68,7 @@ which tends to $0$ as $R \rightarrow \infty$, as we have that $a < 1$.
 Similarly, we have that $\int_{\gamma_-} f(z) dz \rightarrow 0$ as $S \rightarrow \infty$ as $a > -1$.
 As $R, S \rightarrow \infty$, we have that
 \[
-\int_{-\infty}^\infty \frac{e^'{ax}}{\cosh x} dx + \int_{+ \infty}^{- \infty} \frac{e^{a i \pi}e^{a x}}{\cosh (x + i\pi)} dx = 2 \pi i \Res_f ( i \pi / 2 ) \mpunct{.}
+\int_{-\infty}^\infty \frac{e^{ax}}{\cosh x} dx + \int_{+ \infty}^{- \infty} \frac{e^{a i \pi}e^{a x}}{\cosh (x + i\pi)} dx = 2 \pi i \Res_f ( i \pi / 2 ) \mpunct{.}
 \]
 We have that $f(z) = e^{az}/\cosh(z)$ has residue $e^{ap}/\sinh(p)$ at $p = i \pi /2$, hence we have the final result is:
 \[
@@ -88,7 +88,7 @@ We can only define $\log z$ in a slit plane.
 Hence we consider the contour that avoids the origin and runs $i \pi$ above the negative real axis.
 We have that
 \[
-\int_\epsilon^R \frac{\log x}{1 + x^2} dx + \int_{\gamma_R} f(z) dz + \int_R^\epsilon \rac{\log (x) + i \pi}{1 + x^2} (-dx) + \int_{\gamma_\epsilon} f(z) dz = (2 \pi i) \pi/4 \mpunct{.}
+\int_\epsilon^R \frac{\log x}{1 + x^2} dx + \int_{\gamma_R} f(z) dz + \int_R^\epsilon \frac{\log (x) + i \pi}{1 + x^2} (-dx) + \int_{\gamma_\epsilon} f(z) dz = (2 \pi i) \pi/4 \mpunct{.}
 \]
 
 On the large semicircle, we have that

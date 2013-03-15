@@ -31,7 +31,7 @@ Compute the following integral
 \[
 \int_{-\infty}^\infty \frac{\cos x}{1 + x + x^2} \: dx \mpunct{.}
 \]
-We know that $1/(1 + z + z^2)$ has a simple pole at $ê^{2 \pi i /3}$.
+We know that $1/(1 + z + z^2)$ has a simple pole at $e^{2 \pi i /3}$.
 Note that $\cos z$ becomes large on a semicircle of radius $R$ (it takes value $O(e^R)$), thus we take instead
 \[
 f(z) = \frac{e^{i z}}{1 + z + z^2} \mpunct{.}
@@ -106,7 +106,7 @@ f(z) e^{i \alpha z} dz \rightarrow 0 \text{ as } R \rightarrow \infty \mpunct{.}
 \frac{d}{d\theta} \left(\frac{\sin \theta}{\theta}\right) = \frac{\theta \cos \theta - \sin \theta}{\theta^2} \leq 0 \mpunct{.}
 \]
 Hence $\sin \theta / \theta$ is decreasing, and $\sin t \geq 2 t/\pi$ for $t \in [0, \pi/2]$.
-On $\gamma_R$ we have that $\abs{e^{i \alpha z} = e^{- \alpha R \sin t}$, but we have that
+On $\gamma_R$ we have that $\abs{e^{i \alpha z}} = e^{- \alpha R \sin t}$, but we have that
 \[
 e^{- \alpha R \sin t} \leq
 \begin{cases}
@@ -115,11 +115,12 @@ e^{- \alpha R \sin t} \leq
 \end{cases}
 \]
 then we have that
-\[
-\abs*{ \int_0^{\pi/2} e^{i \alpha R e^{it}} f(R e^{it}) i R e^{it} dt }
-&\leq& \int_0^{\pi/2} e^{- \alpha R t} C dt
-&=& \frac{1}{\alpha R} (1 - e^{- \alpha R \pi /2})
-\]
+\
+\begin{IEEEeqnarray*}{rCl}
+\abs*{ \int_0^{\pi/2} e^{i \alpha R e^{it}} f(R e^{it}) i R e^{it} dt } \\
+&\leq& \int_0^{\pi/2} e^{- \alpha R t} C dt \\
+&=& \frac{1}{\alpha R} (1 - e^{- \alpha R \pi /2}) \mpunct{.}
+\end{IEEEeqnarray*}
 \end{proof}
 %%% Local Variables:
 %%% mode: latex
