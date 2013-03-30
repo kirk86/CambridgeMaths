@@ -1,0 +1,103 @@
+\section{The open mapping theorem}
+
+The argument principle gives rise to a notion of local degree\index{local degree}.
+
+\begin{definition}
+  Let $f$ be non-constant holomorphic on $U$.
+The local degree of $f$ at $a \in $, we define $\deg_f (a)$ to be the order of the zero $g(z) = f(z) - f(a)$ at $z = a$.
+\end{definition}
+
+\begin{lemma}
+  We have the following equality:
+\[
+\deg_f (a) = n_{f \circ \gamma} \bigl(f (a) \bigr)
+\]
+where $\gamma(t) = a + r e^{\sqrt{2 \pi i t}$ for $0 \leq t \leq 1$, and $r > 0$ sufficiently small.
+\end{lemma}
+
+\begin{proof}
+  Consider the function $g(z) = f(z) - f(a)$.
+Both $f$ and $g$ are holomorphic, and in particular have no poles on $U$.
+The argument principle asserts that the number of zeroes of $g$ inside $\gamma$, counted with multiplicity, is $n_{g \circ \gamma}(0)$.
+From the definitions, we have that $n_{g \circ \gamma} = n_{f \circ \gamma}(f(a))$.
+Recall that the zeroes of a holomorphic function must be isolated, hence there exists some $\tilde{r} > 0$ such that $g$ does not vanish on $B_a(r) \setminus \{ a \} = \{ 0 < \abs{z - a} < \tilde{r} \}$.
+If $r < \tilde{r}$, the number of zeroes of $g$ in the region enclosed by $\gamma$ must correspond to the unique zero at $z = a$, counted with multiplicity.
+\end{proof}
+
+\begin{proposition}
+  Let $f : B_a(r) \rightarrow \CC$ be a non-constant holomorphic function.
+Let $\deg_f (a) = d > 0$. Then we have that for all $\epsilon > 0$ sufficiently small, there exists $\delta > 0$ such that, if $w \in B_{f(a)}(\delta) \setminus \{ f(a) \}$, then $f(z) = w$ has $d$ distinct roots in $B_a(\epsilon)$.
+\end{proposition}
+
+\begin{proof}
+  Let $b = f(a)$. We can pick $\epsilon > 0$ such that both $f(z) - b$ and $f'(z)$ have no zeroes in $\overline{B_a(\epsilon)} \setminus \{ a \}$ (by the identity theorem).
+  Let $\gamma(t) = a + \epsilon e^{2 \pi i t}$ for $0 \leq t \leq 1$.
+Since $f(z) - b$ does not vanish on $\gamma$, $\Gamma = f \circ \gamma$ does not pass through the point $b$ in its image.
+Pick $\delta > 0$ such that $\mathop{image}(\Gamma) \cap B_b(\delta) = \varnothin$.
+If $w \in B_b(\epsilon)$, the number of zeroes of $f(z) - w$ in $B_a(\epsilon)$ is simply $n_\Gamma (w)$ by th argument principle.
+Since $n_\Gamma$ is constant on connected subsets of $\CC \setminus \mathop{Im}(\Gamma)$, we have that $n_\Gamma(w) = n_\Gamma(b)$.
+The fact that $f'(z)$ is non-zero throughout $B_a(\epsilon) \setminus \{ a \}$ guarantees that all zeroes are simple.
+\end{proof}
+
+\begin{corollary}[Open mapping theorem]
+ A non-constant holomorphic function $f : U \rightarrow \CC$ is an open map, i.e. it takes open sets to open sets.
+\end{corollary}
+
+\begin{proof}
+  Suffices to show that, for all $a \in U$, and for all $\epsilon > 0$ sufficiently small, there exists $\delta$ such that
+\[
+B_{f(a)}(\delta) \subseteq f(B_a(\epsilon)) \mpunct{.}
+\]
+This follows immediately from the previous result.
+\end{proof}
+
+\begin{remark}
+  This immediately yields another proof of the maximum principle.
+\end{remark}
+
+\begin{remark}
+  IF $f : U \rightarrow \CC$  is holomorphic and injective on an open set $U$, then $f : U \rightarrow f(U)$ is a conformal equivalence.
+  Note that if $f'(z)$ vanishes, $f$ is not locally injective.
+\end{remark}
+
+\paragraph{Various comments on an example}
+Consider the function $f$ defined by
+\[
+f(z) = \sum_{n \in \ZZ} \frac{1}{(z - n)^2}
+\]
+for $z \in \CC \setminus \ZZ$.
+We see that, by the Weierstrass M-test, the series defining $f$ converges locally uniformly.
+Hence $f(z)$ is meromorphic (with double poles at $n \in \ZZ$).
+If we let $g$ be defined as
+\[
+g(z) = \left( \frac{\pi}{\sin (\pi z)} \right)^2
+\]
+then at any $n \in \ZZ$, the Laurent series of $g$ has principal part $(z - n)^{-2}$, therefore $f(z) = g(z) + h(z)$ for $h$ an entire function.
+We can prove that $f(z)$ and $g(z)$ vanish as $\abs{y} \rightarrow 0$, in for $\abs{x} \leq 1/2$.
+By periodicity, $h(z)$ is globally bounded, and hence constant by Liouville's theorem.
+Since both $f$ and $g$ vanish at $\infty$, we have $h(z) \equiv 0$  and $f(z) = g(z)$.
+
+What about a meromorphic function $f$ such that $f(z + 1) = f(z)$ and $f(z + i) = f(z)$?
+
+\begin{definition}
+  Let the Weierstrass $p$-function be
+\[
+\wp(z) = \frac{1}^{z^2} + \sum_{\omega i ( \ZZ + i \ZZ) \setminus \{ 0 \}} \left( \frac{1}{(z - w)^2} - \frac{1}{w^2} \right)
+\]
+\end{definition}
+
+We have the following facts:
+\begin{enumerate}
+\item $\wp(z)$ is doubly periodic and meromorphic
+\item $\wp'(z) = -2 \sum (z - w)^{-3}$ is also doubly periodic, and in fact
+\[
+\wp'(z)^2 = 4 \wp(z)^3 - \alpha \wp(z) - \beta
+\]
+\item Any even doubly periodic function is $P(\wp(z))/Q(\wp(z))$ for $P$, $Q$ polynomials.
+\end{enumerate}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "complex_analysis"
+%%% End:
