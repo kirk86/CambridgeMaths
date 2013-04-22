@@ -49,7 +49,7 @@ Now we have that $Y_1$ and $(Y_2, \dotsc, Y_n)$ are independent by \cref{prop:3.
 \begin{definition}
   Suppose $Z \sim \Normal(0, 1)$ and $Y \sim \chi^2_k$, where $Z$ and $Y$ are independent. Then the quantity
 \[
-T = \frac{z}{\sqrt{Y/k}}
+T = \frac{Z}{\sqrt{Y/k}}
 \]
 has a $t$-distribution\index{t-distribution} on $k$ degrees of freedom.
 We write $T \sim t_k$.
@@ -61,7 +61,7 @@ From \cref{thm:3.3}, we know that $\sqrt{n}(\overline{X} - \mu)/\sigma \sim \Nor
 Hence, we have that the quotient
 \begin{IEEEeqnarray*}{rCl}
 T &=& \frac{\sqrt{n}(\overline{X} - \mu)/\sigma}{\sqrt{S_{xx}/(\sigma^2(n-1))}} \\
-&=& \\frac{\sqrt{n}(\overline{X} - \mu)}{\sqrt{\frac{S_{xx}}{n-1}}} \sim t_{n-1} \mpunct{.}
+&=& \frac{\sqrt{n}(\overline{X} - \mu)}{\sqrt{\frac{S_{xx}}{n-1}}} \sim t_{n-1} \mpunct{.}
 \end{IEEEeqnarray*}
 Let $\tilde{\sigma}^2 = S_{xx}/(n-1)$. Then a $100(1-\alpha)\%$ confidence intervals for $\mu$ is found from
 \[

@@ -79,22 +79,22 @@ Usually, $z_1$, $z_2$ are percentage points.
 Let $X_1, \dotsc, X_n$ be \iid $\Normal(0, \sigma^2)$. Find a $99\%$ confidence interval for $\sigma^2$.
 From the probability review, we have that:
 \[
-\frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 \sim \Xi^2_n
+\frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 \sim \chi^2_n
 \]
-Recall $\Xi^2_n(\alpha)$ denotes the upper $100\alpha\%$ point of $\Xi^2_n$.
+Recall $\chi^2_n(\alpha)$ denotes the upper $100\alpha\%$ point of $\chi^2_n$.
 So we have that:
 \[
-\PP_{\sigma^2} \left[ \Xi^2_n(0.995) < \frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 < \Xi^2_n(0.005) \right] = 0.99 \mpunct{,}
+\PP_{\sigma^2} \left[ \chi^2_n(0.995) < \frac{1}{\sigma^2}\sum_{i=1}^n X_i^2 < \chi^2_n(0.005) \right] = 0.99 \mpunct{,}
 \]
 i.e.
 \[
-\PP_{\sigma^2} \left[ \frac{\sum}{\Xi^2_n(0.005)} < \sigma^2 < \frac{\sum}{\Xi^2_n(0.995)} \right] \mpunct{.}
+\PP_{\sigma^2} \left[ \frac{\sum X_i^2}{\chi^2_n(0.005)} < \sigma^2 < \frac{\sum X_i^2}{\chi^2_n(0.995)} \right] \mpunct{.}
 \]
 Hence we have that the following is a $99\%$ confidence interval for $\sigma^2$:
 \[
-\left(\frac{\sum X_i^2}{\Xi^2_n(0.005)}, \, \frac{\sum X_i^2}{\Xi^2_n(0.995)} \right) \mpunct{.}
+\left(\frac{\sum X_i^2}{\chi^2_n(0.005)}, \, \frac{\sum X_i^2}{\chi^2_n(0.995)} \right) \mpunct{.}
 \]
-If $n = 50$, we get $\Xi^2_{50}(0.005) = 79.49$ and $\Xi^2_{50} = 27.99$.
+If $n = 50$, we get $\chi^2_{50}(0.005) = 79.49$ and $\chi^2_{50} = 27.99$.
 \end{example}
 
 \begin{example}[Bernoulli variables]
@@ -105,7 +105,7 @@ By the central limit theorem, we have that as $n$ tends to infinity,
 \]
 Hence we have that, for $n$ large:
 \[
-\PP_p \left[ \hat{p} - z_{\frac{1-\gamma}{2}}\sqrt{\frac{p(1-p)}{n}} < p < \hat{p} + z_{frac{1-\gamma}{2}} \sqrt{\frac{p(1-p)}{n}} \right] \approxeq \gamma \mpunct{.}
+\PP_p \left[ \hat{p} - z_{\frac{1-\gamma}{2}}\sqrt{\frac{p(1-p)}{n}} < p < \hat{p} + z_{\frac{1-\gamma}{2}} \sqrt{\frac{p(1-p)}{n}} \right] \approxeq \gamma \mpunct{.}
 \]
 But $p$ is unknown, so we approximate $p$ by $\hat{p}$ to give an approximate asymptotic confidence interval for $p$:
 \[
