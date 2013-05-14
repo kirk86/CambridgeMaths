@@ -91,12 +91,12 @@ Then $f(z) = (z - a)^N g(z)$ where $g(z) = \sum_{n \geq N}c_n(z-a)^{n-N}$ and $g
 \begin{definition}
   If $N > 0$, we say hat $f$ has a zero of order $N$ at $a$. We have that
 \[
-N = min \{ n \mid f^{(n)}(a) \neq 0 \}
+N = \min \{ n \mid f^{(n)}(a) \neq 0 \}
 \]
 \end{definition}
 
 \begin{proposition}[name=Principle of isolated zeros]
-  If $f : B_a(r) \rightarrow \CC$ is holomorphic and $f$ is not identically $0$, then there exists some $0 \rho < r$ such that $f(z) \neq 0$ for $z \in B_a(\rho) \setminus \{ a \}$.
+  If $f : B_a(r) \rightarrow \CC$ is holomorphic and $f$ is not identically $0$, then there exists some $0 < \rho < r$ such that $f(z) \neq 0$ for $z \in B_a(\rho) \setminus \{ a \}$.
 \end{proposition}
 
 \begin{proof}

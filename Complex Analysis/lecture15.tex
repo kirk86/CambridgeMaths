@@ -34,7 +34,7 @@ We have that
 
 \begin{IEEEeqnarray*}{rCl}
 \abs*{\int_{\gamma_N} f(z) dz} &\leq& \sup_{\gamma_N} \abs*{\frac{\pi \cot {\pi z}}{z^2}} \mathop{\ell}{\gamma_N} \\
-&\leq& \sup_{\gamma_N} \abs{\cot (\pi z)} \frac{4 (2N + 1) \pi}{(N + 1/2)^2 \mpunct{.}
+&\leq& \sup_{\gamma_N} \abs{\cot (\pi z)} \frac{4 (2N + 1) \pi}{(N + 1/2)^2} \mpunct{.}
 \end{IEEEeqnarray*}
 Suffices to prove that, on $\gamma_N$, $\abs{\cot {\pi z}}$ is bounded.
 On vertical sides, $z = \pm (N + 1/2) + iy$ and we have that
@@ -42,12 +42,12 @@ On vertical sides, $z = \pm (N + 1/2) + iy$ and we have that
 \abs{\cot (\pi z)} = \abs{\tan (i \pi y)} = \abs{\tanh (\pi y)} \leq 1 \mpunct{.}
 \]
 On horizontal sides, we have that $z = x \pm i(N + 1/2)$, and we have that
-\begin{IEEEeqnarray*}
+\begin{IEEEeqnarray*}{rCl}
   \abs{\cot (\pi z)} &=& \abs*{\frac{e^{i \pi (x \pm i (N + 1/2))} + e^{-i \pi (x \pm i (N + 1/2))}}{e^{i \pi (x \pm i (N + 1/2))} - e^{-i \pi (x \pm i (N + 1/2))}}} \\
 &\leq& \abs*{\frac{e^{\pi (N + 1/2)} + e^{- \pi ( N + 1/2)}}{e ^{\pi (N + 1/2)} - e^{- \pi (N + 1/2)}}} \\
-&=& \mathop{coth}(N+1/2) \pi \mpunct{.}
+&=& \coth(N+1/2) \pi \mpunct{.}
 \end{IEEEeqnarray*}
-However, we have that $\mathop{coth}$ is a decreasing function for real values, hence this suffices.
+However, we have that $\coth$ is a decreasing function for real values, hence this suffices.
 
 \subsection{The argument principle}
 Recall that the zeroes and poles of a meromorphic function have a natural multiplicity. If $f(z) = (z -a)^k g(z)$ and $g(a) \neq 0$, $g$ holomorphic near $a$, then $\abs{k}$ is the multiplicity (resp. order) of the zero (resp. pole).
