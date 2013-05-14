@@ -15,7 +15,7 @@ Let $X_1, \dotsc, X_n$ \iid $\Bernouilli(\theta)$, so that $\PP(X_i = 1) = 1 - \
 \[
 p_{\vec{X}}\left(\vec{x}; \theta\right) = \prod_{i = 1}^n \theta^{x_i}(1-\theta)^{1-x_i} = \theta^{\sum x_i}(1 - \theta)^{n - \sum x_i} \mpunct{.}
 \]
-This depends on the data only through $T\left(\vec{x}\right) = \sum_{i=1}^n$ (the total number of $1$). The conditional \pmf of $\vec{X} \given T$ if $T\left(\vec{x}\right) = t$ is:
+This depends on the data only through $T\left(\vec{x}\right) = \sum_{i=1}^n x_i$ (the total number of $1$). The conditional \pmf of $\vec{X} \given T$ if $T\left(\vec{x}\right) = t$ is:
 \[
 p_{\vec{X} \given T} \left( \vec{x} \given t\right) = \frac{\PP_\theta(\vec{X} = x, T = t)}{\PP_\theta\left(T = t\right)} = \frac{\theta^t(1-\theta)^{n-t}}{\binom{n}{t}\theta^t(1-\theta)^{n-t}} = \frac{1}{\binom{n}{t}} \mpunct{.}
 \]
@@ -23,7 +23,7 @@ i.e. the conditional distribution of $\vec{X}$ given $T = t$ does not depend on 
 \end{example}
 
 \begin{definition}
-  A statistic $T$ is sufficient\index{sufficient} for $\theta$ if the conditional distribution, of $\vec{X}$ given $T$ does not depend on $\theta$.
+  A statistic $T$ is sufficient\index{sufficient} for $\theta$ if the conditional distribution of $\vec{X}$ given $T$ does not depend on $\theta$.
 \end{definition}
 
 In the previous example, $T\left(\vec{X}\right) = \sum_{i=1}^n X_i$ is sufficient for $\theta$.
